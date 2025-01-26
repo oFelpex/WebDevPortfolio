@@ -11,10 +11,15 @@
     justify-content: space-evenly;
     background-color: aliceblue;
 
-    #logo {
+    #navBar-logoAndButton {
+      display: flex;
+      justify-content: center;
       flex: 4;
       background-color: red;
-      text-align: center;
+
+      #navBar-menuButton {
+        display: none;
+      }
     }
 
     #navBar-list {
@@ -23,6 +28,31 @@
       align-items: center;
       justify-content: space-evenly;
       background-color: orange;
+    }
+
+    @media (max-width: 768px) {
+      #navBar-logoAndButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: red;
+
+        h1 {
+          flex: 10;
+          text-align: center;
+          margin-right: 15%;
+        }
+
+        #navBar-menuButton {
+          display: flex;
+          justify-content: center;
+          flex: 2;
+        }
+      }
+
+      #navBar-list {
+        display: none;
+      }
     }
   }
 }
