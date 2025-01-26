@@ -1,0 +1,28 @@
+#navBar {
+  width: 100vw;
+  height: 16vh;
+  display: flex;
+  align-items: center;
+  background-color: aqua;
+
+  #navBar-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    background-color: aliceblue;
+
+    #logo {
+      flex: 4;
+      background-color: red;
+      text-align: center;
+    }
+
+    #navBar-list {
+      display: flex;
+      flex: 5;
+      align-items: center;
+      justify-content: space-evenly;
+      background-color: orange;
+    }
+  }
+}
