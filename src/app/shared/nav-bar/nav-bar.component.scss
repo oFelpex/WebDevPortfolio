@@ -1,22 +1,25 @@
+$text-color: #09122c;
+
 #navBar {
   width: 100vw;
-  height: 16vh;
+  height: 14vh;
   display: flex;
   align-items: center;
-  background-color: aqua;
+  box-shadow: 0 0 0.1em;
 
   #navBar-container {
     display: flex;
     width: 100%;
     justify-content: space-evenly;
-    background-color: aliceblue;
 
     #navBar-logoAndButton {
       display: flex;
       justify-content: center;
       flex: 4;
-      background-color: red;
 
+      #navBar-logo {
+        color: $text-color;
+      }
       #navBar-menuButton {
         display: none;
       }
@@ -27,7 +30,10 @@
       flex: 5;
       align-items: center;
       justify-content: space-evenly;
-      background-color: orange;
+
+      li {
+        color: $text-color;
+      }
     }
 
     @media (max-width: 768px) {
@@ -35,7 +41,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: red;
 
         h1 {
           flex: 10;
@@ -47,6 +52,11 @@
           display: flex;
           justify-content: center;
           flex: 2;
+
+          button {
+            background-color: #222831;
+            color: #eeeeee;
+          }
         }
       }
 
