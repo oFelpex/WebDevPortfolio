@@ -1,10 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { NavBarComponent } from '../../../shared/nav-bar/nav-bar.component';
+import { MobileMenuComponent } from '../../../shared/mobile-menu/mobile-menu.component';
+import { MobileMenuService } from '../../../services/mobile-menu-service/mobile-menu.service';
 
 @Component({
   selector: 'app-header',
-  imports: [NavBarComponent],
+  imports: [NavBarComponent, MobileMenuComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  constructor(private mobileMenuService: MobileMenuService) {}
+  isMobile: boolean = window.innerWidth <= 768;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.isMobile = event.target.innerWidth <= 768;
+    if (!this.isMobile) {
+      this.mobileMenuService.setMenuState(false);
+    }
+  }
+}

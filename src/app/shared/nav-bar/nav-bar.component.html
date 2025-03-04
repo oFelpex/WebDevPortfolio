@@ -2,13 +2,18 @@
   <div id="navBar-container">
     <div id="navBar-logoAndButton">
       <div id="navBar-menuButton">
-        <button mat-mini-fab aria-label="Button to show the menu">
+        <button
+          mat-mini-fab
+          aria-label="Button to show the menu"
+          (click)="toggleMenu()"
+        >
           <mat-icon>menu</mat-icon>
         </button>
       </div>
       <!-- change the "Felpex" when start to working on the themes -->
       <h1 id="navBar-logo">Felpex</h1>
     </div>
+
     <ul id="navBar-list">
       <li>About</li>
       <li>Projects</li>

@@ -2,7 +2,7 @@ $text-color: #09122c;
 
 #navBar {
   width: 100vw;
-  height: 14vh;
+  height: 12vh;
   display: flex;
   align-items: center;
   box-shadow: 0 0 0.1em;
@@ -33,6 +33,7 @@ $text-color: #09122c;
 
       li {
         color: $text-color;
+        font-size: large;
       }
     }
 
@@ -65,4 +66,12 @@ $text-color: #09122c;
       }
     }
   }
+}
+#mobileMenu {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: #09122c;
+  z-index: 0;
 }
