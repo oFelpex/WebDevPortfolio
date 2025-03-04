@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -6,11 +7,28 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class MobileMenuService {
   private menuState = new BehaviorSubject<boolean>(false);
-  menuOpen$ = this.menuState.asObservable();
+  private mobileMenu!: MatDrawer;
 
-  toggleMenu() {
-    this.menuState.next(!this.menuState.value);
-    console.log(this.menuState.value);
+  setDrawer(mobileMenu: MatDrawer) {
+    this.mobileMenu = mobileMenu;
+  }
+
+  toggleMobileMenu() {
+    if (this.mobileMenu) {
+      this.mobileMenu.toggle();
+    }
+  }
+
+  openMenu() {
+    if (this.mobileMenu) {
+      this.mobileMenu.open();
+    }
+  }
+
+  closeMenu() {
+    if (this.mobileMenu) {
+      this.mobileMenu.close();
+    }
   }
 
   setMenuState(state: boolean) {

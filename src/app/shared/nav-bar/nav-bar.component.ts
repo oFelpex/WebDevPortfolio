@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
 import { MobileMenuService } from '../../services/mobile-menu-service/mobile-menu.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { MobileMenuService } from '../../services/mobile-menu-service/mobile-men
 export class NavBarComponent {
   constructor(private mobileMenuService: MobileMenuService) {}
 
-  toggleMenu() {
-    this.mobileMenuService.toggleMenu();
+  toggleMobileMenu() {
+    this.mobileMenuService.toggleMobileMenu();
   }
 }

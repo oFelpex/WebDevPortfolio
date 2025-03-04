@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MobileMenuService } from '../../services/mobile-menu-service/mobile-menu.service';
 
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-mobile-menu',
@@ -9,13 +9,16 @@ import { MatSidenavModule } from '@angular/material/sidenav';
   templateUrl: './mobile-menu.component.html',
   styleUrl: './mobile-menu.component.scss',
 })
-export class MobileMenuComponent implements OnInit {
-  menuOpen = false;
-  constructor(public mobileMenuService: MobileMenuService) {}
+export class MobileMenuComponent {
+  @ViewChild('mobileMenu') mobileMenu!: MatDrawer;
 
-  ngOnInit() {
-    this.mobileMenuService.menuOpen$.subscribe((state) => {
-      this.menuOpen = state;
-    });
+  constructor(private mobileMenuService: MobileMenuService) {}
+
+  ngAfterViewInit() {
+    this.mobileMenuService.setDrawer(this.mobileMenu);
+  }
+
+  toggleFromComponent() {
+    this.mobileMenuService.toggleMobileMenu();
   }
 }
