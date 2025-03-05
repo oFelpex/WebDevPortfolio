@@ -28,13 +28,20 @@
 
       <mat-menu #seasons="matMenu">
         @for (seasonsOptions of themeService.getSeasonsNames(); track $index) {
-        <button mat-menu-item>{{ seasonsOptions.name }}</button>
+        <button
+          mat-menu-item
+          (click)="themeService.changeTheme(seasonsOptions)"
+        >
+          {{ seasonsOptions.name }}
+        </button>
         }
       </mat-menu>
 
       <mat-menu #games="matMenu">
         @for (gamesOptions of themeService.getGamesNames(); track $index) {
-        <button mat-menu-item>{{ gamesOptions.name }}</button>
+        <button mat-menu-item (click)="themeService.changeTheme(gamesOptions)">
+          {{ gamesOptions.name }}
+        </button>
         }
       </mat-menu>
     </mat-list>
