@@ -1,5 +1,10 @@
 <mat-drawer-container class="mobileMenu-container" autosize>
   <mat-drawer #mobileMenu class="mobileMenu-sidenav" mode="push">
-    <p>Auto-resizing sidenav</p>
+    <mat-list>
+      <mat-list-item [routerLink]="['/about-me']">About-me</mat-list-item>
+      <mat-list-item [routerLink]="['/projects']">Projects</mat-list-item>
+      <mat-list-item [routerLink]="['/contact-me']">Contact</mat-list-item>
+      <mat-list-item>Change Theme</mat-list-item>
+    </mat-list>
   </mat-drawer>
 </mat-drawer-container>

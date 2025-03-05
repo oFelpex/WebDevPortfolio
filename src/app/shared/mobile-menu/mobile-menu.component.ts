@@ -1,11 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
 import { MobileMenuService } from '../../services/mobile-menu-service/mobile-menu.service';
 
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-mobile-menu',
-  imports: [MatSidenavModule],
+  imports: [MatSidenavModule, MatListModule, RouterModule],
   templateUrl: './mobile-menu.component.html',
   styleUrl: './mobile-menu.component.scss',
 })

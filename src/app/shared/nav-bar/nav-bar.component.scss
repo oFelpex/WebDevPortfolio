@@ -32,9 +32,9 @@ $text-color: #09122c;
       align-items: center;
       justify-content: space-evenly;
 
-      li {
-        color: $text-color;
-        font-size: large;
+      mat-list-item {
+        width: fit-content;
+        border-radius: 5px;
       }
     }
 

@@ -14,11 +14,11 @@
       <h1 id="navBar-logo">Felpex</h1>
     </div>
 
-    <ul id="navBar-list">
-      <li>About</li>
-      <li>Projects</li>
-      <li>Contact</li>
-      <li>dwadw</li>
-    </ul>
+    <mat-list id="navBar-list">
+      <mat-list-item [routerLink]="['/about-me']">About-me</mat-list-item>
+      <mat-list-item [routerLink]="['/projects']">Projects</mat-list-item>
+      <mat-list-item [routerLink]="['/contact-me']">Contact</mat-list-item>
+      <mat-list-item>Change Theme</mat-list-item>
+    </mat-list>
   </div>
 </nav>
