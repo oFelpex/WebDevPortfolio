@@ -4,7 +4,9 @@
       <mat-list-item [routerLink]="['/about-me']">About-me</mat-list-item>
       <mat-list-item [routerLink]="['/projects']">Projects</mat-list-item>
       <mat-list-item [routerLink]="['/contact-me']">Contact</mat-list-item>
-      <mat-list-item>Change Theme</mat-list-item>
+      <mat-list-item
+        ><button (click)="openThemeMenu()">Change Theme</button></mat-list-item
+      >
     </mat-list>
   </mat-drawer>
 </mat-drawer-container>

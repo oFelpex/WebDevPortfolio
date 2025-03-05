@@ -5,9 +5,10 @@
         <button
           mat-mini-fab
           aria-label="Button to show the menu"
+          aria-hidden="false"
           (click)="toggleMobileMenu()"
         >
-          <mat-icon>menu</mat-icon>
+          <mat-icon aria-hidden="false">menu</mat-icon>
         </button>
       </div>
       <!-- change the "Felpex" when start to working on the themes -->
@@ -18,7 +19,24 @@
       <mat-list-item [routerLink]="['/about-me']">About-me</mat-list-item>
       <mat-list-item [routerLink]="['/projects']">Projects</mat-list-item>
       <mat-list-item [routerLink]="['/contact-me']">Contact</mat-list-item>
-      <mat-list-item>Change Theme</mat-list-item>
+      <mat-list-item [matMenuTriggerFor]="theme">Change Theme</mat-list-item>
+
+      <mat-menu #theme="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="games">Video Games</button>
+        <button mat-menu-item [matMenuTriggerFor]="seasons">Seasons</button>
+      </mat-menu>
+
+      <mat-menu #seasons="matMenu">
+        @for (seasonsOptions of themeService.getSeasonsNames(); track $index) {
+        <button mat-menu-item>{{ seasonsOptions.name }}</button>
+        }
+      </mat-menu>
+
+      <mat-menu #games="matMenu">
+        @for (gamesOptions of themeService.getGamesNames(); track $index) {
+        <button mat-menu-item>{{ gamesOptions.name }}</button>
+        }
+      </mat-menu>
     </mat-list>
   </div>
 </nav>
