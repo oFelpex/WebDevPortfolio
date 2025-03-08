@@ -35,6 +35,12 @@ $text-color: #09122c;
       mat-list-item {
         width: fit-content;
         border-radius: 5px;
+        transition: 0.2s;
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgba(128, 128, 128, 0.151);
+        }
       }
     }
 
@@ -75,4 +81,24 @@ $text-color: #09122c;
   height: 100%;
   background-color: #09122c;
   z-index: 0;
+}
+.expandMatMenu {
+  width: 150px;
+  span {
+    transform: translate(10%, 30%);
+  }
+}
+.selectedTheme {
+  color: #eeeeee;
+  background-color: #31363f;
+  border-radius: 7px;
+  span {
+    transform: translate(10%, 30%);
+  }
+
+  &:hover {
+    color: #31363f;
+    background-color: #31363f;
+    border-radius: 7px;
+  }
 }

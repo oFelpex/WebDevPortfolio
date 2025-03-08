@@ -1,15 +1,18 @@
 import { Component, HostListener, inject } from '@angular/core';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
-import { ThemeService } from '../../../services/theme-service/theme.service';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { MobileMenuComponent } from '../mobile-menu.component';
+import { MatBadgeModule } from '@angular/material/badge';
+
+import { ThemeService } from '../../../services/theme-service/theme.service';
 import { Themes } from '../../../models/themes';
+import { MobileMenuComponent } from '../mobile-menu.component';
 
 @Component({
   selector: 'app-mobile-theme-menu',
-  imports: [MatListModule, MatExpansionModule, MatButtonModule],
+  imports: [MatListModule, MatExpansionModule, MatButtonModule, MatBadgeModule],
   templateUrl: './mobile-theme-menu.component.html',
   styleUrl: 'mobile-theme-menu.component.scss',
 })

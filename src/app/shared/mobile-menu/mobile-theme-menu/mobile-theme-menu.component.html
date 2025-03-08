@@ -1,9 +1,28 @@
 <mat-nav-list>
-  <h3>Choose a theme</h3>
+  <h3>
+    {{
+      themeService.getNameOfActualThemeFromLocalStorage().name
+        ? "Actual Theme: " +
+          themeService.getNameOfActualThemeFromLocalStorage().name
+        : "Choose a theme"
+    }}
+  </h3>
+
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
-        <mat-panel-title> Seasons </mat-panel-title>
+        <mat-panel-title style="height: 70px">
+          <span
+            [matBadge]="
+              themeService.getTypeOfActualThemeFromLocalStorage() === 'Seasons'
+                ? 'ON'
+                : ''
+            "
+            matBadgeOverlap="false"
+          >
+            Seasons
+          </span>
+        </mat-panel-title>
       </mat-expansion-panel-header>
       <mat-list>
         @for (seasonsOptions of themeService.getSeasonsNames(); track $index) {
@@ -11,14 +30,34 @@
           class="mobile-theme-menu-mat-list-item"
           (click)="selectTheme(seasonsOptions)"
         >
-          {{ seasonsOptions.name }}
+          <span
+            [matBadge]="
+              themeService.getNameOfActualThemeFromLocalStorage().name ===
+              seasonsOptions.name
+                ? 'Selected'
+                : ''
+            "
+            matBadgeOverlap="false"
+            >{{ seasonsOptions.name }}</span
+          >
         </mat-list-item>
         }
       </mat-list>
     </mat-expansion-panel>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
-        <mat-panel-title> Video Games </mat-panel-title>
+        <mat-panel-title style="height: 70px">
+          <span
+            [matBadge]="
+              themeService.getTypeOfActualThemeFromLocalStorage() === 'Games'
+                ? 'ON'
+                : ''
+            "
+            matBadgeOverlap="false"
+          >
+            Video Games
+          </span>
+        </mat-panel-title>
       </mat-expansion-panel-header>
       <mat-list>
         @for (gamesOptions of themeService.getGamesNames(); track $index) {
@@ -26,7 +65,16 @@
           class="mobile-theme-menu-mat-list-item"
           (click)="selectTheme(gamesOptions)"
         >
-          {{ gamesOptions.name }}
+          <span
+            [matBadge]="
+              themeService.getNameOfActualThemeFromLocalStorage().name ===
+              gamesOptions.name
+                ? 'Selected'
+                : ''
+            "
+            matBadgeOverlap="false"
+            >{{ gamesOptions.name }}</span
+          >
         </mat-list-item>
         }
       </mat-list>
