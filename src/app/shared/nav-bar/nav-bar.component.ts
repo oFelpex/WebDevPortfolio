@@ -1,7 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 
 import { MobileMenuService } from '../../services/mobile-menu-service/mobile-menu.service';
-import { Games, Themes } from '../../models/themes';
 
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,6 +10,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
 import { ThemeService } from '../../services/theme-service/theme.service';
 import { MatBadgeModule } from '@angular/material/badge';
+import { Themes } from '../../models/themes';
 
 @Component({
   selector: 'app-nav-bar',
@@ -27,14 +27,29 @@ import { MatBadgeModule } from '@angular/material/badge';
   styleUrl: './nav-bar.component.scss',
 })
 export class NavBarComponent {
-  public themeService: ThemeService;
+  private themeService: ThemeService;
   private mobileMenuService: MobileMenuService;
   constructor() {
     this.mobileMenuService = inject(MobileMenuService);
     this.themeService = inject(ThemeService);
   }
-
-  toggleMobileMenu() {
+  public toggleMobileMenu() {
     this.mobileMenuService.toggleMobileMenu();
+  }
+
+  get gamesOptions(): Themes[] {
+    return this.themeService.getGamesNames();
+  }
+  get seasonsOptions(): Themes[] {
+    return this.themeService.getSeasonsNames();
+  }
+  public getNameOfActualThemeFromLocalStorage(): Themes {
+    return this.themeService.getNameOfActualTheme();
+  }
+  public changeTheme(theme: Themes) {
+    this.themeService.changeTheme(theme);
+  }
+  public getTypeOfActualThemeFromLocalStorage(): string {
+    return this.themeService.getTypeOfActualTheme();
   }
 }

@@ -25,9 +25,21 @@ export class MobileThemeMenuSheetComponent {
     inject<MatBottomSheetRef<MobileMenuComponent>>(MatBottomSheetRef);
   isMobile: boolean = window.innerWidth <= 768;
 
-  selectTheme(gamesOptions: Themes): void {
-    this.themeService.changeTheme(gamesOptions);
+  get gamesOptions(): Themes[] {
+    return this.themeService.getGamesNames();
+  }
+  get seasonsOptions(): Themes[] {
+    return this.themeService.getSeasonsNames();
+  }
+  public getNameOfActualThemeFromLocalStorage(): Themes {
+    return this.themeService.getNameOfActualTheme();
+  }
+  public changeTheme(theme: Themes) {
+    this.themeService.changeTheme(theme);
     this._bottomSheetRef.dismiss();
+  }
+  public getTypeOfActualThemeFromLocalStorage(): string {
+    return this.themeService.getTypeOfActualTheme();
   }
 
   @HostListener('window:resize', ['$event'])

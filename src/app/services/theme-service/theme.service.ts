@@ -1,95 +1,90 @@
 import { Injectable } from '@angular/core';
-import { Themes } from '../../models/themes';
-
+import { defaultTheme, seasonsOptions, Themes } from '../../models/themes';
+import { gamesOptions } from '../../models/themes';
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
-  private gamesOptions: Themes[] = [
-    {
-      name: 'God Of War',
-    },
-    {
-      name: 'The Witcher 3',
-    },
-    {
-      name: 'Cyberpunk',
-    },
-    {
-      name: 'Elden Ring',
-    },
-    {
-      name: 'Hollow Knight',
-    },
-    {
-      name: 'Undertale',
-    },
-    {
-      name: 'Minecraft',
-    },
-  ];
-  private seasonsOptions: Themes[] = [
-    { name: 'Spring' },
-    { name: 'Summer' },
-    { name: 'Autumn' },
-    { name: 'Fall' },
-    { name: 'Winter' },
-  ];
-  private defaultTheme: Themes = {
-    name: null,
-  };
-  private actualTheme: Themes = this.defaultTheme;
+  private gamesOptions: Themes[] = gamesOptions;
+  private seasonsOptions: Themes[] = seasonsOptions;
+  private defaultTheme: Themes = defaultTheme;
 
-  getGamesNames(): Themes[] {
+  private _actualTheme$ = new BehaviorSubject<Themes>(this.defaultTheme);
+  actualTheme$ = this._actualTheme$.asObservable();
+
+  constructor() {
+    this.initTheme();
+  }
+
+  private initTheme() {
+    const storagedTheme = localStorage.getItem('actualTheme');
+    if (storagedTheme) {
+      const parsedTheme: Themes = JSON.parse(storagedTheme);
+      if (
+        this.seasonsOptions.some((seasonsThemes) => {
+          seasonsThemes === parsedTheme;
+        }) ||
+        this.gamesOptions.some((gamesThemes) => {
+          gamesThemes === parsedTheme;
+        })
+      ) {
+        this._actualTheme$.next(parsedTheme);
+      } else {
+        this._actualTheme$.next(this.defaultTheme);
+        this.setActualThemeToLocalStorage(this.defaultTheme);
+      }
+    } else {
+      this._actualTheme$.next(this.defaultTheme);
+      this.setActualThemeToLocalStorage(this.defaultTheme);
+    }
+  }
+
+  public getGamesNames(): Themes[] {
     return this.gamesOptions;
   }
-  getSeasonsNames(): Themes[] {
+
+  public getSeasonsNames(): Themes[] {
     return this.seasonsOptions;
   }
 
-  getNameOfActualThemeFromLocalStorage(): Themes {
-    let storagedTheme = localStorage.getItem('actualTheme');
-    if (storagedTheme) {
-      this.actualTheme = JSON.parse(storagedTheme);
-    } else {
-      this.actualTheme = this.defaultTheme;
-      this.setActualThemeToLocalStorage(this.actualTheme);
-    }
-    return this.actualTheme;
+  public getNameOfActualTheme(): Themes {
+    return this._actualTheme$.value;
   }
 
-  getTypeOfActualThemeFromLocalStorage(): string {
+  public getTypeOfActualTheme(): string {
     const seasonThemes = this.getSeasonsNames();
     const gameThemes = this.getGamesNames();
-    const actualTheme = this.getNameOfActualThemeFromLocalStorage().name;
+    const actualThemeName = this.getNameOfActualTheme().name;
 
-    if (seasonThemes.some((theme) => theme.name === actualTheme))
+    if (seasonThemes.some((theme) => theme.name === actualThemeName)) {
       return 'Seasons';
-    if (gameThemes.some((theme) => theme.name === actualTheme)) return 'Games';
+    }
+
+    if (gameThemes.some((theme) => theme.name === actualThemeName)) {
+      return 'Games';
+    }
 
     return 'Default';
   }
 
-  private setActualThemeToLocalStorage(theme: Themes) {
-    let hasSomethingInLocalStorage = localStorage.getItem('actualTheme');
+  public changeTheme(theme: Themes) {
+    const currentTheme = this._actualTheme$.value;
 
-    if (hasSomethingInLocalStorage) {
-      JSON.parse(hasSomethingInLocalStorage).name !== theme.name
-        ? (this.actualTheme = theme)
-        : (this.actualTheme = this.defaultTheme);
-      localStorage.setItem('actualTheme', JSON.stringify(this.actualTheme));
+    if (currentTheme.name === theme.name) {
+      this._actualTheme$.next(this.defaultTheme);
+      this.setActualThemeToLocalStorage(this.defaultTheme);
     } else {
-      localStorage.setItem('actualTheme', JSON.stringify(theme));
+      this._actualTheme$.next(theme);
+      this.setActualThemeToLocalStorage(theme);
     }
+
+    // Just for debug
+    console.log('Actual Theme:', this.getNameOfActualTheme());
+    console.log('Type:', this.getTypeOfActualTheme());
   }
 
-  changeTheme(theme: Themes) {
-    this.setActualThemeToLocalStorage(theme);
-
-    //temporary
-    setTimeout(() => {
-      console.log(this.getNameOfActualThemeFromLocalStorage());
-      console.log(this.getTypeOfActualThemeFromLocalStorage());
-    }, 1000);
+  private setActualThemeToLocalStorage(theme: Themes) {
+    localStorage.setItem('actualTheme', JSON.stringify(theme));
   }
 }

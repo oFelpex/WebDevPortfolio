@@ -22,8 +22,8 @@
       <mat-list-item [matMenuTriggerFor]="theme"
         >Actual Theme:
         {{
-          themeService.getNameOfActualThemeFromLocalStorage().name
-            ? themeService.getNameOfActualThemeFromLocalStorage().name
+          getNameOfActualThemeFromLocalStorage().name
+            ? getNameOfActualThemeFromLocalStorage().name
             : "Default"
         }}</mat-list-item
       >
@@ -32,9 +32,7 @@
         <button mat-menu-item [matMenuTriggerFor]="games" class="expandMatMenu">
           <span
             [matBadge]="
-              themeService.getTypeOfActualThemeFromLocalStorage() === 'Games'
-                ? 'ON'
-                : ''
+              getTypeOfActualThemeFromLocalStorage() === 'Games' ? 'ON' : ''
             "
             matBadgeOverlap="false"
             >Games</span
@@ -47,9 +45,7 @@
         >
           <span
             [matBadge]="
-              themeService.getTypeOfActualThemeFromLocalStorage() === 'Seasons'
-                ? 'ON'
-                : ''
+              getTypeOfActualThemeFromLocalStorage() === 'Seasons' ? 'ON' : ''
             "
             matBadgeOverlap="false"
             >Seasons</span
@@ -58,20 +54,20 @@
       </mat-menu>
 
       <mat-menu #seasons="matMenu">
-        @for (seasonsOptions of themeService.getSeasonsNames(); track $index) {
+        @for (seasonsOptions of seasonsOptions; track $index) {
         <button
           class="expandMatMenu"
           mat-menu-item
-          (click)="themeService.changeTheme(seasonsOptions)"
+          (click)="changeTheme(seasonsOptions)"
           [class]="{
             expandMatMenu:
-              themeService.getNameOfActualThemeFromLocalStorage().name ===
+              getNameOfActualThemeFromLocalStorage().name ===
               seasonsOptions.name
           }"
         >
           <span
             [matBadge]="
-              themeService.getNameOfActualThemeFromLocalStorage().name ===
+              getNameOfActualThemeFromLocalStorage().name ===
               seasonsOptions.name
                 ? 'ON'
                 : ''
@@ -84,21 +80,19 @@
       </mat-menu>
 
       <mat-menu #games="matMenu">
-        @for (gamesOptions of themeService.getGamesNames(); track $index) {
+        @for (gamesOptions of gamesOptions; track $index) {
         <button
           class="expandMatMenu"
           mat-menu-item
-          (click)="themeService.changeTheme(gamesOptions)"
+          (click)="changeTheme(gamesOptions)"
           [class]="{
             expandMatMenu:
-              themeService.getNameOfActualThemeFromLocalStorage().name ===
-              gamesOptions.name
+              getNameOfActualThemeFromLocalStorage().name === gamesOptions.name
           }"
         >
           <span
             [matBadge]="
-              themeService.getNameOfActualThemeFromLocalStorage().name ===
-              gamesOptions.name
+              getNameOfActualThemeFromLocalStorage().name === gamesOptions.name
                 ? 'ON'
                 : ''
             "

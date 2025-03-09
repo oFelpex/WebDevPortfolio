@@ -1,9 +1,8 @@
 <mat-nav-list>
   <h3>
     {{
-      themeService.getNameOfActualThemeFromLocalStorage().name
-        ? "Actual Theme: " +
-          themeService.getNameOfActualThemeFromLocalStorage().name
+      getNameOfActualThemeFromLocalStorage().name
+        ? "Actual Theme: " + getNameOfActualThemeFromLocalStorage().name
         : "Choose a theme"
     }}
   </h3>
@@ -14,9 +13,7 @@
         <mat-panel-title style="height: 70px">
           <span
             [matBadge]="
-              themeService.getTypeOfActualThemeFromLocalStorage() === 'Seasons'
-                ? 'ON'
-                : ''
+              getTypeOfActualThemeFromLocalStorage() === 'Seasons' ? 'ON' : ''
             "
             matBadgeOverlap="false"
           >
@@ -28,11 +25,11 @@
         @for (seasonsOptions of themeService.getSeasonsNames(); track $index) {
         <mat-list-item
           class="mobile-theme-menu-mat-list-item"
-          (click)="selectTheme(seasonsOptions)"
+          (click)="changeTheme(seasonsOptions)"
         >
           <span
             [matBadge]="
-              themeService.getNameOfActualThemeFromLocalStorage().name ===
+              getNameOfActualThemeFromLocalStorage().name ===
               seasonsOptions.name
                 ? 'Selected'
                 : ''
@@ -49,9 +46,7 @@
         <mat-panel-title style="height: 70px">
           <span
             [matBadge]="
-              themeService.getTypeOfActualThemeFromLocalStorage() === 'Games'
-                ? 'ON'
-                : ''
+              getTypeOfActualThemeFromLocalStorage() === 'Games' ? 'ON' : ''
             "
             matBadgeOverlap="false"
           >
@@ -63,12 +58,11 @@
         @for (gamesOptions of themeService.getGamesNames(); track $index) {
         <mat-list-item
           class="mobile-theme-menu-mat-list-item"
-          (click)="selectTheme(gamesOptions)"
+          (click)="changeTheme(gamesOptions)"
         >
           <span
             [matBadge]="
-              themeService.getNameOfActualThemeFromLocalStorage().name ===
-              gamesOptions.name
+              getNameOfActualThemeFromLocalStorage().name === gamesOptions.name
                 ? 'Selected'
                 : ''
             "
