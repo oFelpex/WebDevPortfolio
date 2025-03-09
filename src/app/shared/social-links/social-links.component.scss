@@ -1,0 +1,18 @@
+#social-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  width: 150px;
+
+  a {
+    transition: 0.2s;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  mat-icon {
+    width: 20px;
+  }
+}

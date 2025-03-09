@@ -44,7 +44,7 @@ export class MobileThemeMenuSheetComponent {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    this.isMobile = event.target.innerWidth <= 768;
+    this.isMobile = event.target.innerWidth <= 820;
     if (!this.isMobile) {
       this._bottomSheetRef.dismiss();
     }
