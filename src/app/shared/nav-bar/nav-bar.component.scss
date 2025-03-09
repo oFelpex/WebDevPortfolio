@@ -88,17 +88,3 @@ $text-color: #09122c;
     transform: translate(10%, 30%);
   }
 }
-.selectedTheme {
-  color: #eeeeee;
-  background-color: #31363f;
-  border-radius: 7px;
-  span {
-    transform: translate(10%, 30%);
-  }
-
-  &:hover {
-    color: #31363f;
-    background-color: #31363f;
-    border-radius: 7px;
-  }
-}
