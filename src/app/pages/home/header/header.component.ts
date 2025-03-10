@@ -2,11 +2,10 @@ import { Component, HostListener } from '@angular/core';
 import { NavBarComponent } from '../../../shared/nav-bar/nav-bar.component';
 import { MobileMenuComponent } from '../../../shared/mobile-menu/mobile-menu.component';
 import { MobileMenuService } from '../../../services/mobile-menu-service/mobile-menu.service';
-import { IntroSectionComponent } from './intro-section/intro-section.component';
 
 @Component({
   selector: 'app-header',
-  imports: [NavBarComponent, MobileMenuComponent, IntroSectionComponent],
+  imports: [NavBarComponent, MobileMenuComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
