@@ -31,10 +31,13 @@ import { SocialLinksComponent } from '../social-links/social-links.component';
 export class NavBarComponent {
   private themeService: ThemeService;
   private mobileMenuService: MobileMenuService;
+  public navBarSvgIconsColor: string = '#000';
+
   constructor() {
     this.mobileMenuService = inject(MobileMenuService);
     this.themeService = inject(ThemeService);
   }
+
   public toggleMobileMenu() {
     this.mobileMenuService.toggleMobileMenu();
   }
