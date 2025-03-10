@@ -1,16 +1,17 @@
-import { Component, inject, OnInit } from '@angular/core';
-
-import { MobileMenuService } from '../../services/mobile-menu-service/mobile-menu.service';
+import { Component, inject } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { RouterModule } from '@angular/router';
-import { ThemeService } from '../../services/theme-service/theme.service';
 import { MatBadgeModule } from '@angular/material/badge';
+
+import { MobileMenuService } from '../../services/mobile-menu-service/mobile-menu.service';
+import { ThemeService } from '../../services/theme-service/theme.service';
 import { Themes } from '../../models/themes';
+import { SocialLinksComponent } from '../social-links/social-links.component';
 
 @Component({
   selector: 'app-nav-bar',
@@ -21,6 +22,7 @@ import { Themes } from '../../models/themes';
     MatListModule,
     MatMenuModule,
     MatBadgeModule,
+    SocialLinksComponent,
     RouterModule,
   ],
   templateUrl: './nav-bar.component.html',
@@ -29,10 +31,13 @@ import { Themes } from '../../models/themes';
 export class NavBarComponent {
   private themeService: ThemeService;
   private mobileMenuService: MobileMenuService;
+  public navBarSvgIconsColor: string = '#000';
+
   constructor() {
     this.mobileMenuService = inject(MobileMenuService);
     this.themeService = inject(ThemeService);
   }
+
   public toggleMobileMenu() {
     this.mobileMenuService.toggleMobileMenu();
   }

@@ -16,7 +16,7 @@ $text-color: #09122c;
     #navBar-logoAndButton {
       display: flex;
       justify-content: center;
-      flex: 4;
+      flex: 1;
 
       #navBar-logo {
         color: $text-color;
@@ -28,7 +28,7 @@ $text-color: #09122c;
 
     #navBar-list {
       display: flex;
-      flex: 5;
+      flex: 6;
       align-items: center;
       justify-content: space-evenly;
 
@@ -44,7 +44,7 @@ $text-color: #09122c;
       }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 820px) {
       #navBar-logoAndButton {
         display: flex;
         align-items: center;
@@ -83,7 +83,7 @@ $text-color: #09122c;
   z-index: 0;
 }
 .expandMatMenu {
-  width: 150px;
+  width: 140px;
   span {
     transform: translate(10%, 30%);
   }

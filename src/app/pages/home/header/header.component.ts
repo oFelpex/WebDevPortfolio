@@ -12,11 +12,11 @@ import { IntroSectionComponent } from './intro-section/intro-section.component';
 })
 export class HeaderComponent {
   constructor(private mobileMenuService: MobileMenuService) {}
-  isMobile: boolean = window.innerWidth <= 768;
+  isMobile: boolean = window.innerWidth <= 820;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    this.isMobile = event.target.innerWidth <= 768;
+    this.isMobile = event.target.innerWidth <= 820;
     if (!this.isMobile) {
       this.mobileMenuService.setMenuState(false);
     }

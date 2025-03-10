@@ -9,7 +9,21 @@
 
   .mobileMenu-sidenav {
     width: 100%;
-    height: 100%;
     border-radius: 0px;
+
+    mat-list {
+      display: flex;
+      flex-direction: column;
+      height: 90%;
+    }
+    .mobileMenu-footer {
+      margin-top: auto;
+      height: 100px;
+      width: 100%;
+      background-color: #222831;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }
