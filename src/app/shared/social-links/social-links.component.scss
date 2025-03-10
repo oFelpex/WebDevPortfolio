@@ -1,4 +1,4 @@
-#social-links {
+.social-links {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11,8 +11,7 @@
       transform: scale(1.1);
     }
   }
-
-  mat-icon {
+  .icons {
     width: 20px;
   }
 }

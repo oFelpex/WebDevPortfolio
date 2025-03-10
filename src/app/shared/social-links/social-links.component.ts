@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input, input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { MatIconRegistry } from '@angular/material/icon';
@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './social-links.component.scss',
 })
 export class SocialLinksComponent {
+  @Input() svgColor: string = '#000';
   constructor() {
     const matIconRegistry = inject(MatIconRegistry);
     const domSanitizer = inject(DomSanitizer);
