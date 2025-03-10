@@ -1,0 +1,31 @@
+@if(showNavigationCards) {
+<section id="intro-section-navigation" @fadeInOut>
+  <mat-card appearance="outlined" class="navigation-card">
+    <mat-card-header>
+      <mat-card-title>About-me</mat-card-title>
+      <mat-card-subtitle>Learn more about me</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-button [routerLink]="['/contact-me']">Know more!</button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card appearance="outlined" class="navigation-card">
+    <mat-card-header>
+      <mat-card-title>Projects</mat-card-title>
+      <mat-card-subtitle>Come check out my projects</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-button [routerLink]="['/projects']">See projects!</button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card appearance="outlined" class="navigation-card">
+    <mat-card-header>
+      <mat-card-title>Contact-me</mat-card-title>
+      <mat-card-subtitle>Send-me a message!</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-button [routerLink]="['/contact-me']">See contacts</button>
+    </mat-card-actions>
+  </mat-card>
+</section>
+}
