@@ -17,7 +17,7 @@ export class HeaderComponent {
   onResize(event: any) {
     this.isMobile = event.target.innerWidth <= 820;
     if (!this.isMobile) {
-      this.mobileMenuService.setMenuState(false);
+      this.mobileMenuService.toggleMobileMenu();
     }
   }
 }

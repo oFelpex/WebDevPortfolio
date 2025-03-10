@@ -28,6 +28,7 @@ export class MobileMenuComponent {
 
   ngAfterViewInit() {
     this.mobileMenuService.setDrawer(this.mobileMenu);
+    this.mobileMenuService.changePointerEvents();
   }
 
   toggleFromComponent() {

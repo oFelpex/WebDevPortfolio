@@ -12,26 +12,23 @@ export class MobileMenuService {
   setDrawer(mobileMenu: MatDrawer) {
     this.mobileMenu = mobileMenu;
   }
-
+  changePointerEvents() {
+    if (this.mobileMenu) {
+      if (this.mobileMenu.opened) {
+        (
+          document.querySelector('.mat-drawer-container') as HTMLElement
+        ).style.pointerEvents = 'all';
+      } else {
+        (
+          document.querySelector('.mat-drawer-container') as HTMLElement
+        ).style.pointerEvents = 'none';
+      }
+    }
+  }
   toggleMobileMenu() {
     if (this.mobileMenu) {
       this.mobileMenu.toggle();
+      this.changePointerEvents();
     }
-  }
-
-  openMenu() {
-    if (this.mobileMenu) {
-      this.mobileMenu.open();
-    }
-  }
-
-  closeMenu() {
-    if (this.mobileMenu) {
-      this.mobileMenu.close();
-    }
-  }
-
-  setMenuState(state: boolean) {
-    this.menuState.next(state);
   }
 }
