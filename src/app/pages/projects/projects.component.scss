@@ -1,0 +1,50 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  #projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    height: 500px;
+    width: 80%;
+
+    .project-card {
+      max-width: 300px;
+      border-radius: 3px;
+      padding: 1px;
+      background-color: #f5f7f8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      img {
+        min-width: 150px;
+        width: 300px;
+      }
+
+      .project-card-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 5px;
+        margin: 10px 0 15px 0;
+        color: black;
+      }
+      mat-divider {
+        width: 90%;
+      }
+
+      .project-card-buttons {
+        display: flex;
+        justify-self: end;
+        align-self: flex-start;
+        gap: 20px;
+      }
+    }
+  }
+}
