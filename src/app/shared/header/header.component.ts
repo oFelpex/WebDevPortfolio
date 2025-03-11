@@ -18,8 +18,10 @@ export class HeaderComponent {
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.isMobile = event.target.innerWidth <= 820;
-    if (!this.isMobile) {
-      this.mobileMenuService.toggleMobileMenu();
+    if (event.target.innerWidth <= 820) {
+      if (!this.isMobile) {
+        this.mobileMenuService.toggleMobileMenu();
+      }
     }
   }
 }
