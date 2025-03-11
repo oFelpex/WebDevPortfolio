@@ -1,0 +1,46 @@
+main {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    word-wrap: break-word;
+    text-align: center;
+  }
+
+  #aboutMePage-main-content-container {
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .content-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      min-width: 150px;
+      width: 30%;
+    }
+    .content-container.img {
+      align-items: center;
+      img {
+        margin: 10px 0px 10px 0px;
+        border-radius: 50%;
+        background-color: #222831;
+        min-width: 150px;
+        width: 350px;
+      }
+    }
+    .content-container.details {
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        text-align: left;
+        gap: 20px;
+      }
+    }
+  }
+}
