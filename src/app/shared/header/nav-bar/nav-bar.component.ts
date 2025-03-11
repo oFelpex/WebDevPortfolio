@@ -8,10 +8,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatBadgeModule } from '@angular/material/badge';
 
-import { MobileMenuService } from '../../services/mobile-menu-service/mobile-menu.service';
-import { ThemeService } from '../../services/theme-service/theme.service';
-import { Themes } from '../../models/themes';
-import { SocialLinksComponent } from '../social-links/social-links.component';
+import { MobileMenuService } from '../../../services/mobile-menu-service/mobile-menu.service';
+import { ThemeService } from '../../../services/theme-service/theme.service';
+import { Themes } from '../../../models/themes';
+import { SocialLinksComponent } from '../../social-links/social-links.component';
 
 @Component({
   selector: 'app-nav-bar',

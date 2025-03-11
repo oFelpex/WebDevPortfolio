@@ -6,8 +6,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatBadgeModule } from '@angular/material/badge';
 
-import { ThemeService } from '../../../services/theme-service/theme.service';
-import { Themes } from '../../../models/themes';
+import { ThemeService } from '../../../../services/theme-service/theme.service';
+import { Themes } from '../../../../models/themes';
 import { MobileMenuComponent } from '../mobile-menu.component';
 
 @Component({

@@ -1,13 +1,13 @@
 import { Component, inject, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { MobileMenuService } from '../../services/mobile-menu-service/mobile-menu.service';
+import { MobileMenuService } from '../../../services/mobile-menu-service/mobile-menu.service';
 import { MobileThemeMenuSheetComponent } from './mobile-theme-menu/mobile-theme-menu.component';
 
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { SocialLinksComponent } from '../social-links/social-links.component';
+import { SocialLinksComponent } from '../../social-links/social-links.component';
 
 @Component({
   selector: 'app-mobile-menu',
