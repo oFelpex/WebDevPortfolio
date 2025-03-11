@@ -1,4 +1,11 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { MobileMenuService } from '../../../services/mobile-menu-service/mobile-menu.service';
@@ -20,13 +27,13 @@ import { SocialLinksComponent } from '../../social-links/social-links.component'
   templateUrl: './mobile-menu.component.html',
   styleUrl: './mobile-menu.component.scss',
 })
-export class MobileMenuComponent {
+export class MobileMenuComponent implements AfterViewChecked {
   @ViewChild('mobileMenu') mobileMenu!: MatDrawer;
   public mobileSvgIconsColor: string = '#FFF';
 
   constructor(private mobileMenuService: MobileMenuService) {}
 
-  ngAfterViewInit() {
+  ngAfterViewChecked() {
     this.mobileMenuService.setDrawer(this.mobileMenu);
     this.mobileMenuService.changePointerEvents();
   }
