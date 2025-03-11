@@ -9,7 +9,7 @@ main {
   }
 
   #aboutMePage-main-content-container {
-    padding: 20px;
+    padding: 20px 40px;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -21,7 +21,7 @@ main {
       justify-content: center;
       align-items: start;
       min-width: 150px;
-      width: 30%;
+      width: 20%;
 
       main {
         display: flex;
@@ -41,7 +41,7 @@ main {
         border-radius: 50%;
         background-color: #222831;
         min-width: 150px;
-        width: 350px;
+        width: 300px;
       }
     }
   }
