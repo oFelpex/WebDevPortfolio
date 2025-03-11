@@ -3,12 +3,14 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   h2 {
     word-wrap: break-word;
     text-align: center;
   }
 
   #aboutMePage-main-content-container {
+    max-width: 1720px;
     padding: 20px 40px;
     display: flex;
     justify-content: space-evenly;
