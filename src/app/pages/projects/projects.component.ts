@@ -1,6 +1,7 @@
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { HeaderComponent } from '../../shared/header/header.component';
+import { ProjectCardComponent } from './project-card/project-card.component';
 import { allProjects, Projects } from '../../models/projects';
 
 import { MatCardModule } from '@angular/material/card';
@@ -13,6 +14,7 @@ import { MatChipsModule } from '@angular/material/chips';
   selector: 'app-projects',
   imports: [
     HeaderComponent,
+    ProjectCardComponent,
     MatCardModule,
     MatButtonModule,
     MatIconModule,
@@ -24,11 +26,4 @@ import { MatChipsModule } from '@angular/material/chips';
 })
 export class ProjectsComponent {
   public projects: Projects[] = allProjects;
-
-  mouseIsOver = false;
-
-  @HostListener('mouseenter')
-  isMouseOverImg() {
-    this.mouseIsOver = true;
-  }
 }
