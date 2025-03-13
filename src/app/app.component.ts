@@ -16,17 +16,37 @@ export class AppComponent {
     const matIconRegistry = inject(MatIconRegistry);
     const domSanitizer = inject(DomSanitizer);
 
-    const icons = [
+    const socialIcons = [
       'icon-linkedin',
       'icon-whatsapp',
       'icon-github',
       'icon-twitter',
     ];
+    const hardSkillIcons = [
+      'icon-html',
+      'icon-css',
+      'icon-scss',
+      'icon-bootstrap',
+      'icon-angular',
+      'icon-js',
+      'icon-ts',
+      'icon-api',
+    ];
 
-    icons.forEach((icon) => {
+    socialIcons.forEach((icon) => {
       matIconRegistry.addSvgIcon(
         icon,
-        domSanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${icon}.svg`)
+        domSanitizer.bypassSecurityTrustResourceUrl(
+          `assets/icons/social-icons/${icon}.svg`
+        )
+      );
+    });
+    hardSkillIcons.forEach((icon) => {
+      matIconRegistry.addSvgIcon(
+        icon,
+        domSanitizer.bypassSecurityTrustResourceUrl(
+          `assets/icons/hardskill-icons/${icon}.svg`
+        )
       );
     });
   }
