@@ -2,24 +2,37 @@
 <main>
   <h1>Projects</h1>
   <section id="projects-container">
+    @for(project of projects; track project) {
     <mat-card class="project-card" appearance="outlined">
-      <img
-        mat-card-image
-        src="../../../assets/images/projects/katana-dynasty/katana-dynasty.webp"
-        alt="It's a print of the homepage from the site: Katana Dynasty."
-      />
+      <div class="project-card-img-container">
+        <img mat-card-image [src]="project.imgURL" [alt]="project.imgAlt" />
+      </div>
       <mat-card-content class="project-card-content">
-        <mat-card-title>Katana Dynasty</mat-card-title>
+        <mat-card-title>{{ project.name }}</mat-card-title>
         <p>
-          Explore our premium collection of authentic katanas. Find the perfect
-          sword for collectors, martial artists, and enthusiasts. High-quality
-          craftsmanship and detailed designs for every budget.
+          {{ project.description }}
         </p>
       </mat-card-content>
+      <mat-chip-set
+        class="project-card-hardSkills-container"
+        aria-label="Hard skills of the project."
+        role="list"
+      >
+        @for(hardSkill of project.hardSkills; track $index) {
+        <mat-chip class="project-card-hardSkills-chips">
+          <mat-icon
+            matChipAvatar
+            [svgIcon]="project.hardSkillsIcons[$index]"
+          ></mat-icon>
+
+          {{ hardSkill }}
+        </mat-chip>
+        }
+      </mat-chip-set>
       <mat-divider></mat-divider>
       <mat-card-actions class="project-card-buttons">
         <button mat-icon-button>
-          <a href="https://github.com/oFelpex/katana-dynasty" target="_blank">
+          <a [href]="project.githubURL" target="_blank">
             <mat-icon
               svgIcon="icon-github"
               aria-label="Takes you to the repository page on github"
@@ -27,7 +40,7 @@
           ></a>
         </button>
         <button mat-icon-button>
-          <a href="https://katana-dynasty.vercel.app/home" target="_blank">
+          <a [href]="project.siteURL" target="_blank">
             <mat-icon aria-label="Takes you to the website deployed"
               >open_in_new</mat-icon
             >
@@ -35,101 +48,6 @@
         </button>
       </mat-card-actions>
     </mat-card>
-    <mat-card class="project-card" appearance="outlined">
-      <img
-        mat-card-image
-        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-        alt="Photo of a Shiba Inu"
-      />
-      <mat-card-content class="project-card-content">
-        <mat-card-title>Shiba Inu</mat-card-title>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz
-          breeds of dog from Japan. A small, agile dog that copes very well with
-        </p>
-      </mat-card-content>
-      <mat-divider></mat-divider>
-      <mat-card-actions class="project-card-buttons">
-        <button mat-icon-button>
-          <a href="" target="_blank">
-            <mat-icon
-              svgIcon="icon-github"
-              aria-label="Takes you to the repository page on github"
-            ></mat-icon>
-          </a>
-        </button>
-        <button mat-icon-button>
-          <a href="" target="_blank">
-            <mat-icon aria-label="Takes you to the website deployed"
-              >open_in_new</mat-icon
-            ></a
-          >
-        </button>
-      </mat-card-actions>
-    </mat-card>
-    <mat-card class="project-card" appearance="outlined">
-      <img
-        mat-card-image
-        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-        alt="Photo of a Shiba Inu"
-      />
-      <mat-card-content class="project-card-content">
-        <mat-card-title>Shiba Inu</mat-card-title>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz
-          breeds of dog from Japan. A small, agile dog that copes very well with
-        </p>
-      </mat-card-content>
-      <mat-divider></mat-divider>
-      <mat-card-actions class="project-card-buttons">
-        <button mat-icon-button>
-          <a href="" target="_blank">
-            <mat-icon
-              svgIcon="icon-github"
-              aria-label="Takes you to the repository page on github"
-            ></mat-icon>
-          </a>
-        </button>
-        <button mat-icon-button>
-          <a href="" target="_blank">
-            <mat-icon aria-label="Takes you to the website deployed"
-              >open_in_new</mat-icon
-            ></a
-          >
-        </button>
-      </mat-card-actions>
-    </mat-card>
-    <mat-card class="project-card" appearance="outlined">
-      <img
-        mat-card-image
-        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-        alt="Photo of a Shiba Inu"
-      />
-      <mat-card-content class="project-card-content">
-        <mat-card-title>Shiba Inu</mat-card-title>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz
-          breeds of dog from Japan. A small, agile dog that copes very well with
-        </p>
-      </mat-card-content>
-      <mat-divider></mat-divider>
-      <mat-card-actions class="project-card-buttons">
-        <button mat-icon-button>
-          <a href="" target="_blank">
-            <mat-icon
-              svgIcon="icon-github"
-              aria-label="Takes you to the repository page on github"
-            ></mat-icon
-          ></a>
-        </button>
-        <button mat-icon-button>
-          <a href="" target="_blank">
-            <mat-icon aria-label="Takes you to the website deployed"
-              >open_in_new</mat-icon
-            ></a
-          >
-        </button>
-      </mat-card-actions>
-    </mat-card>
+    }
   </section>
 </main>
