@@ -7,7 +7,7 @@ type hardSkills =
   | 'Angular'
   | 'React'
   | 'Rest API';
-type hardSkillsIcon =
+type hardSkillIcons =
   | 'icon-html'
   | 'icon-css'
   | 'icon-scss'
@@ -21,7 +21,7 @@ export interface Projects {
   name: string;
   description: string;
   hardSkills: hardSkills[];
-  hardSkillsIcons: hardSkillsIcon[];
+  hardSkillsIcons: hardSkillIcons[];
   imgURL: string;
   imgAlt: string;
   githubURL: string;
