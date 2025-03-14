@@ -86,7 +86,7 @@ export class ThemeService {
     this.snackBar.open(
       `Theme changed to ${this.getNameOfActualTheme()?.name || 'Default'}`,
       'Close',
-      { duration: 3000 }
+      { duration: 4000 }
     );
     console.log('Actual Theme:', this.getNameOfActualTheme());
     console.log('Type:', this.getTypeOfActualTheme());

@@ -91,13 +91,13 @@ export class ContactMeFormComponent {
             formDirective.resetForm();
 
             this.snackBar.open('Email sent successfully!', 'Close', {
-              duration: 3000,
+              duration: 4000,
             });
           },
           (error) => {
             console.log('FAILED...', error);
-            this.snackBar.open("Oops, something isn't right", 'Close', {
-              duration: 3000,
+            this.snackBar.open('Oops, try again later', 'Close', {
+              duration: 4000,
             });
           }
         );
