@@ -101,6 +101,10 @@ export class ContactMeFormComponent {
             });
           }
         );
+    } else {
+      this.snackBar.open('You have to fill in the blanks correctly', 'Close', {
+        duration: 4000,
+      });
     }
   }
 }
