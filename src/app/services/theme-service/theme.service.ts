@@ -28,15 +28,11 @@ export class ThemeService {
     if (storagedTheme) {
       const parsedTheme: Themes = JSON.parse(storagedTheme);
       if (
-        this.seasonsOptions.some((themes) => {
-          themes === parsedTheme;
-        }) ||
-        this.gamesOptions.some((themes) => {
-          themes === parsedTheme;
-        }) ||
-        this.colorsOptions.some((themes) => {
-          themes === parsedTheme;
-        })
+        this.seasonsOptions.some(
+          (themes) => themes.name === parsedTheme.name
+        ) ||
+        this.gamesOptions.some((themes) => themes.name === parsedTheme.name) ||
+        this.colorsOptions.some((themes) => themes.name === parsedTheme.name)
       ) {
         this._actualTheme$.next(parsedTheme);
       } else {
