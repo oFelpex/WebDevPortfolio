@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { defaultTheme, seasonsOptions, Themes } from '../../models/themes';
 import { gamesOptions } from '../../models/themes';
 import { BehaviorSubject } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable({
   providedIn: 'root',
 })
@@ -9,12 +10,14 @@ export class ThemeService {
   private gamesOptions: Themes[] = gamesOptions;
   private seasonsOptions: Themes[] = seasonsOptions;
   private defaultTheme: Themes = defaultTheme;
+  private snackBar: MatSnackBar;
 
   private _actualTheme$ = new BehaviorSubject<Themes>(this.defaultTheme);
   actualTheme$ = this._actualTheme$.asObservable();
 
   constructor() {
     this.initTheme();
+    this.snackBar = inject(MatSnackBar);
   }
 
   private initTheme() {
@@ -80,6 +83,11 @@ export class ThemeService {
     }
 
     // Just for debug
+    this.snackBar.open(
+      `Theme changed to ${this.getNameOfActualTheme()?.name || 'Default'}`,
+      'Close',
+      { duration: 3000 }
+    );
     console.log('Actual Theme:', this.getNameOfActualTheme());
     console.log('Type:', this.getTypeOfActualTheme());
   }
