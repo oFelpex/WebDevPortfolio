@@ -1,0 +1,41 @@
+<section id="contact-me-container">
+  <form action="" id="contact-me-form">
+    <h3 class="subtitle">Send me a e-mail</h3>
+    <span>I'll answer you as quickly as I can</span>
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input required type="email" matInput placeholder="ex: name@mail.com" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Subject</mat-label>
+      <input required maxlength="250" matInput placeholder="What's about?" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Message</mat-label>
+      <textarea
+        required
+        matInput
+        maxlength="2000"
+        placeholder="A brief message"
+        id="input-message"
+      ></textarea>
+    </mat-form-field>
+    <button mat-button>Send</button>
+  </form>
+  <mat-divider [vertical]="true"></mat-divider>
+  <aside>
+    <h3 class="subtitle">Other ways to contact me</h3>
+    <h4>Click to copy</h4>
+    <span
+      (click)="clickToCopy('email')"
+      matTooltip="Click here to copy my e-mail"
+      >felipe95176&#64;gmail.com</span
+    >
+    <span
+      (click)="clickToCopy('number')"
+      matTooltip="Click here to copy my number"
+      >+55 84 98709-5902</span
+    >
+    <app-social-links></app-social-links>
+  </aside>
+</section>

@@ -1,0 +1,58 @@
+#contact-me-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 80vw;
+  max-width: 700px;
+  min-width: 200px;
+  padding: 20px;
+  gap: 10px;
+  flex-wrap: wrap;
+  border-radius: 10px;
+  background-color: #f8fafc;
+  border: 1px solid #404258;
+
+  #contact-me-form {
+    display: flex;
+    flex-direction: column;
+
+    span {
+      padding-bottom: 10px;
+    }
+
+    #input-message {
+      height: 100px;
+    }
+  }
+
+  aside {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    span {
+      cursor: pointer;
+
+      &:last-of-type {
+        margin-bottom: 50px;
+      }
+    }
+
+    app-social-links {
+      position: absolute;
+      bottom: 0;
+    }
+  }
+}
+@media (max-width: 848px) {
+  #contact-me-container {
+    flex-direction: column;
+    mat-divider {
+      display: none;
+    }
+  }
+}
+.subtitle {
+  padding: 15px 0px;
+}
