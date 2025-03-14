@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { SocialLinksComponent } from '../../../shared/social-links/social-links.component';
 
@@ -24,6 +25,7 @@ import { SocialLinksComponent } from '../../../shared/social-links/social-links.
     MatDividerModule,
     MatTooltipModule,
     MatButtonModule,
+    MatSnackBarModule,
     ReactiveFormsModule,
     SocialLinksComponent,
   ],
@@ -31,6 +33,9 @@ import { SocialLinksComponent } from '../../../shared/social-links/social-links.
   styleUrl: './contact-me-form.component.scss',
 })
 export class ContactMeFormComponent {
+  public sendEmailForm: FormGroup;
+  private snackBar: MatSnackBar;
+
   public clickToCopy(text: string) {
     switch (text) {
       case 'email':
@@ -41,7 +46,6 @@ export class ContactMeFormComponent {
         break;
     }
   }
-  public sendEmailForm: FormGroup;
 
   constructor() {
     this.sendEmailForm = new FormGroup({
@@ -60,6 +64,8 @@ export class ContactMeFormComponent {
         Validators.minLength(3),
       ]),
     });
+
+    this.snackBar = inject(MatSnackBar);
   }
 
   sendEmail(formDirective: FormGroupDirective): void {
@@ -81,12 +87,18 @@ export class ContactMeFormComponent {
         .then(
           (result: EmailJSResponseStatus) => {
             console.log('SUCCESS!', result.status, result.text);
-            console.log(this.sendEmailForm.value);
             this.sendEmailForm.reset();
             formDirective.resetForm();
+
+            this.snackBar.open('Email sent successfully!', 'Close', {
+              duration: 3000,
+            });
           },
           (error) => {
             console.log('FAILED...', error);
+            this.snackBar.open("Oops, something isn't right", 'Close', {
+              duration: 3000,
+            });
           }
         );
     }
