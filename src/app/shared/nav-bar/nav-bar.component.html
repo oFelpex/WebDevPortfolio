@@ -21,11 +21,7 @@
       <mat-list-item [routerLink]="['/contact-me']">Contact</mat-list-item>
       <mat-list-item [matMenuTriggerFor]="theme"
         >Actual Theme:
-        {{
-          getNameOfActualThemeFromLocalStorage().name
-            ? getNameOfActualThemeFromLocalStorage().name
-            : "Default"
-        }}</mat-list-item
+        {{ getNameOfActualThemeFromLocalStorage().name }}</mat-list-item
       >
 
       <mat-menu #theme="matMenu">
@@ -49,6 +45,15 @@
             "
             matBadgeOverlap="false"
             >Seasons</span
+          >
+        </button>
+        <button mat-menu-item [matMenuTriggerFor]="color" class="expandMatMenu">
+          <span
+            [matBadge]="
+              getTypeOfActualThemeFromLocalStorage() === 'Colors' ? 'ON' : ''
+            "
+            matBadgeOverlap="false"
+            >Colors</span
           >
         </button>
       </mat-menu>
@@ -98,6 +103,30 @@
             "
             matBadgeOverlap="false"
             >{{ gamesOptions.name }}</span
+          >
+        </button>
+        }
+      </mat-menu>
+
+      <mat-menu #color="matMenu">
+        @for (colorOption of colorsOptions; track $index) {
+        <button
+          class="expandMatMenu"
+          mat-menu-item
+          (click)="changeTheme(colorOption)"
+          [class]="{
+            expandMatMenu:
+              getNameOfActualThemeFromLocalStorage().name === colorOption.name
+          }"
+        >
+          <span
+            [matBadge]="
+              getNameOfActualThemeFromLocalStorage().name === colorOption.name
+                ? 'ON'
+                : ''
+            "
+            matBadgeOverlap="false"
+            >{{ colorOption.name }}</span
           >
         </button>
         }
