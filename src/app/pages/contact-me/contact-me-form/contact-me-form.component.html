@@ -1,35 +1,54 @@
 <section id="contact-me-container">
   <form
-    action="https://formsubmit.co/felipe95176@gmail.com"
+    action=""
     id="contact-me-form"
-    method="POST"
+    method="get"
+    [formGroup]="sendEmailForm"
+    (ngSubmit)="sendEmail(formDirective)"
+    #formDirective="ngForm"
   >
     <h3 class="subtitle">Send me a e-mail</h3>
     <span>I'll answer you as quickly as I can</span>
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
-      <input name="name" required matInput placeholder="ex: Michal Jackson" />
+      <input
+        formControlName="name"
+        type="text"
+        matInput
+        placeholder="ex: Michal Jackson"
+      />
+      <mat-error>Minimum 3 characters</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>E-mail</mat-label>
+      <input
+        formControlName="email"
+        type="email"
+        matInput
+        placeholder="ex: main@mail.com"
+      />
+      <mat-error>Enter a valid e-mail</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Subject</mat-label>
       <input
-        name="subject"
-        required
+        formControlName="subject"
         maxlength="250"
         matInput
         placeholder="What's about?"
       />
+      <mat-error>Minimum 3 characters</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Message</mat-label>
       <textarea
-        name="message"
-        required
+        formControlName="message"
         matInput
         maxlength="1000"
         placeholder="A brief message"
         id="input-message"
       ></textarea>
+      <mat-error>Minimum 3 characters</mat-error>
     </mat-form-field>
     <button mat-button type="submit">Send</button>
   </form>

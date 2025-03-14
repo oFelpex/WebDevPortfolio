@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
-import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import {
+  FormControl,
+  FormGroup,
+  FormGroupDirective,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
@@ -17,6 +24,7 @@ import { SocialLinksComponent } from '../../../shared/social-links/social-links.
     MatDividerModule,
     MatTooltipModule,
     MatButtonModule,
+    ReactiveFormsModule,
     SocialLinksComponent,
   ],
   templateUrl: './contact-me-form.component.html',
@@ -33,27 +41,54 @@ export class ContactMeFormComponent {
         break;
     }
   }
+  public sendEmailForm: FormGroup;
 
-  sendEmail(form: FormData): void {
-    emailjs
-      .send(
-        'service_felpex',
-        'TEMPLATE_ID',
-        {
-          from_name: form.get('name'),
-          subject: form.get('subject'),
-          message: form.get('message'),
-          reply_to: 'felipe95176@gmail.com',
-        },
-        'USER_ID'
-      )
-      .then(
-        (result: EmailJSResponseStatus) => {
-          console.log('SUCCESS!', result.status, result.text);
-        },
-        (error) => {
-          console.log('FAILED...', error);
-        }
-      );
+  constructor() {
+    this.sendEmailForm = new FormGroup({
+      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.email,
+      ]),
+      subject: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+      message: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+    });
+  }
+
+  sendEmail(formDirective: FormGroupDirective): void {
+    if (this.sendEmailForm.valid) {
+      emailjs
+        .send(
+          'service_felpex',
+          'template_50rc3zh',
+          {
+            name: this.sendEmailForm.value.name,
+            time: `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
+            email: this.sendEmailForm.value.email,
+            subject: this.sendEmailForm.value.subject,
+            message: this.sendEmailForm.value.message,
+            reply_to: 'felipe95176@gmail.com',
+          },
+          'gDug2nvSSF1AzFyDS'
+        )
+        .then(
+          (result: EmailJSResponseStatus) => {
+            console.log('SUCCESS!', result.status, result.text);
+            console.log(this.sendEmailForm.value);
+            this.sendEmailForm.reset();
+            formDirective.resetForm();
+          },
+          (error) => {
+            console.log('FAILED...', error);
+          }
+        );
+    }
   }
 }
