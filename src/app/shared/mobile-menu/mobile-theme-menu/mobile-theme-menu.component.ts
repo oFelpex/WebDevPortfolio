@@ -31,6 +31,9 @@ export class MobileThemeMenuSheetComponent {
   get seasonsOptions(): Themes[] {
     return this.themeService.getSeasonsNames();
   }
+  get colorsOptions(): Themes[] {
+    return this.themeService.getColorsNames();
+  }
   public getNameOfActualThemeFromLocalStorage(): Themes {
     return this.themeService.getNameOfActualTheme();
   }
