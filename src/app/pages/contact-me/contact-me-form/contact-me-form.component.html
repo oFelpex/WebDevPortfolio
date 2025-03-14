@@ -1,26 +1,37 @@
 <section id="contact-me-container">
-  <form action="" id="contact-me-form">
+  <form
+    action="https://formsubmit.co/felipe95176@gmail.com"
+    id="contact-me-form"
+    method="POST"
+  >
     <h3 class="subtitle">Send me a e-mail</h3>
     <span>I'll answer you as quickly as I can</span>
-    <mat-form-field appearance="outline">
-      <mat-label>E-mail</mat-label>
-      <input required type="email" matInput placeholder="ex: name@mail.com" />
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input name="name" required matInput placeholder="ex: Michal Jackson" />
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="fill">
       <mat-label>Subject</mat-label>
-      <input required maxlength="250" matInput placeholder="What's about?" />
+      <input
+        name="subject"
+        required
+        maxlength="250"
+        matInput
+        placeholder="What's about?"
+      />
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="fill">
       <mat-label>Message</mat-label>
       <textarea
+        name="message"
         required
         matInput
-        maxlength="2000"
+        maxlength="1000"
         placeholder="A brief message"
         id="input-message"
       ></textarea>
     </mat-form-field>
-    <button mat-button>Send</button>
+    <button mat-button type="submit">Send</button>
   </form>
   <mat-divider [vertical]="true"></mat-divider>
   <aside>
