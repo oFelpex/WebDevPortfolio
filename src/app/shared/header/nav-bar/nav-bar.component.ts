@@ -13,6 +13,7 @@ import { MobileMenuService } from '../../../services/mobile-menu-service/mobile-
 import { ThemeService } from '../../../services/theme-service/theme.service';
 import { Themes } from '../../../models/themes';
 import { SocialLinksComponent } from '../../social-links/social-links.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-nav-bar',
@@ -24,6 +25,7 @@ import { SocialLinksComponent } from '../../social-links/social-links.component'
     MatMenuModule,
     MatBadgeModule,
     MatToolbarModule,
+    MatDividerModule,
     SocialLinksComponent,
     RouterModule,
   ],
