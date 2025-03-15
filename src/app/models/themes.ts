@@ -9,7 +9,7 @@ type Games =
   | 'Minecraft';
 type Colors = 'Light' | 'Dark' | 'Eclipse';
 
-export type ThemeCategory = Seasons | Games | Colors | null;
+export type ThemeCategory = Seasons | Games | Colors;
 export interface Themes {
   name: ThemeCategory;
 }
