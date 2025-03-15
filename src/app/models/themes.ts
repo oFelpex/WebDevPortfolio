@@ -7,7 +7,7 @@ type Games =
   | 'Hollow Knight'
   | 'Undertale'
   | 'Minecraft';
-type Colors = 'Light' | 'Dark' | 'Eclipse';
+type Colors = 'Light' | 'Dark' | 'Cosmic';
 
 export type ThemeCategory = Seasons | Games | Colors;
 export interface Themes {
@@ -46,7 +46,7 @@ export const seasonsOptions: Themes[] = [
 export const colorsOptions: Themes[] = [
   { name: 'Light' },
   { name: 'Dark' },
-  { name: 'Eclipse' },
+  { name: 'Cosmic' },
 ];
 export const defaultTheme: Themes = {
   name: 'Light',
