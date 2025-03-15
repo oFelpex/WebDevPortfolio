@@ -30,7 +30,7 @@ export class MobileThemeMenuSheetComponent {
   }
   private _bottomSheetRef =
     inject<MatBottomSheetRef<MobileMenuComponent>>(MatBottomSheetRef);
-  isMobile: boolean = window.innerWidth <= 768;
+  isMobile: boolean = window.innerWidth <= 820;
 
   get gamesOptions(): Themes[] {
     return this.themeService.getGamesNames();
