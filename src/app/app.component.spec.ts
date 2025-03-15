@@ -14,16 +14,18 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'WebDevPortfolio' title`, () => {
+  it(`should have the 'Felpex - Portfolio' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('WebDevPortfolio');
+    expect(app.title).toEqual('Felpex - Portfolio');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, WebDevPortfolio');
+    expect(compiled.querySelector('h1')?.textContent).toContain(
+      'Hello, Felpex - Portfolio'
+    );
   });
 });
