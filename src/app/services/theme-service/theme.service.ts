@@ -38,13 +38,18 @@ export class ThemeService {
         this.colorsOptions.some((themes) => themes.name === parsedTheme.name)
       ) {
         this._actualTheme$.next(parsedTheme);
+        this.setTheme(parsedTheme.name.toLowerCase().replaceAll(' ', '-'));
       } else {
         this._actualTheme$.next(this.defaultTheme);
         this.setActualThemeToLocalStorage(this.defaultTheme);
+        this.setTheme(
+          this.defaultTheme.name.toLowerCase().replaceAll(' ', '-')
+        );
       }
     } else {
       this._actualTheme$.next(this.defaultTheme);
       this.setActualThemeToLocalStorage(this.defaultTheme);
+      this.setTheme(this.defaultTheme.name.toLowerCase().replaceAll(' ', '-'));
     }
   }
 
@@ -91,22 +96,45 @@ export class ThemeService {
     if (currentTheme.name === theme.name) {
       this._actualTheme$.next(this.defaultTheme);
       this.setActualThemeToLocalStorage(this.defaultTheme);
+      this.setTheme(this.defaultTheme.name.toLowerCase());
     } else {
       this._actualTheme$.next(theme);
       this.setActualThemeToLocalStorage(theme);
+      this.setTheme(theme.name.toLowerCase().replaceAll(' ', '-'));
     }
 
-    // Just for debug
     this.snackBar.open(
-      `Theme changed to ${this.getNameOfActualTheme()?.name || 'Default'}`,
+      `Theme changed to ${this.getNameOfActualTheme().name || 'Default'}`,
       'Close',
       { duration: 4000 }
     );
+    //debug
     console.log('Actual Theme:', this.getNameOfActualTheme());
     console.log('Type:', this.getTypeOfActualTheme());
   }
 
   private setActualThemeToLocalStorage(theme: Themes) {
     localStorage.setItem('actualTheme', JSON.stringify(theme));
+  }
+
+  private setTheme(themeName: string): void {
+    const body = document.body;
+    const allThemes: Themes[] = [];
+    allThemes.push(
+      ...this.gamesOptions,
+      ...this.seasonsOptions,
+      ...this.colorsOptions
+    );
+
+    const _allThemes = allThemes.map((obj) => {
+      return { ...obj, nome: obj.name.toLowerCase().replaceAll(' ', '-') };
+    });
+    const themeClassNames = _allThemes
+      .map((item) => `${item.nome}-theme`)
+      .filter(Boolean);
+
+    body.classList.remove(...themeClassNames);
+
+    body.classList.add(`${themeName}-theme`);
   }
 }
