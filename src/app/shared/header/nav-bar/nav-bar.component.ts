@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { MobileMenuService } from '../../../services/mobile-menu-service/mobile-menu.service';
 import { ThemeService } from '../../../services/theme-service/theme.service';
@@ -22,6 +23,7 @@ import { SocialLinksComponent } from '../../social-links/social-links.component'
     MatListModule,
     MatMenuModule,
     MatBadgeModule,
+    MatToolbarModule,
     SocialLinksComponent,
     RouterModule,
   ],

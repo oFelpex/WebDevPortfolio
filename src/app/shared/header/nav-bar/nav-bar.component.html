@@ -1,4 +1,4 @@
-<nav id="navBar">
+<mat-toolbar id="navBar">
   <div id="navBar-container">
     <div id="navBar-logoAndButton">
       <div id="navBar-menuButton">
@@ -16,11 +16,19 @@
     </div>
 
     <mat-list id="navBar-list">
-      <mat-list-item [routerLink]="['/home']">Home</mat-list-item>
-      <mat-list-item [routerLink]="['/about-me']">About-me</mat-list-item>
-      <mat-list-item [routerLink]="['/projects']">Projects</mat-list-item>
-      <mat-list-item [routerLink]="['/contact-me']">Contact</mat-list-item>
-      <mat-list-item [matMenuTriggerFor]="theme"
+      <mat-list-item class="navBar-list-item" [routerLink]="['/home']"
+        >Home</mat-list-item
+      >
+      <mat-list-item class="navBar-list-item" [routerLink]="['/about-me']"
+        >About-me</mat-list-item
+      >
+      <mat-list-item class="navBar-list-item" [routerLink]="['/projects']"
+        >Projects</mat-list-item
+      >
+      <mat-list-item class="navBar-list-item" [routerLink]="['/contact-me']"
+        >Contact</mat-list-item
+      >
+      <mat-list-item class="navBar-list-item" [matMenuTriggerFor]="theme"
         >Theme: {{ getNameOfActualThemeFromLocalStorage().name }}</mat-list-item
       >
 
@@ -135,4 +143,4 @@
       <app-social-links [svgColor]="navBarSvgIconsColor"></app-social-links>
     </mat-list>
   </div>
-</nav>
+</mat-toolbar>
