@@ -6,13 +6,20 @@ import { MatListModule } from '@angular/material/list';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatBadgeModule } from '@angular/material/badge';
 
-import { ThemeService } from '../../../services/theme-service/theme.service';
-import { Themes } from '../../../models/themes';
+import { ThemeService } from '../../../../services/theme-service/theme.service';
+import { Themes } from '../../../../models/themes';
 import { MobileMenuComponent } from '../mobile-menu.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-mobile-theme-menu',
-  imports: [MatListModule, MatExpansionModule, MatButtonModule, MatBadgeModule],
+  imports: [
+    MatListModule,
+    MatExpansionModule,
+    MatButtonModule,
+    MatBadgeModule,
+    MatDividerModule,
+  ],
   templateUrl: './mobile-theme-menu.component.html',
   styleUrl: 'mobile-theme-menu.component.scss',
 })
@@ -23,13 +30,16 @@ export class MobileThemeMenuSheetComponent {
   }
   private _bottomSheetRef =
     inject<MatBottomSheetRef<MobileMenuComponent>>(MatBottomSheetRef);
-  isMobile: boolean = window.innerWidth <= 768;
+  isMobile: boolean = window.innerWidth <= 820;
 
   get gamesOptions(): Themes[] {
     return this.themeService.getGamesNames();
   }
   get seasonsOptions(): Themes[] {
     return this.themeService.getSeasonsNames();
+  }
+  get colorsOptions(): Themes[] {
+    return this.themeService.getColorsNames();
   }
   public getNameOfActualThemeFromLocalStorage(): Themes {
     return this.themeService.getNameOfActualTheme();

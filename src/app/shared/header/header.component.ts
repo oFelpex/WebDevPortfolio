@@ -1,7 +1,9 @@
 import { Component, HostListener } from '@angular/core';
-import { NavBarComponent } from '../../../shared/nav-bar/nav-bar.component';
-import { MobileMenuComponent } from '../../../shared/mobile-menu/mobile-menu.component';
-import { MobileMenuService } from '../../../services/mobile-menu-service/mobile-menu.service';
+
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
+
+import { MobileMenuService } from '../../services/mobile-menu-service/mobile-menu.service';
 
 @Component({
   selector: 'app-header',
@@ -16,8 +18,10 @@ export class HeaderComponent {
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.isMobile = event.target.innerWidth <= 820;
-    if (!this.isMobile) {
-      this.mobileMenuService.toggleMobileMenu();
+    if (event.target.innerWidth <= 820) {
+      if (!this.isMobile) {
+        this.mobileMenuService.toggleMobileMenu();
+      }
     }
   }
 }

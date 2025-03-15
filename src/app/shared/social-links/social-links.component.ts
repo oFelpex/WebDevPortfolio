@@ -12,22 +12,4 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class SocialLinksComponent {
   @Input() svgColor: string = '#000';
-  constructor() {
-    const matIconRegistry = inject(MatIconRegistry);
-    const domSanitizer = inject(DomSanitizer);
-
-    const icons = [
-      'icon-linkedin',
-      'icon-whatsapp',
-      'icon-github',
-      'icon-twitter',
-    ];
-
-    icons.forEach((icon) => {
-      matIconRegistry.addSvgIcon(
-        icon,
-        domSanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${icon}.svg`)
-      );
-    });
-  }
 }

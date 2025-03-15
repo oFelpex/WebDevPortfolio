@@ -1,4 +1,4 @@
-<nav id="navBar">
+<mat-toolbar id="navBar">
   <div id="navBar-container">
     <div id="navBar-logoAndButton">
       <div id="navBar-menuButton">
@@ -16,16 +16,20 @@
     </div>
 
     <mat-list id="navBar-list">
-      <mat-list-item [routerLink]="['/about-me']">About-me</mat-list-item>
-      <mat-list-item [routerLink]="['/projects']">Projects</mat-list-item>
-      <mat-list-item [routerLink]="['/contact-me']">Contact</mat-list-item>
-      <mat-list-item [matMenuTriggerFor]="theme"
-        >Theme:
-        {{
-          getNameOfActualThemeFromLocalStorage().name
-            ? getNameOfActualThemeFromLocalStorage().name
-            : "Default"
-        }}</mat-list-item
+      <mat-list-item class="navBar-list-item" [routerLink]="['/home']"
+        >Home</mat-list-item
+      >
+      <mat-list-item class="navBar-list-item" [routerLink]="['/about-me']"
+        >About-me</mat-list-item
+      >
+      <mat-list-item class="navBar-list-item" [routerLink]="['/projects']"
+        >Projects</mat-list-item
+      >
+      <mat-list-item class="navBar-list-item" [routerLink]="['/contact-me']"
+        >Contact</mat-list-item
+      >
+      <mat-list-item class="navBar-list-item" [matMenuTriggerFor]="theme"
+        >Theme: {{ getNameOfActualThemeFromLocalStorage().name }}</mat-list-item
       >
 
       <mat-menu #theme="matMenu">
@@ -49,6 +53,15 @@
             "
             matBadgeOverlap="false"
             >Seasons</span
+          >
+        </button>
+        <button mat-menu-item [matMenuTriggerFor]="color" class="expandMatMenu">
+          <span
+            [matBadge]="
+              getTypeOfActualThemeFromLocalStorage() === 'Colors' ? 'ON' : ''
+            "
+            matBadgeOverlap="false"
+            >Colors</span
           >
         </button>
       </mat-menu>
@@ -103,7 +116,32 @@
         }
       </mat-menu>
 
+      <mat-menu #color="matMenu">
+        @for (colorOption of colorsOptions; track $index) {
+        <button
+          class="expandMatMenu"
+          mat-menu-item
+          (click)="changeTheme(colorOption)"
+          [class]="{
+            expandMatMenu:
+              getNameOfActualThemeFromLocalStorage().name === colorOption.name
+          }"
+        >
+          <span
+            [matBadge]="
+              getNameOfActualThemeFromLocalStorage().name === colorOption.name
+                ? 'ON'
+                : ''
+            "
+            matBadgeOverlap="false"
+            >{{ colorOption.name }}</span
+          >
+        </button>
+        }
+      </mat-menu>
+
       <app-social-links [svgColor]="navBarSvgIconsColor"></app-social-links>
     </mat-list>
   </div>
-</nav>
+</mat-toolbar>
+<mat-divider></mat-divider>

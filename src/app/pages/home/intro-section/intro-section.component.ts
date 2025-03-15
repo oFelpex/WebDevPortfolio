@@ -17,11 +17,11 @@ export class IntroSectionComponent implements OnInit {
   ngOnInit(): void {
     new Typed('.auto-type', {
       strings: [
-        'Front End Developer^2500',
+        'Front-end Developer^2500',
         'Web Developer^2500',
         'student^4000',
       ],
-      typeSpeed: 150,
+      typeSpeed: 100,
       backSpeed: 30,
       loop: true,
     });

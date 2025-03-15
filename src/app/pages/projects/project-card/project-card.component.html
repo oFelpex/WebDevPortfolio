@@ -1,0 +1,70 @@
+<mat-card class="project-card" appearance="outlined">
+  <div
+    class="project-card-img-container"
+    (mouseenter)="showOverlay()"
+    (mouseleave)="hideOverlay()"
+  >
+    <app-overlay-projects
+      [isOverlayVisible]="isOverlayVisible"
+      [project]="project"
+    ></app-overlay-projects>
+
+    <img mat-card-image [src]="project.imgURL" [alt]="project.imgAlt" />
+  </div>
+  <mat-card-content class="project-card-content">
+    <mat-card-title
+      ><a [href]="project.siteURL" target="_blank">
+        {{ project.name }}</a
+      ></mat-card-title
+    >
+    <p>
+      {{ project.description }}
+    </p>
+  </mat-card-content>
+  <mat-chip-set
+    class="project-card-hardSkills-container"
+    aria-label="Hard skills of the project."
+  >
+    @for(hardSkill of project.hardSkills; track $index) {
+    <mat-chip class="project-card-hardSkills-chips">
+      <mat-icon
+        matChipAvatar
+        [svgIcon]="project.hardSkillsIcons[$index]"
+      ></mat-icon>
+
+      {{ hardSkill }}
+    </mat-chip>
+    }
+  </mat-chip-set>
+  <mat-divider></mat-divider>
+  <mat-card-actions class="project-card-buttons">
+    <button
+      mat-icon-button
+      aria-label="Takes you to the repository page on github"
+    >
+      <a
+        [href]="project.githubURL"
+        target="_blank"
+        aria-label="Takes you to the repository page on github"
+      >
+        <mat-icon
+          svgIcon="icon-github"
+          aria-label="Takes you to the repository page on github"
+        ></mat-icon
+      ></a>
+    </button>
+    <button mat-icon-button aria-label="Takes you to the website deployed">
+      <a
+        [href]="project.siteURL"
+        target="_blank"
+        aria-label="Takes you to the website deployed"
+      >
+        <mat-icon
+          aria-label="Takes you to the website deployed"
+          alt="Takes you to the website deployed"
+          >open_in_new</mat-icon
+        >
+      </a>
+    </button>
+  </mat-card-actions>
+</mat-card>

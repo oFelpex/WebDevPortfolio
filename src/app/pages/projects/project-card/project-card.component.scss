@@ -1,0 +1,48 @@
+.project-card {
+  max-width: 300px;
+  min-height: 550px;
+  border-radius: 3px;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .project-card-img-container {
+    position: relative;
+    min-height: 70px;
+    max-height: 170px;
+    width: 100%;
+
+    img {
+      width: 100%;
+      min-height: 70px;
+      max-height: 170px;
+      z-index: 0;
+    }
+  }
+
+  .project-card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 5px;
+    margin: 10px 0 15px 0;
+  }
+  mat-divider {
+    width: 90%;
+  }
+  .project-card-hardSkills-container {
+    padding-bottom: 10px;
+    ::ng-deep .mdc-evolution-chip-set__chips {
+      justify-content: center;
+      display: flex;
+    }
+  }
+  .project-card-buttons {
+    display: flex;
+    margin-left: 5px;
+    justify-self: end;
+    align-self: flex-start;
+    gap: 20px;
+  }
+}

@@ -7,11 +7,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { MobileMenuService } from '../../services/mobile-menu-service/mobile-menu.service';
-import { ThemeService } from '../../services/theme-service/theme.service';
-import { Themes } from '../../models/themes';
-import { SocialLinksComponent } from '../social-links/social-links.component';
+import { MobileMenuService } from '../../../services/mobile-menu-service/mobile-menu.service';
+import { ThemeService } from '../../../services/theme-service/theme.service';
+import { Themes } from '../../../models/themes';
+import { SocialLinksComponent } from '../../social-links/social-links.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-nav-bar',
@@ -22,6 +24,8 @@ import { SocialLinksComponent } from '../social-links/social-links.component';
     MatListModule,
     MatMenuModule,
     MatBadgeModule,
+    MatToolbarModule,
+    MatDividerModule,
     SocialLinksComponent,
     RouterModule,
   ],
@@ -47,6 +51,9 @@ export class NavBarComponent {
   }
   get seasonsOptions(): Themes[] {
     return this.themeService.getSeasonsNames();
+  }
+  get colorsOptions(): Themes[] {
+    return this.themeService.getColorsNames();
   }
   public getNameOfActualThemeFromLocalStorage(): Themes {
     return this.themeService.getNameOfActualTheme();

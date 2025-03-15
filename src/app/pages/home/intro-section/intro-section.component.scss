@@ -15,6 +15,7 @@
   #intro-section-button {
     margin-top: 20px;
     animation: 1s ease-in-out 1s infinite alternate float;
+
     @keyframes float {
       from {
         transform: scale(1);
