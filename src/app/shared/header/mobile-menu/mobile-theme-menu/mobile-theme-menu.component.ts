@@ -9,10 +9,17 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { ThemeService } from '../../../../services/theme-service/theme.service';
 import { Themes } from '../../../../models/themes';
 import { MobileMenuComponent } from '../mobile-menu.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-mobile-theme-menu',
-  imports: [MatListModule, MatExpansionModule, MatButtonModule, MatBadgeModule],
+  imports: [
+    MatListModule,
+    MatExpansionModule,
+    MatButtonModule,
+    MatBadgeModule,
+    MatDividerModule,
+  ],
   templateUrl: './mobile-theme-menu.component.html',
   styleUrl: 'mobile-theme-menu.component.scss',
 })

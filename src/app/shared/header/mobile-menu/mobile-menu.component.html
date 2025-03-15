@@ -2,18 +2,21 @@
   <mat-drawer #mobileMenu class="mobileMenu-sidenav" mode="push">
     <mat-list>
       <mat-list-item [routerLink]="['/home']">Home</mat-list-item>
+      <mat-divider style="width: 97%; align-self: center"></mat-divider>
       <mat-list-item [routerLink]="['/about-me']">About-me</mat-list-item>
+      <mat-divider style="width: 97%; align-self: center"></mat-divider>
       <mat-list-item [routerLink]="['/projects']">Projects</mat-list-item>
+      <mat-divider style="width: 97%; align-self: center"></mat-divider>
       <mat-list-item [routerLink]="['/contact-me']">Contact</mat-list-item>
+      <mat-divider style="width: 97%; align-self: center"></mat-divider>
       <mat-list-item
-        ><button
-          aria-label="Button to show the options of themes"
-          (click)="openThemeMenu()"
-        >
-          Change Theme
-        </button></mat-list-item
-      >
+        aria-label="Button to show the options of themes"
+        (click)="openThemeMenu()"
+        >Change Theme
+      </mat-list-item>
+      <mat-divider></mat-divider>
       <footer class="mobileMenu-footer">
+        <mat-divider></mat-divider>
         <app-social-links [svgColor]="mobileSvgIconsColor"></app-social-links>
       </footer>
     </mat-list>
