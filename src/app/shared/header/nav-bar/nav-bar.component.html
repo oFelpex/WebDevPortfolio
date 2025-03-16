@@ -15,17 +15,17 @@
     </div>
 
     <mat-list id="navBar-list">
-      <mat-list-item class="navBar-list-item"
-        ><a [routerLink]="['/home']">Home</a></mat-list-item
+      <a [routerLink]="['/home']">
+        <mat-list-item class="navBar-list-item">Home</mat-list-item></a
       >
-      <mat-list-item class="navBar-list-item"
-        ><a [routerLink]="['/about-me']">About-me</a></mat-list-item
+      <a [routerLink]="['/about-me']">
+        <mat-list-item class="navBar-list-item">About-me</mat-list-item></a
       >
-      <mat-list-item class="navBar-list-item"
-        ><a [routerLink]="['/projects']">Projects</a></mat-list-item
+      <a [routerLink]="['/projects']">
+        <mat-list-item class="navBar-list-item">Projects</mat-list-item></a
       >
-      <mat-list-item class="navBar-list-item"
-        ><a [routerLink]="['/contact-me']">Contact</a></mat-list-item
+      <a [routerLink]="['/contact-me']">
+        <mat-list-item class="navBar-list-item">Contact</mat-list-item></a
       >
       <mat-list-item class="navBar-list-item" [matMenuTriggerFor]="theme"
         ><button
