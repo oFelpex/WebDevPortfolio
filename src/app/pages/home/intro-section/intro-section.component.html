@@ -1,15 +1,19 @@
 <main id="intro-section">
-  <h1>Hello! 👋 <br />I'm Felipe Costa</h1>
-  <h2>I'm a <span class="auto-type"></span></h2>
-  <button
-    id="intro-section-button"
-    mat-icon-button
-    aria-label="Button to leave you to next section of the page."
-    (click)="toggleNavigationCards()"
+  <div
+    id="intro-section-main"
+    [@getUpDown]="showNavigationCards ? 'getUp' : 'getDown'"
   >
-    <mat-icon class="intro-section-button-icon">keyboard_arrow_down</mat-icon>
-  </button>
-
+    <h1>Hello! 👋 <br />I'm Felipe Costa</h1>
+    <h2>I'm a <span class="auto-type"></span></h2>
+    <button
+      id="intro-section-button"
+      mat-icon-button
+      aria-label="Button to leave you to next section of the page."
+      (click)="toggleNavigationCards()"
+    >
+      <mat-icon class="intro-section-button-icon">keyboard_arrow_down</mat-icon>
+    </button>
+  </div>
   <app-navigation-cards
     [showNavigationCards]="showNavigationCards"
   ></app-navigation-cards>

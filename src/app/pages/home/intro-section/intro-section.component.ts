@@ -6,12 +6,36 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 import Typed from 'typed.js';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-intro-section',
   imports: [MatButtonModule, MatIconModule, NavigationCardsComponent],
   templateUrl: './intro-section.component.html',
   styleUrl: './intro-section.component.scss',
+  animations: [
+    trigger('getUpDown', [
+      state(
+        'getUp',
+        style({
+          transform: 'translateY(0px)',
+        })
+      ),
+      state(
+        'getDown',
+        style({
+          transform: 'translateY(100px)',
+        })
+      ),
+      transition('getDown <=> getUp', animate('300ms ease-in-out')),
+    ]),
+  ],
 })
 export class IntroSectionComponent implements OnInit {
   ngOnInit(): void {

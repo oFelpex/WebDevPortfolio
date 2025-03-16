@@ -1,28 +1,34 @@
 #intro-section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 10px;
-  margin-top: 90px;
+  margin-top: 5rem;
+  padding: 20px;
 
-  h1 {
-    text-align: center;
-    font-size: 36px;
-    font-weight: 600;
-  }
+  #intro-section-main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
 
-  #intro-section-button {
-    margin-top: 20px;
-    animation: 1s ease-in-out 1s infinite alternate float;
+    h1 {
+      text-align: center;
+      font-size: 36px;
+      font-weight: 600;
+    }
 
-    @keyframes float {
-      from {
-        transform: scale(1);
-      }
+    #intro-section-button {
+      margin-top: 20px;
+      animation: 1s ease-in-out 1s infinite alternate float;
 
-      to {
-        transform: scale(1.2);
+      @keyframes float {
+        from {
+          transform: scale(1);
+        }
+
+        to {
+          transform: scale(1.2);
+        }
       }
     }
   }
