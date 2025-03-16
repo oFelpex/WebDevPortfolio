@@ -16,20 +16,25 @@
     </div>
 
     <mat-list id="navBar-list">
-      <mat-list-item class="navBar-list-item" [routerLink]="['/home']"
-        >Home</mat-list-item
+      <mat-list-item class="navBar-list-item"
+        ><a [routerLink]="['/home']">Home</a></mat-list-item
       >
-      <mat-list-item class="navBar-list-item" [routerLink]="['/about-me']"
-        >About-me</mat-list-item
+      <mat-list-item class="navBar-list-item"
+        ><a [routerLink]="['/about-me']">About-me</a></mat-list-item
       >
-      <mat-list-item class="navBar-list-item" [routerLink]="['/projects']"
-        >Projects</mat-list-item
+      <mat-list-item class="navBar-list-item"
+        ><a [routerLink]="['/projects']">Projects</a></mat-list-item
       >
-      <mat-list-item class="navBar-list-item" [routerLink]="['/contact-me']"
-        >Contact</mat-list-item
+      <mat-list-item class="navBar-list-item"
+        ><a [routerLink]="['/contact-me']">Contact</a></mat-list-item
       >
       <mat-list-item class="navBar-list-item" [matMenuTriggerFor]="theme"
-        >Theme: {{ getNameOfActualThemeFromLocalStorage().name }}</mat-list-item
+        ><button
+          mat-button
+          aria-label="Button that open a menu to change the theme of the page"
+        >
+          Theme: {{ getNameOfActualThemeFromLocalStorage().name }}
+        </button></mat-list-item
       >
 
       <mat-menu #theme="matMenu">

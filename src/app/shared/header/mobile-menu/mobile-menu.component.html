@@ -9,10 +9,15 @@
       <mat-divider style="width: 97%; align-self: center"></mat-divider>
       <mat-list-item [routerLink]="['/contact-me']">Contact</mat-list-item>
       <mat-divider style="width: 97%; align-self: center"></mat-divider>
-      <mat-list-item
-        aria-label="Button to show the options of themes"
-        (click)="openThemeMenu()"
-        >Change Theme
+      <mat-list-item aria-hidden="false" (click)="openThemeMenu()"
+        ><button
+          style="border-radius: 7px; width: 100%"
+          mat-button
+          aria-label="Button to show the options of themes"
+          (click)="openThemeMenu()"
+        >
+          Change Theme
+        </button>
       </mat-list-item>
       <mat-divider></mat-divider>
       <footer class="mobileMenu-footer">
