@@ -53,6 +53,10 @@ export class IntroSectionComponent implements OnInit {
 
   showNavigationCards: boolean = false;
   toggleNavigationCards() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
     this.showNavigationCards = !this.showNavigationCards;
     let introSectionButtonIcon = document.querySelector(
       '.intro-section-button-icon'
