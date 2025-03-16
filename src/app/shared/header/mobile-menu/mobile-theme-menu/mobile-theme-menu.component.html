@@ -26,16 +26,17 @@
         <mat-list-item
           class="mobile-theme-menu-mat-list-item"
           (click)="changeTheme(colorOption)"
-        >
-          <span
-            [matBadge]="
-              getNameOfActualThemeFromLocalStorage().name === colorOption.name
-                ? 'Selected'
-                : ''
-            "
-            matBadgeOverlap="false"
-            >{{ colorOption.name }}</span
-          >
+          ><button mat-button style="border-radius: 7px; width: 100%">
+            <span
+              [matBadge]="
+                getNameOfActualThemeFromLocalStorage().name === colorOption.name
+                  ? 'Selected'
+                  : ''
+              "
+              matBadgeOverlap="false"
+              >{{ colorOption.name }}</span
+            >
+          </button>
         </mat-list-item>
         <mat-divider style="width: 97%; align-self: center"></mat-divider>
         }
