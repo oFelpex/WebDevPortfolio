@@ -23,6 +23,11 @@
         font-size: 2rem;
         font-weight: bold;
         cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          transform: scale(1.05);
+        }
       }
       #navBar-menuButton {
         display: none;
