@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { SocialLinksComponent } from '../../../shared/social-links/social-links.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-contact-me-form',
@@ -26,6 +27,7 @@ import { SocialLinksComponent } from '../../../shared/social-links/social-links.
     MatTooltipModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule,
     SocialLinksComponent,
   ],
@@ -68,8 +70,12 @@ export class ContactMeFormComponent {
     this.snackBar = inject(MatSnackBar);
   }
 
-  sendEmail(formDirective: FormGroupDirective): void {
+  public isSending: boolean = false;
+  public sendEmail(formDirective: FormGroupDirective): void {
     if (this.sendEmailForm.valid) {
+      this.isSending = true;
+      this.sendEmailForm.disable();
+
       emailjs
         .send(
           'service_felpex',
@@ -90,6 +96,9 @@ export class ContactMeFormComponent {
             this.sendEmailForm.reset();
             formDirective.resetForm();
 
+            this.isSending = false;
+            this.sendEmailForm.enable();
+
             this.snackBar.open('Email sent successfully!', 'Close', {
               duration: 4000,
             });
@@ -99,6 +108,7 @@ export class ContactMeFormComponent {
             this.snackBar.open('Oops, try again later', 'Close', {
               duration: 4000,
             });
+            this.isSending = false;
           }
         );
     } else {
