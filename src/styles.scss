@@ -12,10 +12,13 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  --background-color: #ffffff;
+  background-color: var(--background-color);
 }
+
 // Theme: dark-theme
 body.dark-theme {
-  background-color: #393e46;
+  --background-color: #393e46;
   color: #ffffff;
   #navBar {
     background-color: #222831;
@@ -42,6 +45,8 @@ body.dark-theme {
 
 // Theme: light-theme
 body.light-theme {
+  --background-color: #ffffff;
+
   @include mat.theme(
     (
       color: (
@@ -57,7 +62,7 @@ body.light-theme {
 
 // Theme: cosmic-theme
 body.cosmic-theme {
-  background-color: #500073;
+  --background-color: #500073;
   color: #eee9c8;
   #navBar {
     background-color: #2a004e;
