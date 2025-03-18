@@ -4,6 +4,7 @@
 @use "@angular/material" as mat;
 @use "./app/themes/colors/theme-dark.scss" as theme-dark;
 @use "./app/themes/colors/theme-cosmic.scss" as theme-cosmic;
+@use "./app/themes/variables" as var;
 
 html,
 body {
@@ -12,7 +13,6 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  --background-color: #ffffff;
   background-color: var(--background-color);
 }
 

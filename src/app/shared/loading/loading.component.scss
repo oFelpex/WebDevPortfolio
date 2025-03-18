@@ -1,4 +1,4 @@
-@use "../../../styles.scss" as bgColor;
+@use "../../themes/variables" as var;
 
 #spinner-container {
   display: flex;
