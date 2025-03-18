@@ -1,18 +1,29 @@
-import { Component, inject } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
+import { Component, inject, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { RouterOutlet } from '@angular/router';
+import {
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router,
+  RouterOutlet,
+} from '@angular/router';
+
+import { MatIconRegistry } from '@angular/material/icon';
+
+import { LoadingComponent } from './shared/loading/loading.component';
+import { LoadingService } from './services/loading-service/loading.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, LoadingComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Felpex - Portfolio';
 
-  constructor() {
+  constructor(private router: Router, private loadingService: LoadingService) {
     const matIconRegistry = inject(MatIconRegistry);
     const domSanitizer = inject(DomSanitizer);
 
@@ -48,6 +59,27 @@ export class AppComponent {
           `assets/icons/hardskill-icons/${icon}.svg`
         )
       );
+    });
+  }
+
+  isLoading = false;
+  ngOnInit() {
+    this.loadingService.loading$.subscribe((loading) => {
+      this.isLoading = loading;
+    });
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.loadingService.show();
+      }
+
+      if (
+        event instanceof NavigationEnd ||
+        event instanceof NavigationCancel ||
+        event instanceof NavigationError
+      ) {
+        setTimeout(() => this.loadingService.hide(), 300);
+      }
     });
   }
 }
