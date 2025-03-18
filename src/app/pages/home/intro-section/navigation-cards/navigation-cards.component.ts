@@ -33,21 +33,6 @@ import { MatButtonModule } from '@angular/material/button';
         ),
       ]),
     ]),
-    // trigger('expandCollapse', [
-    //   state(
-    //     'expanded',
-    //     style({
-    //       'min-height': '0px',
-    //     })
-    //   ),
-    //   state(
-    //     'collapsed',
-    //     style({
-    //       'min-height': '400px',
-    //     })
-    //   ),
-    //   transition('collapsed <=> expanded', animate('400ms ease-in-out')),
-    // ]),
   ],
 })
 export class NavigationCardsComponent {
