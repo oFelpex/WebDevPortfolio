@@ -42,9 +42,15 @@ export class ContactMeFormComponent {
     switch (text) {
       case 'email':
         navigator.clipboard.writeText(`felipe95176@gmail.com`);
+        this.snackBar.open('Email copied to clipboard!', 'Close', {
+          duration: 4000,
+        });
         break;
       case 'number':
         navigator.clipboard.writeText(`+55 84 98709-5902`);
+        this.snackBar.open('Number copied to clipboard!', 'Close', {
+          duration: 4000,
+        });
         break;
     }
   }
