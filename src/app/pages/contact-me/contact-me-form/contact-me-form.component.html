@@ -50,7 +50,7 @@
       ></textarea>
       <mat-error>Minimum 3 characters</mat-error>
     </mat-form-field>
-    <button mat-button type="submit" [disabled]="isSending">
+    <button mat-flat-button type="submit" [disabled]="isSending">
       @if(isSending){
       <mat-spinner diameter="25"></mat-spinner>
       }@else { Send }
