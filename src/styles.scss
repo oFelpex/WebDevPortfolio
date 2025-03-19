@@ -4,7 +4,7 @@
 @use "@angular/material" as mat;
 @use "./app/themes/colors/theme-dark.scss" as theme-dark;
 @use "./app/themes/colors/theme-cosmic.scss" as theme-cosmic;
-@use "./app/themes/variables" as var;
+@use "./app/themes/variables/variables" as var;
 
 html,
 body {
@@ -46,7 +46,6 @@ body.dark-theme {
 // Theme: light-theme
 body.light-theme {
   --background-color: #ffffff;
-
   @include mat.theme(
     (
       color: (
