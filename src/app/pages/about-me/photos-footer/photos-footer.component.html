@@ -1,1 +1,7 @@
-<p>photos-footer works!</p>
+<footer id="footer-container">
+  @for(photo of allPhotos; track $index) {
+  <div class="photo-container">
+    <img class="photo" [src]="photo.imgURL" [alt]="photo.imgAlt" />
+  </div>
+  }
+</footer>
