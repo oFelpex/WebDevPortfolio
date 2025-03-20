@@ -1,50 +1,27 @@
 <app-header></app-header>
-<main>
-  <h1>Profile</h1>
-  <h2>I'm a creative front end developer</h2>
+<main id="aboutMePage-main">
   <section id="aboutMePage-main-content-container">
-    <article class="content-container">
-      <header><h3>About me</h3></header>
-      <main>
-        <p>
-          I'm studying Science and Technology at the Federal University of Rio
-          Grande do Norte, with an emphasis on Applied Computing, I have
-          knowledge of the Angular framework in the most recent versions and
-          libraries such as ReactJS
-        </p>
-      </main>
-      <footer><app-social-links></app-social-links></footer>
+    <article class="content-container-first">
+      <header><h1>about.</h1></header>
+      <p class="content-container-first-paragraph">
+        Felipe Costa da Silva, 23 years old. Rio Grande do Norte, Brazil.
+        <br />I'm studying Science and Technology at the Federal University of
+        Rio Grande do Norte, with an emphasis on Applied Computing, since 2023
+        I've been studying front end technologies. In my free time I like to
+        play some video games and work on my personal projects.
+      </p>
+      <mat-divider style="width: 100%; margin-top: 10px"></mat-divider>
+      <app-social-links></app-social-links>
     </article>
-    <article class="content-container img">
-      <header>Yeah, that's me!</header>
+    <article class="content-container-second">
       <figure>
         <img
-          src="../../../assets/images/me/eu.webp"
+          src="../../../assets/images/me/eu-2.webp"
           alt="It's photo of my self, I have black hair, using blue glasses"
         />
       </figure>
-      <figcaption>Photo taken in 2025</figcaption>
-    </article>
-    <article class="content-container details">
-      <header><h3>Details</h3></header>
-      <main>
-        <div>
-          <h4>Name and Age:</h4>
-          <p>Felipe Costa da Silva, 22 years old</p>
-        </div>
-        <div>
-          <h4>Location:</h4>
-          <p>Natal, Rio Grande do Norte, Brazil, Earth</p>
-        </div>
-        <div>
-          <h4>Hard skills:</h4>
-          <p>Git, Github, HTML, CSS/SCSS, TS/JS, Angular, React.</p>
-        </div>
-        <div>
-          <h4>Soft skills:</h4>
-          <p>Communication, flexibility, organization, problem solving.</p>
-        </div>
-      </main>
     </article>
   </section>
+  <mat-divider style="width: 90%"></mat-divider>
+  <section>teste</section>
 </main>
