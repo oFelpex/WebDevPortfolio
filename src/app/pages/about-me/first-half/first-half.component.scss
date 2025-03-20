@@ -1,0 +1,13 @@
+.content-container-first {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+
+  header {
+    justify-self: center;
+  }
+  .content-container-first-paragraph {
+    max-width: 820px;
+  }
+}

@@ -1,27 +1,9 @@
 <app-header></app-header>
 <main id="aboutMePage-main">
   <section id="aboutMePage-main-content-container">
-    <article class="content-container-first">
-      <header><h1>about.</h1></header>
-      <p class="content-container-first-paragraph">
-        Felipe Costa da Silva, 23 years old. Rio Grande do Norte, Brazil.
-        <br />I'm studying Science and Technology at the Federal University of
-        Rio Grande do Norte, with an emphasis on Applied Computing, since 2023
-        I've been studying front end technologies. In my free time I like to
-        play some video games and work on my personal projects.
-      </p>
-      <mat-divider style="width: 100%; margin-top: 10px"></mat-divider>
-      <app-social-links></app-social-links>
-    </article>
-    <article class="content-container-second">
-      <figure>
-        <img
-          src="../../../assets/images/me/eu-2.webp"
-          alt="It's photo of my self, I have black hair, using blue glasses"
-        />
-      </figure>
-    </article>
+    <app-first-half style="flex: 1"></app-first-half>
+    <app-second-half style="flex: 1"></app-second-half>
   </section>
   <mat-divider style="width: 90%"></mat-divider>
-  <section>teste</section>
+  <app-photos-footer></app-photos-footer>
 </main>
