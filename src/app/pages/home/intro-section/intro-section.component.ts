@@ -24,7 +24,7 @@ import {
       state(
         'getUp',
         style({
-          transform: 'translateY(0px)',
+          transform: 'translateY(50px)',
         })
       ),
       state(
