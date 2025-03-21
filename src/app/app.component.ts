@@ -22,8 +22,12 @@ import { LoadingService } from './services/loading-service/loading.service';
 })
 export class AppComponent implements OnInit {
   title = 'Felpex - Portfolio';
+  private loadingService: LoadingService;
+  private router: Router;
 
-  constructor(private router: Router, private loadingService: LoadingService) {
+  constructor() {
+    this.router = inject(Router);
+    this.loadingService = inject(LoadingService);
     const matIconRegistry = inject(MatIconRegistry);
     const domSanitizer = inject(DomSanitizer);
 
