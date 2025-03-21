@@ -1,4 +1,4 @@
-<footer id="footer-container">
+<footer id="footer-container" @fadeInDownToUp>
   @for(photo of allPhotos; track $index) {
   <div class="photo-container">
     <img class="photo" [src]="photo.imgURL" [alt]="photo.imgAlt" />
