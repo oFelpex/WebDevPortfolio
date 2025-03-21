@@ -1,9 +1,17 @@
 <app-header></app-header>
 <main id="aboutMePage-main">
   <section id="aboutMePage-main-content-container">
-    <app-first-half style="flex: 1"></app-first-half>
-    <app-second-half style="flex: 1"></app-second-half>
+    <app-first-half
+      [@fadeInUpToDown]="isLoading ? 'loading' : 'loaded'"
+      style="flex: 1"
+    ></app-first-half>
+    <app-second-half
+      [@fadeInUpToDown]="isLoading ? 'loading' : 'loaded'"
+      style="flex: 1"
+    ></app-second-half>
   </section>
   <mat-divider style="width: 90%"></mat-divider>
+  @if(!isLoading) {
   <app-photos-footer style="width: 90%; margin-top: 10px"></app-photos-footer>
+  }
 </main>
