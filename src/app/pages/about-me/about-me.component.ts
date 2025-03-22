@@ -36,7 +36,7 @@ import { LoadingService } from '../../services/loading-service/loading.service';
           transform: 'translateY(0px)',
         })
       ),
-      transition('loading => loaded', animate('300ms ease-in')),
+      transition('loading => loaded', animate('300ms ease-in-out')),
     ]),
   ],
 })
