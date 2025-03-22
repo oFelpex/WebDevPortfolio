@@ -13,10 +13,11 @@ import {
 } from '@angular/animations';
 
 import { MatDialog } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-photos-footer',
-  imports: [],
+  imports: [MatTooltipModule],
   templateUrl: './photos-footer.component.html',
   styleUrl: './photos-footer.component.scss',
   animations: [

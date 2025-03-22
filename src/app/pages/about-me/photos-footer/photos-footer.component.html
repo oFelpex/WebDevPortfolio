@@ -2,8 +2,9 @@
   @for(photo of allPhotos; track $index) {
   <div class="photo-container">
     <img
-      (click)="openDialog('150ms', '150ms', photo)"
       class="photo"
+      (click)="openDialog('150ms', '150ms', photo)"
+      matTooltip="Click to expand"
       [src]="photo.imgURL"
       [alt]="photo.imgAlt"
     />
