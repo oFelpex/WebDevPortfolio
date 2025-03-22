@@ -1,0 +1,7 @@
+<h2 mat-dialog-title>{{ photo.name }}</h2>
+<mat-dialog-content>
+  <img style="border-radius: 5px" [src]="photo.imgURL" [alt]="photo.imgAlt" />
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close cdkFocusInitial>Close</button>
+</mat-dialog-actions>
