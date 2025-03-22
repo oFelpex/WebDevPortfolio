@@ -1,15 +1,18 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { allPhotos, Photos } from '../../../models/photos';
+import { DialogPhotoFullScreenComponent } from './dialog-photo-full-screen/dialog-photo-full-screen.component';
+
 import {
   animate,
   query,
   stagger,
-  state,
   style,
   transition,
   trigger,
 } from '@angular/animations';
+
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-photos-footer',
@@ -38,4 +41,18 @@ import {
 })
 export class PhotosFooterComponent {
   allPhotos: Photos[] = allPhotos;
+
+  readonly dialog = inject(MatDialog);
+  openDialog(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string,
+    clickedPhoto: Photos
+  ): void {
+    this.dialog.open(DialogPhotoFullScreenComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: clickedPhoto,
+    });
+  }
 }
