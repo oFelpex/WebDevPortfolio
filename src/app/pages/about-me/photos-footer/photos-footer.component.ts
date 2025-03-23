@@ -51,6 +51,7 @@ export class PhotosFooterComponent {
   ): void {
     this.dialog.open(DialogPhotoFullScreenComponent, {
       width: '250px',
+      maxHeight: '100vh',
       enterAnimationDuration,
       exitAnimationDuration,
       data: clickedPhoto,
