@@ -1,9 +1,11 @@
 <app-header></app-header>
 <main>
   <h1>Projects</h1>
-  <section id="projects-container">
+  @if(!isLoading) {
+  <section id="projects-container" @fadeInDownToUp>
     @for(project of projects; track $index) {
     <app-project-card [project]="project"></app-project-card>
     }
   </section>
+  }
 </main>
