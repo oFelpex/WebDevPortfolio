@@ -6,15 +6,8 @@ import { SecondHalfComponent } from './second-half/second-half.component';
 import { PhotosFooterComponent } from './photos-footer/photos-footer.component';
 
 import { MatDividerModule } from '@angular/material/divider';
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
 import { LoadingService } from '../../services/loading-service/loading.service';
-
+import { fadeInUpToDown } from '../../shared/animations/fade-animations';
 @Component({
   selector: 'app-about-me',
   imports: [
@@ -26,19 +19,7 @@ import { LoadingService } from '../../services/loading-service/loading.service';
   ],
   templateUrl: './about-me.component.html',
   styleUrl: './about-me.component.scss',
-  animations: [
-    trigger('fadeInUpToDown', [
-      state('loading', style({ opacity: 0, transform: 'translateY(-100px)' })),
-      state(
-        'loaded',
-        style({
-          opacity: 1,
-          transform: 'translateY(0px)',
-        })
-      ),
-      transition('loading => loaded', animate('300ms ease-in-out')),
-    ]),
-  ],
+  animations: [fadeInUpToDown],
 })
 export class AboutMeComponent implements OnInit {
   private loadingService: LoadingService;
