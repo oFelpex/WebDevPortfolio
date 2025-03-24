@@ -1,7 +1,5 @@
-import { Component, inject, Input, input, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 
-import { MatIconRegistry } from '@angular/material/icon';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -10,6 +8,4 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './social-links.component.html',
   styleUrl: './social-links.component.scss',
 })
-export class SocialLinksComponent {
-  @Input() svgColor: string = '#000';
-}
+export class SocialLinksComponent {}
