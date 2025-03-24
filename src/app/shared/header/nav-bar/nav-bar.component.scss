@@ -56,10 +56,18 @@
           background-color: none;
         }
       }
-      .navBar-list-item:nth-last-child(4) {
+      .navBar-list-item:nth-last-child(5) {
         padding: 0px;
         background-color: transparent;
         cursor: auto;
+
+        &:hover {
+          background-color: transparent;
+        }
+      }
+      .navBar-list-item:nth-last-child(4) {
+        padding: 0px;
+        background-color: transparent;
 
         &:hover {
           background-color: transparent;

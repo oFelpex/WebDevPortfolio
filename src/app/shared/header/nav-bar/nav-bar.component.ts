@@ -15,6 +15,8 @@ import { Themes } from '../../../models/themes';
 import { SocialLinksComponent } from '../../social-links/social-links.component';
 import { MatDividerModule } from '@angular/material/divider';
 
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-nav-bar',
   imports: [
@@ -28,6 +30,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatDividerModule,
     SocialLinksComponent,
     RouterModule,
+    TranslateModule,
   ],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss',
@@ -36,10 +39,22 @@ export class NavBarComponent {
   private themeService: ThemeService;
   private mobileMenuService: MobileMenuService;
   public navBarSvgIconsColor: string = '#000';
+  private translate: TranslateService;
 
   constructor() {
+    this.translate = inject(TranslateService);
     this.mobileMenuService = inject(MobileMenuService);
     this.themeService = inject(ThemeService);
+  }
+
+  public changeLanguage() {
+    let lang: string = this.translate.currentLang;
+
+    if (lang === 'en') {
+      this.translate.use('pt-BR');
+    } else {
+      this.translate.use('en');
+    }
   }
 
   public toggleMobileMenu() {

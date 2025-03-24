@@ -16,16 +16,24 @@
 
     <mat-list id="navBar-list">
       <a [routerLink]="['/home']">
-        <mat-list-item class="navBar-list-item">Home</mat-list-item></a
+        <mat-list-item class="navBar-list-item">{{
+          "NAV-HOME" | translate
+        }}</mat-list-item></a
       >
       <a [routerLink]="['/about-me']">
-        <mat-list-item class="navBar-list-item">About-me</mat-list-item></a
+        <mat-list-item class="navBar-list-item">{{
+          "NAV-ABOUT" | translate
+        }}</mat-list-item></a
       >
       <a [routerLink]="['/projects']">
-        <mat-list-item class="navBar-list-item">Projects</mat-list-item></a
+        <mat-list-item class="navBar-list-item">{{
+          "NAV-PROJECTS" | translate
+        }}</mat-list-item></a
       >
       <a [routerLink]="['/contact-me']">
-        <mat-list-item class="navBar-list-item">Contact</mat-list-item></a
+        <mat-list-item class="navBar-list-item">{{
+          "NAV-CONTACT" | translate
+        }}</mat-list-item></a
       >
       <mat-list-item class="navBar-list-item"
         ><button
@@ -33,7 +41,18 @@
           mat-button
           aria-label="Button that open a menu to change the theme of the page"
         >
-          Theme: {{ getNameOfActualThemeFromLocalStorage().name }}
+          {{ "NAV-THEME" | translate }}:
+          {{ getNameOfActualThemeFromLocalStorage().name | translate }}
+        </button></mat-list-item
+      >
+
+      <mat-list-item class="navBar-list-item"
+        ><button
+          mat-icon-button
+          aria-label="Button that can be used to change language"
+          (click)="changeLanguage()"
+        >
+          <mat-icon>translate</mat-icon>
         </button></mat-list-item
       >
 
@@ -44,7 +63,7 @@
               getTypeOfActualThemeFromLocalStorage() === 'Colors' ? 'ON' : ''
             "
             matBadgeOverlap="false"
-            >Colors</span
+            >{{ "NAV-MENU-COLORS" | translate }}</span
           >
         </button>
       </mat-menu>
@@ -67,7 +86,7 @@
                 : ''
             "
             matBadgeOverlap="false"
-            >{{ colorOption.name }}</span
+            >{{ colorOption.name | translate }}</span
           >
         </button>
         }
