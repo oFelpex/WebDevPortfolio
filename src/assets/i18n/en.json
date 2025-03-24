@@ -6,6 +6,11 @@
   "NAV-THEME": "Theme",
 
   "NAV-MENU-COLORS": "Colors",
+
+  "NAV-MOBILE-CHANGE-THEME": "Change Theme",
+  "NAV-MOBILE-ACTUAL-THEME": "Actual Theme: ",
+  "NAV-MOBILE-CHOOSE-THEME": "Choose a theme",
+
   "Light": "Light",
   "Dark": "Dark",
   "Cosmic": "Cosmic"

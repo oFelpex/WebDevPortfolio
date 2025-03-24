@@ -10,6 +10,7 @@ import { ThemeService } from '../../../../services/theme-service/theme.service';
 import { Themes } from '../../../../models/themes';
 import { MobileMenuComponent } from '../mobile-menu.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-mobile-theme-menu',
@@ -19,6 +20,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatButtonModule,
     MatBadgeModule,
     MatDividerModule,
+    TranslateModule,
   ],
   templateUrl: './mobile-theme-menu.component.html',
   styleUrl: 'mobile-theme-menu.component.scss',

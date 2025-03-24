@@ -2,8 +2,9 @@
   <h3>
     {{
       getNameOfActualThemeFromLocalStorage().name
-        ? "Actual Theme: " + getNameOfActualThemeFromLocalStorage().name
-        : "Choose a theme"
+        ? ("NAV-MOBILE-ACTUAL-THEME" | translate) +
+          (getNameOfActualThemeFromLocalStorage().name | translate)
+        : ("NAV-MOBILE-CHOOSE-THEME" | translate)
     }}
   </h3>
 
@@ -17,7 +18,7 @@
             "
             matBadgeOverlap="false"
           >
-            Colors
+            {{ "NAV-MENU-COLORS" | translate }}
           </span>
         </mat-panel-title>
       </mat-expansion-panel-header>
@@ -36,7 +37,7 @@
                   : ''
               "
               matBadgeOverlap="false"
-              >{{ colorOption.name }}</span
+              >{{ colorOption.name | translate }}</span
             >
           </button>
         </mat-list-item>

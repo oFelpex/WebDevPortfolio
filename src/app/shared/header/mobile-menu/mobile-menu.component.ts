@@ -17,6 +17,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-mobile-menu',
@@ -27,6 +28,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatDividerModule,
     RouterModule,
     SocialLinksComponent,
+    TranslateModule,
   ],
   templateUrl: './mobile-menu.component.html',
   styleUrl: './mobile-menu.component.scss',
@@ -35,7 +37,11 @@ export class MobileMenuComponent implements AfterViewChecked {
   @ViewChild('mobileMenu') mobileMenu!: MatDrawer;
   public mobileSvgIconsColor: string = '#FFF';
 
-  constructor(private mobileMenuService: MobileMenuService) {}
+  private mobileMenuService: MobileMenuService;
+
+  constructor() {
+    this.mobileMenuService = inject(MobileMenuService);
+  }
 
   ngAfterViewChecked() {
     this.mobileMenuService.setDrawer(this.mobileMenu);
