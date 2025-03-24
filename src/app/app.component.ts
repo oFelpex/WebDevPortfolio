@@ -14,6 +14,8 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { LoadingService } from './services/loading-service/loading.service';
 
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, LoadingComponent],
@@ -24,12 +26,17 @@ export class AppComponent implements OnInit {
   title = 'Felpex - Portfolio';
   private loadingService: LoadingService;
   private router: Router;
+  private translate: TranslateService;
 
   constructor() {
+    this.translate = inject(TranslateService);
     this.router = inject(Router);
     this.loadingService = inject(LoadingService);
     const matIconRegistry = inject(MatIconRegistry);
     const domSanitizer = inject(DomSanitizer);
+
+    this.translate.use('en');
+    // this.translate.use(this.translate.getBrowserCultureLang() || 'en');
 
     const socialIcons = [
       'icon-linkedin',
