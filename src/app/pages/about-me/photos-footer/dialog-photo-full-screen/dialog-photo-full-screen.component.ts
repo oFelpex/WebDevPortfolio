@@ -12,6 +12,7 @@ import {
 
 import { Photos } from '../../../../models/photos';
 
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'dialog-photo-full-screen',
   templateUrl: 'dialog-photo-full-screen.component.html',
@@ -21,6 +22,7 @@ import { Photos } from '../../../../models/photos';
     MatDialogClose,
     MatDialogTitle,
     MatDialogContent,
+    TranslateModule,
   ],
 })
 export class DialogPhotoFullScreenComponent {
