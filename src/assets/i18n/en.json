@@ -1,4 +1,8 @@
 {
+  "Light": "Light",
+  "Dark": "Dark",
+  "Cosmic": "Cosmic",
+
   "NAV-HOME": "Home",
   "NAV-ABOUT": "About-me",
   "NAV-PROJECTS": "Projects",
@@ -11,7 +15,7 @@
   "NAV-MOBILE-ACTUAL-THEME": "Actual Theme: ",
   "NAV-MOBILE-CHOOSE-THEME": "Choose a theme",
 
-  "Light": "Light",
-  "Dark": "Dark",
-  "Cosmic": "Cosmic"
+  "INTRO-HELLO": "Hello!",
+  "INTRO-I'M": "I'm ",
+  "INTRO-I'M-A": "I'm a "
 }

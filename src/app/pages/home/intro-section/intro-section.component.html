@@ -3,8 +3,11 @@
     id="intro-section-main"
     [@getDownToUp_getUptoDown]="showNavigationCards ? 'getUp' : 'getDown'"
   >
-    <h1>Hello! 👋 <br />I'm Felipe Costa</h1>
-    <h2>I'm a <span class="auto-type"></span></h2>
+    <h1>
+      {{ "INTRO-HELLO" | translate }} 👋 <br />{{ "INTRO-I'M" | translate }}
+      Felipe Costa
+    </h1>
+    <h2>{{ "INTRO-I'M-A" | translate }}<span class="auto-type"></span></h2>
     <button
       id="intro-section-button"
       mat-icon-button

@@ -1,4 +1,8 @@
 {
+  "Light": "Claro",
+  "Dark": "Escuro",
+  "Cosmic": "Cósmico",
+
   "NAV-HOME": "Início",
   "NAV-ABOUT": "Sobre mim",
   "NAV-PROJECTS": "Projetos",
@@ -10,7 +14,7 @@
   "NAV-MOBILE-CHANGE-THEME": "Mudar Tema",
   "NAV-MOBILE-ACTUAL-THEME": "Tema atual: ",
 
-  "Light": "Claro",
-  "Dark": "Escuro",
-  "Cosmic": "Cósmico"
+  "INTRO-HELLO": "Olá!",
+  "INTRO-I'M": "Me chamo ",
+  "INTRO-I'M-A": "Eu sou um "
 }
