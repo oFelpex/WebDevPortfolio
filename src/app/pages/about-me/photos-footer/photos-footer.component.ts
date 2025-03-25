@@ -6,9 +6,11 @@ import { fadeInDownToUp } from '../../../shared/animations/fade-animations';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
+
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-photos-footer',
-  imports: [MatTooltipModule],
+  imports: [MatTooltipModule, TranslateModule],
   templateUrl: './photos-footer.component.html',
   styleUrl: './photos-footer.component.scss',
   animations: [fadeInDownToUp],

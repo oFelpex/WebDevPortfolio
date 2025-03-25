@@ -31,7 +31,9 @@
   "INTRO-NAVCARDS-SEND-MESSAGE": "Me envie mensagem!",
   "INTRO-NAVCARDS-SEE-CONTACTS": "Ver contatos",
 
-  "ABOUT-ABOUT": "Sobre",
-  "ABOUT-FELIPE": "Felipe Costa da Silva, 23 anos de idade. Rio Grande do Norte, Brasil.",
-  "ABOUT-PARAGRAPH": "Estou cursando Ciências e Tecnologia na Universidade Federal do Rio Grande do Norte, com ênfase em Computação Aplicada. Desde 2023, estudo tecnologias de front-end. No meu tempo livre, gosto de jogar videogames e trabalhar em meus projetos pessoais."
+  "ABOUT-FIRST-HALF-ABOUT": "Sobre",
+  "ABOUT-FIRST-HALF-FELIPE": "Felipe Costa da Silva, 23 anos de idade. Rio Grande do Norte, Brasil.",
+  "ABOUT-FIRST-HALF-PARAGRAPH": "Estou cursando Ciências e Tecnologia na Universidade Federal do Rio Grande do Norte, com ênfase em Computação Aplicada. Desde 2023, estudo tecnologias de front-end. No meu tempo livre, gosto de jogar videogames e trabalhar em meus projetos pessoais.",
+
+  "ABOUT-PHOTOS-FOOTER-CLICK-EXPAND": "Clique para expandir"
 }
