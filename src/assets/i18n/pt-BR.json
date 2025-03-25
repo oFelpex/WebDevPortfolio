@@ -13,8 +13,21 @@
 
   "NAV-MOBILE-CHANGE-THEME": "Mudar Tema",
   "NAV-MOBILE-ACTUAL-THEME": "Tema atual: ",
+  "NAV-MOBILE-CHOOSE-THEME": "Escolha um tema",
 
   "INTRO-HELLO": "Olá!",
   "INTRO-I'M": "Me chamo ",
-  "INTRO-I'M-A": "Eu sou um "
+  "INTRO-I'M-A": "Eu sou um ",
+
+  "INTRO-NAVCARDS-ABOUT": "Sobre mim",
+  "INTRO-NAVCARDS-LEARN-ABOUT": "Me conheça melhor",
+  "INTRO-NAVCARDS-KNOW-MORE": "Saiba mais!",
+
+  "INTRO-NAVCARDS-PROJECTS": "Projetos",
+  "INTRO-NAVCARDS-CHECK-PROJECS": "Dê uma olhada em meus projetos",
+  "INTRO-NAVCARDS-SEE-PROJECTS": "Ver projetos!",
+
+  "INTRO-NAVCARDS-CONTACT": "Entre em contato",
+  "INTRO-NAVCARDS-SEND-MESSAGE": "Me envie mensagem!",
+  "INTRO-NAVCARDS-SEE-CONTACTS": "Ver contatos"
 }

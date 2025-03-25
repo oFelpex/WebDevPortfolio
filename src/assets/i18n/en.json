@@ -17,5 +17,17 @@
 
   "INTRO-HELLO": "Hello!",
   "INTRO-I'M": "I'm ",
-  "INTRO-I'M-A": "I'm a "
+  "INTRO-I'M-A": "I'm a ",
+
+  "INTRO-NAVCARDS-ABOUT": "About-me",
+  "INTRO-NAVCARDS-LEARN-ABOUT": "Learn more about me",
+  "INTRO-NAVCARDS-KNOW-MORE": "Know more!",
+
+  "INTRO-NAVCARDS-PROJECTS": "Projects",
+  "INTRO-NAVCARDS-CHECK-PROJECS": "Come check out my projects",
+  "INTRO-NAVCARDS-SEE-PROJECTS": "See projects!",
+
+  "INTRO-NAVCARDS-CONTACT": "Contact-me",
+  "INTRO-NAVCARDS-SEND-MESSAGE": "Send-me a message!",
+  "INTRO-NAVCARDS-SEE-CONTACTS": "See contacts"
 }
