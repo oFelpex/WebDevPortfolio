@@ -29,5 +29,9 @@
 
   "INTRO-NAVCARDS-CONTACT": "Contact-me",
   "INTRO-NAVCARDS-SEND-MESSAGE": "Send-me a message!",
-  "INTRO-NAVCARDS-SEE-CONTACTS": "See contacts"
+  "INTRO-NAVCARDS-SEE-CONTACTS": "See contacts",
+
+  "ABOUT-ABOUT": "About",
+  "ABOUT-FELIPE": "Felipe Costa da Silva, 23 years old. Rio Grande do Norte, Brazil.",
+  "ABOUT-PARAGRAPH": "I'm studying Science and Technology at the Federal University of Rio Grande do Norte, with an emphasis on Applied Computing, since 2023 I've been studying front end technologies. In my free time I like to play some video games and work on my personal projects."
 }
