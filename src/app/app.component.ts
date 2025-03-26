@@ -35,9 +35,6 @@ export class AppComponent implements OnInit {
     const matIconRegistry = inject(MatIconRegistry);
     const domSanitizer = inject(DomSanitizer);
 
-    this.translate.use('en');
-    // this.translate.use(this.translate.getBrowserCultureLang() || 'en');
-
     const socialIcons = [
       'icon-linkedin',
       'icon-whatsapp',
@@ -75,6 +72,23 @@ export class AppComponent implements OnInit {
 
   isLoading = false;
   ngOnInit() {
+    this.translate.addLangs(['en-US', 'pt-BR']);
+
+    let lang = localStorage.getItem('lang');
+    if (lang) {
+      let parsedLang = JSON.parse(lang);
+      this.translate.use(parsedLang);
+    } else {
+      let browserLang = this.translate.getBrowserCultureLang();
+      if (browserLang) {
+        this.translate.use(browserLang || 'en-US');
+        localStorage.setItem('lang', JSON.stringify(browserLang));
+      } else {
+        this.translate.use('en-US');
+        localStorage.setItem('lang', JSON.stringify('en-US'));
+      }
+    }
+
     this.loadingService.loading$.subscribe((loading) => {
       this.isLoading = loading;
     });

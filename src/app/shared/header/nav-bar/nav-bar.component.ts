@@ -47,14 +47,15 @@ export class NavBarComponent {
     this.themeService = inject(ThemeService);
   }
 
-  public changeLanguage() {
-    let lang: string = this.translate.currentLang;
-
-    if (lang === 'en') {
-      this.translate.use('pt-BR');
-    } else {
-      this.translate.use('en');
-    }
+  public changeLanguage(lang: string) {
+    this.translate.use(lang);
+    localStorage.setItem('lang', JSON.stringify(lang));
+  }
+  public get currentLang() {
+    return this.translate.currentLang;
+  }
+  public get AllLangs(): string[] {
+    return this.translate.getLangs();
   }
 
   public toggleMobileMenu() {

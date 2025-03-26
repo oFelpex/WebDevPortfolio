@@ -51,13 +51,20 @@
 
       <mat-list-item class="navBar-list-item"
         ><button
-          mat-icon-button
-          aria-label="Button that can be used to change language"
-          (click)="changeLanguage()"
+          [matMenuTriggerFor]="langs"
+          mat-button
+          aria-label="Button that open a menu to change the lang of the page"
         >
-          <mat-icon>translate</mat-icon>
+          {{ "NAV-BAR-LIST.LANG" | translate }}
         </button></mat-list-item
       >
+      <mat-menu #langs="matMenu">
+        @for(lang of AllLangs; track $index) {
+        <button (click)="changeLanguage(lang)" mat-menu-item>
+          <span>{{ lang }}</span>
+        </button>
+        }
+      </mat-menu>
 
       <mat-menu #theme="matMenu">
         <button mat-menu-item [matMenuTriggerFor]="color" class="expandMatMenu">
