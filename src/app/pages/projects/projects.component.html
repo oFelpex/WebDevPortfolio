@@ -1,6 +1,6 @@
 <app-header></app-header>
 <main>
-  <h1>Projects</h1>
+  <h1>{{ "PROJECTS-PAGE.PROJECTS" | translate }}</h1>
   @if(!isLoading) {
   <section id="projects-container" @fadeInDownToUp>
     @for(project of projects; track $index) {

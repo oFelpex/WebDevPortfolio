@@ -11,12 +11,14 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
 import { LoadingService } from '../../services/loading-service/loading.service';
 import { fadeInDownToUp } from '../../shared/animations/fade-animations';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-projects',
   imports: [
     HeaderComponent,
     ProjectCardComponent,
+    TranslateModule,
     MatCardModule,
     MatButtonModule,
     MatIconModule,

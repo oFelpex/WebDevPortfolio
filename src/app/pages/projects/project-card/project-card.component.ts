@@ -8,11 +8,13 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { Projects } from '../../../models/projects';
 import { MatDividerModule } from '@angular/material/divider';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-project-card',
   imports: [
     OverlayProjectsComponent,
+    TranslateModule,
     MatIconModule,
     MatCardModule,
     MatChipsModule,
