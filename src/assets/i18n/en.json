@@ -1,46 +1,61 @@
 {
-  "Light": "Light",
-  "Dark": "Dark",
-  "Cosmic": "Cosmic",
+  "THEMES-Colors": {
+    "Light": "Light",
+    "Dark": "Dark",
+    "Cosmic": "Cosmic"
+  },
 
-  "NAV-HOME": "Home",
-  "NAV-ABOUT": "About-me",
-  "NAV-PROJECTS": "Projects",
-  "NAV-CONTACT": "Contact",
-  "NAV-THEME": "Theme",
+  "NAV-BAR-LIST": {
+    "HOME": "Home",
+    "ABOUT": "About-me",
+    "PROJECTS": "Projects",
+    "CONTACT": "Contact",
+    "THEME": "Theme",
+    "MENU-COLORS": "Colors"
+  },
 
-  "NAV-MENU-COLORS": "Colors",
+  "NAV-MOBILE": {
+    "HOME": "Home",
+    "ABOUT": "About-me",
+    "PROJECTS": "Projects",
+    "CONTACT": "Contact",
+    "CHANGE-THEME": "Change Theme",
+    "MENU-COLORS": "Colors",
+    "ACTUAL-THEME": "Actual Theme: ",
+    "CHOOSE-THEME": "Choose a theme",
+    "SELECTED": "Selected"
+  },
 
-  "NAV-MOBILE-CHANGE-THEME": "Change Theme",
-  "NAV-MOBILE-ACTUAL-THEME": "Actual Theme: ",
-  "NAV-MOBILE-CHOOSE-THEME": "Choose a theme",
+  "INTRO-PAGE": {
+    "HELLO": "Hello!",
+    "I'M": "I'm ",
+    "I'M-A": "I'm a ",
 
-  "INTRO-HELLO": "Hello!",
-  "INTRO-I'M": "I'm ",
-  "INTRO-I'M-A": "I'm a ",
+    "NAVCARDS-ABOUT": "About-me",
+    "NAVCARDS-LEARN-ABOUT": "Learn more about me",
+    "NAVCARDS-KNOW-MORE": "Know more!",
 
-  "INTRO-NAVCARDS-ABOUT": "About-me",
-  "INTRO-NAVCARDS-LEARN-ABOUT": "Learn more about me",
-  "INTRO-NAVCARDS-KNOW-MORE": "Know more!",
+    "NAVCARDS-PROJECTS": "Projects",
+    "NAVCARDS-CHECK-PROJECS": "Come check out my projects",
+    "NAVCARDS-SEE-PROJECTS": "See projects!",
 
-  "INTRO-NAVCARDS-PROJECTS": "Projects",
-  "INTRO-NAVCARDS-CHECK-PROJECS": "Come check out my projects",
-  "INTRO-NAVCARDS-SEE-PROJECTS": "See projects!",
+    "NAVCARDS-CONTACT": "Contact-me",
+    "NAVCARDS-SEND-MESSAGE": "Send-me a message!",
+    "NAVCARDS-SEE-CONTACTS": "See contacts"
+  },
 
-  "INTRO-NAVCARDS-CONTACT": "Contact-me",
-  "INTRO-NAVCARDS-SEND-MESSAGE": "Send-me a message!",
-  "INTRO-NAVCARDS-SEE-CONTACTS": "See contacts",
+  "ABOUT-PAGE": {
+    "FIRST-HALF-ABOUT": "About",
+    "FIRST-HALF-FELIPE": "Felipe Costa da Silva, 23 years old. Rio Grande do Norte, Brazil.",
+    "FIRST-HALF-PARAGRAPH": "I'm studying Science and Technology at the Federal University of Rio Grande do Norte, with an emphasis on Applied Computing, since 2023 I've been studying front end technologies. In my free time I like to play some video games and work on my personal projects.",
 
-  "ABOUT-FIRST-HALF-ABOUT": "About",
-  "ABOUT-FIRST-HALF-FELIPE": "Felipe Costa da Silva, 23 years old. Rio Grande do Norte, Brazil.",
-  "ABOUT-FIRST-HALF-PARAGRAPH": "I'm studying Science and Technology at the Federal University of Rio Grande do Norte, with an emphasis on Applied Computing, since 2023 I've been studying front end technologies. In my free time I like to play some video games and work on my personal projects.",
+    "PHOTOS-FOOTER-CLICK-EXPAND": "Click to expand",
 
-  "ABOUT-PHOTOS-FOOTER-CLICK-EXPAND": "Click to expand",
-
-  "DIALOG-PHOTO-CLOSE-BUTTON": "Close",
-  "Mia showing her teeth": "Mia showing her teeth",
-  "Amora, my dog": "Amora, my dog",
-  "Mia, full body": "Mia, full body",
-  "Felipe Costa": "Felipe Costa",
-  "Mia and her teddy bear": "Mia and her teddy bear"
+    "DIALOG-PHOTO-CLOSE-BUTTON": "Close",
+    "Mia showing her teeth": "Mia showing her teeth",
+    "Amora, my dog": "Amora, my dog",
+    "Mia, full body": "Mia, full body",
+    "Felipe Costa": "Felipe Costa",
+    "Mia and her teddy bear": "Mia and her teddy bear"
+  }
 }

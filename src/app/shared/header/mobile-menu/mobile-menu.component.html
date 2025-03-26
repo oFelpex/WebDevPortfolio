@@ -2,19 +2,19 @@
   <mat-drawer #mobileMenu class="mobileMenu-sidenav" mode="push">
     <mat-list>
       <mat-list-item [routerLink]="['/home']">{{
-        "NAV-HOME" | translate
+        "NAV-MOBILE.HOME" | translate
       }}</mat-list-item>
       <mat-divider style="width: 97%; align-self: center"></mat-divider>
       <mat-list-item [routerLink]="['/about-me']">{{
-        "NAV-ABOUT" | translate
+        "NAV-MOBILE.ABOUT" | translate
       }}</mat-list-item>
       <mat-divider style="width: 97%; align-self: center"></mat-divider>
       <mat-list-item [routerLink]="['/projects']">{{
-        "NAV-PROJECTS" | translate
+        "NAV-MOBILE.PROJECTS" | translate
       }}</mat-list-item>
       <mat-divider style="width: 97%; align-self: center"></mat-divider>
       <mat-list-item [routerLink]="['/contact-me']">{{
-        "NAV-CONTACT" | translate
+        "NAV-MOBILE.CONTACT" | translate
       }}</mat-list-item>
       <mat-divider style="width: 97%; align-self: center"></mat-divider>
       <mat-list-item
@@ -24,7 +24,7 @@
           aria-label="Button to show the options of themes"
           (click)="openThemeMenu()"
         >
-          {{ "NAV-MOBILE-CHANGE-THEME" | translate }}
+          {{ "NAV-MOBILE.CHANGE-THEME" | translate }}
         </button>
       </mat-list-item>
       <mat-divider></mat-divider>

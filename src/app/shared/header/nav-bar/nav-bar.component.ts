@@ -70,7 +70,7 @@ export class NavBarComponent {
   get colorsOptions(): Themes[] {
     return this.themeService.getColorsNames();
   }
-  public getNameOfActualThemeFromLocalStorage(): Themes {
+  public get getNameOfActualThemeFromLocalStorage(): Themes {
     return this.themeService.getNameOfActualTheme();
   }
   public changeTheme(theme: Themes) {
