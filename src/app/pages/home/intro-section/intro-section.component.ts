@@ -37,14 +37,14 @@ export class IntroSectionComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     let typedInstance: Typed;
     let EN_autoTypeArr: string[] = [
-      'Front end developer^2500',
-      'Web developer^2500',
+      'front end developer^2500',
+      'web developer^2500',
       'student^4000',
     ];
     let ptBR_autoTypeArr: string[] = [
-      'Desenvolvedor front end^2500',
-      'Desenvolvedor web^2500',
-      'Estudante^4000',
+      'desenvolvedor front end^2500',
+      'desenvolvedor web^2500',
+      'estudante^4000',
     ];
     let autoTypeArr: string[] = [];
 

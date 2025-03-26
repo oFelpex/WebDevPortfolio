@@ -76,17 +76,21 @@
     "SEND-EMAIL": "Me envie um e-mail",
     "I'LL-ANSWER": "Responderei o mais rápido que puder",
 
-    "INPUT-NAME": "Nome",
-    "INPUT-EMAIL": "E-mail",
-    "INPUT-SUBJECT": "Assunto",
-    "INPUT-TEXTAREA": "Mensagem",
-    "INPUT-NAME-PLACEHOLDER": "ex: Ronaldinho Gaúcho",
-    "INPUT-EMAIL-PLACEHOLDER": "ex: main@mail.com",
-    "INPUT-SUBJECT-PLACEHOLDER": "Do que se trata?",
-    "INPUT-TEXTAREA-PLACEHOLDER": "Uma breve mensagem",
-    "INPUT-MINIMUM-ERROR": "No mínimo 3 caracteres",
-    "INPUT-EMAIL-ERROR": "Insira um e-mail válido",
+    "FORM-INPUT-NAME": "Nome",
+    "FORM-INPUT-EMAIL": "E-mail",
+    "FORM-INPUT-SUBJECT": "Assunto",
+    "FORM-INPUT-TEXTAREA": "Mensagem",
+    "FORM-INPUT-NAME-PLACEHOLDER": "ex: Ronaldinho Gaúcho",
+    "FORM-INPUT-EMAIL-PLACEHOLDER": "ex: main@mail.com",
+    "FORM-INPUT-SUBJECT-PLACEHOLDER": "Do que se trata?",
+    "FORM-INPUT-TEXTAREA-PLACEHOLDER": "Uma breve mensagem",
+    "FORM-INPUT-MINIMUM-ERROR": "No mínimo 3 caracteres",
+    "FORM-INPUT-EMAIL-ERROR": "Insira um e-mail válido",
+    "FORM-SEND": "Enviar",
 
-    "SEND": "Enviar"
+    "OTHER-WAY": "Outras formas de contato",
+    "CLICK-TO-COPY": "Click para copiar",
+    "MAT-TOOL-TIP-EMAIL": "Click para copiar o meu e-mail",
+    "MAT-TOOL-TIP-NUMBER": "Click para copiar o meu número"
   }
 }

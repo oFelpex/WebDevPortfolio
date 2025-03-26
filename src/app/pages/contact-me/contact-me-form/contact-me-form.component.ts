@@ -17,7 +17,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { SocialLinksComponent } from '../../../shared/social-links/social-links.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-contact-me-form',
@@ -39,20 +39,41 @@ import { TranslateModule } from '@ngx-translate/core';
 export class ContactMeFormComponent {
   public sendEmailForm: FormGroup;
   private snackBar: MatSnackBar;
+  private translate: TranslateService;
 
   public clickToCopy(text: string) {
     switch (text) {
       case 'email':
         navigator.clipboard.writeText(`felipe95176@gmail.com`);
-        this.snackBar.open('Email copied to clipboard!', 'Close', {
-          duration: 4000,
-        });
+        if (this.translate.currentLang === 'en') {
+          this.snackBar.open('Email copied to clipboard!', 'Close', {
+            duration: 4000,
+          });
+        } else {
+          this.snackBar.open(
+            'E-mail copiado para a área de transferência!',
+            'Fechar',
+            {
+              duration: 4000,
+            }
+          );
+        }
         break;
       case 'number':
         navigator.clipboard.writeText(`+55 84 98709-5902`);
-        this.snackBar.open('Number copied to clipboard!', 'Close', {
-          duration: 4000,
-        });
+        if (this.translate.currentLang === 'en') {
+          this.snackBar.open('Number copied to clipboard!', 'Close', {
+            duration: 4000,
+          });
+        } else {
+          this.snackBar.open(
+            'Número copiado para a área de transferência!',
+            'Fechar',
+            {
+              duration: 4000,
+            }
+          );
+        }
         break;
     }
   }
@@ -76,6 +97,7 @@ export class ContactMeFormComponent {
     });
 
     this.snackBar = inject(MatSnackBar);
+    this.translate = inject(TranslateService);
   }
 
   public isSending: boolean = false;
@@ -107,22 +129,49 @@ export class ContactMeFormComponent {
             this.isSending = false;
             this.sendEmailForm.enable();
 
-            this.snackBar.open('Email sent successfully!', 'Close', {
-              duration: 4000,
-            });
+            if (this.translate.currentLang === 'en') {
+              this.snackBar.open('Email sent successfully!', 'Close', {
+                duration: 4000,
+              });
+            } else {
+              this.snackBar.open('E-mail enviado com sucesso!', 'Fechar', {
+                duration: 4000,
+              });
+            }
           },
           (error) => {
             console.log('FAILED...', error);
-            this.snackBar.open('Oops, try again later', 'Close', {
-              duration: 4000,
-            });
+            if (this.translate.currentLang === 'en') {
+              this.snackBar.open('Oops, try again later', 'Close', {
+                duration: 4000,
+              });
+            } else {
+              this.snackBar.open('Opa, tente novamente mais tarde', 'Fechar', {
+                duration: 4000,
+              });
+            }
+
             this.isSending = false;
           }
         );
     } else {
-      this.snackBar.open('You have to fill in the blanks correctly', 'Close', {
-        duration: 4000,
-      });
+      if (this.translate.currentLang === 'en') {
+        this.snackBar.open(
+          'You have to fill in the blanks correctly',
+          'Close',
+          {
+            duration: 4000,
+          }
+        );
+      } else {
+        this.snackBar.open(
+          'Você deve preencher os espaços em branco corretamente',
+          'Fechar',
+          {
+            duration: 4000,
+          }
+        );
+      }
     }
   }
 }

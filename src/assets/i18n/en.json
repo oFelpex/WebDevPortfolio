@@ -76,17 +76,21 @@
     "SEND-EMAIL": "Send me an email",
     "I'LL-ANSWER": "I'll answer you as quickly as I can",
 
-    "INPUT-NAME": "Name",
-    "INPUT-EMAIL": "Email",
-    "INPUT-SUBJECT": "Subject",
-    "INPUT-TEXTAREA": "Message",
-    "INPUT-NAME-PLACEHOLDER": "ex: Michael Jackson",
-    "INPUT-EMAIL-PLACEHOLDER": "ex: main@mail.com",
-    "INPUT-SUBJECT-PLACEHOLDER": "What's about?",
-    "INPUT-TEXTAREA-PLACEHOLDER": "A brief message",
-    "INPUT-MINIMUM-ERROR": "At least 3 characters",
-    "INPUT-EMAIL-ERROR": "Enter a valid email",
+    "FORM-INPUT-NAME": "Name",
+    "FORM-INPUT-EMAIL": "Email",
+    "FORM-INPUT-SUBJECT": "Subject",
+    "FORM-INPUT-TEXTAREA": "Message",
+    "FORM-INPUT-NAME-PLACEHOLDER": "ex: Michael Jackson",
+    "FORM-INPUT-EMAIL-PLACEHOLDER": "ex: main@mail.com",
+    "FORM-INPUT-SUBJECT-PLACEHOLDER": "What's about?",
+    "FORM-INPUT-TEXTAREA-PLACEHOLDER": "A brief message",
+    "FORM-INPUT-MINIMUM-ERROR": "At least 3 characters",
+    "FORM-INPUT-EMAIL-ERROR": "Enter a valid email",
+    "FORM-SEND": "Send",
 
-    "SEND": "Send"
+    "OTHER-WAY": "Other ways to contact me",
+    "CLICK-TO-COPY": "Click to copy",
+    "MAT-TOOL-TIP-EMAIL": "Click here to copy my email",
+    "MAT-TOOL-TIP-NUMBER": "Click here to copy my number"
   }
 }

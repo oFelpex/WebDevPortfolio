@@ -8,6 +8,7 @@ import {
 import { gamesOptions } from '../../models/themes';
 import { BehaviorSubject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,6 +18,7 @@ export class ThemeService {
   private colorsOptions: Themes[] = colorsOptions;
   private defaultTheme: Themes = defaultTheme;
   private snackBar: MatSnackBar;
+  private translate: TranslateService;
 
   private _actualTheme$ = new BehaviorSubject<Themes>(this.defaultTheme);
   actualTheme$ = this._actualTheme$.asObservable();
@@ -24,6 +26,7 @@ export class ThemeService {
   constructor() {
     this.initTheme();
     this.snackBar = inject(MatSnackBar);
+    this.translate = inject(TranslateService);
   }
 
   private initTheme() {
@@ -103,11 +106,23 @@ export class ThemeService {
       this.setTheme(theme.name.toLowerCase().replaceAll(' ', '-'));
     }
 
-    this.snackBar.open(
-      `Theme changed to ${this.getNameOfActualTheme().name || 'Default'}`,
-      'Close',
-      { duration: 4000 }
-    );
+    if (this.translate.currentLang === 'en') {
+      this.snackBar.open(
+        `Theme changed to ${this.getNameOfActualTheme().name || 'Default'}`,
+        'Close',
+        { duration: 4000 }
+      );
+    } else {
+      this.snackBar.open(
+        `Tema alterado para ${
+          this.translate.instant(
+            'THEMES-Colors.' + this.getNameOfActualTheme().name
+          ) || 'Default'
+        }`,
+        'Fechar',
+        { duration: 4000 }
+      );
+    }
     //debug
     console.log('Actual Theme:', this.getNameOfActualTheme());
     console.log('Type:', this.getTypeOfActualTheme());
