@@ -7,53 +7,59 @@
     (ngSubmit)="sendEmail(formDirective)"
     #formDirective="ngForm"
   >
-    <h3 class="subtitle">Send me a e-mail</h3>
-    <span>I'll answer you as quickly as I can</span>
+    <h3 class="subtitle">{{ "CONTACT-PAGE.SEND-EMAIL" | translate }}</h3>
+    <span>{{ "CONTACT-PAGE.I'LL-ANSWER" | translate }}</span>
     <mat-form-field appearance="fill">
-      <mat-label>Name</mat-label>
+      <mat-label>{{ "CONTACT-PAGE.INPUT-NAME" | translate }}</mat-label>
       <input
         formControlName="name"
         type="text"
         matInput
-        placeholder="ex: Michal Jackson"
+        [placeholder]="'CONTACT-PAGE.INPUT-NAME-PLACEHOLDER' | translate"
       />
-      <mat-error>Minimum 3 characters</mat-error>
+      <mat-error>{{
+        "CONTACT-PAGE.INPUT-MINIMUM-ERROR" | translate
+      }}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>E-mail</mat-label>
+      <mat-label>{{ "CONTACT-PAGE.INPUT-EMAIL" | translate }}</mat-label>
       <input
         formControlName="email"
         type="email"
         matInput
-        placeholder="ex: main@mail.com"
+        [placeholder]="'CONTACT-PAGE.INPUT-EMAIL-PLACEHOLDER' | translate"
       />
-      <mat-error>Enter a valid e-mail</mat-error>
+      <mat-error>{{ "CONTACT-PAGE.INPUT-EMAIL-ERROR" | translate }}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>Subject</mat-label>
+      <mat-label>{{ "CONTACT-PAGE.INPUT-SUBJECT" | translate }}</mat-label>
       <input
         formControlName="subject"
         maxlength="250"
         matInput
-        placeholder="What's about?"
+        [placeholder]="'CONTACT-PAGE.INPUT-SUBJECT-PLACEHOLDER' | translate"
       />
-      <mat-error>Minimum 3 characters</mat-error>
+      <mat-error>{{
+        "CONTACT-PAGE.INPUT-MINIMUM-ERROR" | translate
+      }}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>Message</mat-label>
+      <mat-label>{{ "CONTACT-PAGE.INPUT-TEXTAREA" | translate }}</mat-label>
       <textarea
         formControlName="message"
         matInput
         maxlength="1000"
-        placeholder="A brief message"
+        [placeholder]="'CONTACT-PAGE.INPUT-TEXTAREA-PLACEHOLDER' | translate"
         id="input-message"
       ></textarea>
-      <mat-error>Minimum 3 characters</mat-error>
+      <mat-error>{{
+        "CONTACT-PAGE.INPUT-MINIMUM-ERROR" | translate
+      }}</mat-error>
     </mat-form-field>
     <button mat-flat-button type="submit" [disabled]="isSending">
       @if(isSending){
       <mat-spinner diameter="25"></mat-spinner>
-      }@else { Send }
+      }@else { {{ "CONTACT-PAGE.SEND" | translate }} }
     </button>
   </form>
   <mat-divider [vertical]="true"></mat-divider>

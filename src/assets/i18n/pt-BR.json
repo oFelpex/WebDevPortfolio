@@ -69,5 +69,24 @@
     "Order your snack themed with the HORROR of Halloween! Take advantage of the promotions and don't forget to sign up to receive offers from Caldeirão da Bruxa.": "Peça seu lanche com o TERROR do Halloween! Aproveite as promoções e não se esqueça de se cadastrar para receber ofertas do Caldeirão da Bruxa.",
 
     "Space Hero is a game made for a final project for a college subject, this is a remake of it, but still in the development process.": "Space Hero é um jogo feito como projeto final de uma disciplina da faculdade. Esta é uma versão remake, ainda em processo de desenvolvimento."
+  },
+
+  "CONTACT-PAGE": {
+    "CONTACT-ME": "Entre em contato comigo",
+    "SEND-EMAIL": "Me envie um e-mail",
+    "I'LL-ANSWER": "Responderei o mais rápido que puder",
+
+    "INPUT-NAME": "Nome",
+    "INPUT-EMAIL": "E-mail",
+    "INPUT-SUBJECT": "Assunto",
+    "INPUT-TEXTAREA": "Mensagem",
+    "INPUT-NAME-PLACEHOLDER": "ex: Ronaldinho Gaúcho",
+    "INPUT-EMAIL-PLACEHOLDER": "ex: main@mail.com",
+    "INPUT-SUBJECT-PLACEHOLDER": "Do que se trata?",
+    "INPUT-TEXTAREA-PLACEHOLDER": "Uma breve mensagem",
+    "INPUT-MINIMUM-ERROR": "No mínimo 3 caracteres",
+    "INPUT-EMAIL-ERROR": "Insira um e-mail válido",
+
+    "SEND": "Enviar"
   }
 }

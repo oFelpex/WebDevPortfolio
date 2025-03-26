@@ -17,6 +17,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { SocialLinksComponent } from '../../../shared/social-links/social-links.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-contact-me-form',
@@ -30,6 +31,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatProgressSpinnerModule,
     ReactiveFormsModule,
     SocialLinksComponent,
+    TranslateModule,
   ],
   templateUrl: './contact-me-form.component.html',
   styleUrl: './contact-me-form.component.scss',

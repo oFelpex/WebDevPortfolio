@@ -69,5 +69,24 @@
     "Order your snack themed with the HORROR of Halloween! Take advantage of the promotions and don't forget to sign up to receive offers from Caldeirão da Bruxa.": "Order your snack themed with the HORROR of Halloween! Take advantage of the promotions and don't forget to sign up to receive offers from Caldeirão da Bruxa.",
 
     "Space Hero is a game made for a final project for a college subject, this is a remake of it, but still in the development process.": "Space Hero is a game made for a final project for a college subject, this is a remake of it, but still in the development process."
+  },
+
+  "CONTACT-PAGE": {
+    "CONTACT-ME": "Contact me",
+    "SEND-EMAIL": "Send me an email",
+    "I'LL-ANSWER": "I'll answer you as quickly as I can",
+
+    "INPUT-NAME": "Name",
+    "INPUT-EMAIL": "Email",
+    "INPUT-SUBJECT": "Subject",
+    "INPUT-TEXTAREA": "Message",
+    "INPUT-NAME-PLACEHOLDER": "ex: Michael Jackson",
+    "INPUT-EMAIL-PLACEHOLDER": "ex: main@mail.com",
+    "INPUT-SUBJECT-PLACEHOLDER": "What's about?",
+    "INPUT-TEXTAREA-PLACEHOLDER": "A brief message",
+    "INPUT-MINIMUM-ERROR": "At least 3 characters",
+    "INPUT-EMAIL-ERROR": "Enter a valid email",
+
+    "SEND": "Send"
   }
 }
