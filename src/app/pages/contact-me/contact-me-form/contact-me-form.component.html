@@ -7,7 +7,7 @@
     (ngSubmit)="sendEmail(formDirective)"
     #formDirective="ngForm"
   >
-    <h3 class="subtitle">{{ "CONTACT-PAGE.SEND-EMAIL" | translate }}</h3>
+    <h2 class="subtitle">{{ "CONTACT-PAGE.SEND-EMAIL" | translate }}</h2>
     <span>{{ "CONTACT-PAGE.I'LL-ANSWER" | translate }}</span>
     <mat-form-field appearance="fill">
       <mat-label>{{ "CONTACT-PAGE.FORM-INPUT-NAME" | translate }}</mat-label>
@@ -72,7 +72,7 @@
   </form>
   <mat-divider [vertical]="true"></mat-divider>
   <aside>
-    <h3 class="subtitle">{{ "CONTACT-PAGE.OTHER-WAY" | translate }}</h3>
+    <h2 class="subtitle">{{ "CONTACT-PAGE.OTHER-WAY" | translate }}</h2>
     <h4>{{ "CONTACT-PAGE.CLICK-TO-COPY" | translate }}</h4>
     <span
       (click)="clickToCopy('email')"
