@@ -23,7 +23,6 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  title = 'Felpex - Portfolio';
   private loadingService: LoadingService;
   private router: Router;
   private translate: TranslateService;
@@ -78,19 +77,29 @@ export class AppComponent implements OnInit {
     if (lang) {
       let parsedLang = JSON.parse(lang);
       this.translate.use(parsedLang);
+      document.documentElement.lang = parsedLang;
     } else {
       let browserLang = this.translate.getBrowserCultureLang();
       if (browserLang) {
         this.translate.use(browserLang || 'en-US');
         localStorage.setItem('lang', JSON.stringify(browserLang));
+        document.documentElement.lang = browserLang;
       } else {
         this.translate.use('en-US');
         localStorage.setItem('lang', JSON.stringify('en-US'));
+        document.documentElement.lang = 'en-US';
       }
     }
 
     this.loadingService.loading$.subscribe((loading) => {
       this.isLoading = loading;
+    });
+
+    this.translate.onLangChange.asObservable().subscribe(() => {
+      const currentRoute = this.router.url;
+      let pageTitle = this.getTitleByRoute(currentRoute);
+      document.title = pageTitle;
+      document.documentElement.lang = this.translate.currentLang;
     });
 
     this.router.events.subscribe((event) => {
@@ -103,8 +112,29 @@ export class AppComponent implements OnInit {
         event instanceof NavigationCancel ||
         event instanceof NavigationError
       ) {
+        const currentRoute = this.router.url;
+        let pageTitle = this.getTitleByRoute(currentRoute);
+        document.title = pageTitle;
         setTimeout(() => this.loadingService.hide(), 300);
       }
     });
+  }
+  getTitleByRoute(route: string): string {
+    const titlesEN_US: { [key: string]: string } = {
+      '/home': 'Felpex - My website',
+      '/projects': 'Felpex - Projects',
+      '/about-me': 'Felpex - About me',
+      '/contact-me': 'Felpex - Contact me',
+    };
+    const titlesPT_BR: { [key: string]: string } = {
+      '/home': 'Felpex - Meu Site',
+      '/projects': 'Felpex - Projetos',
+      '/about-me': 'Felpex - Sobre mim',
+      '/contact-me': 'Felpex - Contatos',
+    };
+
+    return this.translate.currentLang === 'en-US'
+      ? titlesEN_US[route] || 'Ops, something is wrong'
+      : titlesPT_BR[route] || 'Opa, algo está errado';
   }
 }
