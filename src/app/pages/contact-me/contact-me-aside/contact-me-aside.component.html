@@ -1,0 +1,15 @@
+<aside>
+  <h2 class="subtitle">{{ "CONTACT-PAGE.OTHER-WAY" | translate }}</h2>
+  <h4>{{ "CONTACT-PAGE.CLICK-TO-COPY" | translate }}</h4>
+  <span
+    (click)="clickToCopy('email')"
+    [matTooltip]="'CONTACT-PAGE.MAT-TOOL-TIP-EMAIL' | translate"
+    >felipe95176&#64;gmail.com</span
+  >
+  <span
+    (click)="clickToCopy('number')"
+    [matTooltip]="'CONTACT-PAGE.MAT-TOOL-TIP-NUMBER' | translate"
+    >+55 84 98709-5902</span
+  >
+  <app-social-links style="position: absolute; bottom: 0"></app-social-links>
+</aside>

@@ -1,5 +1,9 @@
 <app-header></app-header>
 <main>
   <h1>{{ "CONTACT-PAGE.CONTACT-ME" | translate }}</h1>
-  <app-contact-me-form></app-contact-me-form>
+  <section id="contact-me-container">
+    <app-contact-me-form style="flex: 1"></app-contact-me-form>
+    <mat-divider [vertical]="true"></mat-divider>
+    <app-contact-me-aside style="flex: 1"></app-contact-me-aside>
+  </section>
 </main>

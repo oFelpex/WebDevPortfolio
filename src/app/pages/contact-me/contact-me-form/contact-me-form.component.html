@@ -1,89 +1,65 @@
-<section id="contact-me-container">
-  <form
-    action=""
-    id="contact-me-form"
-    method="get"
-    [formGroup]="sendEmailForm"
-    (ngSubmit)="sendEmail(formDirective)"
-    #formDirective="ngForm"
-  >
-    <h2 class="subtitle">{{ "CONTACT-PAGE.SEND-EMAIL" | translate }}</h2>
-    <span>{{ "CONTACT-PAGE.I'LL-ANSWER" | translate }}</span>
-    <mat-form-field appearance="fill">
-      <mat-label>{{ "CONTACT-PAGE.FORM-INPUT-NAME" | translate }}</mat-label>
-      <input
-        formControlName="name"
-        type="text"
-        matInput
-        [placeholder]="'CONTACT-PAGE.FORM-INPUT-NAME-PLACEHOLDER' | translate"
-      />
-      <mat-error>{{
-        "CONTACT-PAGE.FORM-INPUT-MINIMUM-ERROR" | translate
-      }}</mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>{{ "CONTACT-PAGE.FORM-INPUT-EMAIL" | translate }}</mat-label>
-      <input
-        formControlName="email"
-        type="email"
-        matInput
-        [placeholder]="'CONTACT-PAGE.FORM-INPUT-EMAIL-PLACEHOLDER' | translate"
-      />
-      <mat-error>{{
-        "CONTACT-PAGE.FORM-INPUT-EMAIL-ERROR" | translate
-      }}</mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>{{ "CONTACT-PAGE.FORM-INPUT-SUBJECT" | translate }}</mat-label>
-      <input
-        formControlName="subject"
-        maxlength="250"
-        matInput
-        [placeholder]="
-          'CONTACT-PAGE.FORM-INPUT-SUBJECT-PLACEHOLDER' | translate
-        "
-      />
-      <mat-error>{{
-        "CONTACT-PAGE.FORM-INPUT-MINIMUM-ERROR" | translate
-      }}</mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>{{
-        "CONTACT-PAGE.FORM-INPUT-TEXTAREA" | translate
-      }}</mat-label>
-      <textarea
-        formControlName="message"
-        matInput
-        maxlength="1000"
-        [placeholder]="
-          'CONTACT-PAGE.FORM-INPUT-TEXTAREA-PLACEHOLDER' | translate
-        "
-        id="input-message"
-      ></textarea>
-      <mat-error>{{
-        "CONTACT-PAGE.FORM-INPUT-MINIMUM-ERROR" | translate
-      }}</mat-error>
-    </mat-form-field>
-    <button mat-flat-button type="submit" [disabled]="isSending">
-      @if(isSending){
-      <mat-spinner diameter="25"></mat-spinner>
-      }@else { {{ "CONTACT-PAGE.FORM-SEND" | translate }} }
-    </button>
-  </form>
-  <mat-divider [vertical]="true"></mat-divider>
-  <aside>
-    <h2 class="subtitle">{{ "CONTACT-PAGE.OTHER-WAY" | translate }}</h2>
-    <h4>{{ "CONTACT-PAGE.CLICK-TO-COPY" | translate }}</h4>
-    <span
-      (click)="clickToCopy('email')"
-      [matTooltip]="'CONTACT-PAGE.MAT-TOOL-TIP-EMAIL' | translate"
-      >felipe95176&#64;gmail.com</span
-    >
-    <span
-      (click)="clickToCopy('number')"
-      [matTooltip]="'CONTACT-PAGE.MAT-TOOL-TIP-NUMBER' | translate"
-      >+55 84 98709-5902</span
-    >
-    <app-social-links></app-social-links>
-  </aside>
-</section>
+<form
+  action=""
+  id="contact-me-form"
+  method="get"
+  [formGroup]="sendEmailForm"
+  (ngSubmit)="sendEmail(formDirective)"
+  #formDirective="ngForm"
+>
+  <h2 class="subtitle">{{ "CONTACT-PAGE.SEND-EMAIL" | translate }}</h2>
+  <span>{{ "CONTACT-PAGE.I'LL-ANSWER" | translate }}</span>
+  <mat-form-field appearance="fill">
+    <mat-label>{{ "CONTACT-PAGE.FORM-INPUT-NAME" | translate }}</mat-label>
+    <input
+      formControlName="name"
+      type="text"
+      matInput
+      [placeholder]="'CONTACT-PAGE.FORM-INPUT-NAME-PLACEHOLDER' | translate"
+    />
+    <mat-error>{{
+      "CONTACT-PAGE.FORM-INPUT-MINIMUM-ERROR" | translate
+    }}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>{{ "CONTACT-PAGE.FORM-INPUT-EMAIL" | translate }}</mat-label>
+    <input
+      formControlName="email"
+      type="email"
+      matInput
+      [placeholder]="'CONTACT-PAGE.FORM-INPUT-EMAIL-PLACEHOLDER' | translate"
+    />
+    <mat-error>{{
+      "CONTACT-PAGE.FORM-INPUT-EMAIL-ERROR" | translate
+    }}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>{{ "CONTACT-PAGE.FORM-INPUT-SUBJECT" | translate }}</mat-label>
+    <input
+      formControlName="subject"
+      maxlength="250"
+      matInput
+      [placeholder]="'CONTACT-PAGE.FORM-INPUT-SUBJECT-PLACEHOLDER' | translate"
+    />
+    <mat-error>{{
+      "CONTACT-PAGE.FORM-INPUT-MINIMUM-ERROR" | translate
+    }}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>{{ "CONTACT-PAGE.FORM-INPUT-TEXTAREA" | translate }}</mat-label>
+    <textarea
+      formControlName="message"
+      matInput
+      maxlength="1000"
+      [placeholder]="'CONTACT-PAGE.FORM-INPUT-TEXTAREA-PLACEHOLDER' | translate"
+      id="input-message"
+    ></textarea>
+    <mat-error>{{
+      "CONTACT-PAGE.FORM-INPUT-MINIMUM-ERROR" | translate
+    }}</mat-error>
+  </mat-form-field>
+  <button mat-flat-button type="submit" [disabled]="isSending">
+    @if(isSending){
+    <mat-spinner diameter="25"></mat-spinner>
+    }@else { {{ "CONTACT-PAGE.FORM-SEND" | translate }} }
+  </button>
+</form>

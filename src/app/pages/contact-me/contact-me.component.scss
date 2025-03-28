@@ -4,4 +4,28 @@ main {
   justify-content: center;
   flex-direction: column;
   margin-top: 7rem;
+
+  #contact-me-container {
+    margin: 20px 0px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 80vw;
+    max-width: 700px;
+    min-width: 200px;
+    padding: 20px;
+    gap: 10px;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    border: 1px solid;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media (max-width: 820px) {
+  #contact-me-container {
+    flex-direction: column;
+    mat-divider {
+      display: none;
+    }
+  }
 }
