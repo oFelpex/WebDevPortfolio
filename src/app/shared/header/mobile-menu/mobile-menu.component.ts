@@ -17,7 +17,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-mobile-menu',
@@ -26,6 +27,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatListModule,
     MatButtonModule,
     MatDividerModule,
+    MatMenuModule,
     RouterModule,
     SocialLinksComponent,
     TranslateModule,
@@ -35,12 +37,24 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class MobileMenuComponent implements AfterViewChecked {
   @ViewChild('mobileMenu') mobileMenu!: MatDrawer;
-  public mobileSvgIconsColor: string = '#FFF';
 
   private mobileMenuService: MobileMenuService;
+  private translate: TranslateService;
 
   constructor() {
     this.mobileMenuService = inject(MobileMenuService);
+    this.translate = inject(TranslateService);
+  }
+
+  public changeLanguage(lang: string) {
+    this.translate.use(lang);
+    localStorage.setItem('lang', JSON.stringify(lang));
+  }
+  public get currentLang() {
+    return this.translate.currentLang;
+  }
+  public get AllLangs(): string[] {
+    return this.translate.getLangs();
   }
 
   ngAfterViewChecked() {
