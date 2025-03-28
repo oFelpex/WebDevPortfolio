@@ -48,7 +48,7 @@ export class IntroSectionComponent implements OnInit, OnDestroy {
     ];
     let autoTypeArr: string[] = [];
 
-    this.translate.currentLang === 'en'
+    this.translate.currentLang === 'en-US'
       ? (autoTypeArr = EN_autoTypeArr)
       : (autoTypeArr = ptBR_autoTypeArr);
 
@@ -61,10 +61,11 @@ export class IntroSectionComponent implements OnInit, OnDestroy {
 
     this.langSubscription = this.translate.onLangChange.subscribe(
       (event: LangChangeEvent) => {
-        event.lang === 'en'
+        typedInstance.destroy();
+
+        event.lang === 'en-US'
           ? (autoTypeArr = EN_autoTypeArr)
           : (autoTypeArr = ptBR_autoTypeArr);
-        typedInstance.destroy();
 
         typedInstance = new Typed('.auto-type', {
           strings: [...autoTypeArr],

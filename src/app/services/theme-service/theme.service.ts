@@ -106,7 +106,7 @@ export class ThemeService {
       this.setTheme(theme.name.toLowerCase().replaceAll(' ', '-'));
     }
 
-    if (this.translate.currentLang === 'en') {
+    if (this.translate.currentLang === 'en-US') {
       this.snackBar.open(
         `Theme changed to ${this.getNameOfActualTheme().name || 'Default'}`,
         'Close',

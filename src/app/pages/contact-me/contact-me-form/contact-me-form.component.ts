@@ -91,7 +91,7 @@ export class ContactMeFormComponent {
             this.isSending = false;
             this.sendEmailForm.enable();
 
-            if (this.translate.currentLang === 'en') {
+            if (this.translate.currentLang === 'en-US') {
               this.snackBar.open('Email sent successfully!', 'Close', {
                 duration: 4000,
               });
@@ -103,7 +103,7 @@ export class ContactMeFormComponent {
           },
           (error) => {
             console.log('FAILED...', error);
-            if (this.translate.currentLang === 'en') {
+            if (this.translate.currentLang === 'en-US') {
               this.snackBar.open('Oops, try again later', 'Close', {
                 duration: 4000,
               });
@@ -117,7 +117,7 @@ export class ContactMeFormComponent {
           }
         );
     } else {
-      if (this.translate.currentLang === 'en') {
+      if (this.translate.currentLang === 'en-US') {
         this.snackBar.open(
           'You have to fill in the blanks correctly',
           'Close',
