@@ -20,7 +20,10 @@
       "CONTACT-PAGE.FORM-INPUT-MINIMUM-ERROR" | translate
     }}</mat-error>
   </mat-form-field>
-  <mat-form-field appearance="fill">
+  <mat-form-field
+    appearance="fill"
+    [@fadeInDownToUp]="sendEmailForm.controls['name'].valid ? 'show' : 'hide'"
+  >
     <mat-label>{{ "CONTACT-PAGE.FORM-INPUT-EMAIL" | translate }}</mat-label>
     <input
       formControlName="email"
@@ -32,7 +35,15 @@
       "CONTACT-PAGE.FORM-INPUT-EMAIL-ERROR" | translate
     }}</mat-error>
   </mat-form-field>
-  <mat-form-field appearance="fill">
+  <mat-form-field
+    appearance="fill"
+    [@fadeInDownToUp]="
+      sendEmailForm.controls['email'].valid &&
+      sendEmailForm.controls['name'].valid
+        ? 'show'
+        : 'hide'
+    "
+  >
     <mat-label>{{ "CONTACT-PAGE.FORM-INPUT-SUBJECT" | translate }}</mat-label>
     <input
       formControlName="subject"
@@ -44,7 +55,16 @@
       "CONTACT-PAGE.FORM-INPUT-MINIMUM-ERROR" | translate
     }}</mat-error>
   </mat-form-field>
-  <mat-form-field appearance="fill">
+  <mat-form-field
+    appearance="fill"
+    [@fadeInDownToUp]="
+      sendEmailForm.controls['email'].valid &&
+      sendEmailForm.controls['name'].valid &&
+      sendEmailForm.controls['subject'].valid
+        ? 'show'
+        : 'hide'
+    "
+  >
     <mat-label>{{ "CONTACT-PAGE.FORM-INPUT-TEXTAREA" | translate }}</mat-label>
     <textarea
       formControlName="message"
@@ -57,7 +77,19 @@
       "CONTACT-PAGE.FORM-INPUT-MINIMUM-ERROR" | translate
     }}</mat-error>
   </mat-form-field>
-  <button mat-flat-button type="submit" [disabled]="isSending">
+  <button
+    mat-flat-button
+    type="submit"
+    [disabled]="isSending"
+    [@fadeInDownToUp]="
+      sendEmailForm.controls['email'].valid &&
+      sendEmailForm.controls['name'].valid &&
+      sendEmailForm.controls['subject'].valid &&
+      sendEmailForm.controls['message'].valid
+        ? 'show'
+        : 'hide'
+    "
+  >
     @if(isSending){
     <mat-spinner diameter="25"></mat-spinner>
     }@else { {{ "CONTACT-PAGE.FORM-SEND" | translate }} }

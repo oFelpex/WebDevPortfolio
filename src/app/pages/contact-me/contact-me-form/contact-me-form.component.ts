@@ -15,7 +15,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { SocialLinksComponent } from '../../../shared/social-links/social-links.component';
+import { fadeInDownToUp } from '../../../shared/animations/fade-animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
@@ -34,6 +34,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   ],
   templateUrl: './contact-me-form.component.html',
   styleUrl: './contact-me-form.component.scss',
+  animations: [fadeInDownToUp],
 })
 export class ContactMeFormComponent {
   public sendEmailForm: FormGroup;

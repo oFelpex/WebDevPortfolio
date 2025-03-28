@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
 import { LoadingService } from '../../services/loading-service/loading.service';
-import { fadeInDownToUp } from '../../shared/animations/fade-animations';
+import { fadeInDownToUp_query } from '../../shared/animations/fade-animations';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -27,7 +27,7 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
-  animations: [fadeInDownToUp],
+  animations: [fadeInDownToUp_query],
 })
 export class ProjectsComponent implements OnInit {
   public projects: Projects[] = allProjects;
