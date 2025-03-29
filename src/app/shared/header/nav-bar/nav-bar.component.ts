@@ -16,6 +16,7 @@ import { SocialLinksComponent } from '../../social-links/social-links.component'
 import { MatDividerModule } from '@angular/material/divider';
 
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-nav-bar',
@@ -40,16 +41,26 @@ export class NavBarComponent {
   private mobileMenuService: MobileMenuService;
   public navBarSvgIconsColor: string = '#000';
   private translate: TranslateService;
+  private snackBar: MatSnackBar;
 
   constructor() {
     this.translate = inject(TranslateService);
     this.mobileMenuService = inject(MobileMenuService);
     this.themeService = inject(ThemeService);
+    this.snackBar = inject(MatSnackBar);
   }
 
   public changeLanguage(lang: string) {
     this.translate.use(lang);
     localStorage.setItem('lang', JSON.stringify(lang));
+
+    lang === 'en-US'
+      ? this.snackBar.open(`Language changed to en-US`, 'Close', {
+          duration: 4000,
+        })
+      : this.snackBar.open(`Língua trocada para pt-BR`, 'Fechar', {
+          duration: 4000,
+        });
   }
   public get currentLang() {
     return this.translate.currentLang;
