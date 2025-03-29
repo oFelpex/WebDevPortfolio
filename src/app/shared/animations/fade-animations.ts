@@ -41,17 +41,31 @@ export const fadeInUpToDown = trigger('fadeInUpToDown', [
   transition('loading => loaded', animate('300ms ease-in-out')),
 ]);
 
+// Contact-me-form: inputs
 export const fadeInDownToUp = trigger('fadeInDownToUp', [
-  state('hide', style({ opacity: 0, transform: 'translateY(25px)' })),
-  state('show', style({ opacity: 1, transform: 'translateY(0)' })),
-  transition('hide => show', [animate('300ms ease-out')]),
-  transition('show => hide', [animate('500ms ease-out')]),
+  state(
+    'hide',
+    style({
+      opacity: 0,
+      visibility: 'hidden',
+      height: '0px',
+    })
+  ),
+  state(
+    'show',
+    style({
+      opacity: 1,
+      visibility: 'visible',
+      height: '*',
+    })
+  ),
+  transition('hide <=> show', [animate('300ms ease-out')]),
 ]);
 
 /*  OBS: Used with @for(){}
     About-me: photos cards; 
     Projects: projects cards; */
-export const fadeInDownToUp_query = trigger('fadeInDownToUp', [
+export const fadeInDownToUp_query = trigger('fadeInDownToUp_query', [
   transition(':enter', [
     query(
       ':enter',
