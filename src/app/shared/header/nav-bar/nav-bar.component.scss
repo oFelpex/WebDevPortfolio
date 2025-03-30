@@ -67,6 +67,12 @@
           background-color: transparent;
         }
       }
+      .navBar-list-item.actualRouter {
+        background-color: rgba(107, 107, 107, 0.359);
+        &:hover {
+          background-color: rgba(78, 78, 78, 0.359);
+        }
+      }
     }
 
     @media (max-width: 820px) {

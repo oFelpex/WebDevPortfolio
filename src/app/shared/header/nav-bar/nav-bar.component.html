@@ -16,24 +16,44 @@
 
     <mat-list id="navBar-list">
       <a [routerLink]="['/home']">
-        <mat-list-item class="navBar-list-item">{{
-          "NAV-BAR-LIST.HOME" | translate
-        }}</mat-list-item></a
+        <mat-list-item
+          [class]="
+            currentRoute === '/home'
+              ? 'navBar-list-item actualRouter'
+              : 'navBar-list-item'
+          "
+          >{{ "NAV-BAR-LIST.HOME" | translate }}</mat-list-item
+        ></a
       >
       <a [routerLink]="['/about-me']">
-        <mat-list-item class="navBar-list-item">{{
-          "NAV-BAR-LIST.ABOUT" | translate
-        }}</mat-list-item></a
+        <mat-list-item
+          [class]="
+            currentRoute === '/about-me'
+              ? 'navBar-list-item actualRouter'
+              : 'navBar-list-item'
+          "
+          >{{ "NAV-BAR-LIST.ABOUT" | translate }}</mat-list-item
+        ></a
       >
       <a [routerLink]="['/projects']">
-        <mat-list-item class="navBar-list-item">{{
-          "NAV-BAR-LIST.PROJECTS" | translate
-        }}</mat-list-item></a
+        <mat-list-item
+          [class]="
+            currentRoute === '/projects'
+              ? 'navBar-list-item actualRouter'
+              : 'navBar-list-item'
+          "
+          >{{ "NAV-BAR-LIST.PROJECTS" | translate }}</mat-list-item
+        ></a
       >
       <a [routerLink]="['/contact-me']">
-        <mat-list-item class="navBar-list-item">{{
-          "NAV-BAR-LIST.CONTACT" | translate
-        }}</mat-list-item></a
+        <mat-list-item
+          [class]="
+            currentRoute === '/contact-me'
+              ? 'navBar-list-item actualRouter'
+              : 'navBar-list-item'
+          "
+          >{{ "NAV-BAR-LIST.CONTACT" | translate }}</mat-list-item
+        ></a
       >
       <mat-list-item class="navBar-list-item"
         ><button

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -39,15 +39,19 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class NavBarComponent {
   private themeService: ThemeService;
   private mobileMenuService: MobileMenuService;
-  public navBarSvgIconsColor: string = '#000';
   private translate: TranslateService;
   private snackBar: MatSnackBar;
+  private router: Router;
+  public currentRoute!: string;
 
   constructor() {
     this.translate = inject(TranslateService);
     this.mobileMenuService = inject(MobileMenuService);
     this.themeService = inject(ThemeService);
     this.snackBar = inject(MatSnackBar);
+    this.router = inject(Router);
+
+    this.currentRoute = this.router.url;
   }
 
   public changeLanguage(lang: string) {
