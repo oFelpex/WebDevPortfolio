@@ -7,7 +7,7 @@ import { PhotosFooterComponent } from './photos-footer/photos-footer.component';
 
 import { MatDividerModule } from '@angular/material/divider';
 import { LoadingService } from '../../services/loading-service/loading.service';
-import { fadeInUpToDown } from '../../shared/animations/fade-animations';
+import { fadeInUpToDown_loading } from '../../shared/animations/fade-animations';
 @Component({
   selector: 'app-about-me',
   imports: [
@@ -19,7 +19,7 @@ import { fadeInUpToDown } from '../../shared/animations/fade-animations';
   ],
   templateUrl: './about-me.component.html',
   styleUrl: './about-me.component.scss',
-  animations: [fadeInUpToDown],
+  animations: [fadeInUpToDown_loading],
 })
 export class AboutMeComponent implements OnInit {
   private loadingService: LoadingService;

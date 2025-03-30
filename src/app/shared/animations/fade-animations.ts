@@ -28,8 +28,11 @@ export const fadeInDownToUp_fadeOutUpToDown = trigger(
   ]
 );
 
-// About-me: first-half, second-half
-export const fadeInUpToDown = trigger('fadeInUpToDown', [
+/* 
+    *Depends of LoadingService*
+    USED IN:
+    About-me: first-half, second-half */
+export const fadeInUpToDown_loading = trigger('fadeInUpToDown_loading', [
   state('loading', style({ opacity: 0, transform: 'translateY(-100px)' })),
   state(
     'loaded',
@@ -41,8 +44,24 @@ export const fadeInUpToDown = trigger('fadeInUpToDown', [
   transition('loading => loaded', animate('300ms ease-in-out')),
 ]);
 
+/* 
+    *Depends of LoadingService*
+    USED IN:
+    Contact-me: section contact-me-container */
+export const fadeInDownToUp_loading = trigger('fadeInDownToUp_loading', [
+  state('loading', style({ opacity: 0, transform: 'translateY(100px)' })),
+  state(
+    'loaded',
+    style({
+      opacity: 1,
+      transform: 'translateY(0px)',
+    })
+  ),
+  transition('loading => loaded', animate('300ms ease-in-out')),
+]);
+
 // Contact-me-form: inputs
-export const fadeInDownToUp = trigger('fadeInDownToUp', [
+export const fadeInDownToUp_height = trigger('fadeInDownToUp_height', [
   state(
     'hide',
     style({
@@ -63,6 +82,7 @@ export const fadeInDownToUp = trigger('fadeInDownToUp', [
 ]);
 
 /*  OBS: Used with @for(){}
+    USED IN:
     About-me: photos cards; 
     Projects: projects cards; */
 export const fadeInDownToUp_query = trigger('fadeInDownToUp_query', [
