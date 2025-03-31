@@ -1,6 +1,8 @@
 <app-header></app-header>
 <main>
-  <h1>{{ "CONTACT-PAGE.CONTACT-ME" | translate }}</h1>
+  <h1 [@fadeIn_opacity_loading]="isLoading ? 'loading' : 'loaded'">
+    {{ "CONTACT-PAGE.CONTACT-ME" | translate }}
+  </h1>
   <section
     id="contact-me-container"
     [@fadeInDownToUp_loading]="isLoading ? 'loading' : 'loaded'"
