@@ -8,6 +8,13 @@ import {
   trigger,
 } from '@angular/animations';
 
+// Home: intro-section
+export const fadeIn_opacity_loading = trigger('fadeIn_opacity_loading', [
+  state('loading', style({ opacity: 0 })),
+  state('loaded', style({ opacity: 1 })),
+  transition('loading => loaded', animate('300ms ease-in-out')),
+]);
+
 // Home: navigation-cards
 export const fadeInDownToUp_fadeOutUpToDown = trigger(
   'fadeInDownToUp_fadeOutUpToDown',
