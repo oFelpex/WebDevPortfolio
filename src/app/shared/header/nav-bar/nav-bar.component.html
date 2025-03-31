@@ -81,7 +81,11 @@
       <mat-menu #langs="matMenu">
         @for(lang of AllLangs; track $index) {
         <button (click)="changeLanguage(lang)" mat-menu-item>
-          <span>{{ lang }}</span>
+          <span
+            [matBadge]="currentLang === lang ? 'ON' : ''"
+            matBadgeOverlap="false"
+            >{{ lang }}</span
+          >
         </button>
         }
       </mat-menu>
