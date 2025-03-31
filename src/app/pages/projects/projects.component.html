@@ -1,6 +1,8 @@
 <app-header></app-header>
 <main>
-  <h1>{{ "PROJECTS-PAGE.PROJECTS" | translate }}</h1>
+  <h1 [@fadeIn_opacity_loading]="isLoading ? 'loading' : 'loaded'">
+    {{ "PROJECTS-PAGE.PROJECTS" | translate }}
+  </h1>
   @if(!isLoading) {
   <section id="projects-container" @fadeInDownToUp_query>
     @for(project of projects; track $index) {

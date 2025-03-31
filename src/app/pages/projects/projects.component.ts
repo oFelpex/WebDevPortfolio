@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 
 import { HeaderComponent } from '../../shared/header/header.component';
 import { ProjectCardComponent } from './project-card/project-card.component';
@@ -10,8 +10,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
 import { LoadingService } from '../../services/loading-service/loading.service';
-import { fadeInDownToUp_query } from '../../shared/animations/fade-animations';
+import {
+  fadeIn_opacity_loading,
+  fadeInDownToUp_query,
+} from '../../shared/animations/fade-animations';
 import { TranslateModule } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-projects',
@@ -27,20 +31,27 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
-  animations: [fadeInDownToUp_query],
+  animations: [fadeInDownToUp_query, fadeIn_opacity_loading],
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnInit, OnDestroy {
   public projects: Projects[] = allProjects;
   private loadingService: LoadingService;
+  private loadingSubscription!: Subscription;
+  public isLoading!: Boolean;
 
   constructor() {
     this.loadingService = inject(LoadingService);
   }
 
-  isLoading = false;
   ngOnInit() {
-    this.loadingService.loading$.subscribe((loading) => {
-      this.isLoading = loading;
-    });
+    this.loadingSubscription = this.loadingService.loading$.subscribe(
+      (loading) => {
+        this.isLoading = loading;
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.loadingSubscription.unsubscribe();
   }
 }
