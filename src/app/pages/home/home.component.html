@@ -1,2 +1,4 @@
 <app-header></app-header>
-<app-intro-section></app-intro-section>
+<app-intro-section
+  [@fadeIn_opacity_loading]="isLoading ? 'loading' : 'loaded'"
+></app-intro-section>
