@@ -1,0 +1,35 @@
+<mat-nav-list>
+  <h3>
+    {{ ("NAV-MOBILE.ACTUAL-LANG" | translate) + currentLang }}
+  </h3>
+
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title style="height: 70px">
+          <span>
+            {{ "NAV-MOBILE.LANG" | translate }}
+          </span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-list>
+        @for(lang of AllLangs; track $index) {
+        <mat-list-item class="mobile-theme-menu-mat-list-item"
+          ><button
+            mat-button
+            style="border-radius: 7px; width: 100%"
+            (click)="changeLanguage(lang)"
+          >
+            <span
+              [matBadge]="currentLang === lang ? 'ON' : ''"
+              matBadgeOverlap="false"
+              >{{ lang }}</span
+            >
+          </button>
+        </mat-list-item>
+        <mat-divider style="width: 97%; align-self: center"></mat-divider>
+        }
+      </mat-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-nav-list>

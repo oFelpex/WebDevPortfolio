@@ -18,8 +18,8 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MobileLangsMenuSheetComponent } from './mobile-langs-menu/mobile-langs-menu.component';
 
 @Component({
   selector: 'app-mobile-menu',
@@ -28,7 +28,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatListModule,
     MatButtonModule,
     MatDividerModule,
-    MatMenuModule,
     RouterModule,
     SocialLinksComponent,
     TranslateModule,
@@ -81,5 +80,8 @@ export class MobileMenuComponent implements AfterViewChecked {
 
   openThemeMenu(): void {
     this._bottomSheet.open(MobileThemeMenuSheetComponent);
+  }
+  openLangsMenu(): void {
+    this._bottomSheet.open(MobileLangsMenuSheetComponent);
   }
 }

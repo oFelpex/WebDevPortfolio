@@ -30,7 +30,7 @@
       <mat-divider style="width: 97%; align-self: center"></mat-divider>
       <mat-list-item
         ><button
-          [matMenuTriggerFor]="langs"
+          (click)="openLangsMenu()"
           style="border-radius: 7px; width: 100%"
           mat-button
           aria-label="Button that open a menu to change the lang of the page"
@@ -38,13 +38,6 @@
           {{ "NAV-BAR-LIST.LANG" | translate }}
         </button></mat-list-item
       >
-      <mat-menu #langs="matMenu">
-        @for(lang of AllLangs; track $index) {
-        <button (click)="changeLanguage(lang)" mat-menu-item>
-          <span>{{ lang }}</span>
-        </button>
-        }
-      </mat-menu>
       <mat-divider></mat-divider>
       <footer class="mobileMenu-footer">
         <mat-divider></mat-divider>
