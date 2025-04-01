@@ -2,14 +2,14 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 7rem;
+  overflow-y: hidden;
+
   #projects-container {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 20px;
-    padding: 20px;
     width: 90%;
   }
 }
