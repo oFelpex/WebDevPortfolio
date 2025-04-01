@@ -40,7 +40,6 @@ export const seasonsOptions: Themes[] = [
   { name: 'Spring' },
   { name: 'Summer' },
   { name: 'Autumn' },
-  { name: 'Fall' },
   { name: 'Winter' },
 ];
 export const colorsOptions: Themes[] = [
