@@ -11,6 +11,16 @@
       "Summer": "Summer",
       "Autumn": "Autumn",
       "Winter": "Winter"
+    },
+
+    "Games": {
+      "God Of War": "God Of War",
+      "The Witcher 3": "The Witcher 3",
+      "Cyberpunk": "Cyberpunk",
+      "Elden Ring": "Elden Ring",
+      "Hollow Knight": "Hollow Knight",
+      "Undertale": "Undertale",
+      "Minecraft": "Minecraft"
     }
   },
 

@@ -34,24 +34,25 @@ export class MobileThemeMenuSheetComponent {
     inject<MatBottomSheetRef<MobileMenuComponent>>(MatBottomSheetRef);
   isMobile: boolean = window.innerWidth <= 820;
 
-  get gamesOptions(): Themes[] {
+  public get gamesOptions(): Themes[] {
     return this.themeService.getGamesNames();
   }
-  get seasonsOptions(): Themes[] {
+  public get seasonsOptions(): Themes[] {
     return this.themeService.getSeasonsNames();
   }
-  get colorsOptions(): Themes[] {
+  public get colorsOptions(): Themes[] {
     return this.themeService.getColorsNames();
   }
-  public getNameOfActualThemeFromLocalStorage(): Themes {
+  public get getNameOfActualThemeFromLocalStorage(): Themes {
     return this.themeService.getNameOfActualTheme();
   }
-  public changeTheme(theme: Themes) {
+  public get getTypeOfActualThemeFromLocalStorage(): string {
+    return this.themeService.getTypeOfActualTheme();
+  }
+
+  public changeTheme(theme: Themes): void {
     this.themeService.changeTheme(theme);
     this._bottomSheetRef.dismiss();
-  }
-  public getTypeOfActualThemeFromLocalStorage(): string {
-    return this.themeService.getTypeOfActualTheme();
   }
 
   @HostListener('window:resize', ['$event'])

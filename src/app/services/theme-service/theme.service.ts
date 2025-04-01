@@ -116,7 +116,8 @@ export class ThemeService {
       this.snackBar.open(
         `Tema alterado para ${
           this.translate.instant(
-            'THEMES.Colors.' + this.getNameOfActualTheme().name
+            `THEMES.${this.getTypeOfActualTheme()}.` +
+              this.getNameOfActualTheme().name
           ) || 'Default'
         }`,
         'Fechar',

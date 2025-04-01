@@ -62,42 +62,17 @@
           aria-label="Button that open a menu to change the theme of the page"
         >
           {{ "NAV-BAR-LIST.THEME" | translate }}:
-          {{
-            "THEMES-Colors." + getNameOfActualThemeFromLocalStorage.name
-              | translate
-          }}
-        </button></mat-list-item
-      >
-
-      <mat-list-item class="navBar-list-item"
-        ><button
-          [matMenuTriggerFor]="langs"
-          mat-button
-          aria-label="Button that open a menu to change the lang of the page"
-        >
-          {{ "NAV-BAR-LIST.LANG" | translate }}
-        </button></mat-list-item
-      >
-      <mat-menu #langs="matMenu">
-        @for(lang of AllLangs; track $index) {
-        <button (click)="changeLanguage(lang)" mat-menu-item>
-          <span
-            [matBadge]="currentLang === lang ? 'ON' : ''"
-            matBadgeOverlap="false"
-            >{{ lang }}</span
-          >
+          {{ actualThemeKey | translate }}
         </button>
-        }
-      </mat-menu>
-
+      </mat-list-item>
       <mat-menu #theme="matMenu">
         <button mat-menu-item [matMenuTriggerFor]="games" class="expandMatMenu">
           <span
             [matBadge]="
-              getTypeOfActualThemeFromLocalStorage() === 'Games' ? 'ON' : ''
+              getTypeOfActualThemeFromLocalStorage === 'Games' ? 'ON' : ''
             "
             matBadgeOverlap="false"
-            >Games</span
+            >{{ "NAV-BAR-LIST.MENU-GAMES" | translate }}</span
           >
         </button>
         <button
@@ -107,22 +82,23 @@
         >
           <span
             [matBadge]="
-              getTypeOfActualThemeFromLocalStorage() === 'Seasons' ? 'ON' : ''
+              getTypeOfActualThemeFromLocalStorage === 'Seasons' ? 'ON' : ''
             "
             matBadgeOverlap="false"
-            >Seasons</span
+            >{{ "NAV-BAR-LIST.MENU-SEASONS" | translate }}</span
           >
         </button>
         <button mat-menu-item [matMenuTriggerFor]="color" class="expandMatMenu">
           <span
             [matBadge]="
-              getTypeOfActualThemeFromLocalStorage() === 'Colors' ? 'ON' : ''
+              getTypeOfActualThemeFromLocalStorage === 'Colors' ? 'ON' : ''
             "
             matBadgeOverlap="false"
             >{{ "NAV-BAR-LIST.MENU-COLORS" | translate }}</span
           >
         </button>
       </mat-menu>
+
       <mat-menu #seasons="matMenu">
         @for (seasonsOptions of seasonsOptions; track $index) {
         <button
@@ -141,12 +117,11 @@
                 : ''
             "
             matBadgeOverlap="false"
-            >{{ seasonsOptions.name }}</span
+            >{{ "THEMES.Seasons." + seasonsOptions.name | translate }}</span
           >
         </button>
         }
       </mat-menu>
-
       <mat-menu #games="matMenu">
         @for (gamesOptions of gamesOptions; track $index) {
         <button
@@ -188,7 +163,28 @@
                 : ''
             "
             matBadgeOverlap="false"
-            >{{ "THEMES-Colors." + colorOption.name | translate }}</span
+            >{{ "THEMES.Colors." + colorOption.name | translate }}</span
+          >
+        </button>
+        }
+      </mat-menu>
+
+      <mat-list-item class="navBar-list-item"
+        ><button
+          [matMenuTriggerFor]="langs"
+          mat-button
+          aria-label="Button that open a menu to change the lang of the page"
+        >
+          {{ "NAV-BAR-LIST.LANG" | translate }}
+        </button></mat-list-item
+      >
+      <mat-menu #langs="matMenu">
+        @for(lang of AllLangs; track $index) {
+        <button (click)="changeLanguage(lang)" mat-menu-item>
+          <span
+            [matBadge]="currentLang === lang ? 'ON' : ''"
+            matBadgeOverlap="false"
+            >{{ lang }}</span
           >
         </button>
         }

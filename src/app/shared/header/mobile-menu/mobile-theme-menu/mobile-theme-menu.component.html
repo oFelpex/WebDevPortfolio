@@ -1,9 +1,9 @@
 <mat-nav-list>
   <h3>
     {{
-      getNameOfActualThemeFromLocalStorage().name
+      getNameOfActualThemeFromLocalStorage.name
         ? ("NAV-MOBILE.ACTUAL-THEME" | translate) +
-          ("THEMES-Colors." + getNameOfActualThemeFromLocalStorage().name
+          ("THEMES.Colors." + getNameOfActualThemeFromLocalStorage.name
             | translate)
         : ("NAV-MOBILE.CHOOSE-THEME" | translate)
     }}
@@ -15,11 +15,11 @@
         <mat-panel-title style="height: 70px">
           <span
             [matBadge]="
-              getTypeOfActualThemeFromLocalStorage() === 'Seasons' ? 'ON' : ''
+              getTypeOfActualThemeFromLocalStorage === 'Seasons' ? 'ON' : ''
             "
             matBadgeOverlap="false"
           >
-            Seasons
+            {{ "NAV-MOBILE.MENU-SEASONS" | translate }}
           </span>
         </mat-panel-title>
       </mat-expansion-panel-header>
@@ -31,12 +31,12 @@
         >
           <span
             [matBadge]="
-              getNameOfActualThemeFromLocalStorage().name === seasonOption.name
+              getNameOfActualThemeFromLocalStorage.name === seasonOption.name
                 ? 'Selected'
                 : ''
             "
             matBadgeOverlap="false"
-            >{{ seasonOption.name }}</span
+            >{{ "THEMES.Seasons." + seasonOption.name | translate }}</span
           >
         </mat-list-item>
         <mat-divider style="width: 97%; align-self: center"></mat-divider>
@@ -48,11 +48,11 @@
         <mat-panel-title style="height: 70px">
           <span
             [matBadge]="
-              getTypeOfActualThemeFromLocalStorage() === 'Games' ? 'ON' : ''
+              getTypeOfActualThemeFromLocalStorage === 'Games' ? 'ON' : ''
             "
             matBadgeOverlap="false"
           >
-            Video Games
+            {{ "NAV-MOBILE.MENU-GAMES" | translate }}
           </span>
         </mat-panel-title>
       </mat-expansion-panel-header>
@@ -64,7 +64,7 @@
         >
           <span
             [matBadge]="
-              getNameOfActualThemeFromLocalStorage().name === gameOption.name
+              getNameOfActualThemeFromLocalStorage.name === gameOption.name
                 ? 'Selected'
                 : ''
             "
@@ -81,7 +81,7 @@
         <mat-panel-title style="height: 70px">
           <span
             [matBadge]="
-              getTypeOfActualThemeFromLocalStorage() === 'Colors' ? 'ON' : ''
+              getTypeOfActualThemeFromLocalStorage === 'Colors' ? 'ON' : ''
             "
             matBadgeOverlap="false"
           >
@@ -99,12 +99,12 @@
           >
             <span
               [matBadge]="
-                getNameOfActualThemeFromLocalStorage().name === colorOption.name
+                getNameOfActualThemeFromLocalStorage.name === colorOption.name
                   ? ('NAV-MOBILE.SELECTED' | translate)
                   : ''
               "
               matBadgeOverlap="false"
-              >{{ "THEMES-Colors." + colorOption.name | translate }}</span
+              >{{ "THEMES.Colors." + colorOption.name | translate }}</span
             >
           </button>
         </mat-list-item>

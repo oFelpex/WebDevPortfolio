@@ -50,6 +50,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
   public currentRoute!: string;
   public currentLang!: string;
   private translateSubscription!: Subscription;
+  actualThemeKey: string;
 
   constructor() {
     this.translate = inject(TranslateService);
@@ -59,6 +60,11 @@ export class NavBarComponent implements OnInit, OnDestroy {
     this.router = inject(Router);
 
     this.currentRoute = this.router.url;
+
+    const themeType = this.getTypeOfActualThemeFromLocalStorage;
+    const themeName = this.getNameOfActualThemeFromLocalStorage.name;
+
+    this.actualThemeKey = `THEMES.${themeType}.${themeName}`;
   }
 
   ngOnInit(): void {
@@ -95,22 +101,28 @@ export class NavBarComponent implements OnInit, OnDestroy {
     this.mobileMenuService.toggleMobileMenu();
   }
 
-  get gamesOptions(): Themes[] {
+  public get gamesOptions(): Themes[] {
     return this.themeService.getGamesNames();
   }
-  get seasonsOptions(): Themes[] {
+  public get seasonsOptions(): Themes[] {
     return this.themeService.getSeasonsNames();
   }
-  get colorsOptions(): Themes[] {
+  public get colorsOptions(): Themes[] {
     return this.themeService.getColorsNames();
   }
   public get getNameOfActualThemeFromLocalStorage(): Themes {
     return this.themeService.getNameOfActualTheme();
   }
+  public get getTypeOfActualThemeFromLocalStorage(): string {
+    return this.themeService.getTypeOfActualTheme();
+  }
+
   public changeTheme(theme: Themes) {
     this.themeService.changeTheme(theme);
-  }
-  public getTypeOfActualThemeFromLocalStorage(): string {
-    return this.themeService.getTypeOfActualTheme();
+
+    const themeType = this.getTypeOfActualThemeFromLocalStorage;
+    const themeName = this.getNameOfActualThemeFromLocalStorage.name;
+
+    this.actualThemeKey = `THEMES.${themeType}.${themeName}`;
   }
 }
