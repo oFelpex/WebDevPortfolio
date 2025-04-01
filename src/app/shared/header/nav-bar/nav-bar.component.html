@@ -91,6 +91,28 @@
       </mat-menu>
 
       <mat-menu #theme="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="games" class="expandMatMenu">
+          <span
+            [matBadge]="
+              getTypeOfActualThemeFromLocalStorage() === 'Games' ? 'ON' : ''
+            "
+            matBadgeOverlap="false"
+            >Games</span
+          >
+        </button>
+        <button
+          mat-menu-item
+          [matMenuTriggerFor]="seasons"
+          class="expandMatMenu"
+        >
+          <span
+            [matBadge]="
+              getTypeOfActualThemeFromLocalStorage() === 'Seasons' ? 'ON' : ''
+            "
+            matBadgeOverlap="false"
+            >Seasons</span
+          >
+        </button>
         <button mat-menu-item [matMenuTriggerFor]="color" class="expandMatMenu">
           <span
             [matBadge]="
@@ -101,7 +123,53 @@
           >
         </button>
       </mat-menu>
+      <mat-menu #seasons="matMenu">
+        @for (seasonsOptions of seasonsOptions; track $index) {
+        <button
+          class="expandMatMenu"
+          mat-menu-item
+          (click)="changeTheme(seasonsOptions)"
+          [class]="{
+            expandMatMenu:
+              getNameOfActualThemeFromLocalStorage.name === seasonsOptions.name
+          }"
+        >
+          <span
+            [matBadge]="
+              getNameOfActualThemeFromLocalStorage.name === seasonsOptions.name
+                ? 'ON'
+                : ''
+            "
+            matBadgeOverlap="false"
+            >{{ seasonsOptions.name }}</span
+          >
+        </button>
+        }
+      </mat-menu>
 
+      <mat-menu #games="matMenu">
+        @for (gamesOptions of gamesOptions; track $index) {
+        <button
+          class="expandMatMenu"
+          mat-menu-item
+          (click)="changeTheme(gamesOptions)"
+          [class]="{
+            expandMatMenu:
+              getNameOfActualThemeFromLocalStorage.name === gamesOptions.name
+          }"
+        >
+          <span
+            [matBadge]="
+              getNameOfActualThemeFromLocalStorage.name === gamesOptions.name
+                ? 'ON'
+                : ''
+            "
+            matBadgeOverlap="false"
+            >{{ gamesOptions.name }}</span
+          >
+        </button>
+        }
+      </mat-menu>
       <mat-menu #color="matMenu">
         @for (colorOption of colorsOptions; track $index) {
         <button
