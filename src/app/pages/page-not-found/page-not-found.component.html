@@ -1,1 +1,15 @@
-<p>page-not-found works!</p>
+<app-header></app-header>
+<main id="not-found-container">
+  <div id="not-found-header">
+    <h1 id="title-404">404</h1>
+    <div id="texts">
+      <h2>{{ "NOT-FOUND-PAGE.HEADER" | translate }}</h2>
+      <p>{{ "NOT-FOUND-PAGE.PARAGRAPH" | translate }}</p>
+    </div>
+  </div>
+  <div id="not-founded-actions">
+    <button mat-flat-button [routerLink]="['/home']">
+      {{ "NOT-FOUND-PAGE.HOME" | translate }}
+    </button>
+  </div>
+</main>

@@ -95,5 +95,11 @@
     "CLICK-TO-COPY": "Click to copy",
     "MAT-TOOL-TIP-EMAIL": "Click here to copy my email",
     "MAT-TOOL-TIP-NUMBER": "Click here to copy my number"
+  },
+
+  "NOT-FOUND-PAGE": {
+    "HEADER": "You have discovered a secret place!",
+    "PARAGRAPH": "Unfortunately, it's only a 404 page. You may have mistyped the address, or the page has been moved to another URL.",
+    "HOME": "Go to the home page"
   }
 }

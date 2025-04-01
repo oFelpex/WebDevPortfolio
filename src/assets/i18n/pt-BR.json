@@ -95,5 +95,11 @@
     "CLICK-TO-COPY": "Click para copiar",
     "MAT-TOOL-TIP-EMAIL": "Click para copiar o meu e-mail",
     "MAT-TOOL-TIP-NUMBER": "Click para copiar o meu número"
+  },
+
+  "NOT-FOUND-PAGE": {
+    "HEADER": "Você descobriu um local secreto!",
+    "PARAGRAPH": "Infelizmente, é apenas uma página 404. Você pode ter digitado o endereço incorretamente ou a página foi teve sua URL alterada.",
+    "HOME": "Ir para a página inicial"
   }
 }
