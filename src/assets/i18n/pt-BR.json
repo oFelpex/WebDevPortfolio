@@ -1,8 +1,17 @@
 {
-  "THEMES-Colors": {
-    "Light": "Claro",
-    "Dark": "Escuro",
-    "Cosmic": "Cósmico"
+  "THEMES": {
+    "Colors": {
+      "Light": "Claro",
+      "Dark": "Escuro",
+      "Cosmic": "Cósmico"
+    },
+
+    "Seasons": {
+      "Spring": "Primavera",
+      "Summer": "Verão",
+      "Autumn": "Outono",
+      "Winter": "Inverno"
+    }
   },
 
   "NAV-BAR-LIST": {
@@ -11,6 +20,8 @@
     "PROJECTS": "Projetos",
     "CONTACT": "Contato",
     "THEME": "Tema",
+    "MENU-GAMES": "Jogos",
+    "MENU-SEASONS": "Estações",
     "MENU-COLORS": "Cores",
     "LANG": "pt-BR"
   },
@@ -21,6 +32,8 @@
     "PROJECTS": "Projetos",
     "CONTACT": "Contato",
     "CHANGE-THEME": "Mudar Tema",
+    "MENU-GAMES": "Jogos",
+    "MENU-SEASONS": "Estações",
     "MENU-COLORS": "Cores",
     "ACTUAL-THEME": "Tema atual: ",
     "CHOOSE-THEME": "Escolha um tema",

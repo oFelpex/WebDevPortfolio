@@ -1,8 +1,17 @@
 {
-  "THEMES-Colors": {
-    "Light": "Light",
-    "Dark": "Dark",
-    "Cosmic": "Cosmic"
+  "THEMES": {
+    "Colors": {
+      "Light": "Light",
+      "Dark": "Dark",
+      "Cosmic": "Cosmic"
+    },
+
+    "Seasons": {
+      "Spring": "Spring",
+      "Summer": "Summer",
+      "Autumn": "Autumn",
+      "Winter": "Winter"
+    }
   },
 
   "NAV-BAR-LIST": {
@@ -11,6 +20,8 @@
     "PROJECTS": "Projects",
     "CONTACT": "Contact",
     "THEME": "Theme",
+    "MENU-GAMES": "Games",
+    "MENU-SEASONS": "Seasons",
     "MENU-COLORS": "Colors",
     "LANG": "en-US"
   },
@@ -21,6 +32,8 @@
     "PROJECTS": "Projects",
     "CONTACT": "Contact",
     "CHANGE-THEME": "Change Theme",
+    "MENU-GAMES": "Games",
+    "MENU-SEASONS": "Seasons",
     "MENU-COLORS": "Colors",
     "ACTUAL-THEME": "Actual Theme: ",
     "CHOOSE-THEME": "Choose a theme",
