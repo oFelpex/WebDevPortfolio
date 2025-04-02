@@ -4,6 +4,7 @@
 @use "@angular/material" as mat;
 @use "./app/themes/colors/theme-dark.scss" as theme-dark;
 @use "./app/themes/colors/theme-cosmic.scss" as theme-cosmic;
+@use "./app/themes/games/theme-minecraft-colors.scss" as theme-minecraft-colors;
 @use "./app/themes/variables/variables" as var;
 
 html,
@@ -12,12 +13,12 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: var(--background-color);
 }
 
 // Theme: dark-theme
 body.dark-theme {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   --background-color: #393e46;
   color: #ffffff;
   #navBar {
@@ -45,6 +46,7 @@ body.dark-theme {
 
 // Theme: light-theme
 body.light-theme {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   --background-color: #ffffff;
   @include mat.theme(
     (
@@ -61,6 +63,7 @@ body.light-theme {
 
 // Theme: cosmic-theme
 body.cosmic-theme {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   --background-color: #500073;
   color: #eee9c8;
   #navBar {
@@ -73,6 +76,55 @@ body.cosmic-theme {
       color: (
         primary: theme-cosmic.$primary-palette,
         tertiary: theme-cosmic.$tertiary-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+body.minecraft-theme {
+  --background-color: #241e0e;
+  background-image: url("./assets/backgrounds/games/minecraft/backgrounds/minecraft-bg.webp");
+  color: #eaeaea;
+  text-shadow: 1px 1px 0px black;
+
+  *,
+  h1 {
+    font-family: "Minecraft", sans-serif;
+    text-shadow: 1px 1px 0px black;
+
+    mat-card {
+      background-image: url("./assets/backgrounds/games/minecraft/backgrounds/minecraft-bg-card.webp");
+      background-position: center bottom;
+      background-size: auto 300px;
+    }
+
+    button {
+      background-image: url("./assets/backgrounds/games/minecraft/minecraft-buttons.webp");
+      border-radius: 0%;
+      border: 2px solid black;
+      background-size: cover;
+
+      &:hover {
+        border-color: white;
+      }
+    }
+  }
+
+  #navBar {
+    background-color: #002e0f;
+    background-image: url("./assets/backgrounds/games/minecraft/backgrounds/minecraft-bg-nav-bar.webp");
+    background-position: center -120px;
+    background-size: auto 800px;
+
+    // filter: brightness(50%);
+  }
+
+  @include mat.theme(
+    (
+      color: (
+        primary: theme-minecraft-colors.$primary-palette,
+        tertiary: theme-minecraft-colors.$tertiary-palette,
       ),
       typography: Roboto,
       density: 0,
