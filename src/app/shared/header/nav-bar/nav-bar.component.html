@@ -5,7 +5,10 @@
         <button
           mat-mini-fab
           aria-label="Button to show the menu"
-          (click)="toggleMobileMenu()"
+          (click)="
+            toggleMobileMenu();
+            playClickSound(getNameOfActualThemeFromLocalStorage.name)
+          "
         >
           <mat-icon class="menuButton-icon">menu</mat-icon>
         </button>
@@ -57,6 +60,7 @@
       >
       <mat-list-item class="navBar-list-item"
         ><button
+          (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
           [matMenuTriggerFor]="theme"
           mat-button
           aria-label="Button that open a menu to change the theme of the page"
@@ -66,7 +70,12 @@
         </button>
       </mat-list-item>
       <mat-menu #theme="matMenu">
-        <button mat-menu-item [matMenuTriggerFor]="games" class="expandMatMenu">
+        <button
+          (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+          mat-menu-item
+          [matMenuTriggerFor]="games"
+          class="expandMatMenu"
+        >
           <span
             [matBadge]="
               getTypeOfActualThemeFromLocalStorage === 'Games' ? 'ON' : ''
@@ -76,6 +85,7 @@
           >
         </button>
         <button
+          (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
           mat-menu-item
           [matMenuTriggerFor]="seasons"
           class="expandMatMenu"
@@ -88,7 +98,12 @@
             >{{ "NAV-BAR-LIST.MENU-SEASONS" | translate }}</span
           >
         </button>
-        <button mat-menu-item [matMenuTriggerFor]="color" class="expandMatMenu">
+        <button
+          (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+          mat-menu-item
+          [matMenuTriggerFor]="color"
+          class="expandMatMenu"
+        >
           <span
             [matBadge]="
               getTypeOfActualThemeFromLocalStorage === 'Colors' ? 'ON' : ''
@@ -104,7 +119,10 @@
         <button
           class="expandMatMenu"
           mat-menu-item
-          (click)="changeTheme(seasonsOptions)"
+          (click)="
+            changeTheme(seasonsOptions);
+            playClickSound(getNameOfActualThemeFromLocalStorage.name)
+          "
           [class]="{
             expandMatMenu:
               getNameOfActualThemeFromLocalStorage.name === seasonsOptions.name
@@ -127,7 +145,10 @@
         <button
           class="expandMatMenu"
           mat-menu-item
-          (click)="changeTheme(gamesOptions)"
+          (click)="
+            changeTheme(gamesOptions);
+            playClickSound(getNameOfActualThemeFromLocalStorage.name)
+          "
           [class]="{
             expandMatMenu:
               getNameOfActualThemeFromLocalStorage.name === gamesOptions.name
@@ -150,7 +171,10 @@
         <button
           class="expandMatMenu"
           mat-menu-item
-          (click)="changeTheme(colorOption)"
+          (click)="
+            changeTheme(colorOption);
+            playClickSound(getNameOfActualThemeFromLocalStorage.name)
+          "
           [class]="{
             expandMatMenu:
               getNameOfActualThemeFromLocalStorage.name === colorOption.name
@@ -171,6 +195,7 @@
 
       <mat-list-item class="navBar-list-item"
         ><button
+          (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
           [matMenuTriggerFor]="langs"
           mat-button
           aria-label="Button that open a menu to change the lang of the page"
@@ -180,7 +205,13 @@
       >
       <mat-menu #langs="matMenu">
         @for(lang of AllLangs; track $index) {
-        <button (click)="changeLanguage(lang)" mat-menu-item>
+        <button
+          (click)="
+            changeLanguage(lang);
+            playClickSound(getNameOfActualThemeFromLocalStorage.name)
+          "
+          mat-menu-item
+        >
           <span
             [matBadge]="currentLang === lang ? 'ON' : ''"
             matBadgeOverlap="false"

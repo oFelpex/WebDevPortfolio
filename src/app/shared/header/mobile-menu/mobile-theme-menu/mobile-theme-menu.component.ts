@@ -11,6 +11,7 @@ import { Themes } from '../../../../models/themes';
 import { MobileMenuComponent } from '../mobile-menu.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { TranslateModule } from '@ngx-translate/core';
+import { AudioService } from '../../../../services/audio-service/audio.service';
 
 @Component({
   selector: 'app-mobile-theme-menu',
@@ -26,11 +27,13 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: 'mobile-theme-menu.component.scss',
 })
 export class MobileThemeMenuSheetComponent {
-  public themeService: ThemeService;
-  actualThemeKey: string;
+  public actualThemeKey: string;
+  private themeService: ThemeService;
+  private audioService: AudioService;
 
   constructor() {
     this.themeService = inject(ThemeService);
+    this.audioService = inject(AudioService);
 
     const themeType = this.getTypeOfActualThemeFromLocalStorage;
     const themeName = this.getNameOfActualThemeFromLocalStorage.name;
@@ -60,6 +63,10 @@ export class MobileThemeMenuSheetComponent {
   public changeTheme(theme: Themes): void {
     this.themeService.changeTheme(theme);
     this._bottomSheetRef.dismiss();
+  }
+
+  public playClickSound(themeName: string) {
+    this.audioService.playClickSound(themeName);
   }
 
   @HostListener('window:resize', ['$event'])

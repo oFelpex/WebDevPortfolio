@@ -15,6 +15,7 @@ import {
 } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AudioService } from '../../../../services/audio-service/audio.service';
 
 @Component({
   selector: 'app-mobile-langs-menu',
@@ -34,10 +35,14 @@ export class MobileLangsMenuSheetComponent {
   private translateSubscription!: Subscription;
   private snackBar: MatSnackBar;
   public currentLang!: string;
+  private audioService: AudioService;
+  private themeService: ThemeService;
 
   constructor() {
     this.translate = inject(TranslateService);
     this.snackBar = inject(MatSnackBar);
+    this.themeService = inject(ThemeService);
+    this.audioService = inject(AudioService);
   }
 
   ngOnInit(): void {
@@ -74,6 +79,13 @@ export class MobileLangsMenuSheetComponent {
   private _bottomSheetRef =
     inject<MatBottomSheetRef<MobileMenuComponent>>(MatBottomSheetRef);
   isMobile: boolean = window.innerWidth <= 820;
+
+  public get getNameOfActualThemeFromLocalStorage(): Themes {
+    return this.themeService.getNameOfActualTheme();
+  }
+  public playClickSound(themeName: string) {
+    this.audioService.playClickSound(themeName);
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {

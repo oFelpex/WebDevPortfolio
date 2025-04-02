@@ -22,6 +22,7 @@ import {
 } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
+import { AudioService } from '../../../services/audio-service/audio.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -47,10 +48,11 @@ export class NavBarComponent implements OnInit, OnDestroy {
   private translate: TranslateService;
   private snackBar: MatSnackBar;
   private router: Router;
+  private translateSubscription!: Subscription;
+  private audioService: AudioService;
   public currentRoute!: string;
   public currentLang!: string;
-  private translateSubscription!: Subscription;
-  actualThemeKey: string;
+  public actualThemeKey: string;
 
   constructor() {
     this.translate = inject(TranslateService);
@@ -58,6 +60,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
     this.themeService = inject(ThemeService);
     this.snackBar = inject(MatSnackBar);
     this.router = inject(Router);
+    this.audioService = inject(AudioService);
 
     this.currentRoute = this.router.url;
 
@@ -95,6 +98,10 @@ export class NavBarComponent implements OnInit, OnDestroy {
   }
   public get AllLangs(): string[] {
     return this.translate.getLangs();
+  }
+
+  public playClickSound(themeName: string) {
+    this.audioService.playClickSound(themeName);
   }
 
   public toggleMobileMenu() {

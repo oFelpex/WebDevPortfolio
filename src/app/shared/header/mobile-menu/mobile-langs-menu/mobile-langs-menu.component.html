@@ -18,7 +18,10 @@
           ><button
             mat-button
             style="border-radius: 7px; width: 100%"
-            (click)="changeLanguage(lang)"
+            (click)="
+              changeLanguage(lang);
+              playClickSound(getNameOfActualThemeFromLocalStorage.name)
+            "
           >
             <span
               [matBadge]="currentLang === lang ? 'ON' : ''"

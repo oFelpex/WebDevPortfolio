@@ -20,6 +20,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MobileLangsMenuSheetComponent } from './mobile-langs-menu/mobile-langs-menu.component';
+import { AudioService } from '../../../services/audio-service/audio.service';
+import { ThemeService } from '../../../services/theme-service/theme.service';
+import { Themes } from '../../../models/themes';
 
 @Component({
   selector: 'app-mobile-menu',
@@ -41,11 +44,15 @@ export class MobileMenuComponent implements AfterViewChecked {
   private mobileMenuService: MobileMenuService;
   private translate: TranslateService;
   private snackBar: MatSnackBar;
+  private audioService: AudioService;
+  private themeService: ThemeService;
 
   constructor() {
     this.mobileMenuService = inject(MobileMenuService);
     this.translate = inject(TranslateService);
     this.snackBar = inject(MatSnackBar);
+    this.audioService = inject(AudioService);
+    this.themeService = inject(ThemeService);
   }
 
   public changeLanguage(lang: string) {
@@ -83,5 +90,12 @@ export class MobileMenuComponent implements AfterViewChecked {
   }
   openLangsMenu(): void {
     this._bottomSheet.open(MobileLangsMenuSheetComponent);
+  }
+
+  public get getNameOfActualThemeFromLocalStorage(): Themes {
+    return this.themeService.getNameOfActualTheme();
+  }
+  public playClickSound(themeName: string) {
+    this.audioService.playClickSound(themeName);
   }
 }
