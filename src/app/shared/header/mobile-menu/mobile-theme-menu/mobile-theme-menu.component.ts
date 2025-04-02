@@ -27,8 +27,15 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class MobileThemeMenuSheetComponent {
   public themeService: ThemeService;
+  actualThemeKey: string;
+
   constructor() {
     this.themeService = inject(ThemeService);
+
+    const themeType = this.getTypeOfActualThemeFromLocalStorage;
+    const themeName = this.getNameOfActualThemeFromLocalStorage.name;
+
+    this.actualThemeKey = `THEMES.${themeType}.${themeName}`;
   }
   private _bottomSheetRef =
     inject<MatBottomSheetRef<MobileMenuComponent>>(MatBottomSheetRef);

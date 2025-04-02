@@ -2,9 +2,7 @@
   <h3>
     {{
       getNameOfActualThemeFromLocalStorage.name
-        ? ("NAV-MOBILE.ACTUAL-THEME" | translate) +
-          ("THEMES.Colors." + getNameOfActualThemeFromLocalStorage.name
-            | translate)
+        ? ("NAV-MOBILE.ACTUAL-THEME" | translate) + (actualThemeKey | translate)
         : ("NAV-MOBILE.CHOOSE-THEME" | translate)
     }}
   </h3>
