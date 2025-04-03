@@ -24,6 +24,32 @@
     }
   },
 
+  "SNACK-BAR": {
+    "BUTTON-CLOSE": "Close",
+
+    "THEMES": {
+      "CHANGE-THEME": "Theme changed to: "
+    },
+
+    "NAV-BAR": {
+      "CHANGE-LANG": "Language changed to en-US"
+    },
+
+    "NAV-MOBILE": {
+      "CHANGE-LANG": "Language changed to en-US"
+    },
+
+    "CONTACT-PAGE": {
+      "ERROR-BLANK-INPUTS": "You have to fill in the blanks correctly",
+
+      "SENT-EMAIL": "Email sent successfully!",
+      "ERROR-SENT-EMAIL": "Oops! Try again later",
+
+      "COPY-EMAIL": "Email copied to clipboard!",
+      "COPY-NUMBER": "Number copied to clipboard!"
+    }
+  },
+
   "NAV-BAR-LIST": {
     "HOME": "Home",
     "ABOUT": "About-me",

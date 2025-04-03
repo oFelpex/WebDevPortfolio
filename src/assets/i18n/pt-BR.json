@@ -24,6 +24,34 @@
     }
   },
 
+  "SNACK-BAR": {
+    "BUTTON-CLOSE": "Fechar",
+
+    "THEMES": {
+      "CHANGE-THEME": "Tema alterado para: "
+    },
+
+    "NAV-BAR": {
+      "CHANGE-LANG": "Língua alterada para pt-BR",
+      "CHANGE-THEME": ""
+    },
+
+    "NAV-MOBILE": {
+      "CHANGE-LANG": "Língua alterada para pt-BR",
+      "CHANGE-THEME": ""
+    },
+
+    "CONTACT-PAGE": {
+      "ERROR-BLANK-INPUTS": "Você deve preencher os espaços em branco corretamente",
+
+      "SENT-EMAIL": "E-mail enviado com sucesso!",
+      "ERROR-EMAIL": "Opa, tente novamente mais tarde",
+
+      "COPY-EMAIL": "E-mail copiado com sucesso!",
+      "COPY-NUMBER": "Número copiado com sucesso!"
+    }
+  },
+
   "NAV-BAR-LIST": {
     "HOME": "Início",
     "ABOUT": "Sobre mim",
