@@ -42,36 +42,15 @@ export class MobileMenuComponent implements AfterViewChecked {
   @ViewChild('mobileMenu') mobileMenu!: MatDrawer;
 
   private mobileMenuService: MobileMenuService;
-  private translate: TranslateService;
-  private snackBar: MatSnackBar;
   private audioService: AudioService;
   private themeService: ThemeService;
+  private _bottomSheet: MatBottomSheet;
 
   constructor() {
     this.mobileMenuService = inject(MobileMenuService);
-    this.translate = inject(TranslateService);
-    this.snackBar = inject(MatSnackBar);
     this.audioService = inject(AudioService);
     this.themeService = inject(ThemeService);
-  }
-
-  public changeLanguage(lang: string) {
-    this.translate.use(lang);
-    localStorage.setItem('lang', JSON.stringify(lang));
-
-    lang === 'en-US'
-      ? this.snackBar.open(`Language changed to en-US`, 'Close', {
-          duration: 4000,
-        })
-      : this.snackBar.open(`Língua trocada para pt-BR`, 'Fechar', {
-          duration: 4000,
-        });
-  }
-  public get currentLang() {
-    return this.translate.currentLang;
-  }
-  public get AllLangs(): string[] {
-    return this.translate.getLangs();
+    this._bottomSheet = inject(MatBottomSheet);
   }
 
   ngAfterViewChecked() {
@@ -82,8 +61,6 @@ export class MobileMenuComponent implements AfterViewChecked {
   toggleFromComponent() {
     this.mobileMenuService.toggleMobileMenu();
   }
-
-  private _bottomSheet = inject(MatBottomSheet);
 
   openThemeMenu(): void {
     this._bottomSheet.open(MobileThemeMenuSheetComponent);
