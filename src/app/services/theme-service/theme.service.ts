@@ -9,6 +9,7 @@ import { gamesOptions } from '../../models/themes';
 import { BehaviorSubject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
+import { CustomSnackbarComponent } from '../../shared/custom-snackbar/custom-snackbar.component';
 @Injectable({
   providedIn: 'root',
 })
@@ -18,7 +19,6 @@ export class ThemeService {
   private colorsOptions: Themes[] = colorsOptions;
   private defaultTheme: Themes = defaultTheme;
   private snackBar: MatSnackBar;
-  private translate: TranslateService;
 
   private _actualTheme$ = new BehaviorSubject<Themes>(this.defaultTheme);
   actualTheme$ = this._actualTheme$.asObservable();
@@ -26,7 +26,6 @@ export class ThemeService {
   constructor() {
     this.initTheme();
     this.snackBar = inject(MatSnackBar);
-    this.translate = inject(TranslateService);
   }
 
   private initTheme() {
@@ -106,24 +105,17 @@ export class ThemeService {
       this.setTheme(theme.name.toLowerCase().replaceAll(' ', '-'));
     }
 
-    if (this.translate.currentLang === 'en-US') {
-      this.snackBar.open(
-        `Theme changed to ${this.getNameOfActualTheme().name || 'Default'}`,
-        'Close',
-        { duration: 4000 }
-      );
-    } else {
-      this.snackBar.open(
-        `Tema alterado para ${
-          this.translate.instant(
-            `THEMES.${this.getTypeOfActualTheme()}.` +
-              this.getNameOfActualTheme().name
-          ) || 'Default'
+    this.snackBar.openFromComponent(CustomSnackbarComponent, {
+      data: {
+        message: 'SNACK-BAR.THEMES.CHANGE-THEME',
+        themeNameMessage: `THEMES.${this.getTypeOfActualTheme()}.${
+          this.getNameOfActualTheme().name
         }`,
-        'Fechar',
-        { duration: 4000 }
-      );
-    }
+        theme: this.getNameOfActualTheme().name,
+      },
+      duration: 4000,
+    });
+
     //debug
     console.log('Actual Theme:', this.getNameOfActualTheme());
     console.log('Type:', this.getTypeOfActualTheme());
