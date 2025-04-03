@@ -23,6 +23,7 @@ import {
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { AudioService } from '../../../services/audio-service/audio.service';
+import { CustomSnackbarComponent } from '../../custom-snackbar/custom-snackbar.component';
 
 @Component({
   selector: 'app-nav-bar',
@@ -88,13 +89,13 @@ export class NavBarComponent implements OnInit, OnDestroy {
     this.translate.use(lang);
     localStorage.setItem('lang', JSON.stringify(lang));
 
-    lang === 'en-US'
-      ? this.snackBar.open(`Language changed to en-US`, 'Close', {
-          duration: 4000,
-        })
-      : this.snackBar.open(`Língua trocada para pt-BR`, 'Fechar', {
-          duration: 4000,
-        });
+    this.snackBar.openFromComponent(CustomSnackbarComponent, {
+      data: {
+        message: 'SNACK-BAR.NAV-BAR.CHANGE-LANG',
+        theme: this.getNameOfActualThemeFromLocalStorage.name,
+      },
+      duration: 4000,
+    });
   }
   public get AllLangs(): string[] {
     return this.translate.getLangs();
