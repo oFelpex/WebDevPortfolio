@@ -37,7 +37,7 @@ export class AudioService {
     if (audioBuffer) {
       const source = this.audioContext.createBufferSource();
       source.buffer = audioBuffer;
-      source.connect(this.gainNode); // Conecta a fonte ao nó de ganho
+      source.connect(this.gainNode);
       source.start(0);
     }
   }
