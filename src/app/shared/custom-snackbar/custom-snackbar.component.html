@@ -1,0 +1,23 @@
+<div
+  style="
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    height: 28px;
+    min-width: 200px;
+  "
+>
+  <span
+    >{{ message | translate }}
+    {{ themeNameMessage ? (themeNameMessage | translate) : "" }}</span
+  >
+  <button
+    mat-button
+    (click)="
+      dismiss(); playClickSound(getNameOfActualThemeFromLocalStorage.name)
+    "
+  >
+    {{ "SNACK-BAR.BUTTON-CLOSE" | translate }}
+  </button>
+</div>
