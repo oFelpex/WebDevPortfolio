@@ -1,10 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 import { Projects } from '../../../../models/projects';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { AudioService } from '../../../../services/audio-service/audio.service';
+import { ThemeService } from '../../../../services/theme-service/theme.service';
+import { Themes } from '../../../../models/themes';
 
 @Component({
   selector: 'app-overlay-projects',
@@ -27,7 +30,22 @@ export class OverlayProjectsComponent {
   @Input() project!: Projects;
   @Input() isOverlayVisible: Boolean = false;
 
-  goToProject() {
+  private audioService: AudioService;
+  private themeService: ThemeService;
+
+  constructor() {
+    this.themeService = inject(ThemeService);
+    this.audioService = inject(AudioService);
+  }
+
+  public get getNameOfActualThemeFromLocalStorage(): Themes {
+    return this.themeService.getNameOfActualTheme();
+  }
+  public playClickSound(themeName: string) {
+    this.audioService.playClickSound(themeName);
+  }
+
+  public goToProject() {
     window.open(this.project.siteURL, '_blank');
   }
 }

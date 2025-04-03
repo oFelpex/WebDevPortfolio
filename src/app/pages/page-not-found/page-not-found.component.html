@@ -8,7 +8,11 @@
     </div>
   </div>
   <div id="not-founded-actions">
-    <button mat-flat-button [routerLink]="['/home']">
+    <button
+      (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+      mat-flat-button
+      [routerLink]="['/home']"
+    >
       {{ "NOT-FOUND-PAGE.HOME" | translate }}
     </button>
   </div>

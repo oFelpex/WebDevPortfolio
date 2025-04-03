@@ -18,6 +18,9 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { fadeInDownToUp_height } from '../../../shared/animations/fade-animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { AudioService } from '../../../services/audio-service/audio.service';
+import { ThemeService } from '../../../services/theme-service/theme.service';
+import { Themes } from '../../../models/themes';
 
 @Component({
   selector: 'app-contact-me-form',
@@ -40,6 +43,9 @@ export class ContactMeFormComponent {
   public sendEmailForm: FormGroup;
   private snackBar: MatSnackBar;
   private translate: TranslateService;
+  private audioService: AudioService;
+  private themeService: ThemeService;
+  public isSending: boolean = false;
 
   constructor() {
     this.sendEmailForm = new FormGroup({
@@ -61,9 +67,10 @@ export class ContactMeFormComponent {
 
     this.snackBar = inject(MatSnackBar);
     this.translate = inject(TranslateService);
+    this.themeService = inject(ThemeService);
+    this.audioService = inject(AudioService);
   }
 
-  public isSending: boolean = false;
   public sendEmail(formDirective: FormGroupDirective): void {
     if (this.sendEmailForm.valid) {
       this.isSending = true;
@@ -136,5 +143,12 @@ export class ContactMeFormComponent {
         );
       }
     }
+  }
+
+  public get getNameOfActualThemeFromLocalStorage(): Themes {
+    return this.themeService.getNameOfActualTheme();
+  }
+  public playClickSound(themeName: string) {
+    this.audioService.playClickSound(themeName);
   }
 }

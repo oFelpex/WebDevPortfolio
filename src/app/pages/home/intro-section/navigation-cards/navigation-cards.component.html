@@ -11,7 +11,11 @@
         }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-actions class="navigation-card-actions">
-        <button mat-flat-button [routerLink]="['/about-me']">
+        <button
+          (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+          mat-flat-button
+          [routerLink]="['/about-me']"
+        >
           {{ "INTRO-PAGE.NAVCARDS-KNOW-MORE" | translate }}
         </button>
       </mat-card-actions>
@@ -26,7 +30,11 @@
         }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-actions class="navigation-card-actions">
-        <button mat-flat-button [routerLink]="['/projects']">
+        <button
+          (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+          mat-flat-button
+          [routerLink]="['/projects']"
+        >
           {{ "INTRO-PAGE.NAVCARDS-SEE-PROJECTS" | translate }}
         </button>
       </mat-card-actions>
@@ -41,7 +49,11 @@
         }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-actions class="navigation-card-actions">
-        <button mat-flat-button [routerLink]="['/contact-me']">
+        <button
+          (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+          mat-flat-button
+          [routerLink]="['/contact-me']"
+        >
           {{ "INTRO-PAGE.NAVCARDS-SEE-CONTACTS" | translate }}
         </button>
       </mat-card-actions>

@@ -1,6 +1,10 @@
 @if(isOverlayVisible) {
 <div id="project-card-img-overlay" (click)="goToProject()" @showOverlay>
-  <button mat-icon-button aria-label="Get you to the site.">
+  <button
+    (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+    mat-icon-button
+    aria-label="Get you to the site."
+  >
     <mat-icon
       aria-label="Example home icon"
       style="color: aliceblue; font-family: 'Material Icons'"

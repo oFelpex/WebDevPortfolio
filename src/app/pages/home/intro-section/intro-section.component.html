@@ -14,7 +14,10 @@
       id="intro-section-button"
       mat-icon-button
       aria-label="Button to leave you to next section of the page."
-      (click)="toggleNavigationCards()"
+      (click)="
+        toggleNavigationCards();
+        playClickSound(getNameOfActualThemeFromLocalStorage.name)
+      "
     >
       <mat-icon class="intro-section-button-icon">keyboard_arrow_down</mat-icon>
     </button>

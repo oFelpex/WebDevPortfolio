@@ -39,33 +39,32 @@
   <mat-divider></mat-divider>
   <mat-card-actions class="project-card-buttons">
     <button
+      (click)="
+        playClickSound(getNameOfActualThemeFromLocalStorage.name);
+        goToProject(project.siteURL)
+      "
       mat-icon-button
       aria-label="Takes you to the repository page on github"
     >
-      <a
-        [href]="project.githubURL"
-        target="_blank"
+      <mat-icon
+        svgIcon="icon-github"
         aria-label="Takes you to the repository page on github"
-      >
-        <mat-icon
-          svgIcon="icon-github"
-          aria-label="Takes you to the repository page on github"
-        ></mat-icon
-      ></a>
+      ></mat-icon>
     </button>
-    <button mat-icon-button aria-label="Takes you to the website deployed">
-      <a
-        [href]="project.siteURL"
-        target="_blank"
+    <button
+      (click)="
+        playClickSound(getNameOfActualThemeFromLocalStorage.name);
+        goToProject(project.siteURL)
+      "
+      mat-icon-button
+      aria-label="Takes you to the website deployed"
+    >
+      <mat-icon
+        style="font-family: 'Material Icons'"
         aria-label="Takes you to the website deployed"
+        alt="Takes you to the website deployed"
+        >open_in_new</mat-icon
       >
-        <mat-icon
-          style="font-family: 'Material Icons'"
-          aria-label="Takes you to the website deployed"
-          alt="Takes you to the website deployed"
-          >open_in_new</mat-icon
-        >
-      </a>
     </button>
   </mat-card-actions>
 </mat-card>

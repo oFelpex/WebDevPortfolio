@@ -80,6 +80,7 @@
     }}</mat-error>
   </mat-form-field>
   <button
+    (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
     mat-flat-button
     type="submit"
     [disabled]="isSending"

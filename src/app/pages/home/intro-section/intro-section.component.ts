@@ -13,6 +13,9 @@ import {
   TranslateService,
 } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { Themes } from '../../../models/themes';
+import { ThemeService } from '../../../services/theme-service/theme.service';
+import { AudioService } from '../../../services/audio-service/audio.service';
 
 @Component({
   selector: 'app-intro-section',
@@ -27,11 +30,15 @@ import { Subscription } from 'rxjs';
   animations: [getDownToUp_getUptoDown],
 })
 export class IntroSectionComponent implements OnInit, OnDestroy {
-  translate: TranslateService;
+  private translate: TranslateService;
   private langSubscription!: Subscription;
+  private audioService: AudioService;
+  private themeService: ThemeService;
 
   constructor() {
     this.translate = inject(TranslateService);
+    this.themeService = inject(ThemeService);
+    this.audioService = inject(AudioService);
   }
 
   ngOnInit(): void {
@@ -91,6 +98,13 @@ export class IntroSectionComponent implements OnInit, OnDestroy {
     this.showNavigationCards
       ? (introSectionButtonIcon.style.transform = 'rotate(180deg)')
       : (introSectionButtonIcon.style.transform = 'rotate(0deg)');
+  }
+
+  public get getNameOfActualThemeFromLocalStorage(): Themes {
+    return this.themeService.getNameOfActualTheme();
+  }
+  public playClickSound(themeName: string) {
+    this.audioService.playClickSound(themeName);
   }
 
   ngOnDestroy(): void {

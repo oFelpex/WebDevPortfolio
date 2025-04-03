@@ -3,7 +3,12 @@
   <img style="border-radius: 5px" [src]="photo.imgURL" [alt]="photo.imgAlt" />
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close cdkFocusInitial>
+  <button
+    (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+    mat-button
+    mat-dialog-close
+    cdkFocusInitial
+  >
     {{ "ABOUT-PAGE.DIALOG-PHOTO-CLOSE-BUTTON" | translate }}
   </button>
 </mat-dialog-actions>
