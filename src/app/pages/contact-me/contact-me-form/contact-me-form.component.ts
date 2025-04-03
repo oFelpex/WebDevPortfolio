@@ -21,6 +21,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AudioService } from '../../../services/audio-service/audio.service';
 import { ThemeService } from '../../../services/theme-service/theme.service';
 import { Themes } from '../../../models/themes';
+import { CustomSnackbarComponent } from '../../../shared/custom-snackbar/custom-snackbar.component';
 
 @Component({
   selector: 'app-contact-me-form',
@@ -42,7 +43,6 @@ import { Themes } from '../../../models/themes';
 export class ContactMeFormComponent {
   public sendEmailForm: FormGroup;
   private snackBar: MatSnackBar;
-  private translate: TranslateService;
   private audioService: AudioService;
   private themeService: ThemeService;
   public isSending: boolean = false;
@@ -66,7 +66,6 @@ export class ContactMeFormComponent {
     });
 
     this.snackBar = inject(MatSnackBar);
-    this.translate = inject(TranslateService);
     this.themeService = inject(ThemeService);
     this.audioService = inject(AudioService);
   }
@@ -99,49 +98,36 @@ export class ContactMeFormComponent {
             this.isSending = false;
             this.sendEmailForm.enable();
 
-            if (this.translate.currentLang === 'en-US') {
-              this.snackBar.open('Email sent successfully!', 'Close', {
-                duration: 4000,
-              });
-            } else {
-              this.snackBar.open('E-mail enviado com sucesso!', 'Fechar', {
-                duration: 4000,
-              });
-            }
+            this.snackBar.openFromComponent(CustomSnackbarComponent, {
+              data: {
+                message: 'SNACK-BAR.CONTACT-PAGE.SENT-EMAIL',
+                theme: this.getNameOfActualThemeFromLocalStorage.name,
+              },
+              duration: 4000,
+            });
           },
           (error) => {
             console.log('FAILED...', error);
-            if (this.translate.currentLang === 'en-US') {
-              this.snackBar.open('Oops, try again later', 'Close', {
-                duration: 4000,
-              });
-            } else {
-              this.snackBar.open('Opa, tente novamente mais tarde', 'Fechar', {
-                duration: 4000,
-              });
-            }
+
+            this.snackBar.openFromComponent(CustomSnackbarComponent, {
+              data: {
+                message: 'SNACK-BAR.CONTACT-PAGE.ERROR-SENT-EMAIL',
+                theme: this.getNameOfActualThemeFromLocalStorage.name,
+              },
+              duration: 4000,
+            });
 
             this.isSending = false;
           }
         );
     } else {
-      if (this.translate.currentLang === 'en-US') {
-        this.snackBar.open(
-          'You have to fill in the blanks correctly',
-          'Close',
-          {
-            duration: 4000,
-          }
-        );
-      } else {
-        this.snackBar.open(
-          'Você deve preencher os espaços em branco corretamente',
-          'Fechar',
-          {
-            duration: 4000,
-          }
-        );
-      }
+      this.snackBar.openFromComponent(CustomSnackbarComponent, {
+        data: {
+          message: 'SNACK-BAR.CONTACT-PAGE.ERROR-BLANK-INPUTS',
+          theme: this.getNameOfActualThemeFromLocalStorage.name,
+        },
+        duration: 4000,
+      });
     }
   }
 
