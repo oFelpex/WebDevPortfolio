@@ -13,8 +13,27 @@
           <mat-icon class="menuButton-icon">menu</mat-icon>
         </button>
       </div>
-      <!-- change the "Felpex" when start to working on the themes -->
-      <h1 id="navBar-logo" [routerLink]="['/home']">Felpex</h1>
+
+      <!-- change the "Felpex" logo when change theme -->
+      @if(getTypeOfActualThemeFromLocalStorage !== "Colors") {
+      <div id="navBar-custom-logo">
+        <img
+          [matTooltip]="'NAV-BAR-LIST.MAT-TOOL-TIP-EASTER-EGG' | translate"
+          [src]="
+            '../../../../assets/images/logos/' +
+            getTypeOfActualThemeFromLocalStorage +
+            '/' +
+            getNameOfActualThemeFromLocalStorage.name +
+            '/logo-' +
+            getNameOfActualThemeFromLocalStorage.name +
+            '.webp'
+          "
+          alt=""
+        />
+      </div>
+      } @else {
+      <h1 id="navBar-logo">Felpex</h1>
+      }
     </div>
 
     <mat-list id="navBar-list">
@@ -221,7 +240,7 @@
         }
       </mat-menu>
 
-      <app-social-links></app-social-links>
+      <app-social-links style="width: 15%"></app-social-links>
     </mat-list>
   </div>
 </mat-toolbar>

@@ -8,12 +8,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { MobileMenuService } from '../../../services/mobile-menu-service/mobile-menu.service';
 import { ThemeService } from '../../../services/theme-service/theme.service';
 import { Themes } from '../../../models/themes';
 import { SocialLinksComponent } from '../../social-links/social-links.component';
-import { MatDividerModule } from '@angular/material/divider';
 
 import {
   LangChangeEvent,
@@ -36,6 +37,7 @@ import { CustomSnackbarComponent } from '../../custom-snackbar/custom-snackbar.c
     MatBadgeModule,
     MatToolbarModule,
     MatDividerModule,
+    MatTooltipModule,
     SocialLinksComponent,
     RouterModule,
     TranslateModule,
