@@ -1,10 +1,9 @@
 .social-links {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: nowrap;
-  width: 150px;
-  padding: 10px;
+  width: 100%;
 
   a {
     transition: 0.2s;
