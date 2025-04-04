@@ -1,14 +1,12 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 
-import { HeaderComponent } from '../../shared/header/header.component';
 import { IntroSectionComponent } from './intro-section/intro-section.component';
 import { fadeIn_opacity_loading } from '../../shared/animations/fade-animations';
 import { LoadingService } from '../../services/loading-service/loading.service';
 import { Subscription } from 'rxjs';
-
 @Component({
   selector: 'app-home',
-  imports: [HeaderComponent, IntroSectionComponent],
+  imports: [IntroSectionComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   animations: [fadeIn_opacity_loading],

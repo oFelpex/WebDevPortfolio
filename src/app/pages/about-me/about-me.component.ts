@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 
-import { HeaderComponent } from '../../shared/header/header.component';
 import { FirstHalfComponent } from './first-half/first-half.component';
 import { SecondHalfComponent } from './second-half/second-half.component';
 import { PhotosFooterComponent } from './photos-footer/photos-footer.component';
@@ -11,7 +10,6 @@ import { fadeInUpToDown_loading } from '../../shared/animations/fade-animations'
 @Component({
   selector: 'app-about-me',
   imports: [
-    HeaderComponent,
     MatDividerModule,
     FirstHalfComponent,
     SecondHalfComponent,

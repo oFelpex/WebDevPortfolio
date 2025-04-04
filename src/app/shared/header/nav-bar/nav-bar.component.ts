@@ -1,5 +1,5 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -63,8 +63,6 @@ export class NavBarComponent implements OnInit, OnDestroy {
     this.router = inject(Router);
     this.audioService = inject(AudioService);
 
-    this.currentRoute = this.router.url;
-
     const themeType = this.getTypeOfActualThemeFromLocalStorage;
     const themeName = this.getNameOfActualThemeFromLocalStorage.name;
 
@@ -79,6 +77,12 @@ export class NavBarComponent implements OnInit, OnDestroy {
       .subscribe((event: LangChangeEvent) => {
         this.currentLang = event.lang;
       });
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = this.router.url;
+      }
+    });
   }
 
   ngOnDestroy(): void {

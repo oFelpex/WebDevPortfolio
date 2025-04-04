@@ -16,9 +16,11 @@ import { LoadingService } from './services/loading-service/loading.service';
 
 import { TranslateService } from '@ngx-translate/core';
 
+import { HeaderComponent } from './shared/header/header.component';
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, LoadingComponent],
+  imports: [RouterOutlet, LoadingComponent, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

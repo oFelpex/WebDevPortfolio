@@ -1,6 +1,5 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 
-import { HeaderComponent } from '../../shared/header/header.component';
 import { ProjectCardComponent } from './project-card/project-card.component';
 import { allProjects, Projects } from '../../models/projects';
 
@@ -20,7 +19,6 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-projects',
   imports: [
-    HeaderComponent,
     ProjectCardComponent,
     TranslateModule,
     MatCardModule,

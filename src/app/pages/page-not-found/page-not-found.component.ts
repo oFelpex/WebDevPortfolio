@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { HeaderComponent } from '../../shared/header/header.component';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -9,7 +8,7 @@ import { Themes } from '../../models/themes';
 
 @Component({
   selector: 'app-page-not-found',
-  imports: [HeaderComponent, RouterModule, TranslateModule, MatButtonModule],
+  imports: [RouterModule, TranslateModule, MatButtonModule],
   templateUrl: './page-not-found.component.html',
   styleUrl: './page-not-found.component.scss',
 })
