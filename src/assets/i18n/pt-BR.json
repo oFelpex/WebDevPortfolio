@@ -53,6 +53,7 @@
   },
 
   "NAV-BAR-LIST": {
+    "MAT-TOOL-TIP-EASTER-EGG": "Click para ver um segredo",
     "HOME": "Início",
     "ABOUT": "Sobre mim",
     "PROJECTS": "Projetos",
