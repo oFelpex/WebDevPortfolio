@@ -123,8 +123,6 @@ body.minecraft-theme {
     background-image: url("./assets/backgrounds/games/minecraft/backgrounds/minecraft-bg-nav-bar.webp");
     background-position: center -120px;
     background-size: auto 800px;
-
-    // filter: brightness(50%);
   }
 
   @include mat.theme(
