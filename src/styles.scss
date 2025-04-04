@@ -87,6 +87,8 @@ body.cosmic-theme {
     )
   );
 }
+
+// Theme: minecraft-theme
 body.minecraft-theme {
   --background-color: #241e0e;
   background-image: url("./assets/backgrounds/games/minecraft/backgrounds/minecraft-bg.webp");
@@ -106,7 +108,7 @@ body.minecraft-theme {
 
     button {
       background-image: url("./assets/backgrounds/games/minecraft/minecraft-buttons.webp");
-      border-radius: 0%;
+      border-radius: 2px;
       border: 2px solid black;
       background-size: cover;
 
