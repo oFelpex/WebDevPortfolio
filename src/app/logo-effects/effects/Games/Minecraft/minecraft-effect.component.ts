@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { loadFull } from 'tsparticles';
 import {
@@ -15,7 +15,7 @@ import { NgxParticlesModule } from '@tsparticles/angular';
   templateUrl: './minecraft-effect.component.html',
   styleUrl: './minecraft-effect.component.scss',
 })
-export class MinecraftEffectComponent {
+export class MinecraftEffectComponent implements OnInit {
   particlesContainer!: Container;
   id = 'tnt-explosion';
 
@@ -36,10 +36,6 @@ export class MinecraftEffectComponent {
         count: 1,
         duration: 0.01,
       },
-      rate: {
-        delay: 0.1,
-        quantity: 1,
-      },
       size: {
         width: 0,
         height: 0,
@@ -49,10 +45,14 @@ export class MinecraftEffectComponent {
       color: {
         value: '#fff',
       },
+      life: {
+        duration: { value: 0.01 },
+        count: 1,
+      },
+      size: {
+        value: 2, //CHANGE TO: 0 WHEN AND ANIMATION OF TNT FALLING
+      },
       destroy: {
-        bounds: {
-          top: 0,
-        },
         mode: 'split',
         split: {
           count: 1,
@@ -76,7 +76,7 @@ export class MinecraftEffectComponent {
               },
               animation: {
                 enable: true,
-                speed: 0.7,
+                speed: 0.1,
                 sync: false,
                 startValue: 'max',
                 destroy: 'min',
@@ -86,9 +86,13 @@ export class MinecraftEffectComponent {
               type: 'square',
             },
             size: {
-              value: 2,
+              value: { min: 1, max: 8 },
               animation: {
-                enable: false,
+                enable: true,
+                speed: 10,
+                sync: false,
+                startValue: 'min',
+                destroy: 'max',
               },
             },
             life: {
@@ -96,7 +100,7 @@ export class MinecraftEffectComponent {
               duration: {
                 value: {
                   min: 1,
-                  max: 4,
+                  max: 3.5,
                 },
               },
             },
@@ -118,48 +122,25 @@ export class MinecraftEffectComponent {
           },
         },
       },
-      life: {
-        duration: { value: 0.01 },
-        count: 1,
-      },
-      rotate: {
-        path: true,
-      },
-      shape: {
-        type: 'square',
-      },
-      size: {
-        value: 1,
-      },
-      // move: {
-      //   enable: true,
-      //   gravity: {
-      //     acceleration: 15,
-      //     enable: true,
-      //     inverse: true,
-      //     maxSpeed: 100,
-      //   },
-      //   speed: {
-      //     min: 10,
-      //     max: 20,
-      //   },
-      //   outModes: {
-      //     default: 'destroy',
-      //     top: 'none',
-      //   },
-      // },
     },
   };
 
-  async loadParticles() {
+  async ngOnInit(): Promise<void> {
     await loadFull(tsParticles);
+  }
 
+  public explodeTnt(): void {
+    setTimeout(() => {
+      this.loadParticles();
+    }, 5000);
+  }
+
+  async loadParticles(): Promise<void> {
     let options: RecursivePartial<IOptions> = this.configs;
     await tsParticles.load({ id: this.id, options });
   }
 
   public particlesLoaded(container: Container): void {
     this.particlesContainer = container;
-    console.log(container);
   }
 }

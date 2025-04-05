@@ -45,7 +45,7 @@ export class LogoEffectsComponent {
       case 'Undertale':
         break;
       case 'Minecraft':
-        this.minecraftEffect.loadParticles();
+        this.minecraftEffect.explodeTnt();
         break;
       default:
         console.log('Error with playEffect()');
