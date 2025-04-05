@@ -25,6 +25,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { AudioService } from '../../../services/audio-service/audio.service';
 import { CustomSnackbarComponent } from '../../custom-snackbar/custom-snackbar.component';
+import { LogoEffectsComponent } from '../../../logo-effects/logo-effects.component';
 
 @Component({
   selector: 'app-nav-bar',
@@ -41,6 +42,7 @@ import { CustomSnackbarComponent } from '../../custom-snackbar/custom-snackbar.c
     SocialLinksComponent,
     RouterModule,
     TranslateModule,
+    LogoEffectsComponent,
   ],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss',

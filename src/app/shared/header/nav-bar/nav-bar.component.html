@@ -16,21 +16,7 @@
 
       <!-- change the "Felpex" logo when change theme -->
       @if(getTypeOfActualThemeFromLocalStorage !== "Colors") {
-      <div id="navBar-custom-logo">
-        <img
-          [matTooltip]="'NAV-BAR-LIST.MAT-TOOL-TIP-EASTER-EGG' | translate"
-          [src]="
-            '../../../../assets/images/logos/' +
-            getTypeOfActualThemeFromLocalStorage +
-            '/' +
-            getNameOfActualThemeFromLocalStorage.name +
-            '/logo-' +
-            getNameOfActualThemeFromLocalStorage.name +
-            '.webp'
-          "
-          alt=""
-        />
-      </div>
+      <app-logo-effects></app-logo-effects>
       } @else {
       <h1 id="navBar-logo">Felpex</h1>
       }
