@@ -2,7 +2,6 @@ $top: 70%;
 
 #tnt-explosion {
   position: fixed;
-  z-index: 100;
 }
 #tnts-container {
   position: absolute;
@@ -21,7 +20,7 @@ $top: 70%;
   }
 
   #tnt-front {
-    animation: tnt-front-fall 1.2s ease forwards, tnt-scale 5s ease forwards;
+    animation: tnt-front-fall 1.2s ease forwards, tnt-scale 4s ease forwards;
     z-index: 9;
 
     @keyframes tnt-front-fall {
@@ -34,7 +33,7 @@ $top: 70%;
     }
   }
   #tnt-top {
-    animation: tnt-top-fall 1.2s ease forwards, tnt-scale 5s ease forwards;
+    animation: tnt-top-fall 1.2s ease forwards, tnt-scale 4s ease forwards;
     z-index: 8;
 
     @keyframes tnt-top-fall {
@@ -50,7 +49,7 @@ $top: 70%;
   }
   #tnt-bottom {
     z-index: 8;
-    animation: tnt-bottom-fall 1.2s ease forwards, tnt-scale 5s ease forwards;
+    animation: tnt-bottom-fall 1.2s ease forwards, tnt-scale 4s ease forwards;
 
     @keyframes tnt-bottom-fall {
       0% {
