@@ -28,7 +28,7 @@ import { Themes } from '../../../../models/themes';
 })
 export class OverlayProjectsComponent {
   @Input() project!: Projects;
-  @Input() isOverlayVisible: Boolean = false;
+  @Input() isOverlayVisible: boolean = false;
 
   private audioService: AudioService;
   private themeService: ThemeService;

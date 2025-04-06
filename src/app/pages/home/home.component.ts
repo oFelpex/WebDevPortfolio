@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   private loadingService: LoadingService;
-  public isLoading!: Boolean;
+  public isLoading!: boolean;
   private loadingSubscription!: Subscription;
 
   constructor() {

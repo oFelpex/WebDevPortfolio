@@ -35,7 +35,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   public projects: Projects[] = allProjects;
   private loadingService: LoadingService;
   private loadingSubscription!: Subscription;
-  public isLoading!: Boolean;
+  public isLoading!: boolean;
 
   constructor() {
     this.loadingService = inject(LoadingService);

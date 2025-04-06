@@ -29,7 +29,7 @@ import { Themes } from '../../../models/themes';
 })
 export class ProjectCardComponent {
   @Input() project!: Projects;
-  isOverlayVisible: Boolean = false;
+  isOverlayVisible: boolean = false;
 
   private audioService: AudioService;
   private themeService: ThemeService;

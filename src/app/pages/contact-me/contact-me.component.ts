@@ -30,7 +30,7 @@ import {
 export class ContactMeComponent implements OnInit, OnDestroy {
   private loadingService: LoadingService;
   private loadingSubscription!: Subscription;
-  public isLoading!: Boolean;
+  public isLoading!: boolean;
 
   constructor() {
     this.loadingService = inject(LoadingService);
