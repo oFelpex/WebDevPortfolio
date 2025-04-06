@@ -1,5 +1,20 @@
-<ngx-particles
-  style="pointer-events: none"
-  [id]="id"
-  (particlesLoaded)="particlesLoaded($event)"
-></ngx-particles>
+<ngx-particles style="pointer-events: none" [id]="id"></ngx-particles>
+@if(CreateTnt) {
+<div id="tnt-container">
+  <img
+    id="tnt-top"
+    src="../../../../../assets/images/logos/Games/Minecraft/animation/tnt-top.webp"
+    alt=""
+  />
+  <img
+    id="tnt-front"
+    src="../../../../../assets/images/logos/Games/Minecraft/animation/tnt-front.webp"
+    alt=""
+  />
+  <img
+    id="tnt-bottom"
+    src="../../../../../assets/images/logos/Games/Minecraft/animation/tnt-bottom.webp"
+    alt=""
+  />
+</div>
+}

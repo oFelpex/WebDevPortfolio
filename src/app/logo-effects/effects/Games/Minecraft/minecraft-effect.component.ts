@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { loadFull } from 'tsparticles';
 import {
@@ -15,14 +15,17 @@ import { NgxParticlesModule } from '@tsparticles/angular';
   templateUrl: './minecraft-effect.component.html',
   styleUrl: './minecraft-effect.component.scss',
 })
-export class MinecraftEffectComponent implements OnInit {
-  particlesContainer!: Container;
-  id = 'tnt-explosion';
+export class MinecraftEffectComponent implements OnInit, OnDestroy {
+  particlesContainer!: Container | undefined;
+  CreateTnt: boolean = false;
+  id: string = 'tnt-explosion';
 
   configs: RecursivePartial<IOptions> = {
     name: 'TNT Explosion',
+    autoPlay: false,
     fullScreen: {
       enable: true,
+      zIndex: 10,
     },
     backgroundMask: {
       enable: false,
@@ -34,7 +37,11 @@ export class MinecraftEffectComponent implements OnInit {
       },
       life: {
         count: 1,
-        duration: 0.01,
+        duration: 0.1,
+      },
+      rate: {
+        delay: 0.1,
+        quantity: 1,
       },
       size: {
         width: 0,
@@ -46,11 +53,13 @@ export class MinecraftEffectComponent implements OnInit {
         value: '#fff',
       },
       life: {
-        duration: { value: 0.01 },
+        duration: { value: 5, sync: true },
+
         count: 1,
       },
+
       size: {
-        value: 2, //CHANGE TO: 0 WHEN AND ANIMATION OF TNT FALLING
+        value: 2,
       },
       destroy: {
         mode: 'split',
@@ -127,20 +136,23 @@ export class MinecraftEffectComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await loadFull(tsParticles);
+
+    let options: RecursivePartial<IOptions> = this.configs;
+    this.particlesContainer = await tsParticles.load({ id: this.id, options });
+  }
+
+  ngOnDestroy(): void {
+    this.particlesContainer?.destroy();
   }
 
   public explodeTnt(): void {
+    this.CreateTnt = true;
+
+    this.particlesContainer?.refresh();
+    this.particlesContainer?.play();
+
     setTimeout(() => {
-      this.loadParticles();
-    }, 5000);
-  }
-
-  async loadParticles(): Promise<void> {
-    let options: RecursivePartial<IOptions> = this.configs;
-    await tsParticles.load({ id: this.id, options });
-  }
-
-  public particlesLoaded(container: Container): void {
-    this.particlesContainer = container;
+      this.CreateTnt = false;
+    }, 5100);
   }
 }
