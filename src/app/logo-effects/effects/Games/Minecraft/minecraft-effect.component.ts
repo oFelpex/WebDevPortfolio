@@ -8,6 +8,7 @@ import {
   IOptions,
 } from '@tsparticles/engine';
 import { NgxParticlesModule } from '@tsparticles/angular';
+import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-minecraft',
@@ -19,6 +20,7 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
   particlesContainer!: Container | undefined;
   CreateTnt: boolean = false;
   id: string = 'tnt-explosion';
+  timeOut: any;
 
   configs: RecursivePartial<IOptions> = {
     name: 'TNT Explosion',
@@ -33,7 +35,7 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
     emitters: {
       position: {
         x: 50,
-        y: 50,
+        y: 70,
       },
       life: {
         count: 1,
@@ -49,15 +51,14 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
       },
     },
     particles: {
-      color: {
-        value: '#fff',
+      opacity: {
+        value: 0,
       },
       life: {
         duration: { value: 5, sync: true },
 
         count: 1,
       },
-
       size: {
         value: 2,
       },
@@ -145,14 +146,22 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
     this.particlesContainer?.destroy();
   }
 
-  public explodeTnt(): void {
+  startTntTimeout() {
     this.CreateTnt = true;
-
-    this.particlesContainer?.refresh();
-    this.particlesContainer?.play();
-
-    setTimeout(() => {
+    this.timeOut = setTimeout(() => {
       this.CreateTnt = false;
     }, 5100);
+  }
+  cancelTntTimeout() {
+    clearTimeout(this.timeOut);
+    this.CreateTnt = false;
+  }
+  public explodeTnt(): void {
+    this.cancelTntTimeout();
+    setTimeout(() => {
+      this.startTntTimeout();
+      this.particlesContainer?.refresh();
+      this.particlesContainer?.play();
+    });
   }
 }
