@@ -14,14 +14,9 @@ export class AudioService {
     this.gainNode = this.audioContext.createGain();
     this.gainNode.connect(this.audioContext.destination);
     this.setVolume(0.1);
-
-    this.preloadSound(
-      'Minecraft-clickSound',
-      'assets/sounds/games/minecraft/button-click.ogg'
-    );
   }
 
-  private async preloadSound(name: string, url: string): Promise<void> {
+  public async preloadSound(name: string, url: string): Promise<void> {
     const response = await fetch(url);
     const arrayBuffer = await response.arrayBuffer();
     const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
@@ -34,6 +29,7 @@ export class AudioService {
 
   public playSound(audioName: string): void {
     const audioBuffer = this.sounds[audioName];
+
     if (audioBuffer) {
       const source = this.audioContext.createBufferSource();
       source.buffer = audioBuffer;
