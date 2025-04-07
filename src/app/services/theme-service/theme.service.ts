@@ -1,10 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import {
-  colorsOptions,
-  defaultTheme,
-  seasonsOptions,
-  Themes,
-} from '../../models/themes';
+import { colorsOptions, defaultTheme, Themes } from '../../models/themes';
 import { gamesOptions } from '../../models/themes';
 import { BehaviorSubject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -15,7 +10,6 @@ import { CustomSnackbarComponent } from '../../shared/custom-snackbar/custom-sna
 })
 export class ThemeService {
   private gamesOptions: Themes[] = gamesOptions;
-  private seasonsOptions: Themes[] = seasonsOptions;
   private colorsOptions: Themes[] = colorsOptions;
   private defaultTheme: Themes = defaultTheme;
   private snackBar: MatSnackBar;
@@ -33,9 +27,6 @@ export class ThemeService {
     if (storagedTheme) {
       const parsedTheme: Themes = JSON.parse(storagedTheme);
       if (
-        this.seasonsOptions.some(
-          (themes) => themes.name === parsedTheme.name
-        ) ||
         this.gamesOptions.some((themes) => themes.name === parsedTheme.name) ||
         this.colorsOptions.some((themes) => themes.name === parsedTheme.name)
       ) {
@@ -59,10 +50,6 @@ export class ThemeService {
     return this.gamesOptions;
   }
 
-  public getSeasonsNames(): Themes[] {
-    return this.seasonsOptions;
-  }
-
   public getColorsNames(): Themes[] {
     return this.colorsOptions;
   }
@@ -72,14 +59,9 @@ export class ThemeService {
   }
 
   public getTypeOfActualTheme(): string {
-    const seasonThemes = this.getSeasonsNames();
     const gameThemes = this.getGamesNames();
     const colorThemes = this.getColorsNames();
     const actualThemeName = this.getNameOfActualTheme().name;
-
-    if (seasonThemes.some((theme) => theme.name === actualThemeName)) {
-      return 'Seasons';
-    }
 
     if (gameThemes.some((theme) => theme.name === actualThemeName)) {
       return 'Games';
@@ -99,6 +81,19 @@ export class ThemeService {
       this._actualTheme$.next(this.defaultTheme);
       this.setActualThemeToLocalStorage(this.defaultTheme);
       this.setTheme(this.defaultTheme.name.toLowerCase());
+      this.snackBar.openFromComponent(CustomSnackbarComponent, {
+        data: {
+          message: 'SNACK-BAR.THEMES.DEFAULT-THEME',
+          themeNameMessage: `THEMES.${this.getTypeOfActualTheme()}.${
+            this.getNameOfActualTheme().name
+          }`,
+          theme: this.getNameOfActualTheme().name,
+        },
+        duration: 4000,
+      });
+      console.log('Actual Theme:', this.getNameOfActualTheme());
+      console.log('Type:', this.getTypeOfActualTheme());
+      return;
     } else {
       this._actualTheme$.next(theme);
       this.setActualThemeToLocalStorage(theme);
@@ -128,11 +123,7 @@ export class ThemeService {
   private setTheme(themeName: string): void {
     const body = document.body;
     const allThemes: Themes[] = [];
-    allThemes.push(
-      ...this.gamesOptions,
-      ...this.seasonsOptions,
-      ...this.colorsOptions
-    );
+    allThemes.push(...this.gamesOptions, ...this.colorsOptions);
 
     const _allThemes = allThemes.map((obj) => {
       return { ...obj, nome: obj.name.toLowerCase().replaceAll(' ', '-') };

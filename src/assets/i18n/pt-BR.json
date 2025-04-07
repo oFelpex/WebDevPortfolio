@@ -28,7 +28,8 @@
     "BUTTON-CLOSE": "Fechar",
 
     "THEMES": {
-      "CHANGE-THEME": "Tema alterado para: "
+      "CHANGE-THEME": "Tema alterado para: ",
+      "DEFAULT-THEME": "Retornando ao tema padrão: "
     },
 
     "NAV-BAR": {

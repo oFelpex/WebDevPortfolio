@@ -89,20 +89,7 @@
             >{{ "NAV-BAR-LIST.MENU-GAMES" | translate }}</span
           >
         </button>
-        <button
-          (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
-          mat-menu-item
-          [matMenuTriggerFor]="seasons"
-          class="expandMatMenu"
-        >
-          <span
-            [matBadge]="
-              getTypeOfActualThemeFromLocalStorage === 'Seasons' ? 'ON' : ''
-            "
-            matBadgeOverlap="false"
-            >{{ "NAV-BAR-LIST.MENU-SEASONS" | translate }}</span
-          >
-        </button>
+
         <button
           (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
           mat-menu-item
@@ -119,32 +106,6 @@
         </button>
       </mat-menu>
 
-      <mat-menu #seasons="matMenu">
-        @for (seasonsOptions of seasonsOptions; track $index) {
-        <button
-          class="expandMatMenu"
-          mat-menu-item
-          (click)="
-            changeTheme(seasonsOptions);
-            playClickSound(getNameOfActualThemeFromLocalStorage.name)
-          "
-          [class]="{
-            expandMatMenu:
-              getNameOfActualThemeFromLocalStorage.name === seasonsOptions.name
-          }"
-        >
-          <span
-            [matBadge]="
-              getNameOfActualThemeFromLocalStorage.name === seasonsOptions.name
-                ? 'ON'
-                : ''
-            "
-            matBadgeOverlap="false"
-            >{{ "THEMES.Seasons." + seasonsOptions.name | translate }}</span
-          >
-        </button>
-        }
-      </mat-menu>
       <mat-menu #games="matMenu">
         @for (gamesOptions of gamesOptions; track $index) {
         <button

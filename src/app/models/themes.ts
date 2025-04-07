@@ -15,32 +15,8 @@ export interface Themes {
 }
 export const gamesOptions: Themes[] = [
   {
-    name: 'God Of War',
-  },
-  {
-    name: 'The Witcher 3',
-  },
-  {
-    name: 'Cyberpunk',
-  },
-  {
-    name: 'Elden Ring',
-  },
-  {
-    name: 'Hollow Knight',
-  },
-  {
-    name: 'Undertale',
-  },
-  {
     name: 'Minecraft',
   },
-];
-export const seasonsOptions: Themes[] = [
-  { name: 'Spring' },
-  { name: 'Summer' },
-  { name: 'Autumn' },
-  { name: 'Winter' },
 ];
 export const colorsOptions: Themes[] = [
   { name: 'Light' },

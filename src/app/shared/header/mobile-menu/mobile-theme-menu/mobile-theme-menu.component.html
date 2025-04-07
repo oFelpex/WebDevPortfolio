@@ -13,45 +13,6 @@
         <mat-panel-title style="height: 70px">
           <span
             [matBadge]="
-              getTypeOfActualThemeFromLocalStorage === 'Seasons' ? 'ON' : ''
-            "
-            matBadgeOverlap="false"
-          >
-            {{ "NAV-MOBILE.MENU-SEASONS" | translate }}
-          </span>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-list>
-        @for (seasonOption of seasonsOptions; track $index) {
-        <mat-list-item class="mobile-theme-menu-mat-list-item">
-          <button
-            mat-button
-            style="border-radius: 7px; width: 100%"
-            (click)="
-              changeTheme(seasonOption);
-              playClickSound(getNameOfActualThemeFromLocalStorage.name)
-            "
-          >
-            <span
-              [matBadge]="
-                getNameOfActualThemeFromLocalStorage.name === seasonOption.name
-                  ? 'Selected'
-                  : ''
-              "
-              matBadgeOverlap="false"
-              >{{ "THEMES.Seasons." + seasonOption.name | translate }}</span
-            >
-          </button>
-        </mat-list-item>
-        <mat-divider style="width: 97%; align-self: center"></mat-divider>
-        }
-      </mat-list>
-    </mat-expansion-panel>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title style="height: 70px">
-          <span
-            [matBadge]="
               getTypeOfActualThemeFromLocalStorage === 'Games' ? 'ON' : ''
             "
             matBadgeOverlap="false"

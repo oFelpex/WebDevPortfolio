@@ -120,9 +120,6 @@ export class NavBarComponent implements OnInit, OnDestroy {
   public get gamesOptions(): Themes[] {
     return this.themeService.getGamesNames();
   }
-  public get seasonsOptions(): Themes[] {
-    return this.themeService.getSeasonsNames();
-  }
   public get colorsOptions(): Themes[] {
     return this.themeService.getColorsNames();
   }
