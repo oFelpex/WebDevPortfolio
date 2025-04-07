@@ -13,7 +13,7 @@ export class AudioService {
       (window as any).webkitAudioContext)();
     this.gainNode = this.audioContext.createGain();
     this.gainNode.connect(this.audioContext.destination);
-    this.setVolume(0.5);
+    this.setVolume(0.6);
   }
 
   public async preloadSound(name: string, url: string): Promise<void> {
