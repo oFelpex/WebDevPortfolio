@@ -4,6 +4,10 @@ main {
   justify-content: center;
   flex-direction: column;
 
+  h1 {
+    padding: 0px 20px;
+  }
+
   #contact-me-container {
     display: flex;
     justify-content: space-evenly;
