@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 
 import { loadFull } from 'tsparticles';
 import {
@@ -6,9 +6,10 @@ import {
   Container,
   RecursivePartial,
   IOptions,
+  SingleOrMultiple,
 } from '@tsparticles/engine';
 import { NgxParticlesModule } from '@tsparticles/angular';
-import { timeout } from 'rxjs';
+import { AudioService } from '../../../../services/audio-service/audio.service';
 
 @Component({
   selector: 'app-minecraft',
@@ -17,50 +18,38 @@ import { timeout } from 'rxjs';
   styleUrl: './minecraft-effect.component.scss',
 })
 export class MinecraftEffectComponent implements OnInit, OnDestroy {
-  particlesContainer!: Container | undefined;
-  CreateTnt: boolean = false;
-  id: string = 'tnt-explosion';
-  timeOut: any;
+  private particlesContainer!: Container | undefined;
+  private audioService: AudioService;
+  private timeOut: any;
+  public CreateTnt: boolean = false;
+  public id: string = 'tnt-explosion';
 
-  configs: RecursivePartial<IOptions> = {
+  constructor() {
+    this.audioService = inject(AudioService);
+  }
+
+  private configs: SingleOrMultiple<RecursivePartial<IOptions>> = {
     name: 'TNT Explosion',
     autoPlay: false,
     fullScreen: {
       enable: true,
-      zIndex: 10,
     },
     backgroundMask: {
       enable: false,
-    },
-    emitters: {
-      position: {
-        x: 50,
-        y: 70,
-      },
-      life: {
-        count: 1,
-        duration: 0.1,
-      },
-      rate: {
-        delay: 0.1,
-        quantity: 1,
-      },
-      size: {
-        width: 0,
-        height: 0,
-      },
     },
     particles: {
       opacity: {
         value: 0,
       },
       life: {
-        duration: { value: 5, sync: true },
-
+        duration: { value: 4, sync: true },
         count: 1,
       },
       size: {
-        value: 2,
+        value: 20,
+      },
+      shape: {
+        type: 'square',
       },
       destroy: {
         mode: 'split',
@@ -133,35 +122,63 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
         },
       },
     },
+    manualParticles: [
+      {
+        position: {
+          x: 50,
+          y: 70,
+        },
+      },
+    ],
   };
 
   async ngOnInit(): Promise<void> {
+    this.audioService.preloadSound(
+      'Minecraft-clickSound',
+      'assets/sounds/games/minecraft/button-click.ogg'
+    );
+    this.audioService.preloadSound(
+      'Minecraft-tnt-activate',
+      'assets/sounds/games/minecraft/easter-egg/tnt-activate.ogg'
+    );
+    this.audioService.preloadSound(
+      'Minecraft-tnt-explosion',
+      'assets/sounds/games/minecraft/easter-egg/tnt-explosion.ogg'
+    );
+
     await loadFull(tsParticles);
 
-    let options: RecursivePartial<IOptions> = this.configs;
+    let options: SingleOrMultiple<RecursivePartial<IOptions>> = this.configs;
     this.particlesContainer = await tsParticles.load({ id: this.id, options });
   }
 
   ngOnDestroy(): void {
     this.particlesContainer?.destroy();
+    this.cancelTntTimeout();
   }
 
-  startTntTimeout() {
+  private startTntTimeout(): void {
     this.CreateTnt = true;
+
     this.timeOut = setTimeout(() => {
       this.CreateTnt = false;
-    }, 5100);
+      this.audioService.playSound('Minecraft-tnt-explosion');
+    }, 4100);
   }
-  cancelTntTimeout() {
+
+  private cancelTntTimeout(): void {
     clearTimeout(this.timeOut);
     this.CreateTnt = false;
   }
-  public explodeTnt(): void {
+
+  public summonTnt(): void {
     this.cancelTntTimeout();
+
     setTimeout(() => {
       this.startTntTimeout();
       this.particlesContainer?.refresh();
       this.particlesContainer?.play();
+      this.audioService.playSound('Minecraft-tnt-activate');
     });
   }
 }
