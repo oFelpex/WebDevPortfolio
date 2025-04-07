@@ -3,7 +3,6 @@ import { colorsOptions, defaultTheme, Themes } from '../../models/themes';
 import { gamesOptions } from '../../models/themes';
 import { BehaviorSubject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { TranslateService } from '@ngx-translate/core';
 import { CustomSnackbarComponent } from '../../shared/custom-snackbar/custom-snackbar.component';
 @Injectable({
   providedIn: 'root',

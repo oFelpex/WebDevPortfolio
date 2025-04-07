@@ -1,4 +1,3 @@
-type Seasons = 'Spring' | 'Summer' | 'Autumn' | 'Fall' | 'Winter';
 type Games =
   | 'God Of War'
   | 'The Witcher 3'
@@ -9,7 +8,7 @@ type Games =
   | 'Minecraft';
 type Colors = 'Light' | 'Dark' | 'Cosmic';
 
-export type ThemeCategory = Seasons | Games | Colors;
+export type ThemeCategory = Games | Colors;
 export interface Themes {
   name: ThemeCategory;
 }
@@ -35,12 +34,6 @@ export const gamesOptions: Themes[] = [
   {
     name: 'Minecraft',
   },
-];
-export const seasonsOptions: Themes[] = [
-  { name: 'Spring' },
-  { name: 'Summer' },
-  { name: 'Autumn' },
-  { name: 'Winter' },
 ];
 export const colorsOptions: Themes[] = [
   { name: 'Light' },
