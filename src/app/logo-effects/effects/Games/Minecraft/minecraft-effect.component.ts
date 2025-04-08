@@ -162,7 +162,7 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
 
     this.timeOut = setTimeout(() => {
       this.CreateTnt = false;
-      this.audioService.playSound('Minecraft-tnt-explosion');
+      this.audioService.playSound('Minecraft-tnt-explosion', 'sfx');
     }, 4100);
   }
 
@@ -178,7 +178,7 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
       this.startTntTimeout();
       this.particlesContainer?.refresh();
       this.particlesContainer?.play();
-      this.audioService.playSound('Minecraft-tnt-activate');
+      this.audioService.playSound('Minecraft-tnt-activate', 'sfx');
     });
   }
 }

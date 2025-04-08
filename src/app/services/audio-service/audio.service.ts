@@ -6,14 +6,30 @@ import { Injectable } from '@angular/core';
 export class AudioService {
   private audioContext: AudioContext;
   private sounds: { [key: string]: AudioBuffer } = {};
-  private gainNode: GainNode;
+  private musicGainNode: GainNode;
+  private sfxGainNode: GainNode;
+  public musicVolume: number = 0.5;
+  public sfxVolume: number = 0.5;
 
   constructor() {
     this.audioContext = new (window.AudioContext ||
       (window as any).webkitAudioContext)();
-    this.gainNode = this.audioContext.createGain();
-    this.gainNode.connect(this.audioContext.destination);
-    this.setVolume(0.6);
+
+    this.musicGainNode = this.audioContext.createGain();
+    this.musicGainNode.connect(this.audioContext.destination);
+
+    this.sfxGainNode = this.audioContext.createGain();
+    this.sfxGainNode.connect(this.audioContext.destination);
+
+    this.initVolumes();
+  }
+
+  private initVolumes(): void {
+    const music = localStorage.getItem('musicVolume');
+    const sfx = localStorage.getItem('sfxVolume');
+
+    if (music) this.setMusicVolume(JSON.parse(music));
+    if (sfx) this.setSfxVolume(JSON.parse(sfx));
   }
 
   public async preloadSound(name: string, url: string): Promise<void> {
@@ -23,17 +39,38 @@ export class AudioService {
     this.sounds[name] = audioBuffer;
   }
 
-  private setVolume(value: number): void {
-    this.gainNode.gain.setValueAtTime(value, this.audioContext.currentTime);
+  public setMusicVolume(value: number): void {
+    this.musicGainNode.gain.setValueAtTime(
+      value,
+      this.audioContext.currentTime
+    );
+    this.musicVolume = value;
+    localStorage.setItem('musicVolume', JSON.stringify(value));
   }
 
-  public playSound(audioName: string): void {
+  public setSfxVolume(value: number): void {
+    this.sfxGainNode.gain.setValueAtTime(value, this.audioContext.currentTime);
+    this.sfxVolume = value;
+    localStorage.setItem('sfxVolume', JSON.stringify(value));
+  }
+
+  public getMusicVolume(): number {
+    return this.musicVolume;
+  }
+  public getSfxVolume(): number {
+    return this.sfxVolume;
+  }
+
+  public playSound(audioName: string, type: 'music' | 'sfx' = 'sfx'): void {
     const audioBuffer = this.sounds[audioName];
 
     if (audioBuffer) {
       const source = this.audioContext.createBufferSource();
       source.buffer = audioBuffer;
-      source.connect(this.gainNode);
+
+      const destination =
+        type === 'music' ? this.musicGainNode : this.sfxGainNode;
+      source.connect(destination);
       source.start(0);
     }
   }
