@@ -4,11 +4,20 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  top: 70%;
-  right: 0;
+  bottom: 20px;
+  right: 20px;
   width: 250px;
   height: auto;
-  background-color: aqua;
+  box-shadow: 0px 0px 10px black;
+  border-radius: 8px;
+  padding: 15px;
+  z-index: 10;
+
+  .sub-title {
+    padding-top: 15px;
+    padding-left: 15px;
+    align-self: flex-start;
+  }
 
   #sfx-slider-container,
   #music-slider-container {
@@ -28,13 +37,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      #music-slider-bg {
-        position: absolute;
-        height: 30px;
-        width: calc(100% + 23px);
-        background-color: antiquewhite;
-      }
     }
+  }
+  .slider-bg {
+    position: absolute;
+    height: 30px;
+    width: calc(100% + 23px);
+    box-shadow: 0px 0px 10px black;
   }
 
   #sfx-slider-container {
@@ -42,12 +51,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      #sfx-slider-bg {
-        position: absolute;
-        height: 30px;
-        width: calc(100% + 23px);
-        background-color: antiquewhite;
-      }
     }
   }
 }

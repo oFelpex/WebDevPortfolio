@@ -91,7 +91,7 @@ body.cosmic-theme {
 // Theme: minecraft-theme
 body.minecraft-theme {
   --background-color: #241e0e;
-  background-image: url("./assets/backgrounds/games/minecraft/backgrounds/minecraft-bg.webp");
+  background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg.webp");
   color: #eaeaea;
   text-shadow: 1px 1px 0px black;
 
@@ -101,16 +101,17 @@ body.minecraft-theme {
     text-shadow: 1px 1px 0px black;
 
     mat-card {
-      background-image: url("./assets/backgrounds/games/minecraft/backgrounds/minecraft-bg-card.webp");
+      background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg-card.webp");
       background-position: center bottom;
       background-size: auto 300px;
     }
 
     button {
-      background-image: url("./assets/backgrounds/games/minecraft/minecraft-buttons.webp");
+      background-image: url("./assets/themes/games/minecraft/buttons/minecraft-buttons.webp");
       border-radius: 2px;
       border: 2px solid black;
       background-size: cover;
+      box-shadow: 0px 0px 5px black;
 
       &:hover {
         border-color: white;
@@ -120,9 +121,22 @@ body.minecraft-theme {
 
   #navBar {
     background-color: #002e0f;
-    background-image: url("./assets/backgrounds/games/minecraft/backgrounds/minecraft-bg-nav-bar.webp");
+    background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg-nav-bar.webp");
     background-position: center -120px;
     background-size: auto 800px;
+  }
+
+  #soundboard {
+    background-color: #002e0f;
+    background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg-soundboard.webp");
+    background-position: center center;
+    background-size: auto 250px;
+
+    .slider-bg {
+      border-radius: 5px;
+      border: 2px ridge;
+      background-color: rgb(78, 78, 78);
+    }
   }
 
   @include mat.theme(

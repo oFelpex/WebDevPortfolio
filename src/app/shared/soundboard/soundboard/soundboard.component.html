@@ -1,5 +1,6 @@
 <div id="soundboard">
-  <h4>Sound FX Volume</h4>
+  <h3 id="main-title">SOUNDBOARD</h3>
+  <h4 class="sub-title">SFX VOLUME</h4>
   <div id="sfx-slider-container">
     <button
       mat-icon-button
@@ -12,7 +13,7 @@
         {{
           sfxVolume === 0
             ? "volume_off"
-            : sfxVolume < 0.5
+            : sfxVolume < 50
             ? "volume_down"
             : "volume_up"
         }}
@@ -27,7 +28,7 @@
       discrete
       [displayWith]="formatLabel"
     >
-      <div id="sfx-slider-bg"></div>
+      <div class="slider-bg"></div>
       <input
         [value]="sfxVolume"
         (input)="setSfxVolume(sfxSlider.value)"
@@ -36,7 +37,7 @@
       />
     </mat-slider>
   </div>
-  <h4>Music Volume</h4>
+  <h4 class="sub-title">MUSIC VOLUME</h4>
   <div id="music-slider-container">
     <button
       mat-icon-button
@@ -49,7 +50,7 @@
         {{
           musicVolume === 0
             ? "volume_off"
-            : musicVolume < 0.5
+            : musicVolume < 50
             ? "volume_down"
             : "volume_up"
         }}
@@ -64,7 +65,7 @@
       discrete
       [displayWith]="formatLabel"
     >
-      <div id="music-slider-bg"></div>
+      <div class="slider-bg"></div>
       <input
         [value]="musicVolume"
         (input)="setMusicVolume(musicSlider.value)"
