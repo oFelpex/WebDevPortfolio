@@ -1,1 +1,68 @@
-<p>soundboard works!</p>
+<div id="soundboard">
+  <h4>Sound FX Volume</h4>
+  <div id="sound-effects-slider-container">
+    <button
+      mat-icon-button
+      (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+    >
+      <mat-icon style="font-family: Material Icons">
+        {{
+          sfxVolume === 0
+            ? "volume_off"
+            : sfxVolume < 0.5
+            ? "volume_down"
+            : "volume_up"
+        }}
+      </mat-icon>
+    </button>
+    <mat-slider
+      id="sound-effects-slider"
+      min="0"
+      max="100"
+      step="1"
+      showTickMarks
+      discrete
+      [displayWith]="formatLabel"
+    >
+      <input
+        [value]="sfxVolume * 100"
+        (input)="setSfxVolume(sfxSlider.value)"
+        matSliderThumb
+        #sfxSlider
+      />
+    </mat-slider>
+  </div>
+  <h4>Music Volume</h4>
+  <div id="music-slider-container">
+    <button
+      mat-icon-button
+      (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+    >
+      <mat-icon style="font-family: Material Icons">
+        {{
+          musicVolume === 0
+            ? "volume_off"
+            : musicVolume < 0.5
+            ? "volume_down"
+            : "volume_up"
+        }}
+      </mat-icon>
+    </button>
+    <mat-slider
+      id="music-slider"
+      min="0"
+      max="100"
+      step="1"
+      showTickMarks
+      discrete
+      [displayWith]="formatLabel"
+    >
+      <input
+        [value]="musicVolume * 100"
+        (input)="setMusicVolume(musicSlider.value)"
+        matSliderThumb
+        #musicSlider
+      />
+    </mat-slider>
+  </div>
+</div>

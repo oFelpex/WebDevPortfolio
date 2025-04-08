@@ -17,10 +17,17 @@ import { LoadingService } from './services/loading-service/loading.service';
 import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderComponent } from './shared/header/header.component';
+import { ThemeService } from './services/theme-service/theme.service';
+import { SoundboardComponent } from './shared/soundboard/soundboard/soundboard.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, LoadingComponent, HeaderComponent],
+  imports: [
+    RouterOutlet,
+    LoadingComponent,
+    HeaderComponent,
+    SoundboardComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -28,11 +35,15 @@ export class AppComponent implements OnInit {
   private loadingService: LoadingService;
   private router: Router;
   private translate: TranslateService;
+  private themeService: ThemeService;
+  public isLoading = false;
 
   constructor() {
     this.translate = inject(TranslateService);
     this.router = inject(Router);
     this.loadingService = inject(LoadingService);
+    this.themeService = inject(ThemeService);
+
     const matIconRegistry = inject(MatIconRegistry);
     const domSanitizer = inject(DomSanitizer);
 
@@ -71,7 +82,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-  isLoading = false;
   ngOnInit() {
     this.translate.addLangs(['en-US', 'pt-BR']);
 
@@ -121,7 +131,12 @@ export class AppComponent implements OnInit {
       }
     });
   }
-  getTitleByRoute(route: string): string {
+
+  public get getTypeOfActualTheme() {
+    return this.themeService.getTypeOfActualTheme();
+  }
+
+  private getTitleByRoute(route: string): string {
     const titlesEN_US: { [key: string]: string } = {
       '/home': 'Felpex - My website',
       '/projects': 'Felpex - Projects',
