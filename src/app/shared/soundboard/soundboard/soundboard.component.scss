@@ -10,7 +10,7 @@
   height: auto;
   background-color: aqua;
 
-  #sound-effects-slider-container,
+  #sfx-slider-container,
   #music-slider-container {
     display: flex;
     flex-wrap: nowrap;
@@ -18,8 +18,36 @@
     justify-content: center;
     width: 100%;
   }
-  #sound-effects-slider,
+  #sfx-slider,
   #music-slider {
     margin-left: 30px;
+  }
+
+  #music-slider-container {
+    #music-slider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      #music-slider-bg {
+        position: absolute;
+        height: 30px;
+        width: calc(100% + 23px);
+        background-color: antiquewhite;
+      }
+    }
+  }
+
+  #sfx-slider-container {
+    #sfx-slider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      #sfx-slider-bg {
+        position: absolute;
+        height: 30px;
+        width: calc(100% + 23px);
+        background-color: antiquewhite;
+      }
+    }
   }
 }

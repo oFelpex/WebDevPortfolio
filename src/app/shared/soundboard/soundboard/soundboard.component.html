@@ -1,6 +1,6 @@
 <div id="soundboard">
   <h4>Sound FX Volume</h4>
-  <div id="sound-effects-slider-container">
+  <div id="sfx-slider-container">
     <button
       mat-icon-button
       (click)="
@@ -19,7 +19,7 @@
       </mat-icon>
     </button>
     <mat-slider
-      id="sound-effects-slider"
+      id="sfx-slider"
       min="0"
       max="100"
       step="1"
@@ -27,6 +27,7 @@
       discrete
       [displayWith]="formatLabel"
     >
+      <div id="sfx-slider-bg"></div>
       <input
         [value]="sfxVolume"
         (input)="setSfxVolume(sfxSlider.value)"
@@ -63,6 +64,7 @@
       discrete
       [displayWith]="formatLabel"
     >
+      <div id="music-slider-bg"></div>
       <input
         [value]="musicVolume"
         (input)="setMusicVolume(musicSlider.value)"
