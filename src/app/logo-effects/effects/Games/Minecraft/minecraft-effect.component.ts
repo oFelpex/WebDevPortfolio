@@ -135,7 +135,7 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
   async ngOnInit(): Promise<void> {
     this.audioService.preloadSound(
       'Minecraft-clickSound',
-      'assets/sounds/games/minecraft/button-click.ogg'
+      'assets/sounds/games/minecraft/sfx/button-click.ogg'
     );
     this.audioService.preloadSound(
       'Minecraft-tnt-activate',
