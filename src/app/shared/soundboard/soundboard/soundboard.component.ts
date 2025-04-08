@@ -16,6 +16,8 @@ import { ThemeService } from '../../../services/theme-service/theme.service';
 export class SoundboardComponent {
   private audioService: AudioService;
   private themeService: ThemeService;
+  private savedSfxVolume: number = 50;
+  private savedMusicVolume: number = 50;
   public sfxVolume: number = 50;
   public musicVolume: number = 50;
 
@@ -23,8 +25,8 @@ export class SoundboardComponent {
     this.audioService = inject(AudioService);
     this.themeService = inject(ThemeService);
 
-    this.sfxVolume = this.audioService.getSfxVolume();
-    this.musicVolume = this.audioService.getMusicVolume();
+    this.sfxVolume = this.audioService.getSfxVolume() * 100;
+    this.musicVolume = this.audioService.getMusicVolume() * 100;
   }
 
   public get getNameOfActualThemeFromLocalStorage(): Themes {
@@ -38,9 +40,32 @@ export class SoundboardComponent {
     this.sfxVolume = Number(sliderValue);
     this.audioService.setSfxVolume(this.sfxVolume / 100);
   }
+
   public setMusicVolume(sliderValue: string) {
     this.musicVolume = Number(sliderValue);
     this.audioService.setMusicVolume(this.musicVolume / 100);
+  }
+
+  public muteSfxVolume() {
+    if (this.sfxVolume === 0) {
+      this.setSfxVolume(String(this.savedSfxVolume));
+      this.sfxVolume = this.savedSfxVolume;
+    } else {
+      this.savedSfxVolume = this.sfxVolume;
+      this.setSfxVolume('0');
+      this.sfxVolume = 0;
+    }
+  }
+
+  public muteMusicVolume() {
+    if (this.musicVolume === 0) {
+      this.setMusicVolume(String(this.savedMusicVolume));
+      this.musicVolume = this.savedMusicVolume;
+    } else {
+      this.savedMusicVolume = this.musicVolume;
+      this.setMusicVolume('0');
+      this.musicVolume = 0;
+    }
   }
 
   public formatLabel(value: number): string {

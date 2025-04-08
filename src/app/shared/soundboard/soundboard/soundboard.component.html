@@ -3,7 +3,10 @@
   <div id="sound-effects-slider-container">
     <button
       mat-icon-button
-      (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+      (click)="
+        muteSfxVolume();
+        playClickSound(getNameOfActualThemeFromLocalStorage.name)
+      "
     >
       <mat-icon style="font-family: Material Icons">
         {{
@@ -25,7 +28,7 @@
       [displayWith]="formatLabel"
     >
       <input
-        [value]="sfxVolume * 100"
+        [value]="sfxVolume"
         (input)="setSfxVolume(sfxSlider.value)"
         matSliderThumb
         #sfxSlider
@@ -36,7 +39,10 @@
   <div id="music-slider-container">
     <button
       mat-icon-button
-      (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+      (click)="
+        muteMusicVolume();
+        playClickSound(getNameOfActualThemeFromLocalStorage.name)
+      "
     >
       <mat-icon style="font-family: Material Icons">
         {{
@@ -58,7 +64,7 @@
       [displayWith]="formatLabel"
     >
       <input
-        [value]="musicVolume * 100"
+        [value]="musicVolume"
         (input)="setMusicVolume(musicSlider.value)"
         matSliderThumb
         #musicSlider
