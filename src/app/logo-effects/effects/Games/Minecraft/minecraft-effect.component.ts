@@ -8,8 +8,11 @@ import {
   IOptions,
   SingleOrMultiple,
 } from '@tsparticles/engine';
+
 import { NgxParticlesModule } from '@tsparticles/angular';
 import { AudioService } from '../../../../services/audio-service/audio.service';
+import { minecraftMusics, Musics } from '../../../../models/musics';
+import { minecraftSFX, SFX } from '../../../../models/sfx';
 
 @Component({
   selector: 'app-minecraft',
@@ -21,7 +24,9 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
   private particlesContainer!: Container | undefined;
   private audioService: AudioService;
   private timeOut: any;
-  public CreateTnt: boolean = false;
+  private minecraftMusics: Musics[] = minecraftMusics;
+  private minecraftSFX: SFX[] = minecraftSFX;
+  public createTnt: boolean = false;
   public id: string = 'tnt-explosion';
 
   constructor() {
@@ -133,38 +138,12 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
   };
 
   async ngOnInit(): Promise<void> {
-    this.audioService.preloadSound(
-      'Aria Mat',
-      'assets/sounds/games/minecraft/music/c418-aria-math.ogg'
-    );
-    this.audioService.preloadSound(
-      'Mice on Venus',
-      'assets/sounds/games/minecraft/music/c418-mice-on-venus.ogg'
-    );
-    this.audioService.preloadSound(
-      'Moog City',
-      'assets/sounds/games/minecraft/music/c418-moog-city.ogg'
-    );
-    this.audioService.preloadSound(
-      'Subwoofer Lullaby',
-      'assets/sounds/games/minecraft/music/c418-subwoofer-lullaby.ogg'
-    );
-    this.audioService.preloadSound(
-      'Pigstep',
-      'assets/sounds/games/minecraft/music/lena-raine-pigstep.ogg'
-    );
-    this.audioService.preloadSound(
-      'Minecraft-clickSound',
-      'assets/sounds/games/minecraft/sfx/button-click.ogg'
-    );
-    this.audioService.preloadSound(
-      'Minecraft-tnt-activate',
-      'assets/sounds/games/minecraft/easter-egg/tnt-activate.ogg'
-    );
-    this.audioService.preloadSound(
-      'Minecraft-tnt-explosion',
-      'assets/sounds/games/minecraft/easter-egg/tnt-explosion.ogg'
-    );
+    for (let music of this.minecraftMusics) {
+      this.audioService.preloadSound(music.musicName, music.musicURL);
+    }
+    for (let SFX of this.minecraftSFX) {
+      this.audioService.preloadSound(SFX.SFXName, SFX.SFXURL);
+    }
 
     await loadFull(tsParticles);
 
@@ -178,17 +157,17 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
   }
 
   private startTntTimeout(): void {
-    this.CreateTnt = true;
+    this.createTnt = true;
 
     this.timeOut = setTimeout(() => {
-      this.CreateTnt = false;
+      this.createTnt = false;
       this.audioService.playSound('Minecraft-tnt-explosion', 'sfx');
     }, 4100);
   }
 
   private cancelTntTimeout(): void {
     clearTimeout(this.timeOut);
-    this.CreateTnt = false;
+    this.createTnt = false;
   }
 
   public summonTnt(): void {
