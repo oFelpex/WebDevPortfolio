@@ -8,6 +8,12 @@ export class AudioService {
   private sounds: { [key: string]: AudioBuffer } = {};
   private musicGainNode: GainNode;
   private sfxGainNode: GainNode;
+  private currentMusicSource: AudioBufferSourceNode | null = null;
+  private currentMusicName: string | null = null;
+  private currentMusicComposer: string | undefined;
+  private musicStartTime: number = 0;
+  private musicDuration: number = 0;
+
   public musicVolume: number = 0.5;
   public sfxVolume: number = 0.5;
 
@@ -61,7 +67,11 @@ export class AudioService {
     return this.sfxVolume;
   }
 
-  public playSound(audioName: string, type: 'music' | 'sfx' = 'sfx'): void {
+  public playSound(
+    audioName: string,
+    type: 'music' | 'sfx' = 'sfx',
+    composer?: string | undefined
+  ): void {
     const audioBuffer = this.sounds[audioName];
 
     if (audioBuffer) {
@@ -72,12 +82,50 @@ export class AudioService {
         type === 'music' ? this.musicGainNode : this.sfxGainNode;
       source.connect(destination);
       source.start(0);
+
+      if (type === 'music') {
+        this.currentMusicSource = source;
+        this.currentMusicName = audioName;
+        this.currentMusicComposer = composer;
+        this.musicStartTime = this.audioContext.currentTime;
+        this.musicDuration = audioBuffer.duration;
+
+        // (Opcional) Listener para saber quando acabou
+        source.onended = () => {
+          this.currentMusicSource = null;
+          this.currentMusicName = null;
+          this.currentMusicComposer = undefined;
+          this.musicStartTime = 0;
+          this.musicDuration = 0;
+        };
+      }
     }
   }
 
   public playClickSound(themeName: string) {
     let audioName = themeName + '-clickSound';
-
     this.playSound(audioName);
+  }
+
+  public getMusicProgress(): number {
+    if (!this.currentMusicSource || this.musicDuration === 0) return 0;
+
+    const elapsed = this.audioContext.currentTime - this.musicStartTime;
+    return Math.min(elapsed / this.musicDuration, 1);
+  }
+
+  public getCurrentMusicName(): string | null {
+    return this.currentMusicName;
+  }
+  public getCurrentMusicComposer(): string | undefined {
+    return this.currentMusicComposer;
+  }
+
+  public getMusicDuration(): number {
+    return this.musicDuration;
+  }
+
+  public getElapsedTime(): number {
+    return this.audioContext.currentTime - this.musicStartTime;
   }
 }
