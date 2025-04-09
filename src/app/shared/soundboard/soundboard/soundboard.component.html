@@ -1,8 +1,18 @@
 <div id="soundboard">
   <h3 id="main-title">SOUNDBOARD</h3>
-  <h4 class="sub-title">SFX VOLUME</h4>
+
+  <div id="music-progress-container">
+    <h5 id="music-title">{{ currentMusic }} • {{ currentComposer }}</h5>
+    <mat-progress-bar
+      mode="determinate"
+      [value]="progress * 100"
+    ></mat-progress-bar>
+  </div>
+
   <div id="sfx-slider-container">
+    <h4 class="sub-title">SFX VOLUME:</h4>
     <button
+      class="mute-button"
       mat-icon-button
       (click)="
         muteSfxVolume();
@@ -37,9 +47,10 @@
       />
     </mat-slider>
   </div>
-  <h4 class="sub-title">MUSIC VOLUME</h4>
   <div id="music-slider-container">
+    <h4 class="sub-title">MUSIC VOLUME:</h4>
     <button
+      class="mute-button"
       mat-icon-button
       (click)="
         muteMusicVolume();

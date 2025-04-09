@@ -1,25 +1,38 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { interval, Subscription } from 'rxjs';
 
 import { MatSliderModule } from '@angular/material/slider';
 
-import { AudioService } from '../../../services/audio-service/audio.service';
-import { MatIcon } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 import { Themes } from '../../../models/themes';
+import { AudioService } from '../../../services/audio-service/audio.service';
 import { ThemeService } from '../../../services/theme-service/theme.service';
 @Component({
   selector: 'app-soundboard',
-  imports: [MatSliderModule, MatIcon, MatButtonModule],
+  imports: [
+    MatSliderModule,
+    MatIconModule,
+    MatButtonModule,
+    MatProgressBarModule,
+  ],
   templateUrl: './soundboard.component.html',
   styleUrl: './soundboard.component.scss',
 })
-export class SoundboardComponent {
+export class SoundboardComponent implements OnInit, OnDestroy {
   private audioService: AudioService;
   private themeService: ThemeService;
   private savedSfxVolume: number = 50;
   private savedMusicVolume: number = 50;
+  private sub!: Subscription;
+
   public sfxVolume: number = 50;
   public musicVolume: number = 50;
+  public progress: number = 0;
+  public currentMusic: string | null = null;
+  public currentComposer: string | undefined;
 
   constructor() {
     this.audioService = inject(AudioService);
@@ -27,6 +40,18 @@ export class SoundboardComponent {
 
     this.sfxVolume = this.audioService.getSfxVolume() * 100;
     this.musicVolume = this.audioService.getMusicVolume() * 100;
+  }
+
+  ngOnInit(): void {
+    this.sub = interval(200).subscribe(() => {
+      this.progress = this.audioService.getMusicProgress();
+      this.currentMusic = this.audioService.getCurrentMusicName();
+      this.currentComposer = this.audioService.getCurrentMusicComposer();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
   public get getNameOfActualThemeFromLocalStorage(): Themes {
