@@ -134,23 +134,23 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
 
   async ngOnInit(): Promise<void> {
     this.audioService.preloadSound(
-      'Minecraft-music-1',
+      'Aria Mat',
       'assets/sounds/games/minecraft/music/c418-aria-math.ogg'
     );
     this.audioService.preloadSound(
-      'Minecraft-music-2',
+      'Mice on Venus',
       'assets/sounds/games/minecraft/music/c418-mice-on-venus.ogg'
     );
     this.audioService.preloadSound(
-      'Minecraft-music-3',
+      'Moog City',
       'assets/sounds/games/minecraft/music/c418-moog-city.ogg'
     );
     this.audioService.preloadSound(
-      'Minecraft-music-4',
+      'Subwoofer Lullaby',
       'assets/sounds/games/minecraft/music/c418-subwoofer-lullaby.ogg'
     );
     this.audioService.preloadSound(
-      'Minecraft-music-5',
+      'Pigstep',
       'assets/sounds/games/minecraft/music/lena-raine-pigstep.ogg'
     );
     this.audioService.preloadSound(
@@ -193,6 +193,7 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
 
   public summonTnt(): void {
     this.cancelTntTimeout();
+    this.audioService.playSound('Pigstep', 'music', 'Lena Raine');
 
     setTimeout(() => {
       this.startTntTimeout();
