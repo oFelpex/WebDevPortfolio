@@ -172,7 +172,6 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
 
   public summonTnt(): void {
     this.cancelTntTimeout();
-    this.audioService.playSound('Pigstep', 'music', 'Lena Raine');
 
     setTimeout(() => {
       this.startTntTimeout();
