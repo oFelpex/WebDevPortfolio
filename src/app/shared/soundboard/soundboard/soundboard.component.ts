@@ -60,6 +60,22 @@ export class SoundboardComponent implements OnInit, OnDestroy {
     this.audioService.playClickSound(themeName);
   }
 
+  public previousMusic() {
+    this.audioService.previousMusic();
+  }
+  public nextMusic() {
+    this.audioService.nextMusic();
+  }
+
+  public isPlaying(): boolean {
+    return this.audioService.isPlaying();
+  }
+  public playOrStopMusic() {
+    this.audioService.isPlaying()
+      ? this.audioService.pauseMusic()
+      : this.audioService.resumeMusic();
+  }
+
   public setSfxVolume(sliderValue: string) {
     this.sfxVolume = Number(sliderValue);
     this.audioService.setSfxVolume(this.sfxVolume / 100);

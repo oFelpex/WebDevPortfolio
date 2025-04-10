@@ -24,6 +24,15 @@
     }
   }
 
+  #music-actions {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-bottom: 10px;
+    width: 150px;
+  }
+
   #sfx-slider-container,
   #music-slider-container {
     display: flex;
