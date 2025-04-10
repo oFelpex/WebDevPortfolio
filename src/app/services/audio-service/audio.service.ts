@@ -9,11 +9,14 @@ export class AudioService {
   private sounds: { [key: string]: AudioBuffer } = {};
   private musicGainNode: GainNode;
   private sfxGainNode: GainNode;
+
   private currentMusicSource: AudioBufferSourceNode | null = null;
   private currentMusicName: string | null = null;
   private currentMusicComposer: string | undefined;
+
   private musicStartTime: number = 0;
   private musicDuration: number = 0;
+
   private pauseTime: number = 0;
   private isPaused: boolean = false;
 
@@ -85,7 +88,7 @@ export class AudioService {
     this.isPaused = false;
 
     source.onended = () => {
-      if (!this.isPaused) {
+      if (!this.isPaused && this.currentMusicSource === source) {
         this.nextMusic();
       }
     };
@@ -107,6 +110,7 @@ export class AudioService {
 
   public stopMusic() {
     if (this.currentMusicSource) {
+      this.currentMusicSource.onended = null;
       this.currentMusicSource.stop();
       this.currentMusicSource.disconnect();
       this.currentMusicSource = null;
