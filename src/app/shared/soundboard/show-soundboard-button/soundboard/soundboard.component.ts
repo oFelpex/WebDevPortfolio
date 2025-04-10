@@ -6,9 +6,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
-import { Themes } from '../../../models/themes';
-import { AudioService } from '../../../services/audio-service/audio.service';
-import { ThemeService } from '../../../services/theme-service/theme.service';
+import { Themes } from '../../../../models/themes';
+import { AudioService } from '../../../../services/audio-service/audio.service';
+import { ThemeService } from '../../../../services/theme-service/theme.service';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-soundboard',
