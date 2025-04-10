@@ -64,6 +64,7 @@ export class AudioService {
     }
 
     this.playCurrentTrack();
+    this.pauseMusic();
   }
 
   private playCurrentTrack(resume: boolean = false) {
