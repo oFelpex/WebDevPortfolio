@@ -53,6 +53,12 @@
     }
   },
 
+  "SOUNDBOARD": {
+    "SOUNDBOARD": "PAINEL DE SONS",
+    "MUSIC-VOLUME": "Músicas: ",
+    "SFX-VOLUME": "Efeitos Sonoros: "
+  },
+
   "NAV-BAR-LIST": {
     "MAT-TOOL-TIP-EASTER-EGG": "Click para ver um segredo",
     "HOME": "Início",

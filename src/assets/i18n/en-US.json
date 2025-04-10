@@ -51,6 +51,12 @@
     }
   },
 
+  "SOUNDBOARD": {
+    "SOUNDBOARD": "SOUNDBOARD",
+    "MUSIC-VOLUME": "Music Volume: ",
+    "SFX-VOLUME": "SFX Volume: "
+  },
+
   "NAV-BAR-LIST": {
     "MAT-TOOL-TIP-EASTER-EGG": "Click to see a secret",
     "HOME": "Home",
