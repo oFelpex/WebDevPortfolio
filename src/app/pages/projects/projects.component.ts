@@ -9,10 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
 import { LoadingService } from '../../services/loading-service/loading.service';
-import {
-  fadeIn_opacity_loading,
-  fadeInDownToUp_query,
-} from '../../shared/animations/fade-animations';
+import { fadeIn_opacity_loading } from '../../shared/animations/fade-animations';
+import { fadeInDownToUp_query } from '../../shared/animations/fadeAndTranslate-animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 

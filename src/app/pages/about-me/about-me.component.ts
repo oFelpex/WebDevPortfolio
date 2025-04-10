@@ -6,7 +6,7 @@ import { PhotosFooterComponent } from './photos-footer/photos-footer.component';
 
 import { MatDividerModule } from '@angular/material/divider';
 import { LoadingService } from '../../services/loading-service/loading.service';
-import { fadeInUpToDown_loading } from '../../shared/animations/fade-animations';
+import { fadeInUpToDown_loading } from '../../shared/animations/fadeAndTranslate-animations';
 @Component({
   selector: 'app-about-me',
   imports: [

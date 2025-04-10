@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 
 import { allPhotos, Photos } from '../../../models/photos';
 import { DialogPhotoFullScreenComponent } from './dialog-photo-full-screen/dialog-photo-full-screen.component';
-import { fadeInDownToUp_query } from '../../../shared/animations/fade-animations';
+import { fadeInDownToUp_query } from '../../../shared/animations/fadeAndTranslate-animations';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';

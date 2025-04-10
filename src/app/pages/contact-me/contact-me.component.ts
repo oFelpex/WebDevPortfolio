@@ -10,10 +10,8 @@ import { MatDividerModule } from '@angular/material/divider';
 
 import { LoadingService } from '../../services/loading-service/loading.service';
 
-import {
-  fadeIn_opacity_loading,
-  fadeInDownToUp_loading,
-} from '../../shared/animations/fade-animations';
+import { fadeIn_opacity_loading } from '../../shared/animations/fade-animations';
+import { fadeInDownToUp_loading } from '../../shared/animations/fadeAndTranslate-animations';
 
 @Component({
   selector: 'app-contact-me',

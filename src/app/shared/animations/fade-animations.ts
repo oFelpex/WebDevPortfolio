@@ -8,104 +8,22 @@ import {
   trigger,
 } from '@angular/animations';
 
-// Home: intro-section
+/* state animation
+   USED IN:
+   Home: intro-section */
 export const fadeIn_opacity_loading = trigger('fadeIn_opacity_loading', [
   state('loading', style({ opacity: 0 })),
   state('loaded', style({ opacity: 1 })),
   transition('loading => loaded', animate('300ms ease-in-out')),
 ]);
 
-// Home: navigation-cards
-export const fadeInDownToUp_fadeOutUpToDown = trigger(
-  'fadeInDownToUp_fadeOutUpToDown',
-  [
-    transition(':enter', [
-      style({ opacity: 0, transform: 'translateY(100px)' }),
-      animate(
-        '300ms ease-in-out',
-        style({ opacity: 1, transform: 'translateY(0px)' })
-      ),
-    ]),
-    transition(':leave', [
-      animate(
-        '300ms ease-in-out',
-        style({ opacity: 0, transform: 'translateY(100px)' })
-      ),
-    ]),
-  ]
-);
-
-/* 
-    *Depends of LoadingService*
-    USED IN:
-    About-me: first-half, second-half */
-export const fadeInUpToDown_loading = trigger('fadeInUpToDown_loading', [
-  state('loading', style({ opacity: 0, transform: 'translateY(-100px)' })),
-  state(
-    'loaded',
-    style({
-      opacity: 1,
-      transform: 'translateY(0px)',
-    })
-  ),
-  transition('loading => loaded', animate('300ms ease-in-out')),
-]);
-
-/* 
-    *Depends of LoadingService*
-    USED IN:
-    Contact-me: section contact-me-container */
-export const fadeInDownToUp_loading = trigger('fadeInDownToUp_loading', [
-  state('loading', style({ opacity: 0, transform: 'translateY(100px)' })),
-  state(
-    'loaded',
-    style({
-      opacity: 1,
-      transform: 'translateY(0px)',
-    })
-  ),
-  transition('loading => loaded', animate('300ms ease-in-out')),
-]);
-
-// Contact-me-form: inputs
-export const fadeInDownToUp_height = trigger('fadeInDownToUp_height', [
-  state(
-    'hide',
-    style({
-      opacity: 0,
-      visibility: 'hidden',
-      height: '0px',
-    })
-  ),
-  state(
-    'show',
-    style({
-      opacity: 1,
-      visibility: 'visible',
-      height: '*',
-    })
-  ),
-  transition('hide <=> show', [animate('300ms ease-out')]),
-]);
-
-/*  OBS: Used with @for(){}
-    USED IN:
-    About-me: photos cards; 
-    Projects: projects cards; */
-export const fadeInDownToUp_query = trigger('fadeInDownToUp_query', [
+/* :enter/:leave animation
+   USED IN:
+   Loading */
+export const fadeIn_fadeOut = trigger('fadeIn_fadeOut', [
   transition(':enter', [
-    query(
-      ':enter',
-      [
-        style({ opacity: 0, transform: 'translateY(100px)' }),
-        stagger(100, [
-          animate(
-            '200ms ease-out',
-            style({ opacity: 1, transform: 'translateY(0)' })
-          ),
-        ]),
-      ],
-      { optional: true }
-    ),
+    style({ opacity: 0 }),
+    animate('200ms ease-in-out', style({ opacity: 1 })),
   ]),
+  transition(':leave', [animate('300ms ease-in-out', style({ opacity: 0 }))]),
 ]);

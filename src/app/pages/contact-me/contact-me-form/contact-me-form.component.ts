@@ -15,9 +15,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { fadeInDownToUp_height } from '../../../shared/animations/fade-animations';
+import { fadeInDownToUp_height } from '../../../shared/animations/fadeAndHeight-animations';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { AudioService } from '../../../services/audio-service/audio.service';
 import { ThemeService } from '../../../services/theme-service/theme.service';
 import { Themes } from '../../../models/themes';
