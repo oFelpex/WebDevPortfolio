@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Musics } from '../../models/musics';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,11 @@ export class AudioService {
   private currentMusicComposer: string | undefined;
   private musicStartTime: number = 0;
   private musicDuration: number = 0;
+  private pauseTime: number = 0;
+  private isPaused: boolean = false;
+
+  private playlist: Musics[] = [];
+  private currentIndex: number = 0;
 
   public musicVolume: number = 0.5;
   public sfxVolume: number = 0.5;
@@ -39,10 +45,83 @@ export class AudioService {
   }
 
   public async preloadSound(name: string, url: string): Promise<void> {
+    if (this.sounds[name]) return;
     const response = await fetch(url);
     const arrayBuffer = await response.arrayBuffer();
     const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
     this.sounds[name] = audioBuffer;
+  }
+
+  public async playPlaylist(playlist: Musics[]) {
+    this.playlist = playlist;
+    this.currentIndex = 0;
+
+    for (const music of playlist) {
+      await this.preloadSound(music.musicName, music.musicURL);
+    }
+
+    this.playCurrentTrack();
+  }
+
+  private playCurrentTrack(resume: boolean = false) {
+    this.stopMusic();
+
+    const track = this.playlist[this.currentIndex];
+    const buffer = this.sounds[track.musicName];
+    if (!buffer) return;
+
+    const source = this.audioContext.createBufferSource();
+    source.buffer = buffer;
+    source.connect(this.musicGainNode);
+
+    const offset = resume ? this.pauseTime : 0;
+    source.start(0, offset);
+
+    this.currentMusicSource = source;
+    this.currentMusicName = track.musicName;
+    this.currentMusicComposer = track.musicComposer;
+    this.musicDuration = buffer.duration;
+    this.musicStartTime = this.audioContext.currentTime - offset;
+    this.isPaused = false;
+
+    source.onended = () => {
+      if (!this.isPaused) {
+        this.nextMusic();
+      }
+    };
+  }
+
+  public pauseMusic() {
+    if (this.currentMusicSource) {
+      this.pauseTime = this.audioContext.currentTime - this.musicStartTime;
+      this.currentMusicSource.stop();
+      this.isPaused = true;
+    }
+  }
+
+  public resumeMusic() {
+    if (this.isPaused) {
+      this.playCurrentTrack(true);
+    }
+  }
+
+  public stopMusic() {
+    if (this.currentMusicSource) {
+      this.currentMusicSource.stop();
+      this.currentMusicSource.disconnect();
+      this.currentMusicSource = null;
+    }
+  }
+
+  public nextMusic() {
+    this.currentIndex = (this.currentIndex + 1) % this.playlist.length;
+    this.playCurrentTrack();
+  }
+
+  public previousMusic() {
+    this.currentIndex =
+      (this.currentIndex - 1 + this.playlist.length) % this.playlist.length;
+    this.playCurrentTrack();
   }
 
   public setMusicVolume(value: number): void {
@@ -60,11 +139,9 @@ export class AudioService {
     localStorage.setItem('sfxVolume', JSON.stringify(value));
   }
 
-  public getMusicVolume(): number {
-    return this.musicVolume;
-  }
-  public getSfxVolume(): number {
-    return this.sfxVolume;
+  public playClickSound(themeName: string) {
+    let audioName = themeName + '-clickSound';
+    this.playSound(audioName);
   }
 
   public playSound(
@@ -82,41 +159,31 @@ export class AudioService {
         type === 'music' ? this.musicGainNode : this.sfxGainNode;
       source.connect(destination);
       source.start(0);
-
-      if (type === 'music') {
-        this.currentMusicSource = source;
-        this.currentMusicName = audioName;
-        this.currentMusicComposer = composer;
-        this.musicStartTime = this.audioContext.currentTime;
-        this.musicDuration = audioBuffer.duration;
-
-        // (Opcional) Listener para saber quando acabou
-        source.onended = () => {
-          this.currentMusicSource = null;
-          this.currentMusicName = null;
-          this.currentMusicComposer = undefined;
-          this.musicStartTime = 0;
-          this.musicDuration = 0;
-        };
-      }
     }
   }
 
-  public playClickSound(themeName: string) {
-    let audioName = themeName + '-clickSound';
-    this.playSound(audioName);
+  public getMusicVolume(): number {
+    return this.musicVolume;
+  }
+
+  public getSfxVolume(): number {
+    return this.sfxVolume;
   }
 
   public getMusicProgress(): number {
     if (!this.currentMusicSource || this.musicDuration === 0) return 0;
 
-    const elapsed = this.audioContext.currentTime - this.musicStartTime;
+    const elapsed = this.isPaused
+      ? this.pauseTime
+      : this.audioContext.currentTime - this.musicStartTime;
+
     return Math.min(elapsed / this.musicDuration, 1);
   }
 
   public getCurrentMusicName(): string | null {
     return this.currentMusicName;
   }
+
   public getCurrentMusicComposer(): string | undefined {
     return this.currentMusicComposer;
   }
@@ -126,6 +193,12 @@ export class AudioService {
   }
 
   public getElapsedTime(): number {
-    return this.audioContext.currentTime - this.musicStartTime;
+    return this.isPaused
+      ? this.pauseTime
+      : this.audioContext.currentTime - this.musicStartTime;
+  }
+
+  public isPlaying(): boolean {
+    return !this.isPaused && this.currentMusicSource !== null;
   }
 }

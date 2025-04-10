@@ -1,9 +1,9 @@
-export interface SFX {
+export interface SFXs {
   SFXName: string;
   SFXURL: string;
 }
 
-export const minecraftSFX: SFX[] = [
+export const minecraftSFX: SFXs[] = [
   {
     SFXName: 'Minecraft-clickSound',
     SFXURL: 'assets/sounds/games/minecraft/sfx/button-click.ogg',

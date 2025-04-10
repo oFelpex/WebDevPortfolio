@@ -12,7 +12,7 @@ import {
 import { NgxParticlesModule } from '@tsparticles/angular';
 import { AudioService } from '../../../../services/audio-service/audio.service';
 import { minecraftMusics, Musics } from '../../../../models/musics';
-import { minecraftSFX, SFX } from '../../../../models/sfx';
+import { minecraftSFX, SFXs } from '../../../../models/sfxs';
 
 @Component({
   selector: 'app-minecraft',
@@ -25,7 +25,8 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
   private audioService: AudioService;
   private timeOut: any;
   private minecraftMusics: Musics[] = minecraftMusics;
-  private minecraftSFX: SFX[] = minecraftSFX;
+  private minecraftSFX: SFXs[] = minecraftSFX;
+
   public createTnt: boolean = false;
   public id: string = 'tnt-explosion';
 
@@ -138,12 +139,11 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
   };
 
   async ngOnInit(): Promise<void> {
-    for (let music of this.minecraftMusics) {
-      this.audioService.preloadSound(music.musicName, music.musicURL);
-    }
     for (let SFX of this.minecraftSFX) {
       this.audioService.preloadSound(SFX.SFXName, SFX.SFXURL);
     }
+
+    this.audioService.playPlaylist(this.minecraftMusics);
 
     await loadFull(tsParticles);
 
