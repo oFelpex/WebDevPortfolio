@@ -18,7 +18,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { HeaderComponent } from './shared/header/header.component';
 import { ThemeService } from './services/theme-service/theme.service';
-import { SoundboardComponent } from './shared/soundboard/soundboard/soundboard.component';
+import { ShowSoundboardButtonComponent } from './shared/soundboard/show-soundboard-button/show-soundboard-button.component';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +26,7 @@ import { SoundboardComponent } from './shared/soundboard/soundboard/soundboard.c
     RouterOutlet,
     LoadingComponent,
     HeaderComponent,
-    SoundboardComponent,
+    ShowSoundboardButtonComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
