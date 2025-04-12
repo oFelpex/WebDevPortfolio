@@ -1,4 +1,4 @@
-import { Component, HostListener, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Themes } from '../../../../models/themes';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MobileMenuComponent } from '../mobile-menu.component';
@@ -17,6 +17,7 @@ import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AudioService } from '../../../../services/audio-service/audio.service';
 import { CustomSnackbarComponent } from '../../../custom-snackbar/custom-snackbar.component';
+import { ResponsiveService } from '../../../../services/responsive-service/responsive.service';
 
 @Component({
   selector: 'app-mobile-langs-menu',
@@ -38,12 +39,16 @@ export class MobileLangsMenuSheetComponent {
   public currentLang!: string;
   private audioService: AudioService;
   private themeService: ThemeService;
+  private responsiveService: ResponsiveService;
+
+  public isMobile: boolean = window.innerWidth <= 820;
 
   constructor() {
     this.translate = inject(TranslateService);
     this.snackBar = inject(MatSnackBar);
     this.themeService = inject(ThemeService);
     this.audioService = inject(AudioService);
+    this.responsiveService = inject(ResponsiveService);
   }
 
   ngOnInit(): void {
@@ -54,6 +59,12 @@ export class MobileLangsMenuSheetComponent {
       .subscribe((event: LangChangeEvent) => {
         this.currentLang = event.lang;
       });
+
+    this.responsiveService.isMobile$.subscribe((isMobile) => {
+      this.isMobile = isMobile;
+      if (!isMobile && this._bottomSheetRef.instance)
+        this._bottomSheetRef.dismiss();
+    });
   }
 
   ngOnDestroy(): void {
@@ -80,20 +91,11 @@ export class MobileLangsMenuSheetComponent {
 
   private _bottomSheetRef =
     inject<MatBottomSheetRef<MobileMenuComponent>>(MatBottomSheetRef);
-  isMobile: boolean = window.innerWidth <= 820;
 
   public get getNameOfActualThemeFromLocalStorage(): Themes {
     return this.themeService.getNameOfActualTheme();
   }
   public playClickSound(themeName: string) {
     this.audioService.playClickSound(themeName);
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.isMobile = event.target.innerWidth <= 820;
-    if (!this.isMobile) {
-      this._bottomSheetRef.dismiss();
-    }
   }
 }

@@ -1,4 +1,4 @@
-import { Component, HostListener, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -12,6 +12,7 @@ import { MobileMenuComponent } from '../mobile-menu.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { TranslateModule } from '@ngx-translate/core';
 import { AudioService } from '../../../../services/audio-service/audio.service';
+import { ResponsiveService } from '../../../../services/responsive-service/responsive.service';
 
 @Component({
   selector: 'app-mobile-theme-menu',
@@ -27,22 +28,34 @@ import { AudioService } from '../../../../services/audio-service/audio.service';
   styleUrl: 'mobile-theme-menu.component.scss',
 })
 export class MobileThemeMenuSheetComponent {
-  public actualThemeKey: string;
   private themeService: ThemeService;
   private audioService: AudioService;
+  private responsiveService: ResponsiveService;
+
+  public actualThemeKey: string;
+  public isMobile: boolean = window.innerWidth <= 820;
 
   constructor() {
     this.themeService = inject(ThemeService);
     this.audioService = inject(AudioService);
+    this.responsiveService = inject(ResponsiveService);
 
     const themeType = this.getTypeOfActualThemeFromLocalStorage;
     const themeName = this.getNameOfActualThemeFromLocalStorage.name;
 
     this.actualThemeKey = `THEMES.${themeType}.${themeName}`;
   }
+
+  ngOnInit() {
+    this.responsiveService.isMobile$.subscribe((isMobile) => {
+      this.isMobile = isMobile;
+      if (!isMobile && this._bottomSheetRef.instance)
+        this._bottomSheetRef.dismiss();
+    });
+  }
+
   private _bottomSheetRef =
     inject<MatBottomSheetRef<MobileMenuComponent>>(MatBottomSheetRef);
-  isMobile: boolean = window.innerWidth <= 820;
 
   public get gamesOptions(): Themes[] {
     return this.themeService.getGamesNames();
@@ -64,13 +77,5 @@ export class MobileThemeMenuSheetComponent {
 
   public playClickSound(themeName: string) {
     this.audioService.playClickSound(themeName);
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.isMobile = event.target.innerWidth <= 820;
-    if (!this.isMobile) {
-      this._bottomSheetRef.dismiss();
-    }
   }
 }
