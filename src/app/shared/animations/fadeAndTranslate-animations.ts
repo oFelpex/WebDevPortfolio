@@ -44,7 +44,7 @@ export const fadeInDownToUp_fadeOutUpToDown_state = trigger(
       style({
         opacity: 1,
         visibility: 'visible',
-        width: 'translateY(0px)',
+        transform: 'translateY(0px)',
       })
     ),
     transition('hide <=> show', animate('300ms ease-in-out')),
