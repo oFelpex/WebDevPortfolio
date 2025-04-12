@@ -3,8 +3,8 @@ import { Component, inject } from '@angular/core';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 
-import { MobileMenuService } from '../../services/mobile-menu-service/mobile-menu.service';
-import { ResponsiveService } from '../../services/responsive-service/responsive.service';
+import { MobileMenuService } from '../../../services/mobile-menu-service/mobile-menu.service';
+import { ResponsiveService } from '../../../services/responsive-service/responsive.service';
 
 @Component({
   selector: 'app-header',

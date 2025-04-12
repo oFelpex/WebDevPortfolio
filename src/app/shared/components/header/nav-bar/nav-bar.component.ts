@@ -11,10 +11,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { MobileMenuService } from '../../../services/mobile-menu-service/mobile-menu.service';
-import { ThemeService } from '../../../services/theme-service/theme.service';
-import { Themes } from '../../../models/themes';
-import { SocialLinksComponent } from '../../social-links/social-links.component';
+import { MobileMenuService } from '../../../../services/mobile-menu-service/mobile-menu.service';
+import { ThemeService } from '../../../../services/theme-service/theme.service';
+import { Themes } from '../../../../models/themes';
+import { SocialLinksComponent } from '../../../components/social-links/social-links.component';
 
 import {
   LangChangeEvent,
@@ -23,9 +23,9 @@ import {
 } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
-import { AudioService } from '../../../services/audio-service/audio.service';
-import { CustomSnackbarComponent } from '../../custom-snackbar/custom-snackbar.component';
-import { LogoEffectsComponent } from '../../../logo-effects/logo-effects.component';
+import { AudioService } from '../../../../services/audio-service/audio.service';
+import { CustomSnackbarComponent } from '../../../components/custom-snackbar/custom-snackbar.component';
+import { LogoEffectsComponent } from '../../../../logo-effects/logo-effects.component';
 
 @Component({
   selector: 'app-nav-bar',

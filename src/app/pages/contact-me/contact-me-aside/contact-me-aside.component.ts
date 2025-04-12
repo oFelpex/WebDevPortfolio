@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { SocialLinksComponent } from '../../../shared/social-links/social-links.component';
+import { SocialLinksComponent } from '../../../shared/components/social-links/social-links.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AudioService } from '../../../services/audio-service/audio.service';
 import { ThemeService } from '../../../services/theme-service/theme.service';
 import { Themes } from '../../../models/themes';
-import { CustomSnackbarComponent } from '../../../shared/custom-snackbar/custom-snackbar.component';
+import { CustomSnackbarComponent } from '../../../shared/components/custom-snackbar/custom-snackbar.component';
 
 @Component({
   selector: 'app-contact-me-aside',

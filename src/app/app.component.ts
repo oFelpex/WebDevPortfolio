@@ -11,14 +11,14 @@ import {
 
 import { MatIconRegistry } from '@angular/material/icon';
 
-import { LoadingComponent } from './shared/loading/loading.component';
+import { LoadingComponent } from './shared/components/loading/loading.component';
 import { LoadingService } from './services/loading-service/loading.service';
 
 import { TranslateService } from '@ngx-translate/core';
 
-import { HeaderComponent } from './shared/header/header.component';
+import { HeaderComponent } from './shared/components/header/header.component';
 import { ThemeService } from './services/theme-service/theme.service';
-import { ShowSoundboardButtonComponent } from './shared/soundboard/show-soundboard-button/show-soundboard-button.component';
+import { ShowSoundboardButtonComponent } from './shared/components/soundboard/show-soundboard-button/show-soundboard-button.component';
 
 @Component({
   selector: 'app-root',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { SocialLinksComponent } from '../../../shared/social-links/social-links.component';
+import { SocialLinksComponent } from '../../../shared/components/social-links/social-links.component';
 
 import { MatDividerModule } from '@angular/material/divider';
 

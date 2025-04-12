@@ -1,7 +1,7 @@
 import { Component, Inject, inject } from '@angular/core';
-import { ThemeService } from '../../services/theme-service/theme.service';
-import { AudioService } from '../../services/audio-service/audio.service';
-import { Themes } from '../../models/themes';
+import { ThemeService } from '../../../services/theme-service/theme.service';
+import { AudioService } from '../../../services/audio-service/audio.service';
+import { Themes } from '../../../models/themes';
 import {
   MAT_SNACK_BAR_DATA,
   MatSnackBarRef,

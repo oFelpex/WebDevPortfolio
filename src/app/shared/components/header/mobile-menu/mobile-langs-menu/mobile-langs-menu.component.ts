@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { Themes } from '../../../../models/themes';
+import { Themes } from '../../../../../models/themes';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MobileMenuComponent } from '../mobile-menu.component';
-import { ThemeService } from '../../../../services/theme-service/theme.service';
+import { ThemeService } from '../../../../../services/theme-service/theme.service';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
@@ -15,9 +15,9 @@ import {
 } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AudioService } from '../../../../services/audio-service/audio.service';
-import { CustomSnackbarComponent } from '../../../custom-snackbar/custom-snackbar.component';
-import { ResponsiveService } from '../../../../services/responsive-service/responsive.service';
+import { AudioService } from '../../../../../services/audio-service/audio.service';
+import { CustomSnackbarComponent } from '../../../../components/custom-snackbar/custom-snackbar.component';
+import { ResponsiveService } from '../../../../../services/responsive-service/responsive.service';
 
 @Component({
   selector: 'app-mobile-langs-menu',
