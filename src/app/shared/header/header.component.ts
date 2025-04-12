@@ -1,9 +1,10 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 
 import { MobileMenuService } from '../../services/mobile-menu-service/mobile-menu.service';
+import { ResponsiveService } from '../../services/responsive-service/responsive.service';
 
 @Component({
   selector: 'app-header',
@@ -12,16 +13,20 @@ import { MobileMenuService } from '../../services/mobile-menu-service/mobile-men
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  constructor(private mobileMenuService: MobileMenuService) {}
-  isMobile: boolean = window.innerWidth <= 820;
+  private mobileMenuService: MobileMenuService;
+  private responsiveService: ResponsiveService;
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.isMobile = event.target.innerWidth <= 820;
-    if (event.target.innerWidth <= 820) {
-      if (!this.isMobile) {
-        this.mobileMenuService.toggleMobileMenu();
-      }
-    }
+  public isMobile: boolean = window.innerWidth <= 820;
+
+  constructor() {
+    this.mobileMenuService = inject(MobileMenuService);
+    this.responsiveService = inject(ResponsiveService);
+  }
+
+  ngOnInit() {
+    this.responsiveService.isMobile$.subscribe((isMobile) => {
+      this.isMobile = isMobile;
+      if (!this.isMobile) this.mobileMenuService.closeMobileMenu();
+    });
   }
 }

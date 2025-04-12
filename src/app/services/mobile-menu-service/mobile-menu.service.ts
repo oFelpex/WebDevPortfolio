@@ -6,7 +6,6 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class MobileMenuService {
-  private menuState = new BehaviorSubject<boolean>(false);
   private mobileMenu!: MatDrawer;
 
   setDrawer(mobileMenu: MatDrawer) {
@@ -27,6 +26,13 @@ export class MobileMenuService {
   }
   toggleMobileMenu() {
     if (this.mobileMenu) {
+      this.mobileMenu.toggle();
+      this.changePointerEvents();
+    }
+  }
+
+  closeMobileMenu() {
+    if (this.mobileMenu.opened) {
       this.mobileMenu.toggle();
       this.changePointerEvents();
     }
