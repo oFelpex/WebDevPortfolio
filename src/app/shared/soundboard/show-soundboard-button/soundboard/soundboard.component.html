@@ -1,4 +1,7 @@
-<div id="soundboard">
+<div
+  id="soundboard"
+  [@fadeInDownToUp_fadeOutUpToDown_state]="showSoundboard ? 'show' : 'hide'"
+>
   <div id="soundboard-bg"></div>
   <h3 id="main-title">{{ "SOUNDBOARD.SOUNDBOARD" | translate }}</h3>
 
@@ -8,40 +11,40 @@
       mode="determinate"
       [value]="progress * 100"
     ></mat-progress-bar>
-  </div>
 
-  <div id="music-actions">
-    <button
-      class="action-button"
-      mat-icon-button
-      (click)="
-        previousMusic();
-        playClickSound(getNameOfActualThemeFromLocalStorage.name)
-      "
-    >
-      <mat-icon style="font-family: Material Icons"> skip_previous </mat-icon>
-    </button>
-    <button
-      class="action-button"
-      mat-icon-button
-      (click)="
-        playOrStopMusic();
-        playClickSound(getNameOfActualThemeFromLocalStorage.name)
-      "
-    >
-      <mat-icon style="font-family: Material Icons">
-        {{ isPlaying() ? "pause" : "play_arrow" }}
-      </mat-icon>
-    </button>
-    <button
-      class="action-button"
-      mat-icon-button
-      (click)="
-        nextMusic(); playClickSound(getNameOfActualThemeFromLocalStorage.name)
-      "
-    >
-      <mat-icon style="font-family: Material Icons"> skip_next </mat-icon>
-    </button>
+    <div id="music-actions">
+      <button
+        class="action-button"
+        mat-icon-button
+        (click)="
+          previousMusic();
+          playClickSound(getNameOfActualThemeFromLocalStorage.name)
+        "
+      >
+        <mat-icon style="font-family: Material Icons"> skip_previous </mat-icon>
+      </button>
+      <button
+        class="action-button"
+        mat-icon-button
+        (click)="
+          playOrStopMusic();
+          playClickSound(getNameOfActualThemeFromLocalStorage.name)
+        "
+      >
+        <mat-icon style="font-family: Material Icons">
+          {{ isPlaying() ? "pause" : "play_arrow" }}
+        </mat-icon>
+      </button>
+      <button
+        class="action-button"
+        mat-icon-button
+        (click)="
+          nextMusic(); playClickSound(getNameOfActualThemeFromLocalStorage.name)
+        "
+      >
+        <mat-icon style="font-family: Material Icons"> skip_next </mat-icon>
+      </button>
+    </div>
   </div>
 
   <div id="sfx-slider-container">

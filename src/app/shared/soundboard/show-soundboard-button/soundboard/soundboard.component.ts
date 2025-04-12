@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 
 import { MatSliderModule } from '@angular/material/slider';
@@ -10,6 +10,7 @@ import { Themes } from '../../../../models/themes';
 import { AudioService } from '../../../../services/audio-service/audio.service';
 import { ThemeService } from '../../../../services/theme-service/theme.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { fadeInDownToUp_fadeOutUpToDown_state } from '../../../animations/fadeAndTranslate-animations';
 @Component({
   selector: 'app-soundboard',
   imports: [
@@ -21,8 +22,11 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   templateUrl: './soundboard.component.html',
   styleUrl: './soundboard.component.scss',
+  animations: [fadeInDownToUp_fadeOutUpToDown_state],
 })
 export class SoundboardComponent implements OnInit, OnDestroy {
+  @Input() showSoundboard: boolean = false;
+
   private audioService: AudioService;
   private themeService: ThemeService;
   private savedSfxVolume: number = 50;
