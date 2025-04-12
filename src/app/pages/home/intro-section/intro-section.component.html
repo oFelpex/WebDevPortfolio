@@ -1,7 +1,9 @@
 <main id="intro-section">
   <div
     id="intro-section-main"
-    [@getDownToUp_getUptoDown]="showNavigationCards ? 'getUp' : 'getDown'"
+    [@getDownToUp_getUptoDown_introSection]="
+      showNavigationCards ? 'getUp' : 'getDown'
+    "
   >
     <h1>
       {{ "INTRO-PAGE.HELLO" | translate }} 👋 <br />{{
@@ -12,8 +14,9 @@
     <h2>{{ "INTRO-PAGE.I'M-A" | translate }}<span class="auto-type"></span></h2>
     <button
       id="intro-section-button"
-      mat-icon-button
+      mat-mini-fab
       aria-label="Button to leave you to next section of the page."
+      [class.open]="showNavigationCards"
       (click)="
         toggleNavigationCards();
         playClickSound(getNameOfActualThemeFromLocalStorage.name)

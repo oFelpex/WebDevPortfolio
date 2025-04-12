@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 
 import { NavigationCardsComponent } from './navigation-cards/navigation-cards.component';
-import { getDownToUp_getUptoDown } from '../../../shared/animations/translate-animations';
+import { getDownToUp_getUptoDown_introSection } from '../../../shared/animations/translate-animations';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -27,7 +27,7 @@ import { AudioService } from '../../../services/audio-service/audio.service';
   ],
   templateUrl: './intro-section.component.html',
   styleUrl: './intro-section.component.scss',
-  animations: [getDownToUp_getUptoDown],
+  animations: [getDownToUp_getUptoDown_introSection],
 })
 export class IntroSectionComponent implements OnInit, OnDestroy {
   private translate: TranslateService;
@@ -91,13 +91,6 @@ export class IntroSectionComponent implements OnInit, OnDestroy {
       behavior: 'smooth',
     });
     this.showNavigationCards = !this.showNavigationCards;
-    let introSectionButtonIcon = document.querySelector(
-      '.intro-section-button-icon'
-    ) as HTMLElement;
-    introSectionButtonIcon.style.transition = '0.3s';
-    this.showNavigationCards
-      ? (introSectionButtonIcon.style.transform = 'rotate(180deg)')
-      : (introSectionButtonIcon.style.transform = 'rotate(0deg)');
   }
 
   public get getNameOfActualThemeFromLocalStorage(): Themes {

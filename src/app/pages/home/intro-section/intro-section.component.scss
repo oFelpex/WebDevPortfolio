@@ -26,6 +26,7 @@
 
       .intro-section-button-icon {
         font-family: "Material Icons";
+        transition: transform 0.3s ease;
       }
 
       @keyframes float {
@@ -35,6 +36,12 @@
 
         to {
           transform: scale(1.2);
+        }
+      }
+
+      &.open {
+        .intro-section-button-icon {
+          transform: rotate(180deg);
         }
       }
     }
