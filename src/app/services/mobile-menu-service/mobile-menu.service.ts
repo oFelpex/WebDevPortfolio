@@ -6,12 +6,13 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class MobileMenuService {
-  private mobileMenu!: MatDrawer;
+  public mobileMenu!: MatDrawer;
 
-  setDrawer(mobileMenu: MatDrawer) {
+  public setDrawer(mobileMenu: MatDrawer) {
     this.mobileMenu = mobileMenu;
   }
-  changePointerEvents() {
+
+  public changePointerEvents() {
     if (this.mobileMenu) {
       if (this.mobileMenu.opened) {
         (
@@ -24,15 +25,9 @@ export class MobileMenuService {
       }
     }
   }
-  toggleMobileMenu() {
-    if (this.mobileMenu) {
-      this.mobileMenu.toggle();
-      this.changePointerEvents();
-    }
-  }
 
-  closeMobileMenu() {
-    if (this.mobileMenu.opened) {
+  public toggleMobileMenu() {
+    if (this.mobileMenu) {
       this.mobileMenu.toggle();
       this.changePointerEvents();
     }

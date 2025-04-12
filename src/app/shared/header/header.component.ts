@@ -26,7 +26,9 @@ export class HeaderComponent {
   ngOnInit() {
     this.responsiveService.isMobile$.subscribe((isMobile) => {
       this.isMobile = isMobile;
-      if (!this.isMobile) this.mobileMenuService.closeMobileMenu();
+      if (!this.isMobile && this.mobileMenuService.mobileMenu)
+        if (this.mobileMenuService.mobileMenu.opened)
+          this.mobileMenuService.toggleMobileMenu();
     });
   }
 }
