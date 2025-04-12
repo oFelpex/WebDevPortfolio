@@ -1,13 +1,22 @@
-<div id="button-container">
+<div
+  id="show-soundboard-button-container"
+  [@getUp_return]="showSoundboard ? 'getUp' : 'return'"
+>
   <button
-    (click)="showSoundboard = !showSoundboard"
+    (click)="
+      showSoundboard = !showSoundboard;
+      playClickSound(getNameOfActualThemeFromLocalStorage.name)
+    "
+    [class.open]="showSoundboard"
     mat-mini-fab
     aria-label="Click to appear the soundboard, so you can configure the audio."
   >
-    menu
+    <mat-icon
+      id="show-soundboard-button-arrow"
+      style="font-family: Material Icons"
+      >keyboard_arrow_down</mat-icon
+    >
   </button>
 </div>
 
-@if(showSoundboard) {
-<app-soundboard></app-soundboard>
-}
+<app-soundboard [showSoundboard]="showSoundboard"></app-soundboard>

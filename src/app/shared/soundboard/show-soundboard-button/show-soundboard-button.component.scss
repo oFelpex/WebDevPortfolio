@@ -1,12 +1,19 @@
-#button-container {
+#show-soundboard-button-container {
   position: fixed;
-  top: 80%;
-  right: 0;
+  bottom: 10%;
+  right: 135px;
   width: 70px;
   height: 70px;
 
   button {
     width: 100%;
     height: 100%;
+    transition: transform 0.3s ease;
+
+    &.open {
+      #show-soundboard-button-arrow {
+        transform: rotate(180deg);
+      }
+    }
   }
 }
