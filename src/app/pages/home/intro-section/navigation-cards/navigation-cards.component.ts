@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
-import { fadeInDownToUp_fadeOutUpToDown } from '../../../../shared/animations/fadeAndTranslate-animations';
+import { fadeInDownToUp_fadeOutUpToDown_enter } from '../../../../shared/animations/fadeAndTranslate-animations';
 
 import { TranslateModule } from '@ngx-translate/core';
 import { AudioService } from '../../../../services/audio-service/audio.service';
@@ -15,7 +15,7 @@ import { Themes } from '../../../../models/themes';
   imports: [RouterModule, MatCardModule, MatButtonModule, TranslateModule],
   templateUrl: './navigation-cards.component.html',
   styleUrl: './navigation-cards.component.scss',
-  animations: [fadeInDownToUp_fadeOutUpToDown],
+  animations: [fadeInDownToUp_fadeOutUpToDown_enter],
 })
 export class NavigationCardsComponent {
   @Input() showNavigationCards: boolean = false;

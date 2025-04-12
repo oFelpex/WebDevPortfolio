@@ -9,8 +9,8 @@ import {
 } from '@angular/animations';
 
 // Home: navigation-cards
-export const fadeInDownToUp_fadeOutUpToDown = trigger(
-  'fadeInDownToUp_fadeOutUpToDown',
+export const fadeInDownToUp_fadeOutUpToDown_enter = trigger(
+  'fadeInDownToUp_fadeOutUpToDown_enter',
   [
     transition(':enter', [
       style({ opacity: 0, transform: 'translateY(100px)' }),
@@ -25,6 +25,29 @@ export const fadeInDownToUp_fadeOutUpToDown = trigger(
         style({ opacity: 0, transform: 'translateY(100px)' })
       ),
     ]),
+  ]
+);
+
+export const fadeInDownToUp_fadeOutUpToDown_state = trigger(
+  'fadeInDownToUp_fadeOutUpToDown_state',
+  [
+    state(
+      'hide',
+      style({
+        opacity: 0,
+        visibility: 'hidden',
+        transform: 'translateY(200px)',
+      })
+    ),
+    state(
+      'show',
+      style({
+        opacity: 1,
+        visibility: 'visible',
+        width: 'translateY(0px)',
+      })
+    ),
+    transition('hide <=> show', animate('300ms ease-in-out')),
   ]
 );
 
