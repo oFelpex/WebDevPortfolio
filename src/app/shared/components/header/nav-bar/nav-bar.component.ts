@@ -121,9 +121,27 @@ export class NavBarComponent implements OnInit, OnDestroy {
   }
 
   public toggleMobileNavMenu() {
+    if (this.mobileSoundboardMenuService.mobileSoundboardMenu) {
+      if (this.mobileSoundboardMenuService.mobileSoundboardMenu.opened) {
+        this.mobileNavMenuService.toggleMobileNavMenu();
+        this.mobileSoundboardMenuService.toggleMobileSoundboardMenu();
+        return;
+      }
+      this.mobileNavMenuService.toggleMobileNavMenu();
+      return;
+    }
     this.mobileNavMenuService.toggleMobileNavMenu();
   }
   public toggleMobileSoundboardMenu() {
+    if (this.mobileNavMenuService.mobileNavMenu) {
+      if (this.mobileNavMenuService.mobileNavMenu.opened) {
+        this.mobileSoundboardMenuService.toggleMobileSoundboardMenu();
+        this.mobileNavMenuService.toggleMobileNavMenu();
+        return;
+      }
+      this.mobileSoundboardMenuService.toggleMobileSoundboardMenu();
+      return;
+    }
     this.mobileSoundboardMenuService.toggleMobileSoundboardMenu();
   }
 
