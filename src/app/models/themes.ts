@@ -13,24 +13,24 @@ export interface Themes {
   name: ThemeCategory;
 }
 export const gamesOptions: Themes[] = [
-  {
-    name: 'God Of War',
-  },
-  {
-    name: 'The Witcher 3',
-  },
-  {
-    name: 'Cyberpunk',
-  },
-  {
-    name: 'Elden Ring',
-  },
-  {
-    name: 'Hollow Knight',
-  },
-  {
-    name: 'Undertale',
-  },
+  // {
+  //   name: 'God Of War',
+  // },
+  // {
+  //   name: 'The Witcher 3',
+  // },
+  // {
+  //   name: 'Cyberpunk',
+  // },
+  // {
+  //   name: 'Elden Ring',
+  // },
+  // {
+  //   name: 'Hollow Knight',
+  // },
+  // {
+  //   name: 'Undertale',
+  // },
   {
     name: 'Minecraft',
   },
