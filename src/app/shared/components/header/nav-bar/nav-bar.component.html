@@ -17,10 +17,6 @@
       <!-- change the "Felpex" logo when change theme -->
       @if(getTypeOfActualThemeFromLocalStorage === "Games") {
       <app-logo-effects></app-logo-effects>
-      } @else {
-      <h1 id="navBar-logo">Felpex</h1>
-      }
-
       <div class="navBar-buttons-container">
         <button
           mat-mini-fab
@@ -33,6 +29,10 @@
           <mat-icon class="menuButton-icon">headphones</mat-icon>
         </button>
       </div>
+      } @else {
+      <h1 id="navBar-logo">Felpex</h1>
+      <div id="blank-space"></div>
+      }
     </div>
 
     <mat-list id="navBar-list">

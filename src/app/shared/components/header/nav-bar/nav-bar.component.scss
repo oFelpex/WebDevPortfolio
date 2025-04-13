@@ -90,8 +90,13 @@
         justify-content: space-evenly;
 
         #navBar-logo {
+          position: fixed;
           font-size: 2.5rem;
           text-align: center;
+        }
+
+        #blank-space {
+          width: 190px;
         }
 
         .navBar-buttons-container {
