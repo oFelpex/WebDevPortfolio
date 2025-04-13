@@ -19,6 +19,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { ThemeService } from './services/theme-service/theme.service';
 import { ShowSoundboardButtonComponent } from './shared/components/soundboard/show-soundboard-button/show-soundboard-button.component';
+import { ResponsiveService } from './services/responsive-service/responsive.service';
 
 @Component({
   selector: 'app-root',
@@ -36,13 +37,16 @@ export class AppComponent implements OnInit {
   private router: Router;
   private translate: TranslateService;
   private themeService: ThemeService;
-  public isLoading = false;
+  private responsiveService: ResponsiveService;
+  public isMobile: boolean = false;
+  public isLoading: boolean = false;
 
   constructor() {
     this.translate = inject(TranslateService);
     this.router = inject(Router);
     this.loadingService = inject(LoadingService);
     this.themeService = inject(ThemeService);
+    this.responsiveService = inject(ResponsiveService);
 
     const matIconRegistry = inject(MatIconRegistry);
     const domSanitizer = inject(DomSanitizer);
@@ -83,6 +87,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.responsiveService.isMobile$.subscribe((isMobile) => {
+      this.isMobile = isMobile;
+    });
     this.translate.addLangs(['en-US', 'pt-BR']);
 
     let lang = localStorage.getItem('lang');
