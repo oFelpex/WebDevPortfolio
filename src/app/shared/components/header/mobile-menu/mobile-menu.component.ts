@@ -2,7 +2,7 @@ import { AfterViewChecked, Component, inject, ViewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { MobileMenuService } from '../../../../services/mobile-menu-service/mobile-menu.service';
+import { MobileNavMenuService } from '../../../../services/mobile-menu-service/mobile-nav-menu.service';
 import { MobileThemeMenuSheetComponent } from './mobile-theme-menu/mobile-theme-menu.component';
 import { SocialLinksComponent } from '../../../components/social-links/social-links.component';
 import { MobileLangsMenuSheetComponent } from './mobile-langs-menu/mobile-langs-menu.component';
@@ -33,13 +33,13 @@ import { MatDividerModule } from '@angular/material/divider';
 export class MobileMenuComponent implements AfterViewChecked {
   @ViewChild('mobileMenu') mobileMenu!: MatDrawer;
 
-  private mobileMenuService: MobileMenuService;
+  private mobileMenuService: MobileNavMenuService;
   private audioService: AudioService;
   private themeService: ThemeService;
   private _bottomSheet: MatBottomSheet;
 
   constructor() {
-    this.mobileMenuService = inject(MobileMenuService);
+    this.mobileMenuService = inject(MobileNavMenuService);
     this.audioService = inject(AudioService);
     this.themeService = inject(ThemeService);
     this._bottomSheet = inject(MatBottomSheet);

@@ -5,16 +5,16 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class MobileMenuService {
-  public mobileMenu!: MatDrawer;
+export class MobileNavMenuService {
+  public mobileNavMenu!: MatDrawer;
 
   public setDrawer(mobileMenu: MatDrawer) {
-    this.mobileMenu = mobileMenu;
+    this.mobileNavMenu = mobileMenu;
   }
 
   public changePointerEvents() {
-    if (this.mobileMenu) {
-      if (this.mobileMenu.opened) {
+    if (this.mobileNavMenu) {
+      if (this.mobileNavMenu.opened) {
         (
           document.querySelector('.mat-drawer-container') as HTMLElement
         ).style.pointerEvents = 'all';
@@ -27,8 +27,8 @@ export class MobileMenuService {
   }
 
   public toggleMobileMenu() {
-    if (this.mobileMenu) {
-      this.mobileMenu.toggle();
+    if (this.mobileNavMenu) {
+      this.mobileNavMenu.toggle();
       this.changePointerEvents();
     }
   }

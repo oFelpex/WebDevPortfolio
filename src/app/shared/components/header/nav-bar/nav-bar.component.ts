@@ -11,7 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { MobileMenuService } from '../../../../services/mobile-menu-service/mobile-menu.service';
+import { MobileNavMenuService } from '../../../../services/mobile-menu-service/mobile-nav-menu.service';
 import { ThemeService } from '../../../../services/theme-service/theme.service';
 import { Themes } from '../../../../models/themes';
 import { SocialLinksComponent } from '../../../components/social-links/social-links.component';
@@ -49,7 +49,7 @@ import { LogoEffectsComponent } from '../../../../logo-effects/logo-effects.comp
 })
 export class NavBarComponent implements OnInit, OnDestroy {
   private themeService: ThemeService;
-  private mobileMenuService: MobileMenuService;
+  private mobileMenuService: MobileNavMenuService;
   private translate: TranslateService;
   private snackBar: MatSnackBar;
   private router: Router;
@@ -61,7 +61,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.translate = inject(TranslateService);
-    this.mobileMenuService = inject(MobileMenuService);
+    this.mobileMenuService = inject(MobileNavMenuService);
     this.themeService = inject(ThemeService);
     this.snackBar = inject(MatSnackBar);
     this.router = inject(Router);

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MobileMenuService } from './mobile-menu.service';
+import { MobileNavMenuService } from './mobile-nav-menu.service';
 
 describe('MobileMenuService', () => {
-  let service: MobileMenuService;
+  let service: MobileNavMenuService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MobileMenuService);
+    service = TestBed.inject(MobileNavMenuService);
   });
 
   it('should be created', () => {
