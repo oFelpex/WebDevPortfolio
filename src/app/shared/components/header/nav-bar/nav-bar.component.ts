@@ -49,7 +49,7 @@ import { LogoEffectsComponent } from '../../../../logo-effects/logo-effects.comp
 })
 export class NavBarComponent implements OnInit, OnDestroy {
   private themeService: ThemeService;
-  private mobileMenuService: MobileNavMenuService;
+  private mobileNavMenuService: MobileNavMenuService;
   private translate: TranslateService;
   private snackBar: MatSnackBar;
   private router: Router;
@@ -61,7 +61,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.translate = inject(TranslateService);
-    this.mobileMenuService = inject(MobileNavMenuService);
+    this.mobileNavMenuService = inject(MobileNavMenuService);
     this.themeService = inject(ThemeService);
     this.snackBar = inject(MatSnackBar);
     this.router = inject(Router);
@@ -114,7 +114,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
   }
 
   public toggleMobileMenu() {
-    this.mobileMenuService.toggleMobileMenu();
+    this.mobileNavMenuService.toggleMobileMenu();
   }
   public toggleMobileSoundboard() {
     console.log('calma');

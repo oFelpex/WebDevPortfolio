@@ -13,22 +13,22 @@ import { ResponsiveService } from '../../../services/responsive-service/responsi
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  private mobileMenuService: MobileNavMenuService;
+  private mobileNavMenuService: MobileNavMenuService;
   private responsiveService: ResponsiveService;
 
   public isMobile: boolean = window.innerWidth <= 820;
 
   constructor() {
-    this.mobileMenuService = inject(MobileNavMenuService);
+    this.mobileNavMenuService = inject(MobileNavMenuService);
     this.responsiveService = inject(ResponsiveService);
   }
 
   ngOnInit() {
     this.responsiveService.isMobile$.subscribe((isMobile) => {
       this.isMobile = isMobile;
-      if (!this.isMobile && this.mobileMenuService.mobileNavMenu)
-        if (this.mobileMenuService.mobileNavMenu.opened)
-          this.mobileMenuService.toggleMobileMenu();
+      if (!this.isMobile && this.mobileNavMenuService.mobileNavMenu)
+        if (this.mobileNavMenuService.mobileNavMenu.opened)
+          this.mobileNavMenuService.toggleMobileMenu();
     });
   }
 }

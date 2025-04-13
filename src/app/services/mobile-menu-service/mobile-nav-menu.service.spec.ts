@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { MobileNavMenuService } from './mobile-nav-menu.service';
 
-describe('MobileMenuService', () => {
+describe('MobileNavMenuService', () => {
   let service: MobileNavMenuService;
 
   beforeEach(() => {

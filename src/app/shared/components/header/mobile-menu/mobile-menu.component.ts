@@ -33,25 +33,26 @@ import { MatDividerModule } from '@angular/material/divider';
 export class MobileMenuComponent implements AfterViewChecked {
   @ViewChild('mobileMenu') mobileMenu!: MatDrawer;
 
-  private mobileMenuService: MobileNavMenuService;
+  private mobileNavMenuService: MobileNavMenuService;
   private audioService: AudioService;
   private themeService: ThemeService;
   private _bottomSheet: MatBottomSheet;
 
   constructor() {
-    this.mobileMenuService = inject(MobileNavMenuService);
+    this.mobileNavMenuService = inject(MobileNavMenuService);
     this.audioService = inject(AudioService);
     this.themeService = inject(ThemeService);
     this._bottomSheet = inject(MatBottomSheet);
   }
 
   ngAfterViewChecked() {
-    this.mobileMenuService.setDrawer(this.mobileMenu);
-    this.mobileMenuService.changePointerEvents();
+    this.mobileNavMenuService.setDrawer(this.mobileMenu);
+
+    this.mobileNavMenuService.changePointerEvents();
   }
 
   toggleFromComponent() {
-    this.mobileMenuService.toggleMobileMenu();
+    this.mobileNavMenuService.toggleMobileMenu();
   }
 
   openThemeMenu(): void {
