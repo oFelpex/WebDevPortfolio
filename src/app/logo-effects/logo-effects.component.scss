@@ -1,6 +1,5 @@
 #navBar-custom-logo {
   padding: 0;
-  margin-left: 8px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -15,7 +14,6 @@
 
 @media (max-width: 820px) {
   #navBar-custom-logo {
-    padding-right: 65px;
     img {
       min-height: 10px;
       max-height: 50px;
