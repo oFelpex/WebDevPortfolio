@@ -14,7 +14,7 @@
     justify-content: space-evenly;
     gap: 5px;
 
-    #navBar-logoAndButton {
+    #navBar-logoAndButtons {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -32,7 +32,7 @@
         }
       }
 
-      #navBar-menuButton-container {
+      .navBar-buttons-container {
         display: none;
         font-family: "Material Icons";
       }
@@ -84,22 +84,20 @@
     }
 
     @media (max-width: 820px) {
-      #navBar-logoAndButton {
+      #navBar-logoAndButtons {
         display: flex;
         align-items: center;
+        justify-content: space-evenly;
 
         #navBar-logo {
-          padding-right: 85px;
-          padding-left: 10px;
           font-size: 2.5rem;
           text-align: center;
         }
 
-        #navBar-menuButton-container {
+        .navBar-buttons-container {
           display: flex;
           align-content: center;
           justify-content: center;
-          width: 70px;
 
           .menuButton-icon {
             font-family: "Material Icons";

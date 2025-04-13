@@ -116,6 +116,9 @@ export class NavBarComponent implements OnInit, OnDestroy {
   public toggleMobileMenu() {
     this.mobileMenuService.toggleMobileMenu();
   }
+  public toggleMobileSoundboard() {
+    console.log('calma');
+  }
 
   public get gamesOptions(): Themes[] {
     return this.themeService.getGamesNames();

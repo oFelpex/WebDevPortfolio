@@ -1,7 +1,7 @@
 <mat-toolbar id="navBar">
   <div id="navBar-container">
-    <div id="navBar-logoAndButton">
-      <div id="navBar-menuButton-container">
+    <div id="navBar-logoAndButtons">
+      <div class="navBar-buttons-container">
         <button
           mat-mini-fab
           aria-label="Button to show the menu"
@@ -20,6 +20,19 @@
       } @else {
       <h1 id="navBar-logo">Felpex</h1>
       }
+
+      <div class="navBar-buttons-container">
+        <button
+          mat-mini-fab
+          aria-label="Button to show the soundboard"
+          (click)="
+            toggleMobileSoundboard();
+            playClickSound(getNameOfActualThemeFromLocalStorage.name)
+          "
+        >
+          <mat-icon class="menuButton-icon">headphones</mat-icon>
+        </button>
+      </div>
     </div>
 
     <mat-list id="navBar-list">
