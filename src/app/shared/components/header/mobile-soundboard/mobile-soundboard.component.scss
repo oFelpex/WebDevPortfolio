@@ -13,5 +13,103 @@
     width: 50%;
     height: 100%;
     border-radius: 0px;
+
+    #mobileSoundboard {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      padding: 15px;
+      padding-bottom: 100px;
+
+      #main-title {
+        text-align: center;
+      }
+
+      #sfx-slider-container,
+      #music-slider-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+
+        #sfx-slider,
+        #music-slider {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 90%;
+
+          .slider-bg {
+            position: absolute;
+            height: 30px;
+            width: calc(100% + 23px);
+            box-shadow: 0px 0px 10px black;
+          }
+        }
+
+        .sub-title {
+          font-size: small;
+          padding: 15px 15px 15px 19px;
+        }
+      }
+
+      #sfx-slider-container,
+      #music-slider-container {
+        flex-direction: column;
+        div {
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+          flex-wrap: nowrap;
+          width: 100%;
+          gap: 20px;
+        }
+      }
+      #music-slider-container {
+        #music-progress-container {
+          display: flex;
+          flex-direction: column;
+          flex-wrap: nowrap;
+          width: 100%;
+
+          #music-title {
+            margin-top: 10px;
+            margin-bottom: -15px;
+            font-size: medium;
+            text-align: center;
+          }
+
+          #music-actions {
+            margin-top: -10px;
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 100px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 410px) {
+  #mobileSoundboard {
+    justify-content: center;
+  }
+  #sfx-slider-container,
+  #music-slider-container {
+    div {
+      flex-direction: column;
+    }
+  }
+  .mute-button {
+    display: none;
   }
 }

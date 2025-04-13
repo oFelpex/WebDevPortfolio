@@ -4,6 +4,142 @@
     class="mobileSoundboard-sidenav"
     mode="over"
     position="end"
-    >dsadsa
+  >
+    <div id="mobileSoundboard">
+      <div id="main-title">
+        <h3>{{ "SOUNDBOARD.SOUNDBOARD" | translate }}</h3>
+      </div>
+      <mat-divider style="width: 100%"></mat-divider>
+      <div id="sfx-slider-container">
+        <h4 class="sub-title">{{ "SOUNDBOARD.SFX-VOLUME" | translate }}</h4>
+
+        <div>
+          <mat-slider
+            id="sfx-slider"
+            min="0"
+            max="100"
+            step="1"
+            showTickMarks
+            discrete
+            [displayWith]="formatLabel"
+          >
+            <div class="slider-bg"></div>
+            <input
+              [value]="sfxVolume"
+              (input)="setSfxVolume(sfxSlider.value)"
+              matSliderThumb
+              #sfxSlider
+            />
+          </mat-slider>
+          <button
+            class="mute-button"
+            mat-icon-button
+            (click)="
+              muteSfxVolume();
+              playClickSound(getNameOfActualThemeFromLocalStorage.name)
+            "
+          >
+            <mat-icon style="font-family: Material Icons">
+              {{
+                sfxVolume === 0
+                  ? "volume_off"
+                  : sfxVolume < 50
+                  ? "volume_down"
+                  : "volume_up"
+              }}
+            </mat-icon>
+          </button>
+        </div>
+      </div>
+      <mat-divider style="width: 100%"></mat-divider>
+      <div id="music-slider-container">
+        <h4 class="sub-title">{{ "SOUNDBOARD.MUSIC-VOLUME" | translate }}</h4>
+
+        <div>
+          <mat-slider
+            id="music-slider"
+            min="0"
+            max="100"
+            step="1"
+            showTickMarks
+            discrete
+            [displayWith]="formatLabel"
+          >
+            <div class="slider-bg"></div>
+            <input
+              [value]="musicVolume"
+              (input)="setMusicVolume(musicSlider.value)"
+              matSliderThumb
+              #musicSlider
+            />
+          </mat-slider>
+          <button
+            class="mute-button"
+            mat-icon-button
+            (click)="
+              muteMusicVolume();
+              playClickSound(getNameOfActualThemeFromLocalStorage.name)
+            "
+          >
+            <mat-icon style="font-family: Material Icons">
+              {{
+                musicVolume === 0
+                  ? "volume_off"
+                  : musicVolume < 50
+                  ? "volume_down"
+                  : "volume_up"
+              }}
+            </mat-icon>
+          </button>
+        </div>
+
+        <div id="music-progress-container">
+          <h5 id="music-title">{{ currentMusic }} • {{ currentComposer }}</h5>
+          <mat-progress-bar
+            mode="determinate"
+            [value]="progress * 100"
+          ></mat-progress-bar>
+
+          <div id="music-actions">
+            <button
+              class="action-button"
+              mat-icon-button
+              (click)="
+                previousMusic();
+                playClickSound(getNameOfActualThemeFromLocalStorage.name)
+              "
+            >
+              <mat-icon style="font-family: Material Icons">
+                skip_previous
+              </mat-icon>
+            </button>
+            <button
+              class="action-button"
+              mat-icon-button
+              (click)="
+                playOrStopMusic();
+                playClickSound(getNameOfActualThemeFromLocalStorage.name)
+              "
+            >
+              <mat-icon style="font-family: Material Icons">
+                {{ isPlaying() ? "pause" : "play_arrow" }}
+              </mat-icon>
+            </button>
+            <button
+              class="action-button"
+              mat-icon-button
+              (click)="
+                nextMusic();
+                playClickSound(getNameOfActualThemeFromLocalStorage.name)
+              "
+            >
+              <mat-icon style="font-family: Material Icons">
+                skip_next
+              </mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </mat-drawer>
 </mat-drawer-container>
