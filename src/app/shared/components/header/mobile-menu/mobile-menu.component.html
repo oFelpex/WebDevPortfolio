@@ -1,5 +1,10 @@
-<mat-drawer-container class="mobileMenu-container" autosize>
-  <mat-drawer #mobileMenu class="mobileMenu-sidenav" mode="push">
+<mat-drawer-container id="mobileMenu-container" [hasBackdrop]="true" autosize>
+  <mat-drawer
+    #mobileNavMenu
+    class="mobileMenu-sidenav"
+    mode="over"
+    position="start"
+  >
     <mat-list>
       <mat-list-item [routerLink]="['/home']">{{
         "NAV-MOBILE.HOME" | translate

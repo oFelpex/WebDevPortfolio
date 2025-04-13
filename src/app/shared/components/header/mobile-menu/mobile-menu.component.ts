@@ -15,7 +15,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
-
 @Component({
   selector: 'app-mobile-menu',
   imports: [
@@ -31,7 +30,7 @@ import { MatDividerModule } from '@angular/material/divider';
   styleUrl: './mobile-menu.component.scss',
 })
 export class MobileMenuComponent implements AfterViewChecked {
-  @ViewChild('mobileMenu') mobileMenu!: MatDrawer;
+  @ViewChild('mobileNavMenu') mobileNavMenu!: MatDrawer;
 
   private mobileNavMenuService: MobileNavMenuService;
   private audioService: AudioService;
@@ -46,13 +45,9 @@ export class MobileMenuComponent implements AfterViewChecked {
   }
 
   ngAfterViewChecked() {
-    this.mobileNavMenuService.setDrawer(this.mobileMenu);
+    this.mobileNavMenuService.setMobileNavDrawer(this.mobileNavMenu);
 
-    this.mobileNavMenuService.changePointerEvents();
-  }
-
-  toggleFromComponent() {
-    this.mobileNavMenuService.toggleMobileMenu();
+    this.mobileNavMenuService.changeMobileNavPointerEvents();
   }
 
   openThemeMenu(): void {

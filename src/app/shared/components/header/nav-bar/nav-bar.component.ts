@@ -26,6 +26,7 @@ import { Subscription } from 'rxjs';
 import { AudioService } from '../../../../services/audio-service/audio.service';
 import { CustomSnackbarComponent } from '../../../components/custom-snackbar/custom-snackbar.component';
 import { LogoEffectsComponent } from '../../../../logo-effects/logo-effects.component';
+import { MobileSoundboardMenuService } from '../../../../services/mobile-soundboard-menu/mobile-soundboard-menu.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -50,10 +51,12 @@ import { LogoEffectsComponent } from '../../../../logo-effects/logo-effects.comp
 export class NavBarComponent implements OnInit, OnDestroy {
   private themeService: ThemeService;
   private mobileNavMenuService: MobileNavMenuService;
+  private mobileSoundboardMenuService: MobileSoundboardMenuService;
   private translate: TranslateService;
   private snackBar: MatSnackBar;
   private router: Router;
   private translateSubscription!: Subscription;
+  private routerSubscription!: Subscription;
   private audioService: AudioService;
   public currentRoute!: string;
   public currentLang!: string;
@@ -61,11 +64,14 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.translate = inject(TranslateService);
+
     this.mobileNavMenuService = inject(MobileNavMenuService);
+    this.mobileSoundboardMenuService = inject(MobileSoundboardMenuService);
+    this.audioService = inject(AudioService);
+
     this.themeService = inject(ThemeService);
     this.snackBar = inject(MatSnackBar);
     this.router = inject(Router);
-    this.audioService = inject(AudioService);
 
     const themeType = this.getTypeOfActualThemeFromLocalStorage;
     const themeName = this.getNameOfActualThemeFromLocalStorage.name;
@@ -82,7 +88,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
         this.currentLang = event.lang;
       });
 
-    this.router.events.subscribe((event) => {
+    this.routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = this.router.url;
       }
@@ -90,6 +96,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.routerSubscription.unsubscribe();
     this.translateSubscription.unsubscribe();
   }
 
@@ -113,11 +120,11 @@ export class NavBarComponent implements OnInit, OnDestroy {
     this.audioService.playClickSound(themeName);
   }
 
-  public toggleMobileMenu() {
-    this.mobileNavMenuService.toggleMobileMenu();
+  public toggleMobileNavMenu() {
+    this.mobileNavMenuService.toggleMobileNavMenu();
   }
-  public toggleMobileSoundboard() {
-    console.log('calma');
+  public toggleMobileSoundboardMenu() {
+    this.mobileSoundboardMenuService.toggleMobileSoundboardMenu();
   }
 
   public get gamesOptions(): Themes[] {

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,28 +7,28 @@ import { BehaviorSubject } from 'rxjs';
 export class MobileNavMenuService {
   public mobileNavMenu!: MatDrawer;
 
-  public setDrawer(mobileMenu: MatDrawer) {
+  public setMobileNavDrawer(mobileMenu: MatDrawer) {
     this.mobileNavMenu = mobileMenu;
   }
 
-  public changePointerEvents() {
+  public changeMobileNavPointerEvents() {
     if (this.mobileNavMenu) {
       if (this.mobileNavMenu.opened) {
         (
-          document.querySelector('.mat-drawer-container') as HTMLElement
+          document.getElementById('mobileMenu-container') as HTMLElement
         ).style.pointerEvents = 'all';
       } else {
         (
-          document.querySelector('.mat-drawer-container') as HTMLElement
+          document.getElementById('mobileMenu-container') as HTMLElement
         ).style.pointerEvents = 'none';
       }
     }
   }
 
-  public toggleMobileMenu() {
+  public toggleMobileNavMenu() {
     if (this.mobileNavMenu) {
       this.mobileNavMenu.toggle();
-      this.changePointerEvents();
+      this.changeMobileNavPointerEvents();
     }
   }
 }
