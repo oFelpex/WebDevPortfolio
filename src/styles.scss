@@ -5,6 +5,8 @@
 @use "./app/themes/colors/theme-dark.scss" as theme-dark;
 @use "./app/themes/colors/theme-cosmic.scss" as theme-cosmic;
 @use "./app/themes/games/theme-minecraft-colors.scss" as theme-minecraft-colors;
+@use "./app/themes/games/theme-the-witcher-3-colors.scss" as
+  theme-the-witcher-3-colors;
 @use "./app/themes/variables/variables" as var;
 
 @font-face {
@@ -146,6 +148,71 @@ body.minecraft-theme {
       color: (
         primary: theme-minecraft-colors.$primary-palette,
         tertiary: theme-minecraft-colors.$tertiary-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+// Theme: the-witcher-3-theme
+body.the-witcher-3-theme {
+  --background-color: #f1efec;
+  // background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg.webp");
+  color: #eaeaea;
+  text-shadow: 1px 1px 0px black;
+
+  *,
+  h1 {
+    font-family: "The Witcher", sans-serif;
+    text-shadow: 1px 1px 0px black;
+
+    mat-card {
+      // background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg-card.webp");
+      background-position: center bottom;
+      background-size: auto 300px;
+    }
+
+    button {
+      // background-image: url("./assets/themes/games/minecraft/buttons/minecraft-buttons.webp");
+      border-radius: 2px;
+      border: 2px solid black;
+      background-size: cover;
+      box-shadow: 0px 0px 5px black;
+
+      &:hover {
+        border-color: white;
+      }
+    }
+  }
+
+  #navBar {
+    background-color: #002e0f;
+    // background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg-nav-bar.webp");
+    background-position: center -120px;
+    background-size: auto 800px;
+  }
+
+  #soundboard {
+    #soundboard-bg {
+      background-color: #002e0f;
+      // background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg-soundboard.webp");
+      background-position: center center;
+      background-size: auto 300px;
+    }
+
+    .slider-bg {
+      border-radius: 5px;
+      border: 2px ridge;
+      background-color: rgb(78, 78, 78);
+    }
+  }
+
+  @include mat.theme(
+    (
+      color: (
+        primary: theme-the-witcher-3-colors.$primary-palette,
+        tertiary: theme-the-witcher-3-colors.$tertiary-palette,
       ),
       typography: Roboto,
       density: 0,
