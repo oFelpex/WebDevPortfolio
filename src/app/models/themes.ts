@@ -16,9 +16,9 @@ export const gamesOptions: Themes[] = [
   // {
   //   name: 'God Of War',
   // },
-  // {
-  //   name: 'The Witcher 3',
-  // },
+  {
+    name: 'The Witcher 3',
+  },
   // {
   //   name: 'Cyberpunk',
   // },
