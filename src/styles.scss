@@ -2,12 +2,13 @@
 // For more information: https://material.angular.io/guide/theming
 @use "reset.scss";
 @use "@angular/material" as mat;
-@use "./app/themes/colors/theme-dark.scss" as theme-dark;
-@use "./app/themes/colors/theme-cosmic.scss" as theme-cosmic;
-@use "./app/themes/games/theme-minecraft-colors.scss" as theme-minecraft-colors;
-@use "./app/themes/games/theme-the-witcher-3-colors.scss" as
+@use "./app/styles/themes/colors/theme-dark.scss" as theme-dark;
+@use "./app/styles/themes/colors/theme-cosmic.scss" as theme-cosmic;
+@use "./app/styles/themes/games/theme-minecraft-colors.scss" as
+  theme-minecraft-colors;
+@use "./app/styles/themes/games/theme-the-witcher-3-colors.scss" as
   theme-the-witcher-3-colors;
-@use "./app/themes/variables/variables" as var;
+@use "./app/styles/themes/variables/variables" as var;
 
 @font-face {
   font-family: "Roboto";
@@ -157,7 +158,7 @@ body.minecraft-theme {
 
 // Theme: the-witcher-3-theme
 body.the-witcher-3-theme {
-  --background-color: #f1efec;
+  --background-color: #060606;
   // background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg.webp");
   color: #eaeaea;
   text-shadow: 1px 1px 0px black;
