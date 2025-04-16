@@ -1,9 +1,11 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, Type } from '@angular/core';
 import { colorsOptions, defaultTheme, Themes } from '../../models/themes';
 import { gamesOptions } from '../../models/themes';
 import { BehaviorSubject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomSnackbarComponent } from '../../shared/components/custom-snackbar/custom-snackbar.component';
+import { Tw3NavBarComponent } from '../../themes/components/games/the-witcher-3/tw3-header/tw3-header.component';
+import { HeaderComponent } from '../../shared/components/header/header.component';
 @Injectable({
   providedIn: 'root',
 })
@@ -134,5 +136,14 @@ export class ThemeService {
     body.classList.remove(...themeClassNames);
 
     body.classList.add(`${themeName}-theme`);
+  }
+
+  public getNavbarComponent(): Type<any> {
+    switch (this.getNameOfActualTheme().name) {
+      case 'The Witcher 3':
+        return Tw3NavBarComponent;
+      default:
+        return HeaderComponent;
+    }
   }
 }

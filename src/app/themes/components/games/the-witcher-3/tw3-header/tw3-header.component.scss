@@ -1,0 +1,38 @@
+#tw3-nav {
+  background-color: red;
+  width: 100%;
+  height: 12.1vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  box-shadow: 0 0 0.1em;
+  position: fixed;
+  z-index: 2;
+
+  #navigation-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 300px;
+    background-color: aliceblue;
+
+    .nav-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-self: flex-end;
+
+      span {
+        padding: 3px;
+      }
+      .arrow-icon {
+        width: 20px;
+      }
+
+      &:nth-of-type(2) .arrow-icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
