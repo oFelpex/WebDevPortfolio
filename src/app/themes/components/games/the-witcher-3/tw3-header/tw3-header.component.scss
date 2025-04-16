@@ -1,38 +1,128 @@
+header {
+  height: 12.1vh;
+}
+
 #tw3-nav {
-  background-color: red;
   width: 100%;
   height: 12.1vh;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  box-shadow: 0 0 0.1em;
   position: fixed;
   z-index: 2;
 
+  #special-logo {
+    filter: drop-shadow(0px 0px 5px black);
+    flex: 2;
+  }
+
   #navigation-container {
+    flex: 1;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     height: 100%;
-    width: 300px;
-    background-color: aliceblue;
+    max-width: 250px;
+    min-width: 250px;
 
     .nav-buttons {
       display: flex;
       flex-direction: column;
       align-items: center;
-      align-self: flex-end;
 
       span {
-        padding: 3px;
+        padding-top: 25px;
+        position: absolute;
+        transition: 0.2s;
       }
       .arrow-icon {
         width: 20px;
+        transition: 0.2s;
       }
 
+      &:nth-of-type(2) {
+        left: 10%;
+      }
       &:nth-of-type(2) .arrow-icon {
         transform: rotate(180deg);
       }
+
+      &:hover {
+        .arrow-icon,
+        span {
+          filter: brightness(120%);
+        }
+      }
     }
+  }
+
+  #special-buttons-container {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 300px;
+    height: 100%;
+
+    .special-buttons {
+      position: relative;
+      height: 90%;
+      width: 110px;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .button-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: 0.3s;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .button-content {
+        color: #775643;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+          transition: 0.3s;
+          max-width: 40px;
+          z-index: 1;
+          filter: brightness(0) saturate(100%) invert(35%) sepia(4%)
+            saturate(3460%) hue-rotate(338deg) brightness(100%) contrast(97%);
+        }
+        span {
+          padding: 2px;
+          transition: 0.3s;
+          z-index: 1;
+        }
+      }
+
+      &:hover {
+        img {
+          opacity: 1;
+        }
+
+        .button-content {
+          img {
+            filter: none;
+          }
+          span {
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+
+  button {
+    cursor: pointer;
+    color: #775643;
   }
 }

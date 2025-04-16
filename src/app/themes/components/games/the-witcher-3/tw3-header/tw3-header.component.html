@@ -1,22 +1,59 @@
 <header>
   <nav id="tw3-nav">
+    <app-logo-effects id="special-logo"></app-logo-effects>
+
     <div id="navigation-container">
-      <button class="nav-buttons">
+      <button class="nav-buttons" (click)="goToPrevious()">
         <img
           class="arrow-icon"
           src="../../../../../../assets/themes/games/the-witcher-3/buttons/tw3-nav-button.webp"
           alt=""
         />
-        <span>Projects</span>
+        <span>{{
+          allRoutes[(currentIndex - 1 + allRoutes.length) % allRoutes.length]
+        }}</span>
       </button>
       <h1>{{ title }}</h1>
-      <button class="nav-buttons">
+      <button class="nav-buttons" (click)="goToNext()">
         <img
           class="arrow-icon"
           src="../../../../../../assets/themes/games/the-witcher-3/buttons/tw3-nav-button.webp"
           alt=""
         />
-        <span>Contact-me</span>
+        <span>{{ allRoutes[(currentIndex + 1) % allRoutes.length] }}</span>
+      </button>
+    </div>
+
+    <div id="special-buttons-container">
+      <button class="special-buttons">
+        <img
+          class="button-bg"
+          src="../../../../../../assets/themes/games/the-witcher-3/buttons/tw3-buttons-bg.webp"
+          alt=""
+        />
+        <div class="button-content">
+          <img
+            id="medallion-icon"
+            src="../../../../../../assets/themes/games/the-witcher-3/buttons/tw3-medallion-icon.webp"
+            alt=""
+          />
+          <span>THEMES</span>
+        </div>
+      </button>
+      <button class="special-buttons">
+        <img
+          class="button-bg"
+          src="../../../../../../assets/themes/games/the-witcher-3/buttons/tw3-buttons-bg.webp"
+          alt=""
+        />
+        <div class="button-content">
+          <img
+            id="langs-icon"
+            src="../../../../../../assets/themes/games/the-witcher-3/buttons/tw3-langs-icon.webp"
+            alt=""
+          />
+          <span>LANGS</span>
+        </div>
       </button>
     </div>
   </nav>
