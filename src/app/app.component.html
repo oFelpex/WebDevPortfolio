@@ -1,4 +1,6 @@
 <app-header></app-header>
+<ng-container *ngComponentOutlet="selectedNavbarComponent"></ng-container>
+
 <router-outlet />
 
 @if(isLoading) {

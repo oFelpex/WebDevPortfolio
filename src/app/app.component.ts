@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, Type } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import {
   NavigationCancel,
@@ -20,14 +20,15 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { ThemeService } from './services/theme-service/theme.service';
 import { ShowSoundboardButtonComponent } from './shared/components/soundboard/show-soundboard-button/show-soundboard-button.component';
 import { ResponsiveService } from './services/responsive-service/responsive.service';
-
+import { NgComponentOutlet } from '@angular/common';
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet,
     LoadingComponent,
-    HeaderComponent,
     ShowSoundboardButtonComponent,
+    HeaderComponent,
+    NgComponentOutlet,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -40,6 +41,7 @@ export class AppComponent implements OnInit {
   private responsiveService: ResponsiveService;
   public isMobile: boolean = false;
   public isLoading: boolean = false;
+  public selectedNavbarComponent: Type<any> = HeaderComponent;
 
   constructor() {
     this.translate = inject(TranslateService);
@@ -87,6 +89,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.themeService.actualTheme$.subscribe(() => {
+      this.selectedNavbarComponent = this.themeService.getNavbarComponent();
+    });
+
     this.responsiveService.isMobile$.subscribe((isMobile) => {
       this.isMobile = isMobile;
     });
