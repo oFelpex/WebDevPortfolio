@@ -158,8 +158,10 @@ body.minecraft-theme {
 
 // Theme: the-witcher-3-theme
 body.the-witcher-3-theme {
-  --background-color: #060606;
-  // background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg.webp");
+  --background-color: #1c1c1c;
+  background-image: url("./assets/themes/games/the-witcher-3/backgrounds/tw3-bg.webp");
+  background-position: center;
+  background-size: cover;
   color: #eaeaea;
 
   *,
