@@ -1,9 +1,11 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { NavigationEnd, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { LogoEffectsComponent } from '../../../../../logo-effects/logo-effects.component';
 
+import { Subscription } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
+
+import { MatButtonModule } from '@angular/material/button';
+
+import { LogoEffectsComponent } from '../../../../../logo-effects/logo-effects.component';
 @Component({
   selector: 'app-tw3-header',
   imports: [MatButtonModule, LogoEffectsComponent],
