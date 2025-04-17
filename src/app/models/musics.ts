@@ -31,3 +31,33 @@ export const minecraftMusics: Musics[] = [
     musicURL: 'assets/sounds/games/minecraft/music/lena-raine-pigstep.ogg',
   },
 ];
+
+export const TW3Musics: Musics[] = [
+  {
+    musicName: 'Kaer Morhen',
+    musicComposer: 'Marcin Przybyłowicz',
+    musicURL: 'assets/sounds/games/the-witcher-3/music/kaer-morhen.ogg',
+  },
+  {
+    musicName: 'Silver For Monsters...',
+    musicComposer: 'Percival  & Marcin',
+    musicURL: 'assets/sounds/games/the-witcher-3/music/silver-for-monsters.ogg',
+  },
+  {
+    musicName: '... Steel For Humans',
+    musicComposer: 'Percival & Marcin',
+    musicURL: 'assets/sounds/games/the-witcher-3/music/steel-for-humans.ogg',
+  },
+  {
+    musicName: 'The Fields of Ard Skellig',
+    musicComposer: 'Percival & Marcin',
+    musicURL:
+      'assets/sounds/games/the-witcher-3/music/the-fields-of-ard-skellig.ogg',
+  },
+  {
+    musicName: `Drink Up, There's More!`,
+    musicComposer: 'Percival Schuttenbach',
+    musicURL:
+      'assets/sounds/games/the-witcher-3/music/drink-up-theres-more.ogg',
+  },
+];
