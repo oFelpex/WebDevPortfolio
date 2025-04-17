@@ -15,4 +15,8 @@
   />
 </div>
 
+@switch (getNameOfActualThemeFromLocalStorage.name) { @case ("Minecraft") {
 <app-minecraft #minecraftEffect></app-minecraft>
+} @case ("The Witcher 3") {
+<app-the-witcher-3></app-the-witcher-3>
+} }

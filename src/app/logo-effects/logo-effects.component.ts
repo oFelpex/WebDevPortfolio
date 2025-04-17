@@ -8,16 +8,23 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { MinecraftEffectComponent } from './effects/Games/Minecraft/minecraft-effect.component';
+import { TheWitcher3EffectComponent } from './effects/Games/The Witcher 3/the-witcher-3-effect.component';
 
 @Component({
   selector: 'app-logo-effects',
-  imports: [MatTooltipModule, TranslateModule, MinecraftEffectComponent],
+  imports: [
+    MatTooltipModule,
+    TranslateModule,
+    MinecraftEffectComponent,
+    TheWitcher3EffectComponent,
+  ],
   templateUrl: './logo-effects.component.html',
   styleUrl: './logo-effects.component.scss',
 })
 export class LogoEffectsComponent {
-  private themeService: ThemeService;
   @ViewChild('minecraftEffect') minecraftEffect!: MinecraftEffectComponent;
+
+  private themeService: ThemeService;
 
   constructor() {
     this.themeService = inject(ThemeService);
