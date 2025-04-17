@@ -8,7 +8,7 @@
   font-family: "The Witcher";
   src: url("../../../../assets/fonts/games/the-witcher-3/openSans.ttf")
     format("truetype");
-  font-weight: 100;
+  font-weight: normal;
   font-style: normal;
   font-stretch: condensed;
 }
@@ -27,6 +27,7 @@ $_palettes: (
     60: #91918e,
     70: #acaba8,
     80: #c8c6c3,
+    //Buttons bg
     90: #e4e2df,
     95: #f2f0ed,
     98: #fbf9f6,
@@ -71,7 +72,8 @@ $_palettes: (
   ),
   neutral: (
     0: #000000,
-    10: #301400,
+    //Intro-section cards text, input text
+    10: #000000,
     20: #4f2500,
     25: #5f2e00,
     30: #703700,
@@ -83,7 +85,8 @@ $_palettes: (
     80: #ffb783,
     90: #ffdcc5,
     95: #ffede4,
-    98: #fff8f5,
+    //Cards bg
+    98: #2b2d2c,
     99: #fffbff,
     100: #ffffff,
     4: #1c0900,
@@ -102,7 +105,9 @@ $_palettes: (
     10: #1a1c19,
     20: #2e312d,
     25: #393c38,
-    30: #454743,
+    //Mat-chip text, input placeholder
+    30: #7a7a7a,
+
     35: #51534f,
     40: #5d5f5a,
     50: #757873,
