@@ -23,6 +23,7 @@ import { TheWitcher3EffectComponent } from './effects/Games/The Witcher 3/the-wi
 })
 export class LogoEffectsComponent {
   @ViewChild('minecraftEffect') minecraftEffect!: MinecraftEffectComponent;
+  @ViewChild('tw3Effect') tw3Effect!: TheWitcher3EffectComponent;
 
   private themeService: ThemeService;
 
@@ -42,6 +43,7 @@ export class LogoEffectsComponent {
       case 'God Of War':
         break;
       case 'The Witcher 3':
+        this.tw3Effect.igni();
         break;
       case 'Cyberpunk':
         break;
