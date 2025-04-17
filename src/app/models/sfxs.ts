@@ -17,3 +17,10 @@ export const minecraftSFX: SFXs[] = [
     SFXURL: 'assets/sounds/games/minecraft/easter-egg/tnt-explosion.ogg',
   },
 ];
+
+export const TW3SFX: SFXs[] = [
+  {
+    SFXName: 'TW3-igni',
+    SFXURL: 'assets/sounds/games/the-witcher-3/easter-egg/igni-sfx.ogg',
+  },
+];
