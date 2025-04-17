@@ -165,30 +165,30 @@ body.the-witcher-3-theme {
   color: #eaeaea;
   font-family: "The Witcher", sans-serif;
 
-  mat-card {
-    // background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg-card.webp");
-    // background-position: center bottom;
-    // background-size: auto 300px;
-  }
+  // mat-card {
+  //   // background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg-card.webp");
+  //   // background-position: center bottom;
+  //   // background-size: auto 300px;
+  // }
 
   button {
     color: #96806f;
   }
 
-  #soundboard {
-    #soundboard-bg {
-      // background-color: #002e0f;
-      // // background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg-soundboard.webp");
-      // background-position: center center;
-      // background-size: auto 300px;
-    }
+  // #soundboard {
+  //   #soundboard-bg {
+  //     // background-color: #002e0f;
+  //     // // background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg-soundboard.webp");
+  //     // background-position: center center;
+  //     // background-size: auto 300px;
+  //   }
 
-    .slider-bg {
-      // border-radius: 5px;
-      // border: 2px ridge;
-      // background-color: rgb(78, 78, 78);
-    }
-  }
+  //   .slider-bg {
+  //     // border-radius: 5px;
+  //     // border: 2px ridge;
+  //     // background-color: rgb(78, 78, 78);
+  //   }
+  // }
 
   @include mat.theme(
     (
