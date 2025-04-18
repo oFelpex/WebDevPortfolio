@@ -1,8 +1,8 @@
 $top: 70%;
-
-#tnt-explosion {
-  position: fixed;
+::ng-deep canvas {
+  pointer-events: none;
 }
+
 #tnts-container {
   position: absolute;
   width: 100vw;
