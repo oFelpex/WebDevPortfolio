@@ -23,11 +23,12 @@ export class TheWitcher3EffectComponent implements OnInit {
   private TW3SFX: SFXs[] = TW3SFX;
   private audioService: AudioService;
   private particlesContainer!: Container | undefined;
+  private timeOut: any;
+  public igniEffect: boolean = false;
   public id: string = 'igni-container';
 
   private configs: SingleOrMultiple<RecursivePartial<IOptions>> = {
     autoPlay: false,
-    zLayers: 100,
     name: 'Igne',
     fpsLimit: 60,
 
@@ -61,6 +62,7 @@ export class TheWitcher3EffectComponent implements OnInit {
         },
       },
       move: {
+        enable: true,
         angle: {
           offset: 0,
           value: 45,
@@ -70,7 +72,6 @@ export class TheWitcher3EffectComponent implements OnInit {
           max: 0.15,
         },
         direction: 'top',
-        enable: true,
         gravity: {
           acceleration: 1.5 * 9.81,
           enable: true,
@@ -188,20 +189,7 @@ export class TheWitcher3EffectComponent implements OnInit {
         quantity: 5,
         delay: 0.05,
       },
-      shape: {
-        options: {},
-        replace: {
-          color: false,
-          opacity: false,
-        },
-        type: 'square',
-      },
-      startCount: 0,
-      size: {
-        mode: 'percent',
-        height: 0,
-        width: 0,
-      },
+      size: 0,
       position: {
         x: 50,
         y: 110,
@@ -210,6 +198,14 @@ export class TheWitcher3EffectComponent implements OnInit {
     destroy: {
       mode: 'none',
     },
+    manualParticles: [
+      {
+        position: {
+          x: 50,
+          y: 120,
+        },
+      },
+    ],
   };
 
   constructor() {
@@ -224,18 +220,36 @@ export class TheWitcher3EffectComponent implements OnInit {
     this.audioService.playPlaylist(this.TW3Musics);
 
     await loadFull(tsParticles);
-
-    let options: SingleOrMultiple<RecursivePartial<IOptions>> = this.configs;
-    this.particlesContainer = await tsParticles.load({ id: this.id, options });
   }
 
   ngOnDestroy(): void {
     this.particlesContainer?.destroy();
   }
 
-  public igni(): void {
-    this.audioService.playSound('TW3-igni');
-    this.particlesContainer?.refresh();
-    this.particlesContainer?.play();
+  private startTimeOut(): void {
+    this.igniEffect = true;
+
+    this.timeOut = setTimeout(() => {
+      this.igniEffect = false;
+    }, 6500);
+  }
+
+  private clearTimeOut(): void {
+    this.igniEffect = false;
+    clearTimeout(this.timeOut);
+  }
+
+  public async igni(): Promise<void> {
+    this.clearTimeOut();
+
+    let options: SingleOrMultiple<RecursivePartial<IOptions>> = this.configs;
+    this.particlesContainer = await tsParticles.load({ id: this.id, options });
+
+    setTimeout(() => {
+      this.startTimeOut();
+      this.audioService.playSound('TW3-igni');
+      this.particlesContainer?.refresh();
+      this.particlesContainer?.play();
+    });
   }
 }
