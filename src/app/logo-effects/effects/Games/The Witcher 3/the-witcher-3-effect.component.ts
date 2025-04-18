@@ -25,13 +25,12 @@ export class TheWitcher3EffectComponent implements OnInit {
   private particlesContainer!: Container | undefined;
   private timeOut: any;
   public igniEffect: boolean = false;
-  public id: string = 'igni-container';
+  public id: string = 'igni';
 
-  private configs: SingleOrMultiple<RecursivePartial<IOptions>> = {
-    autoPlay: false,
+  private igniConfigs: SingleOrMultiple<RecursivePartial<IOptions>> = {
     name: 'Igne',
+    autoPlay: false,
     fpsLimit: 60,
-
     backgroundMask: {
       enable: false,
     },
@@ -78,14 +77,6 @@ export class TheWitcher3EffectComponent implements OnInit {
           inverse: false,
           maxSpeed: 100,
         },
-        path: {
-          clamp: true,
-          delay: {
-            value: 0,
-          },
-          enable: false,
-          options: {},
-        },
         outModes: {
           default: 'destroy',
           bottom: 'destroy',
@@ -97,14 +88,6 @@ export class TheWitcher3EffectComponent implements OnInit {
           min: 100,
           max: 150,
         },
-        //   enable: true,
-        //   length: 10,
-        //   fill: {
-        //     color: '#000000',
-        //   },
-        // },
-        vibrate: false,
-        warp: false,
       },
       shadow: {
         enable: true,
@@ -130,10 +113,10 @@ export class TheWitcher3EffectComponent implements OnInit {
             },
           ],
         },
-        type: ['circle', 'square', 'polygon'],
+        type: ['circle', 'polygon'],
       },
       size: {
-        value: { min: 1, max: 4 },
+        value: { min: 1, max: 3 },
       },
       roll: {
         darken: {
@@ -195,17 +178,6 @@ export class TheWitcher3EffectComponent implements OnInit {
         y: 110,
       },
     },
-    destroy: {
-      mode: 'none',
-    },
-    manualParticles: [
-      {
-        position: {
-          x: 50,
-          y: 120,
-        },
-      },
-    ],
   };
 
   constructor() {
@@ -242,7 +214,8 @@ export class TheWitcher3EffectComponent implements OnInit {
   public async igni(): Promise<void> {
     this.clearTimeOut();
 
-    let options: SingleOrMultiple<RecursivePartial<IOptions>> = this.configs;
+    let options: SingleOrMultiple<RecursivePartial<IOptions>> =
+      this.igniConfigs;
     this.particlesContainer = await tsParticles.load({ id: this.id, options });
 
     setTimeout(() => {
