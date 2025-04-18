@@ -25,6 +25,10 @@ export class Tw3NavBarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.currentRoute = this.router.url;
+    this.title = this.currentRoute.slice(1).toUpperCase();
+    this.setCurrentIndexByRoute();
+
     this.routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = this.router.url;
