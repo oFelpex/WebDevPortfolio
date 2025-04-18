@@ -31,9 +31,6 @@ export class TheWitcher3EffectComponent implements OnInit {
     name: 'Igne',
     autoPlay: false,
     fpsLimit: 60,
-    backgroundMask: {
-      enable: false,
-    },
     fullScreen: {
       enable: true,
     },
@@ -148,18 +145,6 @@ export class TheWitcher3EffectComponent implements OnInit {
         direction: 'random',
         enable: true,
       },
-      twinkle: {
-        lines: {
-          enable: false,
-          frequency: 0.05,
-          opacity: 1,
-        },
-        particles: {
-          enable: false,
-          frequency: 0.05,
-          opacity: 1,
-        },
-      },
     },
     emitters: {
       autoPlay: true,
@@ -196,9 +181,10 @@ export class TheWitcher3EffectComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.particlesContainer?.destroy();
+    this.clearIgniTimeOut();
   }
 
-  private startTimeOut(): void {
+  private startIgniTimeOut(): void {
     this.igniEffect = true;
 
     this.timeOut = setTimeout(() => {
@@ -206,20 +192,20 @@ export class TheWitcher3EffectComponent implements OnInit {
     }, 6500);
   }
 
-  private clearTimeOut(): void {
+  private clearIgniTimeOut(): void {
     this.igniEffect = false;
     clearTimeout(this.timeOut);
   }
 
   public async igni(): Promise<void> {
-    this.clearTimeOut();
+    this.clearIgniTimeOut();
 
     let options: SingleOrMultiple<RecursivePartial<IOptions>> =
       this.igniConfigs;
     this.particlesContainer = await tsParticles.load({ id: this.id, options });
 
     setTimeout(() => {
-      this.startTimeOut();
+      this.startIgniTimeOut();
       this.audioService.playSound('TW3-igni');
       this.particlesContainer?.refresh();
       this.particlesContainer?.play();
