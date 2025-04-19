@@ -1,0 +1,14 @@
+<mat-list>
+  @for (colorOption of colorsOptions; track $index) {
+  <mat-list-item class="tw3-dialog-list-item">
+    <div class="tw3-dialog-item-container">
+      <button mat-button>
+        <span> {{ colorOption.name }} </span>
+      </button>
+      <div
+        [class]="actualTheme === colorOption.name ? 'selectedBar' : ''"
+      ></div>
+    </div>
+  </mat-list-item>
+  }
+</mat-list>
