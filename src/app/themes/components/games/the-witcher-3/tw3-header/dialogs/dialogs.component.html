@@ -4,7 +4,7 @@
   <h2 mat-dialog-title>CHANGE THEME</h2>
   <mat-dialog-content>
     <mat-accordion class="accordion" multi>
-      <mat-expansion-panel class="expansion-panel">
+      <mat-expansion-panel class="expansion-panel" (click)="playClickSound()">
         <mat-expansion-panel-header>
           <div [class]="typeOfActualTheme === 'Games' ? 'selected' : ''"></div>
           <mat-panel-title> Video Games </mat-panel-title>
@@ -12,7 +12,7 @@
         <app-tw3-dialog-games></app-tw3-dialog-games>
       </mat-expansion-panel>
       <div></div>
-      <mat-expansion-panel class="expansion-panel">
+      <mat-expansion-panel class="expansion-panel" (click)="playClickSound()">
         <mat-expansion-panel-header>
           <mat-panel-title> Colors </mat-panel-title>
         </mat-expansion-panel-header>
@@ -29,6 +29,7 @@
           mat-button
           mat-dialog-close
           cdkFocusInitial
+          (click)="playClickSound()"
         >
           Close
         </button>
@@ -42,7 +43,7 @@
   <h2 mat-dialog-title>LANGUAGE</h2>
   <mat-dialog-content>
     <mat-accordion class="accordion" multi>
-      <mat-expansion-panel class="expansion-panel">
+      <mat-expansion-panel class="expansion-panel" (click)="playClickSound()">
         <mat-expansion-panel-header>
           <mat-panel-title> Languages </mat-panel-title>
           <mat-panel-description> PT-BR or EN-US </mat-panel-description>
@@ -60,6 +61,7 @@
           mat-button
           mat-dialog-close
           cdkFocusInitial
+          (click)="playClickSound()"
         >
           Close
         </button>

@@ -14,6 +14,7 @@ import { ThemeService } from '../../../../../../services/theme-service/theme.ser
 import { Tw3DialogGamesComponent } from './themes/tw3-dialog-games/tw3-dialog-games.component';
 import { Tw3DialogColorsComponent } from './themes/tw3-dialog-colors/tw3-dialog-colors.component';
 import { Tw3DialogLangsComponent } from './langs/tw3-dialog-langs/tw3-dialog-langs.component';
+import { AudioService } from '../../../../../../services/audio-service/audio.service';
 
 @Component({
   selector: 'app-dialogs',
@@ -32,10 +33,13 @@ import { Tw3DialogLangsComponent } from './langs/tw3-dialog-langs/tw3-dialog-lan
   styleUrl: './dialogs.component.scss',
 })
 export class DialogsComponent {
-  data = inject(MAT_DIALOG_DATA);
-  themeService: ThemeService;
+  private themeService: ThemeService;
+  private audioService: AudioService;
+
+  public data = inject(MAT_DIALOG_DATA);
 
   constructor() {
+    this.audioService = inject(AudioService);
     this.themeService = inject(ThemeService);
   }
 
@@ -44,5 +48,9 @@ export class DialogsComponent {
   }
   public get typeOfActualTheme() {
     return this.themeService.getTypeOfActualTheme();
+  }
+
+  public playClickSound() {
+    this.audioService.playClickSound('The Witcher 3');
   }
 }

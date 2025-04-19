@@ -206,7 +206,7 @@ export class TheWitcher3EffectComponent implements OnInit {
 
     setTimeout(() => {
       this.startIgniTimeOut();
-      this.audioService.playSound('TW3-igni');
+      this.audioService.playSound('The Witcher 3-igni');
       this.particlesContainer?.refresh();
       this.particlesContainer?.play();
     });

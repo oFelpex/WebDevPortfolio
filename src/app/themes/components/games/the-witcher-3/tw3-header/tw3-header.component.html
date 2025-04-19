@@ -3,7 +3,7 @@
     <app-logo-effects id="special-logo"></app-logo-effects>
 
     <div id="navigation-container">
-      <button class="nav-buttons" (click)="goToPrevious()">
+      <button class="nav-buttons" (click)="goToPrevious(); playClickSound()">
         <img
           class="arrow-icon"
           src="../../../../../../assets/themes/games/the-witcher-3/buttons/tw3-nav-button.webp"
@@ -14,7 +14,7 @@
         }}</span>
       </button>
       <h1>{{ title }}</h1>
-      <button class="nav-buttons" (click)="goToNext()">
+      <button class="nav-buttons" (click)="goToNext(); playClickSound()">
         <img
           class="arrow-icon"
           src="../../../../../../assets/themes/games/the-witcher-3/buttons/tw3-nav-button.webp"
@@ -25,7 +25,10 @@
     </div>
 
     <div id="special-buttons-container">
-      <button class="special-buttons" (click)="openBottomThemesDialog()">
+      <button
+        class="special-buttons"
+        (click)="openThemesDialog(); playClickSound()"
+      >
         <img
           class="button-bg"
           src="../../../../../../assets/themes/games/the-witcher-3/buttons/tw3-buttons-bg.webp"
@@ -40,7 +43,10 @@
           <span>THEMES</span>
         </div>
       </button>
-      <button class="special-buttons" (click)="openBottomLangsDialog()">
+      <button
+        class="special-buttons"
+        (click)="openLangsDialog(); playClickSound()"
+      >
         <img
           class="button-bg"
           src="../../../../../../assets/themes/games/the-witcher-3/buttons/tw3-buttons-bg.webp"

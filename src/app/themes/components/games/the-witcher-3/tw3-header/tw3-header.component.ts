@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { LogoEffectsComponent } from '../../../../../logo-effects/logo-effects.component';
 import { DialogsComponent } from './dialogs/dialogs.component';
+import { AudioService } from '../../../../../services/audio-service/audio.service';
 @Component({
   selector: 'app-tw3-header',
   imports: [MatButtonModule, LogoEffectsComponent],
@@ -18,6 +19,7 @@ export class Tw3NavBarComponent implements OnInit, OnDestroy {
   private router: Router;
   private routerSubscription!: Subscription;
   private dialog: MatDialog;
+  private audioService: AudioService;
   public currentRoute!: string;
   public title!: string;
   public allRoutes: string[] = ['ABOUT-ME', 'HOME', 'PROJECTS', 'CONTACT-ME'];
@@ -26,6 +28,7 @@ export class Tw3NavBarComponent implements OnInit, OnDestroy {
   constructor() {
     this.router = inject(Router);
     this.dialog = inject(MatDialog);
+    this.audioService = inject(AudioService);
   }
 
   ngOnInit() {
@@ -71,7 +74,11 @@ export class Tw3NavBarComponent implements OnInit, OnDestroy {
     return this.allRoutes[this.currentIndex];
   }
 
-  public openBottomThemesDialog() {
+  public playClickSound() {
+    this.audioService.playClickSound('The Witcher 3');
+  }
+
+  public openThemesDialog() {
     this.dialog.open(DialogsComponent, {
       data: {
         dialogType: 'Themes',
@@ -79,7 +86,7 @@ export class Tw3NavBarComponent implements OnInit, OnDestroy {
     });
   }
 
-  public openBottomLangsDialog() {
+  public openLangsDialog() {
     this.dialog.open(DialogsComponent, {
       data: {
         dialogType: 'Langs',
