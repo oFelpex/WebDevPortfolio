@@ -1,4 +1,4 @@
-import { Component, Inject, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -6,7 +6,6 @@ import {
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
-  MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
 
@@ -27,12 +26,15 @@ import { Themes } from '../../../../models/themes';
     MatDialogContent,
     TranslateModule,
   ],
+  styleUrl: 'dialog-photo-full-screen.component.scss',
 })
 export class DialogPhotoFullScreenComponent {
   private audioService: AudioService;
   private themeService: ThemeService;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public photo: Photos) {
+  public photo: Photos = inject(MAT_DIALOG_DATA);
+
+  constructor() {
     this.themeService = inject(ThemeService);
     this.audioService = inject(AudioService);
   }
