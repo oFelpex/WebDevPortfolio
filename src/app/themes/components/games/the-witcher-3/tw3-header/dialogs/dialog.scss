@@ -1,0 +1,28 @@
+.tw3-dialog-list-item {
+  padding: 27px 0px;
+
+  .tw3-dialog-item-container {
+    position: relative;
+    width: 100%;
+    $corner-size: 8px;
+    border: solid #191718;
+    border-radius: 5px;
+    padding: 3px;
+
+    button {
+      width: 100%;
+      border-radius: 2px;
+      color: #b6783f;
+      background-color: #191718;
+    }
+    .selectedBar {
+      top: 0;
+      left: 0;
+      position: absolute;
+      width: 5px;
+      height: 100%;
+      background-color: rgb(208, 135, 0);
+      pointer-events: none;
+    }
+  }
+}
