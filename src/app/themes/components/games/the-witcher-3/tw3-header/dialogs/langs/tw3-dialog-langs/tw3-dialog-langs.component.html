@@ -1,1 +1,12 @@
-<p>tw3-dialog-langs works!</p>
+<mat-list>
+  @for(lang of allLangs; track $index) {
+  <mat-list-item class="tw3-dialog-list-item">
+    <div class="tw3-dialog-item-container">
+      <button mat-button (click)="changeLang(lang)">
+        <span> {{ lang }} </span>
+      </button>
+      <div [class]="currentLang === lang ? 'selectedBar' : ''"></div>
+    </div>
+  </mat-list-item>
+  }
+</mat-list>
