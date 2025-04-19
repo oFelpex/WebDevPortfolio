@@ -31,12 +31,17 @@ export class Tw3NavBarComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.currentRoute = this.router.url;
     this.title = this.currentRoute.slice(1).toUpperCase();
+
+    const routeExist = (element: string) => element === this.title;
+    if (!this.allRoutes.some(routeExist)) this.title = 'SECRET PLACE?';
+
     this.setCurrentIndexByRoute();
 
     this.routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = this.router.url;
         this.title = this.currentRoute.slice(1).toUpperCase();
+        if (!this.allRoutes.some(routeExist)) this.title = 'SECRET PLACE?';
         this.setCurrentIndexByRoute();
       }
     });
