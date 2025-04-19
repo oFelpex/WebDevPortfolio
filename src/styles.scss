@@ -158,6 +158,7 @@ body.minecraft-theme {
 
 // Theme: the-witcher-3-theme
 body.the-witcher-3-theme {
+  $corner-size: 8px;
   --background-color: #1c1c1c;
   background-image: url("./assets/themes/games/the-witcher-3/backgrounds/tw3-bg.webp");
   background-position: center;
@@ -165,14 +166,31 @@ body.the-witcher-3-theme {
   color: #eaeaea;
   font-family: "The Witcher", sans-serif;
 
-  // mat-card {
-  //   // background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg-card.webp");
-  //   // background-position: center bottom;
-  //   // background-size: auto 300px;
-  // }
+  #intro-section-navigation {
+    .navigation-card {
+      mat-card-subtitle {
+        color: #b6783f;
+      }
+    }
+  }
+  mat-card {
+    // background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg-card.webp");
+    // background-position: center bottom;
+    // background-size: auto 300px;
+    border: thick double #45372e;
+  }
 
   button {
     color: #96806f;
+  }
+
+  .photo-container {
+    border: thick double #45372e !important;
+    border-radius: 0px !important;
+
+    .photo {
+      border-radius: 0px !important;
+    }
   }
 
   #photos-dialog-container {
@@ -220,20 +238,62 @@ body.the-witcher-3-theme {
     }
   }
 
-  // #soundboard {
-  //   #soundboard-bg {
-  //     // background-color: #002e0f;
-  //     // // background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg-soundboard.webp");
-  //     // background-position: center center;
-  //     // background-size: auto 300px;
-  //   }
+  #contact-me-container {
+    border: thick double #45372e !important;
+    border-radius: 0px !important;
 
-  //   .slider-bg {
-  //     // border-radius: 5px;
-  //     // border: 2px ridge;
-  //     // background-color: rgb(78, 78, 78);
-  //   }
-  // }
+    // Corners top left and right
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: $corner-size;
+      height: $corner-size;
+      background-color: transparent;
+      border: 2px solid #45372e;
+    }
+    &::before {
+      top: -1px;
+      left: -1px;
+    }
+
+    &::after {
+      top: -1px;
+      right: -1px;
+    }
+
+    // Corners bottom left and right
+    .bottom-corners::before,
+    .bottom-corners::after {
+      content: "";
+      position: absolute;
+      width: $corner-size;
+      height: $corner-size;
+      background-color: transparent;
+      border: 2px solid #45372e;
+    }
+    .bottom-corners::before {
+      bottom: -1px;
+      left: -1px;
+    }
+    .bottom-corners::after {
+      bottom: -1px;
+      right: -1px;
+    }
+  }
+
+  #soundboard {
+    border: thick double #45372e;
+    #soundboard-bg {
+      background-color: #151515;
+    }
+
+    .slider-bg {
+      border: 2px solid #574a41;
+      background-color: rgb(43, 43, 43);
+      box-shadow: 0px 0px 5px black;
+    }
+  }
 
   @include mat.theme(
     (
