@@ -1,14 +1,17 @@
-<h2 mat-dialog-title>{{ "ABOUT-PAGE." + photo.name | translate }}</h2>
-<mat-dialog-content>
-  <img style="border-radius: 5px" [src]="photo.imgURL" [alt]="photo.imgAlt" />
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button
-    (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
-    mat-button
-    mat-dialog-close
-    cdkFocusInitial
-  >
-    {{ "ABOUT-PAGE.DIALOG-PHOTO-CLOSE-BUTTON" | translate }}
-  </button>
-</mat-dialog-actions>
+<div id="photos-dialog-container">
+  <div class="bottom-corners"></div>
+  <h2 mat-dialog-title>{{ "ABOUT-PAGE." + photo.name | translate }}</h2>
+  <mat-dialog-content>
+    <img style="border-radius: 3px" [src]="photo.imgURL" [alt]="photo.imgAlt" />
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button
+      (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+      mat-button
+      mat-dialog-close
+      cdkFocusInitial
+    >
+      {{ "ABOUT-PAGE.DIALOG-PHOTO-CLOSE-BUTTON" | translate }}
+    </button>
+  </mat-dialog-actions>
+</div>

@@ -175,6 +175,51 @@ body.the-witcher-3-theme {
     color: #96806f;
   }
 
+  #photos-dialog-container {
+    position: relative;
+    border: thick double #45372e;
+    $corner-size: 8px;
+
+    // Corners top left and right
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: $corner-size;
+      height: $corner-size;
+      background-color: transparent;
+      border: 2px solid #45372e;
+    }
+    &::before {
+      top: -1px;
+      left: -1px;
+    }
+
+    &::after {
+      top: -1px;
+      right: -1px;
+    }
+
+    // Corners bottom left and right
+    .bottom-corners::before,
+    .bottom-corners::after {
+      content: "";
+      position: absolute;
+      width: $corner-size;
+      height: $corner-size;
+      background-color: transparent;
+      border: 2px solid #45372e;
+    }
+    .bottom-corners::before {
+      bottom: -1px;
+      left: -1px;
+    }
+    .bottom-corners::after {
+      bottom: -1px;
+      right: -1px;
+    }
+  }
+
   // #soundboard {
   //   #soundboard-bg {
   //     // background-color: #002e0f;
@@ -198,6 +243,21 @@ body.the-witcher-3-theme {
       ),
       typography: The Witcher,
       density: 0,
+    )
+  );
+  @include mat.dialog-overrides(
+    (
+      container-color: #0e0e0c,
+      subhead-color: #d3cac1,
+      container-shape: border-radius 0%,
+    )
+  );
+  @include mat.expansion-overrides(
+    (
+      container-shape: border-radius 0%,
+      container-background-color: #0e0e0c,
+      header-text-color: #d1c8b9,
+      header-hover-state-layer-color: #191917,
     )
   );
 }
