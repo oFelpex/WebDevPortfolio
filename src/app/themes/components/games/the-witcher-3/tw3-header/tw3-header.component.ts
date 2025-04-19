@@ -4,8 +4,10 @@ import { Subscription } from 'rxjs';
 import { NavigationEnd, Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 
 import { LogoEffectsComponent } from '../../../../../logo-effects/logo-effects.component';
+import { DialogsComponent } from './dialogs/dialogs.component';
 @Component({
   selector: 'app-tw3-header',
   imports: [MatButtonModule, LogoEffectsComponent],
@@ -15,6 +17,7 @@ import { LogoEffectsComponent } from '../../../../../logo-effects/logo-effects.c
 export class Tw3NavBarComponent implements OnInit, OnDestroy {
   private router: Router;
   private routerSubscription!: Subscription;
+  private dialog: MatDialog;
   public currentRoute!: string;
   public title!: string;
   public allRoutes: string[] = ['ABOUT-ME', 'HOME', 'PROJECTS', 'CONTACT-ME'];
@@ -22,6 +25,7 @@ export class Tw3NavBarComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.router = inject(Router);
+    this.dialog = inject(MatDialog);
   }
 
   ngOnInit() {
@@ -60,5 +64,21 @@ export class Tw3NavBarComponent implements OnInit, OnDestroy {
   }
   public getCurrentRoute(): string {
     return this.allRoutes[this.currentIndex];
+  }
+
+  public openBottomThemesDialog() {
+    this.dialog.open(DialogsComponent, {
+      data: {
+        dialogType: 'Themes',
+      },
+    });
+  }
+
+  public openBottomLangsDialog() {
+    this.dialog.open(DialogsComponent, {
+      data: {
+        dialogType: 'Langs',
+      },
+    });
   }
 }
