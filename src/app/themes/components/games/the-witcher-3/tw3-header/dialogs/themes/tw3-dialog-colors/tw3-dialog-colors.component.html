@@ -2,7 +2,7 @@
   @for (colorOption of colorsOptions; track $index) {
   <mat-list-item class="tw3-dialog-list-item">
     <div class="tw3-dialog-item-container">
-      <button mat-button>
+      <button mat-button (click)="changeTheme(colorOption)" mat-dialog-close>
         <span> {{ colorOption.name }} </span>
       </button>
       <div
