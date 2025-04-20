@@ -25,7 +25,6 @@ export class TheWitcher3EffectComponent implements OnInit {
   private particlesContainer!: Container | undefined;
   private timeOut: any;
   private brightEffect = document.createElement('div') as HTMLDivElement;
-  public igniEffect: boolean = false;
   public id: string = 'igni';
 
   private igniConfigs: SingleOrMultiple<RecursivePartial<IOptions>> = {
@@ -188,20 +187,17 @@ export class TheWitcher3EffectComponent implements OnInit {
   }
 
   private startIgniTimeOut(): void {
-    this.igniEffect = true;
-
     this.timeOut = setTimeout(() => {
       let brightEffectArr =
         document.getElementsByClassName('igni-bright-effect');
       Array.from(brightEffectArr).forEach((el) => el.remove());
-
-      this.igniEffect = false;
     }, 6500);
   }
 
   private clearIgniTimeOut(): void {
-    this.igniEffect = false;
     clearTimeout(this.timeOut);
+    let brightEffectArr = document.getElementsByClassName('igni-bright-effect');
+    Array.from(brightEffectArr).forEach((el) => el.remove());
   }
 
   public async igni(): Promise<void> {
