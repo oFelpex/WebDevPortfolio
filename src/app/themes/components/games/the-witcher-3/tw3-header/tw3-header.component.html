@@ -1,6 +1,15 @@
 <header>
   <nav id="tw3-nav">
     <app-logo-effects id="special-logo"></app-logo-effects>
+    <div class="mobile-buttons-container">
+      <button
+        mat-mini-fab
+        aria-label="Button to show the menu"
+        (click)="toggleMobileNavMenu(); playClickSound()"
+      >
+        <mat-icon class="menuButton-icon">menu</mat-icon>
+      </button>
+    </div>
 
     <div id="navigation-container">
       <button class="nav-buttons" (click)="goToPrevious(); playClickSound()">
@@ -24,6 +33,15 @@
       </button>
     </div>
 
+    <div class="mobile-buttons-container">
+      <button
+        mat-mini-fab
+        aria-label="Button to show the soundboard"
+        (click)="toggleMobileSoundboardMenu(); playClickSound()"
+      >
+        <mat-icon class="menuButton-icon">headphones</mat-icon>
+      </button>
+    </div>
     <div id="special-buttons-container">
       <button
         class="special-buttons"
@@ -63,4 +81,8 @@
       </button>
     </div>
   </nav>
+  @if(isMobile) {
+  <app-mobile-menu></app-mobile-menu>
+  <app-mobile-soundboard></app-mobile-soundboard>
+  }
 </header>

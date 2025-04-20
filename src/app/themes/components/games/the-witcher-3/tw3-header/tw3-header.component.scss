@@ -17,8 +17,19 @@ header {
   }
 
   #special-logo {
+    display: block;
     filter: drop-shadow(0px 0px 5px black);
     flex: 2;
+  }
+
+  .mobile-buttons-container {
+    display: none;
+
+    button {
+      .menuButton-icon {
+        font-family: Material Icons;
+      }
+    }
   }
 
   #navigation-container {
@@ -121,6 +132,34 @@ header {
           }
         }
       }
+    }
+  }
+}
+
+@media (max-width: 820px) {
+  #tw3-nav {
+    justify-content: space-evenly;
+    .mobile-buttons-container {
+      display: block;
+      padding: 10px;
+    }
+
+    #special-logo {
+      display: none;
+    }
+
+    #navigation-container {
+      justify-content: space-evenly;
+      h1 {
+        font-size: x-large;
+      }
+
+      max-width: 250px;
+      min-width: 140px;
+    }
+
+    #special-buttons-container {
+      display: none;
     }
   }
 }
