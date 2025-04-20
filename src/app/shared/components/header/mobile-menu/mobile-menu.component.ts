@@ -15,6 +15,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { LogoEffectsComponent } from '../../../../logo-effects/logo-effects.component';
 @Component({
   selector: 'app-mobile-menu',
   imports: [
@@ -25,6 +26,7 @@ import { MatDividerModule } from '@angular/material/divider';
     RouterModule,
     SocialLinksComponent,
     TranslateModule,
+    LogoEffectsComponent,
   ],
   templateUrl: './mobile-menu.component.html',
   styleUrl: './mobile-menu.component.scss',
@@ -50,16 +52,21 @@ export class MobileMenuComponent implements AfterViewChecked {
     this.mobileNavMenuService.changeMobileNavPointerEvents();
   }
 
-  openThemeMenu(): void {
+  public openThemeMenu(): void {
     this._bottomSheet.open(MobileThemeMenuSheetComponent);
   }
-  openLangsMenu(): void {
+  public openLangsMenu(): void {
     this._bottomSheet.open(MobileLangsMenuSheetComponent);
+  }
+
+  public closeNavMenu() {
+    this.mobileNavMenuService.toggleMobileNavMenu();
   }
 
   public get getNameOfActualThemeFromLocalStorage(): Themes {
     return this.themeService.getNameOfActualTheme();
   }
+
   public playClickSound(themeName: string) {
     this.audioService.playClickSound(themeName);
   }

@@ -6,6 +6,12 @@
     position="start"
   >
     <mat-list>
+      @if(getNameOfActualThemeFromLocalStorage.name === 'The Witcher 3') {
+      <app-logo-effects
+        (click)="closeNavMenu()"
+        style="padding: 20px"
+      ></app-logo-effects>
+      }
       <mat-list-item [routerLink]="['/home']">{{
         "NAV-MOBILE.HOME" | translate
       }}</mat-list-item>
