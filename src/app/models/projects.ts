@@ -69,16 +69,16 @@ export const allProjects: Projects[] = [
     githubURL: 'https://github.com/oFelpex/caldeirao-da-bruxa',
     siteURL: 'https://ofelpex.github.io/caldeirao-da-bruxa/',
   },
-  {
-    name: 'Space Hero (remake)',
-    description:
-      'Space Hero is a game made for a final project for a college subject, this is a remake of it, but still in the development process.',
-    hardSkills: ['HTML', 'CSS', 'JS'],
-    hardSkillsIcons: ['icon-html', 'icon-css', 'icon-js'],
-    imgURL:
-      '../../../assets/images/projects/spacehero-remake/spacehero-remake.webp',
-    imgAlt: `It's a print of the homepage from the site: Space Hero (remake).`,
-    githubURL: 'https://github.com/oFelpex/spacehero-remake',
-    siteURL: 'https://ofelpex.github.io/spacehero-remake/',
-  },
+  // {
+  //   name: 'Space Hero (remake)',
+  //   description:
+  //     'Space Hero is a game made for a final project for a college subject, this is a remake of it, but still in the development process.',
+  //   hardSkills: ['HTML', 'CSS', 'JS'],
+  //   hardSkillsIcons: ['icon-html', 'icon-css', 'icon-js'],
+  //   imgURL:
+  //     '../../../assets/images/projects/spacehero-remake/spacehero-remake.webp',
+  //   imgAlt: `It's a print of the homepage from the site: Space Hero (remake).`,
+  //   githubURL: 'https://github.com/oFelpex/spacehero-remake',
+  //   siteURL: 'https://ofelpex.github.io/spacehero-remake/',
+  // },
 ];
