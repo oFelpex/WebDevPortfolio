@@ -3,7 +3,7 @@
   <mat-list-item class="tw3-dialog-list-item">
     <div class="tw3-dialog-item-container">
       <button mat-button (click)="changeTheme(colorOption)" mat-dialog-close>
-        <span> {{ colorOption.name }} </span>
+        <span> {{ "THEMES.Colors." + colorOption.name | translate }} </span>
       </button>
       <div
         [class]="actualTheme === colorOption.name ? 'selectedBar' : ''"

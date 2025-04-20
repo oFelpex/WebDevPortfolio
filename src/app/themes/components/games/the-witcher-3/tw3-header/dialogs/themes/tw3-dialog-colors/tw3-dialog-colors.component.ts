@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
@@ -10,7 +11,13 @@ import { Themes } from '../../../../../../../../models/themes';
 
 @Component({
   selector: 'app-tw3-dialog-colors',
-  imports: [MatDividerModule, MatButtonModule, MatListModule, MatDialogClose],
+  imports: [
+    MatDividerModule,
+    MatButtonModule,
+    MatListModule,
+    MatDialogClose,
+    TranslateModule,
+  ],
   templateUrl: './tw3-dialog-colors.component.html',
   styleUrls: ['./tw3-dialog-colors.component.scss', '../../dialog.scss'],
 })
