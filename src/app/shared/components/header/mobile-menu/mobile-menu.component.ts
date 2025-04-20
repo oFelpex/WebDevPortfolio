@@ -53,9 +53,11 @@ export class MobileMenuComponent implements AfterViewChecked {
   }
 
   public openThemeMenu(): void {
+    window.scrollTo({ top: 0 });
     this._bottomSheet.open(MobileThemeMenuSheetComponent);
   }
   public openLangsMenu(): void {
+    window.scrollTo({ top: 0 });
     this._bottomSheet.open(MobileLangsMenuSheetComponent);
   }
 
