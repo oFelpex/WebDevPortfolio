@@ -1,0 +1,19 @@
+header {
+  height: 14vh;
+  min-height: 60px;
+}
+
+#minecraft-nav {
+  position: fixed;
+  width: 100%;
+  height: 14vh;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  z-index: 2;
+  background-image: url("../../../../../../assets/themes/games/minecraft/backgrounds/minecraft-bg-nav-bar.webp");
+  background-color: #002e0f;
+  background-position: center -120px;
+  background-size: auto 800px;
+}
