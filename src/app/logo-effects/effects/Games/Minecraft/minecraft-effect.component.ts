@@ -26,8 +26,11 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
   private timeOut: any;
   private minecraftMusics: Musics[] = minecraftMusics;
   private minecraftSFX: SFXs[] = minecraftSFX;
+  private tntsContainer = document.createElement('div') as HTMLDivElement;
+  private tntFront = document.createElement('img') as HTMLImageElement;
+  private tntTop = document.createElement('img') as HTMLImageElement;
+  private tntBottom = document.createElement('img') as HTMLImageElement;
 
-  public createTnt: boolean = false;
   public id: string = 'tnt-explosion';
 
   constructor() {
@@ -139,6 +142,22 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
   };
 
   async ngOnInit(): Promise<void> {
+    this.tntsContainer.className = 'tnts-container';
+
+    this.tntFront.className = 'tnt-front';
+    this.tntFront.src =
+      '../../../../../assets/images/logos/Games/Minecraft/animation/tnt-front.webp';
+
+    this.tntTop.className = 'tnt-top';
+    this.tntTop.src =
+      '../../../../../assets/images/logos/Games/Minecraft/animation/tnt-top.webp';
+
+    this.tntBottom.className = 'tnt-bottom';
+    this.tntBottom.src =
+      '../../../../../assets/images/logos/Games/Minecraft/animation/tnt-bottom.webp';
+
+    this.tntsContainer.append(this.tntFront, this.tntTop, this.tntBottom);
+
     for (let SFX of this.minecraftSFX) {
       this.audioService.preloadSound(SFX.SFXName, SFX.SFXURL);
     }
@@ -146,9 +165,6 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
     this.audioService.playPlaylist(this.minecraftMusics);
 
     await loadFull(tsParticles);
-
-    let options: SingleOrMultiple<RecursivePartial<IOptions>> = this.configs;
-    this.particlesContainer = await tsParticles.load({ id: this.id, options });
   }
 
   ngOnDestroy(): void {
@@ -157,26 +173,28 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
   }
 
   private startTntTimeout(): void {
-    this.createTnt = true;
-
     this.timeOut = setTimeout(() => {
-      this.createTnt = false;
       this.audioService.playSound('Minecraft-tnt-explosion', 'sfx');
+      let allTnts = document.getElementsByClassName('tnts-container');
+      Array.from(allTnts).forEach((el) => el.remove());
     }, 4100);
   }
 
   private cancelTntTimeout(): void {
     clearTimeout(this.timeOut);
-    this.createTnt = false;
   }
 
-  public summonTnt(): void {
+  async summonTnt(): Promise<void> {
     this.cancelTntTimeout();
+
+    let options: SingleOrMultiple<RecursivePartial<IOptions>> = this.configs;
+    this.particlesContainer = await tsParticles.load({ id: this.id, options });
 
     setTimeout(() => {
       this.startTntTimeout();
       this.particlesContainer?.refresh();
       this.particlesContainer?.play();
+      document.body.append(this.tntsContainer);
       this.audioService.playSound('Minecraft-tnt-activate', 'sfx');
     });
   }
