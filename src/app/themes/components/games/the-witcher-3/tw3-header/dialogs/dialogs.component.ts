@@ -15,6 +15,7 @@ import { Tw3DialogGamesComponent } from './themes/tw3-dialog-games/tw3-dialog-ga
 import { Tw3DialogColorsComponent } from './themes/tw3-dialog-colors/tw3-dialog-colors.component';
 import { Tw3DialogLangsComponent } from './langs/tw3-dialog-langs/tw3-dialog-langs.component';
 import { AudioService } from '../../../../../../services/audio-service/audio.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dialogs',
@@ -28,6 +29,7 @@ import { AudioService } from '../../../../../../services/audio-service/audio.ser
     Tw3DialogGamesComponent,
     Tw3DialogColorsComponent,
     Tw3DialogLangsComponent,
+    TranslateModule,
   ],
   templateUrl: './dialogs.component.html',
   styleUrl: './dialogs.component.scss',

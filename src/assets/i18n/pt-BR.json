@@ -29,8 +29,18 @@
     "CONTACT-ME": "CONTATO"
   },
 
-  "DIALOG-THEMES": {},
-  "DIALOG-LANGS": {},
+  "DIALOG-THEMES": {
+    "CHANGE-THEME": "MUDAR TEMA",
+    "VIDEO-GAMES": "Videogames",
+    "COLORS": "Cores",
+    "CLOSE": "Fechar"
+  },
+  "DIALOG-LANGS": {
+    "CHANGE-LANG": "MUDAR IDIOMA",
+    "LANGUAGES": "Idiomas",
+    "DESCRIPTION": "PT-BR ou EN-US",
+    "CLOSE": "Fechar"
+  },
 
   "SNACK-BAR": {
     "BUTTON-CLOSE": "Fechar",
