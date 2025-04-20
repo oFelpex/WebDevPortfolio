@@ -6,7 +6,7 @@
     position="start"
   >
     <mat-list>
-      @if(getNameOfActualThemeFromLocalStorage.name === 'The Witcher 3') {
+      @if(typeOfActualTheme === 'Games') {
       <app-logo-effects
         (click)="closeNavMenu()"
         style="padding: 20px"
@@ -33,10 +33,7 @@
           style="border-radius: 7px; width: 100%"
           mat-button
           aria-label="Button to show the options of themes"
-          (click)="
-            openThemeMenu();
-            playClickSound(getNameOfActualThemeFromLocalStorage.name)
-          "
+          (click)="openThemeMenu(); playClickSound(actualTheme.name)"
         >
           {{ "NAV-MOBILE.CHANGE-THEME" | translate }}
         </button>
@@ -44,10 +41,7 @@
       <mat-divider style="width: 97%; align-self: center"></mat-divider>
       <mat-list-item
         ><button
-          (click)="
-            openLangsMenu();
-            playClickSound(getNameOfActualThemeFromLocalStorage.name)
-          "
+          (click)="openLangsMenu(); playClickSound(actualTheme.name)"
           style="border-radius: 7px; width: 100%"
           mat-button
           aria-label="Button that open a menu to change the lang of the page"

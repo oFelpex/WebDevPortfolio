@@ -65,8 +65,11 @@ export class MobileMenuComponent implements AfterViewChecked {
     this.mobileNavMenuService.toggleMobileNavMenu();
   }
 
-  public get getNameOfActualThemeFromLocalStorage(): Themes {
+  public get actualTheme(): Themes {
     return this.themeService.getNameOfActualTheme();
+  }
+  public get typeOfActualTheme(): string {
+    return this.themeService.getTypeOfActualTheme();
   }
 
   public playClickSound(themeName: string) {
