@@ -9,15 +9,13 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { NgComponentOutlet } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 
 import { MatIconRegistry } from '@angular/material/icon';
 
 import { LoadingService } from './services/loading-service/loading.service';
 import { ThemeService } from './services/theme-service/theme.service';
 import { ResponsiveService } from './services/responsive-service/responsive.service';
-
-import { TranslateService } from '@ngx-translate/core';
-
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { ShowSoundboardButtonComponent } from './shared/components/soundboard/show-soundboard-button/show-soundboard-button.component';
 @Component({

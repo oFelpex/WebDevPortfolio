@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomSnackbarComponent } from '../../shared/components/custom-snackbar/custom-snackbar.component';
 import { Tw3NavBarComponent } from '../../themes/components/games/the-witcher-3/tw3-header/tw3-header.component';
 import { HeaderComponent } from '../../shared/components/header/header.component';
+import { MinecraftHeaderComponent } from '../../themes/components/games/minecraft/minecraft-header/minecraft-header.component';
 @Injectable({
   providedIn: 'root',
 })
@@ -142,6 +143,8 @@ export class ThemeService {
     switch (this.getNameOfActualTheme().name) {
       case 'The Witcher 3':
         return Tw3NavBarComponent;
+      case 'Minecraft':
+        return MinecraftHeaderComponent;
       default:
         return HeaderComponent;
     }
