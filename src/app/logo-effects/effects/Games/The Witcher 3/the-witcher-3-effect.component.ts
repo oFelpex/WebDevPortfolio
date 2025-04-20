@@ -24,6 +24,7 @@ export class TheWitcher3EffectComponent implements OnInit {
   private audioService: AudioService;
   private particlesContainer!: Container | undefined;
   private timeOut: any;
+  private brightEffect = document.createElement('div') as HTMLDivElement;
   public igniEffect: boolean = false;
   public id: string = 'igni';
 
@@ -170,6 +171,8 @@ export class TheWitcher3EffectComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    this.brightEffect.className = 'igni-bright-effect';
+
     for (let SFX of this.TW3SFX) {
       this.audioService.preloadSound(SFX.SFXName, SFX.SFXURL);
     }
@@ -188,6 +191,10 @@ export class TheWitcher3EffectComponent implements OnInit {
     this.igniEffect = true;
 
     this.timeOut = setTimeout(() => {
+      let brightEffectArr =
+        document.getElementsByClassName('igni-bright-effect');
+      Array.from(brightEffectArr).forEach((el) => el.remove());
+
       this.igniEffect = false;
     }, 6500);
   }
@@ -203,6 +210,8 @@ export class TheWitcher3EffectComponent implements OnInit {
     let options: SingleOrMultiple<RecursivePartial<IOptions>> =
       this.igniConfigs;
     this.particlesContainer = await tsParticles.load({ id: this.id, options });
+
+    document.body.append(this.brightEffect);
 
     setTimeout(() => {
       this.startIgniTimeOut();

@@ -166,6 +166,39 @@ body.the-witcher-3-theme {
   color: #eaeaea;
   font-family: "The Witcher", sans-serif;
 
+  .igni-bright-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: -50px;
+    height: 120vh;
+    width: 100vw;
+    background: radial-gradient(
+      circle,
+      rgba(255, 21, 0, 1) 0%,
+      rgba(255, 216, 110, 1) 50%,
+      rgba(255, 21, 0, 0) 100%
+    );
+    opacity: 0;
+    animation: igni 6.5s;
+    pointer-events: none;
+
+    @keyframes igni {
+      0% {
+        opacity: 0;
+      }
+      40% {
+        opacity: 0.1;
+      }
+      80% {
+        opacity: 0.1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+  }
+
   #intro-section-navigation {
     .navigation-card {
       mat-card-subtitle {
@@ -295,6 +328,59 @@ body.the-witcher-3-theme {
     }
   }
 
+  #mobileMenu-container,
+  #mobileSoundboard-container {
+    .mobileMenu-sidenav,
+    .mobileSoundboard-sidenav {
+      background-color: #1a1a1a;
+      border-top: 4px solid #574a41;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 4px;
+        height: 100%;
+        z-index: 1;
+      }
+
+      &::before {
+        left: 0;
+        background: linear-gradient(to bottom, #574a41, rgba(0, 255, 255, 0));
+      }
+
+      &::after {
+        right: 0;
+        background: linear-gradient(
+          to bottom,
+          #574a41,
+          rgba(0, 255, 255, 0) 90%
+        );
+      }
+      mat-list {
+        color: whitesmoke;
+
+        mat-list-item {
+          span {
+            color: whitesmoke;
+          }
+          button {
+            border-radius: 2px;
+            color: #b6783f;
+            background-color: #191718;
+            color: whitesmoke;
+          }
+        }
+      }
+
+      #main-title,
+      .sub-title,
+      #music-title {
+        color: whitesmoke;
+      }
+    }
+  }
   @include mat.theme(
     (
       color: (
