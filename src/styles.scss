@@ -381,6 +381,29 @@ body.the-witcher-3-theme {
       }
     }
   }
+
+  #mobile-theme-bottom-sheet-container,
+  #mobile-lang-bottom-sheet-container {
+    color: whitesmoke;
+
+    #mobile-theme-bottom-sheet,
+    #mobile-lang-bottom-sheet {
+      mat-expansion-panel {
+        background-color: #1e1919 !important;
+        color: whitesmoke !important;
+        border: thick double #302f2e;
+
+        mat-list {
+          .mobile-theme-menu-mat-list-item,
+          .mobile-lang-menu-mat-list-item {
+            button {
+              color: #b6783f !important;
+            }
+          }
+        }
+      }
+    }
+  }
   @include mat.theme(
     (
       color: (

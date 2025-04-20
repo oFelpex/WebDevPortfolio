@@ -1,9 +1,9 @@
-<mat-nav-list>
+<mat-nav-list id="mobile-lang-bottom-sheet-container">
   <h3>
     {{ ("NAV-MOBILE.ACTUAL-LANG" | translate) + currentLang }}
   </h3>
 
-  <mat-accordion>
+  <mat-accordion id="mobile-lang-bottom-sheet">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title style="height: 70px">
@@ -14,7 +14,7 @@
       </mat-expansion-panel-header>
       <mat-list>
         @for(lang of AllLangs; track $index) {
-        <mat-list-item class="mobile-theme-menu-mat-list-item"
+        <mat-list-item class="mobile-lang-menu-mat-list-item"
           ><button
             mat-button
             style="border-radius: 7px; width: 100%"
