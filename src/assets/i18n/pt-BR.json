@@ -6,13 +6,6 @@
       "Cosmic": "Cósmico"
     },
 
-    "Seasons": {
-      "Spring": "Primavera",
-      "Summer": "Verão",
-      "Autumn": "Outono",
-      "Winter": "Inverno"
-    },
-
     "Games": {
       "God Of War": "God Of War",
       "The Witcher 3": "The Witcher 3",
@@ -23,6 +16,21 @@
       "Minecraft": "Minecraft"
     }
   },
+
+  "UPPERCASE": {
+    "THEMES": "TEMAS",
+    "LANGS": "IDIOMA"
+  },
+
+  "ROUTER-UPPERCASE": {
+    "HOME": "INÍCIO",
+    "ABOUT-ME": "SOBRE MIM",
+    "PROJECTS": "PROJETOS",
+    "CONTACT-ME": "CONTATO"
+  },
+
+  "DIALOG-THEMES": {},
+  "DIALOG-LANGS": {},
 
   "SNACK-BAR": {
     "BUTTON-CLOSE": "Fechar",

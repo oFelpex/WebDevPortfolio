@@ -6,13 +6,6 @@
       "Cosmic": "Cosmic"
     },
 
-    "Seasons": {
-      "Spring": "Spring",
-      "Summer": "Summer",
-      "Autumn": "Autumn",
-      "Winter": "Winter"
-    },
-
     "Games": {
       "God Of War": "God Of War",
       "The Witcher 3": "The Witcher 3",
@@ -23,6 +16,21 @@
       "Minecraft": "Minecraft"
     }
   },
+
+  "UPPERCASE": {
+    "THEMES": "THEMES",
+    "LANGS": "LANGS"
+  },
+
+  "ROUTER-UPPERCASE": {
+    "HOME": "HOME",
+    "ABOUT-ME": "ABOUT ME",
+    "PROJECTS": "PROJECTS",
+    "CONTACT-ME": "CONTACT ME"
+  },
+
+  "DIALOG-THEMES": {},
+  "DIALOG-LANGS": {},
 
   "SNACK-BAR": {
     "BUTTON-CLOSE": "Close",
@@ -60,7 +68,7 @@
   "NAV-BAR-LIST": {
     "MAT-TOOL-TIP-EASTER-EGG": "Click to see a secret",
     "HOME": "Home",
-    "ABOUT": "About-me",
+    "ABOUT": "About me",
     "PROJECTS": "Projects",
     "CONTACT": "Contact",
     "THEME": "Theme",
@@ -72,7 +80,7 @@
 
   "NAV-MOBILE": {
     "HOME": "Home",
-    "ABOUT": "About-me",
+    "ABOUT": "About me",
     "PROJECTS": "Projects",
     "CONTACT": "Contact",
     "CHANGE-THEME": "Change Theme",
@@ -91,7 +99,7 @@
     "I'M": "I'm ",
     "I'M-A": "I'm a ",
 
-    "NAVCARDS-ABOUT": "About-me",
+    "NAVCARDS-ABOUT": "About me",
     "NAVCARDS-LEARN-ABOUT": "Learn more about me",
     "NAVCARDS-KNOW-MORE": "Know more!",
 
@@ -99,7 +107,7 @@
     "NAVCARDS-CHECK-PROJECS": "Come check out my projects",
     "NAVCARDS-SEE-PROJECTS": "See projects!",
 
-    "NAVCARDS-CONTACT": "Contact-me",
+    "NAVCARDS-CONTACT": "Contact me",
     "NAVCARDS-SEND-MESSAGE": "Send-me a message!",
     "NAVCARDS-SEE-CONTACTS": "See contacts"
   },

@@ -19,17 +19,22 @@
           alt=""
         />
         <span>{{
-          allRoutes[(currentIndex - 1 + allRoutes.length) % allRoutes.length]
+          "ROUTER-UPPERCASE." +
+            allRoutes[(currentIndex - 1 + allRoutes.length) % allRoutes.length]
+            | translate
         }}</span>
       </button>
-      <h1>{{ title }}</h1>
+      <h1>{{ "ROUTER-UPPERCASE." + title | translate }}</h1>
       <button class="nav-buttons" (click)="goToNext(); playClickSound()">
         <img
           class="arrow-icon"
           src="../../../../../../assets/themes/games/the-witcher-3/buttons/tw3-nav-button.webp"
           alt=""
         />
-        <span>{{ allRoutes[(currentIndex + 1) % allRoutes.length] }}</span>
+        <span>{{
+          "ROUTER-UPPERCASE." + allRoutes[(currentIndex + 1) % allRoutes.length]
+            | translate
+        }}</span>
       </button>
     </div>
 
@@ -58,7 +63,7 @@
             src="../../../../../../assets/themes/games/the-witcher-3/buttons/tw3-medallion-icon.webp"
             alt=""
           />
-          <span>THEMES</span>
+          <span>{{ "UPPERCASE.THEMES" | translate }}</span>
         </div>
       </button>
       <button
@@ -76,7 +81,7 @@
             src="../../../../../../assets/themes/games/the-witcher-3/buttons/tw3-langs-icon.webp"
             alt=""
           />
-          <span>LANGS</span>
+          <span>{{ "UPPERCASE.LANGS" | translate }}</span>
         </div>
       </button>
     </div>

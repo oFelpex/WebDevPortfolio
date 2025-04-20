@@ -1,6 +1,7 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 
 import { Subscription } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -15,6 +16,7 @@ import { MobileNavMenuService } from '../../../../../services/mobile-menu-servic
 import { ResponsiveService } from '../../../../../services/responsive-service/responsive.service';
 import { MobileSoundboardComponent } from '../../../../../shared/components/header/mobile-soundboard/mobile-soundboard.component';
 import { MobileMenuComponent } from '../../../../../shared/components/header/mobile-menu/mobile-menu.component';
+
 @Component({
   selector: 'app-tw3-header',
   imports: [
@@ -23,6 +25,7 @@ import { MobileMenuComponent } from '../../../../../shared/components/header/mob
     LogoEffectsComponent,
     MobileMenuComponent,
     MobileSoundboardComponent,
+    TranslateModule,
   ],
   templateUrl: './tw3-header.component.html',
   styleUrl: './tw3-header.component.scss',
