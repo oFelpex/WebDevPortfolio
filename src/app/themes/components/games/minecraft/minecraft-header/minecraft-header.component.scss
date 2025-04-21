@@ -19,8 +19,9 @@ header {
 
   #logo-span {
     position: absolute;
-    transform: translate(40%, 100%) rotate(-20deg);
+    transform: translate(40%, 35%) rotate(-18deg);
     width: 200px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,7 +47,7 @@ header {
 @media (max-width: 820px) {
   #minecraft-nav {
     #logo-span {
-      transform: translate(0%, 130%) rotate(0deg);
+      transform: translate(0%, 45%) rotate(0deg);
     }
   }
 }
