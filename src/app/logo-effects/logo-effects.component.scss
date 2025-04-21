@@ -6,9 +6,12 @@
   justify-content: center;
 
   img {
+    padding: 1px;
     cursor: pointer;
-    min-width: 100px;
-    width: 150px;
+    min-height: 40px;
+    max-height: 60px;
+    width: auto;
+    translate: 0.3s;
   }
 }
 
