@@ -16,4 +16,37 @@ header {
   background-color: #002e0f;
   background-position: center -120px;
   background-size: auto 800px;
+
+  #logo-span {
+    position: absolute;
+    transform: translate(40%, 100%) rotate(-20deg);
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    span {
+      text-align: center;
+      color: #f7f83b;
+
+      animation: textAnimation 0.3s infinite alternate;
+
+      @keyframes textAnimation {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 820px) {
+  #minecraft-nav {
+    #logo-span {
+      transform: translate(0%, 130%) rotate(0deg);
+    }
+  }
 }
