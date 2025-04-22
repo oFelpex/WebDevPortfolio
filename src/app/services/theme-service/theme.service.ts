@@ -4,9 +4,9 @@ import { gamesOptions } from '../../models/themes';
 import { BehaviorSubject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomSnackbarComponent } from '../../shared/components/custom-snackbar/custom-snackbar.component';
-import { Tw3HeaderComponent } from '../../themes/components/games/the-witcher-3/tw3-header/tw3-header.component';
+import { Tw3HeaderComponent } from '../../themes/shared/components/games/the-witcher-3/tw3-header/tw3-header.component';
 import { HeaderComponent } from '../../shared/components/header/header.component';
-import { MinecraftHeaderComponent } from '../../themes/components/games/minecraft/minecraft-header/minecraft-header.component';
+import { MinecraftHeaderComponent } from '../../themes/shared/components/games/minecraft/minecraft-header/minecraft-header.component';
 @Injectable({
   providedIn: 'root',
 })
