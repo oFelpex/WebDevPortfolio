@@ -57,16 +57,14 @@ export class ThemeService {
   }
 
   public changeTheme(theme: Themes) {
-    const currentTheme = this._actualTheme$.getValue();
-
-    if (currentTheme.name === theme.name) {
+    if (this._actualTheme$.getValue().name === theme.name) {
       this._actualTheme$.next(this.defaultTheme);
       this.setActualThemeToLocalStorage(this.defaultTheme);
       this.setTheme(this.defaultTheme.name.toLowerCase());
       this.snackBar.openFromComponent(CustomSnackbarComponent, {
         data: {
           message: 'SNACK-BAR.THEMES.DEFAULT-THEME',
-          themeNameMessage: `THEMES.${currentTheme.type}.${
+          themeNameMessage: `THEMES.${this._actualTheme$.getValue().type}.${
             this._actualTheme$.getValue().name
           }`,
           theme: this._actualTheme$.getValue().name,
@@ -74,7 +72,7 @@ export class ThemeService {
         duration: 4000,
       });
       console.log('Actual Theme:', this._actualTheme$.getValue().name);
-      console.log('Type:', currentTheme.type);
+      console.log('Type:', this._actualTheme$.getValue().type);
       return;
     } else {
       this._actualTheme$.next(theme);
@@ -85,7 +83,7 @@ export class ThemeService {
     this.snackBar.openFromComponent(CustomSnackbarComponent, {
       data: {
         message: 'SNACK-BAR.THEMES.CHANGE-THEME',
-        themeNameMessage: `THEMES.${currentTheme.type}.${
+        themeNameMessage: `THEMES.${this._actualTheme$.getValue().type}.${
           this._actualTheme$.getValue().name
         }`,
         theme: this._actualTheme$.getValue().name,
@@ -95,7 +93,7 @@ export class ThemeService {
 
     //debug
     console.log('Actual Theme:', this._actualTheme$.getValue().name);
-    console.log('Type:', currentTheme.type);
+    console.log('Type:', this._actualTheme$.getValue().type);
   }
 
   private setActualThemeToLocalStorage(theme: Themes) {
