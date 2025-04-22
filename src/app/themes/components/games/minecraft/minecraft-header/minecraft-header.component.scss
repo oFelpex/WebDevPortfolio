@@ -26,7 +26,10 @@ header {
     align-items: center;
     justify-content: center;
     pointer-events: none;
+    z-index: 2;
+    white-space: nowrap;
     span {
+      font-size: medium;
       text-align: center;
       color: #f7f83b;
 
@@ -48,6 +51,20 @@ header {
   #minecraft-nav {
     #logo-span {
       transform: translate(0%, 45%) rotate(0deg);
+
+      span {
+        font-size: medium;
+      }
+    }
+  }
+}
+
+@media (max-height: 450px) {
+  #minecraft-nav {
+    #logo-span {
+      span {
+        font-size: small;
+      }
     }
   }
 }

@@ -1,25 +1,58 @@
 {
   "THEMES": {
+    "THEMES": "Temas",
+
     "Colors": {
+      "COLORS": "Cores",
       "Light": "Claro",
       "Dark": "Escuro",
       "Cosmic": "Cósmico"
     },
 
-    "Games": {
-      "God Of War": "God Of War",
-      "The Witcher 3": "The Witcher 3",
-      "Cyberpunk": "Cyberpunk",
-      "Elden Ring": "Elden Ring",
-      "Hollow Knight": "Hollow Knight",
-      "Undertale": "Undertale",
-      "Minecraft": "Minecraft"
+    "GAMES": {
+      "VIDEO-GAMES": "Videogames",
+
+      "GOD OF WAR": {},
+      "THE WITCHER 3": {},
+      "CYBERPUNK": {},
+      "ELDEN RING": {},
+      "HOLLOW KNIGHT": {},
+      "UNDERTALE": {},
+
+      "MINECRAFT": {
+        "EXPLORE": "Explorar",
+        "SETTINGS": "Configurações",
+        "PHRASES": {
+          "ONE": "Jogos indie são os melhores!",
+          "TWO": "Tentando ser melhor...",
+          "THREE": "Bolo de milho é o melhor!",
+          "FOUR": "Experimente também Terraria!",
+          "FIVE": "Experimente também Undertale!",
+          "SIX": "Dark Souls II é bom.",
+          "SEVEN": "Nunca pare de estudar!",
+          "EIGHT": "Uma frase elegante!",
+          "NINE": "Há mais de uma frase aqui.",
+          "TEN": "Seja gentil.",
+          "ELEVEN": "Nunca esqueça os amigos."
+        }
+      }
     }
+  },
+
+  "LANGS": {
+    "LANGS": "Idiomas"
   },
 
   "UPPERCASE": {
     "THEMES": "TEMAS",
     "LANGS": "IDIOMA"
+  },
+
+  "ROUTER": {
+    "HOME": "Início",
+    "ABOUT-ME": "Sobre mim",
+    "PROJECTS": "Projetos",
+    "CONTACT-ME": "Contato"
   },
 
   "ROUTER-UPPERCASE": {
