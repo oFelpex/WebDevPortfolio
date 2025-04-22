@@ -30,7 +30,7 @@ import { MobileMenuComponent } from '../../../../../shared/components/header/mob
   templateUrl: './tw3-header.component.html',
   styleUrl: './tw3-header.component.scss',
 })
-export class Tw3NavBarComponent implements OnInit, OnDestroy {
+export class Tw3HeaderComponent implements OnInit, OnDestroy {
   private router: Router;
   private routerSubscription!: Subscription;
   private responsiveSubscription!: Subscription;

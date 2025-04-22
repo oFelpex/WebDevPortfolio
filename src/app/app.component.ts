@@ -86,7 +86,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.themeService.actualTheme$.subscribe(() => {
-      this.selectedNavbarComponent = this.themeService.getNavbarComponent();
+      this.selectedNavbarComponent = this.themeService.getHeaderComponent();
     });
 
     this.responsiveService.isMobile$.subscribe((isMobile) => {
