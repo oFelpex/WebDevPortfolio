@@ -1,7 +1,7 @@
 @if(isOverlayVisible) {
 <div id="project-card-img-overlay" (click)="goToProject()" @showOverlay>
   <button
-    (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+    (click)="playClickSound(actualTheme.name)"
     mat-icon-button
     aria-label="Get you to the site."
   >

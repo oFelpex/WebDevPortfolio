@@ -32,7 +32,9 @@ export class SoundboardComponent implements OnInit, OnDestroy {
   private savedSfxVolume: number = 50;
   private savedMusicVolume: number = 50;
   private sub!: Subscription;
+  private themeSubscript!: Subscription;
 
+  public actualTheme!: Themes;
   public sfxVolume: number = 50;
   public musicVolume: number = 50;
   public progress: number = 0;
@@ -53,15 +55,17 @@ export class SoundboardComponent implements OnInit, OnDestroy {
       this.currentMusic = this.audioService.getCurrentMusicName();
       this.currentComposer = this.audioService.getCurrentMusicComposer();
     });
+
+    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
+      this.actualTheme = theme;
+    });
   }
 
   ngOnDestroy(): void {
+    this.themeSubscript.unsubscribe();
     this.sub.unsubscribe();
   }
 
-  public get getNameOfActualThemeFromLocalStorage(): Themes {
-    return this.themeService.getNameOfActualTheme();
-  }
   public playClickSound(themeName: string) {
     this.audioService.playClickSound(themeName);
   }

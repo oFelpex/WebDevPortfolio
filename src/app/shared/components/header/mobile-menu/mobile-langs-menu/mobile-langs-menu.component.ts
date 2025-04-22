@@ -36,11 +36,13 @@ export class MobileLangsMenuSheetComponent {
   private translate: TranslateService;
   private translateSubscription!: Subscription;
   private snackBar: MatSnackBar;
-  public currentLang!: string;
   private audioService: AudioService;
   private themeService: ThemeService;
   private responsiveService: ResponsiveService;
+  private themeSubscript!: Subscription;
 
+  public actualTheme!: Themes;
+  public currentLang!: string;
   public isMobile: boolean = window.innerWidth <= 820;
 
   constructor() {
@@ -53,6 +55,9 @@ export class MobileLangsMenuSheetComponent {
 
   ngOnInit(): void {
     this.currentLang = this.translate.currentLang;
+    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
+      this.actualTheme = theme;
+    });
 
     this.translateSubscription = this.translate.onLangChange
       .asObservable()
@@ -69,6 +74,7 @@ export class MobileLangsMenuSheetComponent {
 
   ngOnDestroy(): void {
     this.translateSubscription.unsubscribe();
+    this.themeSubscript.unsubscribe();
   }
 
   public changeLanguage(lang: string) {
@@ -78,7 +84,7 @@ export class MobileLangsMenuSheetComponent {
     this.snackBar.openFromComponent(CustomSnackbarComponent, {
       data: {
         message: 'SNACK-BAR.NAV-MOBILE.CHANGE-LANG',
-        theme: this.getNameOfActualThemeFromLocalStorage.name,
+        theme: this.actualTheme.name,
       },
       duration: 4000,
     });
@@ -92,9 +98,6 @@ export class MobileLangsMenuSheetComponent {
   private _bottomSheetRef =
     inject<MatBottomSheetRef<MobileMenuComponent>>(MatBottomSheetRef);
 
-  public get getNameOfActualThemeFromLocalStorage(): Themes {
-    return this.themeService.getNameOfActualTheme();
-  }
   public playClickSound(themeName: string) {
     this.audioService.playClickSound(themeName);
   }

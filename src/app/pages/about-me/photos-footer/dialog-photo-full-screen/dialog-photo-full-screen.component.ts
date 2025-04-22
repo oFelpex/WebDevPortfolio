@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -15,6 +15,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AudioService } from '../../../../services/audio-service/audio.service';
 import { ThemeService } from '../../../../services/theme-service/theme.service';
 import { Themes } from '../../../../models/themes';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'dialog-photo-full-screen',
   templateUrl: 'dialog-photo-full-screen.component.html',
@@ -28,10 +29,12 @@ import { Themes } from '../../../../models/themes';
   ],
   styleUrl: 'dialog-photo-full-screen.component.scss',
 })
-export class DialogPhotoFullScreenComponent {
+export class DialogPhotoFullScreenComponent implements OnInit, OnDestroy {
   private audioService: AudioService;
   private themeService: ThemeService;
+  private themeSubscript!: Subscription;
 
+  public actualTheme!: Themes;
   public photo: Photos = inject(MAT_DIALOG_DATA);
 
   constructor() {
@@ -39,9 +42,15 @@ export class DialogPhotoFullScreenComponent {
     this.audioService = inject(AudioService);
   }
 
-  public get getNameOfActualThemeFromLocalStorage(): Themes {
-    return this.themeService.getNameOfActualTheme();
+  ngOnInit(): void {
+    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
+      this.actualTheme = theme;
+    });
   }
+  ngOnDestroy(): void {
+    this.themeSubscript.unsubscribe();
+  }
+
   public playClickSound(themeName: string) {
     this.audioService.playClickSound(themeName);
   }

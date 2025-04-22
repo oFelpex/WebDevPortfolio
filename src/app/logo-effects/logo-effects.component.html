@@ -1,21 +1,21 @@
 <div id="navBar-custom-logo">
   <img
-    (click)="playEffect(getNameOfActualThemeFromLocalStorage)"
+    (click)="playEffect(actualTheme)"
     [matTooltip]="'NAV-BAR-LIST.MAT-TOOL-TIP-EASTER-EGG' | translate"
     [src]="
       '../../../../assets/images/logos/' +
       getTypeOfActualThemeFromLocalStorage +
       '/' +
-      getNameOfActualThemeFromLocalStorage.name +
+      actualTheme.name +
       '/logo-' +
-      getNameOfActualThemeFromLocalStorage.name +
+      actualTheme.name +
       '.webp'
     "
     alt="It's a personality logo that says Felpex"
   />
 </div>
 
-@switch (getNameOfActualThemeFromLocalStorage.name) { @case ("Minecraft") {
+@switch (actualTheme.name) { @case ("Minecraft") {
 <app-minecraft #minecraftEffect></app-minecraft>
 } @case ("The Witcher 3") {
 <app-the-witcher-3 #tw3Effect></app-the-witcher-3>

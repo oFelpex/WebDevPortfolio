@@ -1,4 +1,4 @@
-import { Component, Inject, inject } from '@angular/core';
+import { Component, Inject, inject, OnDestroy, OnInit } from '@angular/core';
 import { ThemeService } from '../../../services/theme-service/theme.service';
 import { AudioService } from '../../../services/audio-service/audio.service';
 import { Themes } from '../../../models/themes';
@@ -8,6 +8,7 @@ import {
 } from '@angular/material/snack-bar';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-custom-snackbar',
@@ -15,12 +16,15 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './custom-snackbar.component.html',
   styleUrl: './custom-snackbar.component.scss',
 })
-export class CustomSnackbarComponent {
+export class CustomSnackbarComponent implements OnInit, OnDestroy {
   private audioService: AudioService;
   private themeService: ThemeService;
   private snackBarRef: MatSnackBarRef<CustomSnackbarComponent>;
-  message: string;
-  themeNameMessage: string;
+  private themeSubscript!: Subscription;
+
+  public actualTheme!: Themes;
+  public message: string;
+  public themeNameMessage: string;
 
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any) {
     this.themeService = inject(ThemeService);
@@ -30,9 +34,15 @@ export class CustomSnackbarComponent {
     this.themeNameMessage = data.themeNameMessage;
   }
 
-  public get getNameOfActualThemeFromLocalStorage(): Themes {
-    return this.themeService.getNameOfActualTheme();
+  ngOnInit(): void {
+    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
+      this.actualTheme = theme;
+    });
   }
+  ngOnDestroy(): void {
+    this.themeSubscript.unsubscribe();
+  }
+
   public playClickSound(themeName: string) {
     this.audioService.playClickSound(themeName);
   }

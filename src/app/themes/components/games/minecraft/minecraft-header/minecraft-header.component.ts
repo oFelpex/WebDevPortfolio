@@ -46,8 +46,8 @@ export class MinecraftHeaderComponent implements OnInit {
   ];
   public allLangs!: string[];
   public isMobile: boolean = window.innerWidth <= 820;
+  public actualTheme!: Themes;
 
-  // JUST A REMAINDER: CHANGE TO SOME SIMPLE PHRASES SO I CAN USE THE TRANSLATESERVICE
   private listOfPhrases: string[] = [
     'ONE',
     'TWO',
@@ -70,6 +70,7 @@ export class MinecraftHeaderComponent implements OnInit {
   private responsiveSubscription!: Subscription;
   private mobileNavMenuService: MobileNavMenuService;
   private mobileSoundboardMenuService: MobileSoundboardMenuService;
+  private themeSubscript!: Subscription;
 
   constructor() {
     this.mobileNavMenuService = inject(MobileNavMenuService);
@@ -85,6 +86,11 @@ export class MinecraftHeaderComponent implements OnInit {
     this.phrase = this.listOfPhrases[this.phraseNumber()];
     this.allLangs = this.translateService.langs;
 
+    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
+      this.actualTheme = theme;
+    });
+
+    this.currentRoute = this.router.url;
     this.routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = this.router.url;
@@ -109,15 +115,13 @@ export class MinecraftHeaderComponent implements OnInit {
   ngOnDestroy(): void {
     this.routerSubscription.unsubscribe();
     this.responsiveSubscription.unsubscribe();
+    this.themeSubscript.unsubscribe();
   }
 
   private phraseNumber(): number {
     return Math.round(Math.random() * (this.listOfPhrases.length - 1));
   }
 
-  public get actualTheme(): Themes {
-    return this.themeService.getNameOfActualTheme();
-  }
   public get allGamesThemes(): Themes[] {
     return this.themeService.getGamesNames();
   }

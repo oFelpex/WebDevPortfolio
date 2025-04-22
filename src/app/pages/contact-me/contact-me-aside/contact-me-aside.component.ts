@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { SocialLinksComponent } from '../../../shared/components/social-links/social-links.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -7,6 +7,7 @@ import { AudioService } from '../../../services/audio-service/audio.service';
 import { ThemeService } from '../../../services/theme-service/theme.service';
 import { Themes } from '../../../models/themes';
 import { CustomSnackbarComponent } from '../../../shared/components/custom-snackbar/custom-snackbar.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-contact-me-aside',
@@ -14,10 +15,13 @@ import { CustomSnackbarComponent } from '../../../shared/components/custom-snack
   templateUrl: './contact-me-aside.component.html',
   styleUrl: './contact-me-aside.component.scss',
 })
-export class ContactMeAsideComponent {
+export class ContactMeAsideComponent implements OnInit, OnDestroy {
   private snackBar: MatSnackBar;
   private audioService: AudioService;
   private themeService: ThemeService;
+  private themeSubscript!: Subscription;
+
+  public actualTheme!: Themes;
 
   constructor() {
     this.themeService = inject(ThemeService);
@@ -25,9 +29,15 @@ export class ContactMeAsideComponent {
     this.snackBar = inject(MatSnackBar);
   }
 
-  public get getNameOfActualThemeFromLocalStorage(): Themes {
-    return this.themeService.getNameOfActualTheme();
+  ngOnInit(): void {
+    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
+      this.actualTheme = theme;
+    });
   }
+  ngOnDestroy(): void {
+    this.themeSubscript.unsubscribe();
+  }
+
   public playClickSound(themeName: string) {
     this.audioService.playClickSound(themeName);
   }
@@ -39,7 +49,7 @@ export class ContactMeAsideComponent {
         this.snackBar.openFromComponent(CustomSnackbarComponent, {
           data: {
             message: 'SNACK-BAR.CONTACT-PAGE.COPY-EMAIL',
-            theme: this.getNameOfActualThemeFromLocalStorage.name,
+            theme: this.actualTheme.name,
           },
           duration: 4000,
         });
@@ -50,7 +60,7 @@ export class ContactMeAsideComponent {
         this.snackBar.openFromComponent(CustomSnackbarComponent, {
           data: {
             message: 'SNACK-BAR.CONTACT-PAGE.COPY-NUMBER',
-            theme: this.getNameOfActualThemeFromLocalStorage.name,
+            theme: this.actualTheme.name,
           },
           duration: 4000,
         });

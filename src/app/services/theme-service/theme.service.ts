@@ -4,7 +4,7 @@ import { gamesOptions } from '../../models/themes';
 import { BehaviorSubject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomSnackbarComponent } from '../../shared/components/custom-snackbar/custom-snackbar.component';
-import { Tw3NavBarComponent } from '../../themes/components/games/the-witcher-3/tw3-header/tw3-header.component';
+import { Tw3HeaderComponent } from '../../themes/components/games/the-witcher-3/tw3-header/tw3-header.component';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { MinecraftHeaderComponent } from '../../themes/components/games/minecraft/minecraft-header/minecraft-header.component';
 @Injectable({
@@ -56,14 +56,10 @@ export class ThemeService {
     return this.colorsOptions;
   }
 
-  public getNameOfActualTheme(): Themes {
-    return this._actualTheme$.value;
-  }
-
   public getTypeOfActualTheme(): string {
     const gameThemes = this.getGamesNames();
     const colorThemes = this.getColorsNames();
-    const actualThemeName = this.getNameOfActualTheme().name;
+    const actualThemeName = this._actualTheme$.getValue().name;
 
     if (gameThemes.some((theme) => theme.name === actualThemeName)) {
       return 'Games';
@@ -77,7 +73,7 @@ export class ThemeService {
   }
 
   public changeTheme(theme: Themes) {
-    const currentTheme = this._actualTheme$.value;
+    const currentTheme = this._actualTheme$.getValue();
 
     if (currentTheme.name === theme.name) {
       this._actualTheme$.next(this.defaultTheme);
@@ -87,13 +83,13 @@ export class ThemeService {
         data: {
           message: 'SNACK-BAR.THEMES.DEFAULT-THEME',
           themeNameMessage: `THEMES.${this.getTypeOfActualTheme()}.${
-            this.getNameOfActualTheme().name
+            this._actualTheme$.getValue().name
           }`,
-          theme: this.getNameOfActualTheme().name,
+          theme: this._actualTheme$.getValue().name,
         },
         duration: 4000,
       });
-      console.log('Actual Theme:', this.getNameOfActualTheme());
+      console.log('Actual Theme:', this._actualTheme$.getValue().name);
       console.log('Type:', this.getTypeOfActualTheme());
       return;
     } else {
@@ -106,15 +102,15 @@ export class ThemeService {
       data: {
         message: 'SNACK-BAR.THEMES.CHANGE-THEME',
         themeNameMessage: `THEMES.${this.getTypeOfActualTheme()}.${
-          this.getNameOfActualTheme().name
+          this._actualTheme$.getValue().name
         }`,
-        theme: this.getNameOfActualTheme().name,
+        theme: this._actualTheme$.getValue().name,
       },
       duration: 4000,
     });
 
     //debug
-    console.log('Actual Theme:', this.getNameOfActualTheme());
+    console.log('Actual Theme:', this._actualTheme$.getValue().name);
     console.log('Type:', this.getTypeOfActualTheme());
   }
 
@@ -139,10 +135,10 @@ export class ThemeService {
     body.classList.add(`${themeName}-theme`);
   }
 
-  public getNavbarComponent(): Type<any> {
-    switch (this.getNameOfActualTheme().name) {
+  public getHeaderComponent(): Type<any> {
+    switch (this._actualTheme$.getValue().name) {
       case 'The Witcher 3':
-        return Tw3NavBarComponent;
+        return Tw3HeaderComponent;
       case 'Minecraft':
         return MinecraftHeaderComponent;
       default:

@@ -1,7 +1,7 @@
 <mat-nav-list id="mobile-theme-bottom-sheet-container">
   <h3>
     {{
-      getNameOfActualThemeFromLocalStorage.name
+      actualTheme.name
         ? ("NAV-MOBILE.ACTUAL-THEME" | translate) + (actualThemeKey | translate)
         : ("NAV-MOBILE.CHOOSE-THEME" | translate)
     }}
@@ -27,16 +27,11 @@
           ><button
             mat-button
             style="border-radius: 7px; width: 100%"
-            (click)="
-              changeTheme(gameOption);
-              playClickSound(getNameOfActualThemeFromLocalStorage.name)
-            "
+            (click)="changeTheme(gameOption); playClickSound(actualTheme.name)"
           >
             <span
               [matBadge]="
-                getNameOfActualThemeFromLocalStorage.name === gameOption.name
-                  ? 'Selected'
-                  : ''
+                actualTheme.name === gameOption.name ? 'Selected' : ''
               "
               matBadgeOverlap="false"
               >{{ gameOption.name }}
@@ -66,14 +61,11 @@
           ><button
             mat-button
             style="border-radius: 7px; width: 100%"
-            (click)="
-              changeTheme(colorOption);
-              playClickSound(getNameOfActualThemeFromLocalStorage.name)
-            "
+            (click)="changeTheme(colorOption); playClickSound(actualTheme.name)"
           >
             <span
               [matBadge]="
-                getNameOfActualThemeFromLocalStorage.name === colorOption.name
+                actualTheme.name === colorOption.name
                   ? ('NAV-MOBILE.SELECTED' | translate)
                   : ''
               "

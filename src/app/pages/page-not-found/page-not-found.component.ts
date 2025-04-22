@@ -5,6 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AudioService } from '../../services/audio-service/audio.service';
 import { ThemeService } from '../../services/theme-service/theme.service';
 import { Themes } from '../../models/themes';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-page-not-found',
@@ -15,15 +16,24 @@ import { Themes } from '../../models/themes';
 export class PageNotFoundComponent {
   private audioService: AudioService;
   private themeService: ThemeService;
+  private themeSubscript!: Subscription;
+
+  public actualTheme!: Themes;
 
   constructor() {
     this.themeService = inject(ThemeService);
     this.audioService = inject(AudioService);
   }
 
-  public get getNameOfActualThemeFromLocalStorage(): Themes {
-    return this.themeService.getNameOfActualTheme();
+  ngOnInit(): void {
+    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
+      this.actualTheme = theme;
+    });
   }
+  ngOnDestroy(): void {
+    this.themeSubscript.unsubscribe();
+  }
+
   public playClickSound(themeName: string) {
     this.audioService.playClickSound(themeName);
   }

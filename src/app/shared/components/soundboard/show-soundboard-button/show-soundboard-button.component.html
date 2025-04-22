@@ -3,10 +3,7 @@
   [@getUp_return]="showSoundboard ? 'getUp' : 'return'"
 >
   <button
-    (click)="
-      showSoundboard = !showSoundboard;
-      playClickSound(getNameOfActualThemeFromLocalStorage.name)
-    "
+    (click)="showSoundboard = !showSoundboard; playClickSound(actualTheme.name)"
     [class.open]="showSoundboard"
     mat-mini-fab
     aria-label="Click to appear the soundboard, so you can configure the audio."

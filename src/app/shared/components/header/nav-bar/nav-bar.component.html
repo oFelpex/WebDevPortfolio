@@ -5,10 +5,7 @@
         <button
           mat-mini-fab
           aria-label="Button to show the menu"
-          (click)="
-            toggleMobileNavMenu();
-            playClickSound(getNameOfActualThemeFromLocalStorage.name)
-          "
+          (click)="toggleMobileNavMenu(); playClickSound(actualTheme.name)"
         >
           <mat-icon class="menuButton-icon">menu</mat-icon>
         </button>
@@ -22,8 +19,7 @@
           mat-mini-fab
           aria-label="Button to show the soundboard"
           (click)="
-            toggleMobileSoundboardMenu();
-            playClickSound(getNameOfActualThemeFromLocalStorage.name)
+            toggleMobileSoundboardMenu(); playClickSound(actualTheme.name)
           "
         >
           <mat-icon class="menuButton-icon">headphones</mat-icon>
@@ -78,7 +74,7 @@
       >
       <mat-list-item class="navBar-list-item"
         ><button
-          (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+          (click)="playClickSound(actualTheme.name)"
           [matMenuTriggerFor]="theme"
           mat-button
           aria-label="Button that open a menu to change the theme of the page"
@@ -89,7 +85,7 @@
       </mat-list-item>
       <mat-menu #theme="matMenu">
         <button
-          (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+          (click)="playClickSound(actualTheme.name)"
           mat-menu-item
           [matMenuTriggerFor]="games"
           class="expandMatMenu"
@@ -104,7 +100,7 @@
         </button>
 
         <button
-          (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+          (click)="playClickSound(actualTheme.name)"
           mat-menu-item
           [matMenuTriggerFor]="color"
           class="expandMatMenu"
@@ -124,21 +120,13 @@
         <button
           class="expandMatMenu"
           mat-menu-item
-          (click)="
-            changeTheme(gamesOptions);
-            playClickSound(getNameOfActualThemeFromLocalStorage.name)
-          "
+          (click)="changeTheme(gamesOptions); playClickSound(actualTheme.name)"
           [class]="{
-            expandMatMenu:
-              getNameOfActualThemeFromLocalStorage.name === gamesOptions.name
+            expandMatMenu: actualTheme.name === gamesOptions.name
           }"
         >
           <span
-            [matBadge]="
-              getNameOfActualThemeFromLocalStorage.name === gamesOptions.name
-                ? 'ON'
-                : ''
-            "
+            [matBadge]="actualTheme.name === gamesOptions.name ? 'ON' : ''"
             matBadgeOverlap="false"
             >{{ gamesOptions.name }}</span
           >
@@ -150,21 +138,13 @@
         <button
           class="expandMatMenu"
           mat-menu-item
-          (click)="
-            changeTheme(colorOption);
-            playClickSound(getNameOfActualThemeFromLocalStorage.name)
-          "
+          (click)="changeTheme(colorOption); playClickSound(actualTheme.name)"
           [class]="{
-            expandMatMenu:
-              getNameOfActualThemeFromLocalStorage.name === colorOption.name
+            expandMatMenu: actualTheme.name === colorOption.name
           }"
         >
           <span
-            [matBadge]="
-              getNameOfActualThemeFromLocalStorage.name === colorOption.name
-                ? 'ON'
-                : ''
-            "
+            [matBadge]="actualTheme.name === colorOption.name ? 'ON' : ''"
             matBadgeOverlap="false"
             >{{ "THEMES.Colors." + colorOption.name | translate }}</span
           >
@@ -174,7 +154,7 @@
 
       <mat-list-item class="navBar-list-item"
         ><button
-          (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+          (click)="playClickSound(actualTheme.name)"
           [matMenuTriggerFor]="langs"
           mat-button
           aria-label="Button that open a menu to change the lang of the page"
@@ -185,10 +165,7 @@
       <mat-menu #langs="matMenu">
         @for(lang of AllLangs; track $index) {
         <button
-          (click)="
-            changeLanguage(lang);
-            playClickSound(getNameOfActualThemeFromLocalStorage.name)
-          "
+          (click)="changeLanguage(lang); playClickSound(actualTheme.name)"
           mat-menu-item
         >
           <span

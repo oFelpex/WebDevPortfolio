@@ -17,10 +17,7 @@
       mat-mini-fab
       aria-label="Button to leave you to next section of the page."
       [class.open]="showNavigationCards"
-      (click)="
-        toggleNavigationCards();
-        playClickSound(getNameOfActualThemeFromLocalStorage.name)
-      "
+      (click)="toggleNavigationCards(); playClickSound(actualTheme.name)"
     >
       <mat-icon class="intro-section-button-icon">keyboard_arrow_down</mat-icon>
     </button>

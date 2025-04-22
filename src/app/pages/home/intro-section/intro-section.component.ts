@@ -34,6 +34,9 @@ export class IntroSectionComponent implements OnInit, OnDestroy {
   private langSubscription!: Subscription;
   private audioService: AudioService;
   private themeService: ThemeService;
+  private themeSubscript!: Subscription;
+
+  public actualTheme!: Themes;
 
   constructor() {
     this.translate = inject(TranslateService);
@@ -42,6 +45,10 @@ export class IntroSectionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
+      this.actualTheme = theme;
+    });
+
     let typedInstance: Typed;
     let EN_autoTypeArr: string[] = [
       'front end developer^2500',
@@ -93,14 +100,12 @@ export class IntroSectionComponent implements OnInit, OnDestroy {
     this.showNavigationCards = !this.showNavigationCards;
   }
 
-  public get getNameOfActualThemeFromLocalStorage(): Themes {
-    return this.themeService.getNameOfActualTheme();
-  }
   public playClickSound(themeName: string) {
     this.audioService.playClickSound(themeName);
   }
 
   ngOnDestroy(): void {
     this.langSubscription.unsubscribe();
+    this.themeSubscript.unsubscribe();
   }
 }

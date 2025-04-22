@@ -1,4 +1,11 @@
-import { AfterViewChecked, Component, inject, ViewChild } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -16,6 +23,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { LogoEffectsComponent } from '../../../../logo-effects/logo-effects.component';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-mobile-menu',
   imports: [
@@ -31,19 +39,32 @@ import { LogoEffectsComponent } from '../../../../logo-effects/logo-effects.comp
   templateUrl: './mobile-menu.component.html',
   styleUrl: './mobile-menu.component.scss',
 })
-export class MobileMenuComponent implements AfterViewChecked {
+export class MobileMenuComponent
+  implements OnInit, OnDestroy, AfterViewChecked
+{
   @ViewChild('mobileNavMenu') mobileNavMenu!: MatDrawer;
 
   private mobileNavMenuService: MobileNavMenuService;
   private audioService: AudioService;
   private themeService: ThemeService;
   private _bottomSheet: MatBottomSheet;
+  private themeSubscript!: Subscription;
+
+  public actualTheme!: Themes;
 
   constructor() {
     this.mobileNavMenuService = inject(MobileNavMenuService);
     this.audioService = inject(AudioService);
     this.themeService = inject(ThemeService);
     this._bottomSheet = inject(MatBottomSheet);
+  }
+  ngOnInit(): void {
+    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
+      this.actualTheme = theme;
+    });
+  }
+  ngOnDestroy(): void {
+    this.themeSubscript.unsubscribe();
   }
 
   ngAfterViewChecked() {
@@ -65,9 +86,6 @@ export class MobileMenuComponent implements AfterViewChecked {
     this.mobileNavMenuService.toggleMobileNavMenu();
   }
 
-  public get actualTheme(): Themes {
-    return this.themeService.getNameOfActualTheme();
-  }
   public get typeOfActualTheme(): string {
     return this.themeService.getTypeOfActualTheme();
   }

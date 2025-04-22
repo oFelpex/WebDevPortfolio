@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -22,6 +22,7 @@ import { AudioService } from '../../../services/audio-service/audio.service';
 import { ThemeService } from '../../../services/theme-service/theme.service';
 import { Themes } from '../../../models/themes';
 import { CustomSnackbarComponent } from '../../../shared/components/custom-snackbar/custom-snackbar.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-contact-me-form',
@@ -40,11 +41,14 @@ import { CustomSnackbarComponent } from '../../../shared/components/custom-snack
   styleUrl: './contact-me-form.component.scss',
   animations: [fadeInDownToUp_height],
 })
-export class ContactMeFormComponent {
+export class ContactMeFormComponent implements OnInit, OnDestroy {
   public sendEmailForm: FormGroup;
   private snackBar: MatSnackBar;
   private audioService: AudioService;
   private themeService: ThemeService;
+  private themeSubscript!: Subscription;
+
+  public actualTheme!: Themes;
   public isSending: boolean = false;
 
   constructor() {
@@ -68,6 +72,15 @@ export class ContactMeFormComponent {
     this.snackBar = inject(MatSnackBar);
     this.themeService = inject(ThemeService);
     this.audioService = inject(AudioService);
+  }
+
+  ngOnInit(): void {
+    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
+      this.actualTheme = theme;
+    });
+  }
+  ngOnDestroy(): void {
+    this.themeSubscript.unsubscribe();
   }
 
   public sendEmail(formDirective: FormGroupDirective): void {
@@ -101,7 +114,7 @@ export class ContactMeFormComponent {
             this.snackBar.openFromComponent(CustomSnackbarComponent, {
               data: {
                 message: 'SNACK-BAR.CONTACT-PAGE.SENT-EMAIL',
-                theme: this.getNameOfActualThemeFromLocalStorage.name,
+                theme: this.actualTheme.name,
               },
               duration: 4000,
             });
@@ -112,7 +125,7 @@ export class ContactMeFormComponent {
             this.snackBar.openFromComponent(CustomSnackbarComponent, {
               data: {
                 message: 'SNACK-BAR.CONTACT-PAGE.ERROR-SENT-EMAIL',
-                theme: this.getNameOfActualThemeFromLocalStorage.name,
+                theme: this.actualTheme.name,
               },
               duration: 4000,
             });
@@ -124,16 +137,13 @@ export class ContactMeFormComponent {
       this.snackBar.openFromComponent(CustomSnackbarComponent, {
         data: {
           message: 'SNACK-BAR.CONTACT-PAGE.ERROR-BLANK-INPUTS',
-          theme: this.getNameOfActualThemeFromLocalStorage.name,
+          theme: this.actualTheme.name,
         },
         duration: 4000,
       });
     }
   }
 
-  public get getNameOfActualThemeFromLocalStorage(): Themes {
-    return this.themeService.getNameOfActualTheme();
-  }
   public playClickSound(themeName: string) {
     this.audioService.playClickSound(themeName);
   }

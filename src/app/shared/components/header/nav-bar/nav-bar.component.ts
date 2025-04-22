@@ -58,9 +58,12 @@ export class NavBarComponent implements OnInit, OnDestroy {
   private translateSubscription!: Subscription;
   private routerSubscription!: Subscription;
   private audioService: AudioService;
+  private themeSubscript!: Subscription;
+
+  public actualTheme!: Themes;
   public currentRoute!: string;
   public currentLang!: string;
-  public actualThemeKey: string;
+  public actualThemeKey!: string;
 
   constructor() {
     this.translate = inject(TranslateService);
@@ -72,15 +75,16 @@ export class NavBarComponent implements OnInit, OnDestroy {
     this.themeService = inject(ThemeService);
     this.snackBar = inject(MatSnackBar);
     this.router = inject(Router);
-
-    const themeType = this.getTypeOfActualThemeFromLocalStorage;
-    const themeName = this.getNameOfActualThemeFromLocalStorage.name;
-
-    this.actualThemeKey = `THEMES.${themeType}.${themeName}`;
   }
 
   ngOnInit(): void {
     this.currentLang = this.translate.currentLang;
+
+    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
+      this.actualTheme = theme;
+
+      this.actualThemeKey = `THEMES.${this.getTypeOfActualThemeFromLocalStorage}.${this.actualTheme.name}`;
+    });
 
     this.translateSubscription = this.translate.onLangChange
       .asObservable()
@@ -98,6 +102,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.routerSubscription.unsubscribe();
     this.translateSubscription.unsubscribe();
+    this.themeSubscript.unsubscribe();
   }
 
   public changeLanguage(lang: string) {
@@ -107,7 +112,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
     this.snackBar.openFromComponent(CustomSnackbarComponent, {
       data: {
         message: 'SNACK-BAR.NAV-BAR.CHANGE-LANG',
-        theme: this.getNameOfActualThemeFromLocalStorage.name,
+        theme: this.actualTheme.name,
       },
       duration: 4000,
     });
@@ -151,9 +156,6 @@ export class NavBarComponent implements OnInit, OnDestroy {
   public get colorsOptions(): Themes[] {
     return this.themeService.getColorsNames();
   }
-  public get getNameOfActualThemeFromLocalStorage(): Themes {
-    return this.themeService.getNameOfActualTheme();
-  }
   public get getTypeOfActualThemeFromLocalStorage(): string {
     return this.themeService.getTypeOfActualTheme();
   }
@@ -161,9 +163,6 @@ export class NavBarComponent implements OnInit, OnDestroy {
   public changeTheme(theme: Themes) {
     this.themeService.changeTheme(theme);
 
-    const themeType = this.getTypeOfActualThemeFromLocalStorage;
-    const themeName = this.getNameOfActualThemeFromLocalStorage.name;
-
-    this.actualThemeKey = `THEMES.${themeType}.${themeName}`;
+    this.actualThemeKey = `THEMES.${this.getTypeOfActualThemeFromLocalStorage}.${this.actualTheme.name}`;
   }
 }

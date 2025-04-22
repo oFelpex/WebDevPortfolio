@@ -8,6 +8,7 @@ import { getUp_return } from '../../../animations/translate-animations';
 import { Themes } from '../../../../models/themes';
 import { AudioService } from '../../../../services/audio-service/audio.service';
 import { ThemeService } from '../../../../services/theme-service/theme.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-show-soundboard-button',
   imports: [MatButtonModule, MatIconModule, SoundboardComponent],
@@ -18,7 +19,9 @@ import { ThemeService } from '../../../../services/theme-service/theme.service';
 export class ShowSoundboardButtonComponent {
   private audioService: AudioService;
   private themeService: ThemeService;
+  private themeSubscript!: Subscription;
 
+  public actualTheme!: Themes;
   public showSoundboard: boolean = false;
 
   constructor() {
@@ -26,9 +29,15 @@ export class ShowSoundboardButtonComponent {
     this.themeService = inject(ThemeService);
   }
 
-  public get getNameOfActualThemeFromLocalStorage(): Themes {
-    return this.themeService.getNameOfActualTheme();
+  ngOnInit(): void {
+    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
+      this.actualTheme = theme;
+    });
   }
+  ngOnDestroy(): void {
+    this.themeSubscript.unsubscribe();
+  }
+
   public playClickSound(themeName: string) {
     this.audioService.playClickSound(themeName);
   }

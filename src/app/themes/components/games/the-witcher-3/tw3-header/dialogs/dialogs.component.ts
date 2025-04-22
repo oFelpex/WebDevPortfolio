@@ -16,6 +16,8 @@ import { Tw3DialogColorsComponent } from './themes/tw3-dialog-colors/tw3-dialog-
 import { Tw3DialogLangsComponent } from './langs/tw3-dialog-langs/tw3-dialog-langs.component';
 import { AudioService } from '../../../../../../services/audio-service/audio.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { Themes } from '../../../../../../models/themes';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dialogs',
@@ -37,7 +39,9 @@ import { TranslateModule } from '@ngx-translate/core';
 export class DialogsComponent {
   private themeService: ThemeService;
   private audioService: AudioService;
+  private themeSubscript!: Subscription;
 
+  public actualTheme!: Themes;
   public data = inject(MAT_DIALOG_DATA);
 
   constructor() {
@@ -45,9 +49,15 @@ export class DialogsComponent {
     this.themeService = inject(ThemeService);
   }
 
-  public get actualTheme() {
-    return this.themeService.getNameOfActualTheme().name;
+  ngOnInit(): void {
+    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
+      this.actualTheme = theme;
+    });
   }
+  ngOnDestroy(): void {
+    this.themeSubscript.unsubscribe();
+  }
+
   public get typeOfActualTheme() {
     return this.themeService.getTypeOfActualTheme();
   }

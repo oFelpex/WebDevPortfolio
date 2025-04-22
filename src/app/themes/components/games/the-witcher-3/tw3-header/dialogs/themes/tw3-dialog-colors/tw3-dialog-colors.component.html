@@ -6,7 +6,7 @@
         <span> {{ "THEMES.Colors." + colorOption.name | translate }} </span>
       </button>
       <div
-        [class]="actualTheme === colorOption.name ? 'selectedBar' : ''"
+        [class]="actualTheme.name === colorOption.name ? 'selectedBar' : ''"
       ></div>
     </div>
   </mat-list-item>

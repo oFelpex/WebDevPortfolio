@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -13,6 +13,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { TranslateModule } from '@ngx-translate/core';
 import { AudioService } from '../../../../../services/audio-service/audio.service';
 import { ResponsiveService } from '../../../../../services/responsive-service/responsive.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-mobile-theme-menu',
@@ -27,23 +28,20 @@ import { ResponsiveService } from '../../../../../services/responsive-service/re
   templateUrl: './mobile-theme-menu.component.html',
   styleUrl: 'mobile-theme-menu.component.scss',
 })
-export class MobileThemeMenuSheetComponent {
+export class MobileThemeMenuSheetComponent implements OnInit, OnDestroy {
   private themeService: ThemeService;
   private audioService: AudioService;
   private responsiveService: ResponsiveService;
+  private themeSubscript!: Subscription;
 
-  public actualThemeKey: string;
+  public actualTheme!: Themes;
+  public actualThemeKey!: string;
   public isMobile: boolean = window.innerWidth <= 820;
 
   constructor() {
     this.themeService = inject(ThemeService);
     this.audioService = inject(AudioService);
     this.responsiveService = inject(ResponsiveService);
-
-    const themeType = this.getTypeOfActualThemeFromLocalStorage;
-    const themeName = this.getNameOfActualThemeFromLocalStorage.name;
-
-    this.actualThemeKey = `THEMES.${themeType}.${themeName}`;
   }
 
   ngOnInit() {
@@ -52,8 +50,14 @@ export class MobileThemeMenuSheetComponent {
       if (!isMobile && this._bottomSheetRef.instance)
         this._bottomSheetRef.dismiss();
     });
+    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
+      this.actualTheme = theme;
+      this.actualThemeKey = `THEMES.${this.getTypeOfActualThemeFromLocalStorage}.${this.actualTheme.name}`;
+    });
   }
-
+  ngOnDestroy(): void {
+    this.themeSubscript.unsubscribe();
+  }
   private _bottomSheetRef =
     inject<MatBottomSheetRef<MobileMenuComponent>>(MatBottomSheetRef);
 
@@ -63,9 +67,6 @@ export class MobileThemeMenuSheetComponent {
   public get colorsOptions(): Themes[] {
     return this.themeService.getColorsNames();
   }
-  public get getNameOfActualThemeFromLocalStorage(): Themes {
-    return this.themeService.getNameOfActualTheme();
-  }
   public get getTypeOfActualThemeFromLocalStorage(): string {
     return this.themeService.getTypeOfActualTheme();
   }
@@ -73,6 +74,7 @@ export class MobileThemeMenuSheetComponent {
   public changeTheme(theme: Themes): void {
     this.themeService.changeTheme(theme);
     this._bottomSheetRef.dismiss();
+    this.actualThemeKey = `THEMES.${this.getTypeOfActualThemeFromLocalStorage}.${this.actualTheme.name}`;
   }
 
   public playClickSound(themeName: string) {

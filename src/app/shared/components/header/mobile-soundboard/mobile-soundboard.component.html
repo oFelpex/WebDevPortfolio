@@ -34,10 +34,7 @@
           <button
             class="mute-button"
             mat-icon-button
-            (click)="
-              muteSfxVolume();
-              playClickSound(getNameOfActualThemeFromLocalStorage.name)
-            "
+            (click)="muteSfxVolume(); playClickSound(actualTheme.name)"
           >
             <mat-icon style="font-family: Material Icons">
               {{
@@ -76,10 +73,7 @@
           <button
             class="mute-button"
             mat-icon-button
-            (click)="
-              muteMusicVolume();
-              playClickSound(getNameOfActualThemeFromLocalStorage.name)
-            "
+            (click)="muteMusicVolume(); playClickSound(actualTheme.name)"
           >
             <mat-icon style="font-family: Material Icons">
               {{
@@ -104,10 +98,7 @@
             <button
               class="action-button"
               mat-icon-button
-              (click)="
-                previousMusic();
-                playClickSound(getNameOfActualThemeFromLocalStorage.name)
-              "
+              (click)="previousMusic(); playClickSound(actualTheme.name)"
             >
               <mat-icon style="font-family: Material Icons">
                 skip_previous
@@ -116,10 +107,7 @@
             <button
               class="action-button"
               mat-icon-button
-              (click)="
-                playOrStopMusic();
-                playClickSound(getNameOfActualThemeFromLocalStorage.name)
-              "
+              (click)="playOrStopMusic(); playClickSound(actualTheme.name)"
             >
               <mat-icon style="font-family: Material Icons">
                 {{ isPlaying() ? "pause" : "play_arrow" }}
@@ -128,10 +116,7 @@
             <button
               class="action-button"
               mat-icon-button
-              (click)="
-                nextMusic();
-                playClickSound(getNameOfActualThemeFromLocalStorage.name)
-              "
+              (click)="nextMusic(); playClickSound(actualTheme.name)"
             >
               <mat-icon style="font-family: Material Icons">
                 skip_next

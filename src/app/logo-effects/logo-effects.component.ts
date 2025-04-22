@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import { Themes } from '../models/themes';
 import { ThemeService } from '../services/theme-service/theme.service';
@@ -9,6 +9,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { MinecraftEffectComponent } from './effects/Games/Minecraft/minecraft-effect.component';
 import { TheWitcher3EffectComponent } from './effects/Games/The Witcher 3/the-witcher-3-effect.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-logo-effects',
@@ -21,19 +22,28 @@ import { TheWitcher3EffectComponent } from './effects/Games/The Witcher 3/the-wi
   templateUrl: './logo-effects.component.html',
   styleUrl: './logo-effects.component.scss',
 })
-export class LogoEffectsComponent {
+export class LogoEffectsComponent implements OnInit, OnDestroy {
   @ViewChild('minecraftEffect') minecraftEffect!: MinecraftEffectComponent;
   @ViewChild('tw3Effect') tw3Effect!: TheWitcher3EffectComponent;
 
   private themeService: ThemeService;
+  private themeSubscript!: Subscription;
+
+  public actualTheme!: Themes;
 
   constructor() {
     this.themeService = inject(ThemeService);
   }
 
-  public get getNameOfActualThemeFromLocalStorage(): Themes {
-    return this.themeService.getNameOfActualTheme();
+  ngOnInit(): void {
+    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
+      this.actualTheme = theme;
+    });
   }
+  ngOnDestroy(): void {
+    this.themeSubscript.unsubscribe();
+  }
+
   public get getTypeOfActualThemeFromLocalStorage(): string {
     return this.themeService.getTypeOfActualTheme();
   }

@@ -39,10 +39,7 @@
   <mat-divider></mat-divider>
   <mat-card-actions class="project-card-buttons">
     <button
-      (click)="
-        playClickSound(getNameOfActualThemeFromLocalStorage.name);
-        goToProject(project.siteURL)
-      "
+      (click)="playClickSound(actualTheme.name); goToProject(project.siteURL)"
       mat-icon-button
       aria-label="Takes you to the repository page on github"
     >
@@ -52,10 +49,7 @@
       ></mat-icon>
     </button>
     <button
-      (click)="
-        playClickSound(getNameOfActualThemeFromLocalStorage.name);
-        goToProject(project.siteURL)
-      "
+      (click)="playClickSound(actualTheme.name); goToProject(project.siteURL)"
       mat-icon-button
       aria-label="Takes you to the website deployed"
     >

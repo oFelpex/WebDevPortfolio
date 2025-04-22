@@ -5,7 +5,9 @@
       <button mat-button (click)="changeTheme(gameOption)" mat-dialog-close>
         <span> {{ gameOption.name }} </span>
       </button>
-      <div [class]="actualTheme === gameOption.name ? 'selectedBar' : ''"></div>
+      <div
+        [class]="actualTheme.name === gameOption.name ? 'selectedBar' : ''"
+      ></div>
     </div>
   </mat-list-item>
   }

@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
 
 import { OverlayProjectsComponent } from './overlay-projects/overlay-projects.component';
 
@@ -12,6 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AudioService } from '../../../services/audio-service/audio.service';
 import { ThemeService } from '../../../services/theme-service/theme.service';
 import { Themes } from '../../../models/themes';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-project-card',
@@ -27,21 +28,30 @@ import { Themes } from '../../../models/themes';
   templateUrl: './project-card.component.html',
   styleUrl: './project-card.component.scss',
 })
-export class ProjectCardComponent {
+export class ProjectCardComponent implements OnInit, OnDestroy {
   @Input() project!: Projects;
-  isOverlayVisible: boolean = false;
 
   private audioService: AudioService;
   private themeService: ThemeService;
+  private themeSubscript!: Subscription;
+
+  public actualTheme!: Themes;
+  public isOverlayVisible: boolean = false;
 
   constructor() {
     this.themeService = inject(ThemeService);
     this.audioService = inject(AudioService);
   }
 
-  public get getNameOfActualThemeFromLocalStorage(): Themes {
-    return this.themeService.getNameOfActualTheme();
+  ngOnInit(): void {
+    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
+      this.actualTheme = theme;
+    });
   }
+  ngOnDestroy(): void {
+    this.themeSubscript.unsubscribe();
+  }
+
   public playClickSound(themeName: string) {
     this.audioService.playClickSound(themeName);
   }

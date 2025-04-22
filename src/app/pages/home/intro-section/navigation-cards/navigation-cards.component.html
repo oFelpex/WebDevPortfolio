@@ -12,7 +12,7 @@
       </mat-card-header>
       <mat-card-actions class="navigation-card-actions">
         <button
-          (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+          (click)="playClickSound(actualTheme.name)"
           mat-flat-button
           [routerLink]="['/about-me']"
         >
@@ -31,7 +31,7 @@
       </mat-card-header>
       <mat-card-actions class="navigation-card-actions">
         <button
-          (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+          (click)="playClickSound(actualTheme.name)"
           mat-flat-button
           [routerLink]="['/projects']"
         >
@@ -50,7 +50,7 @@
       </mat-card-header>
       <mat-card-actions class="navigation-card-actions">
         <button
-          (click)="playClickSound(getNameOfActualThemeFromLocalStorage.name)"
+          (click)="playClickSound(actualTheme.name)"
           mat-flat-button
           [routerLink]="['/contact-me']"
         >
