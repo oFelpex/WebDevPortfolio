@@ -9,6 +9,15 @@
       "Cosmic": "Cósmico"
     },
 
+    "Games": {
+      "God of War": "God of War",
+      "The Witcher 3": "The Witcher 3",
+      "Cyberpunk": "Cyberpunk",
+      "Elden Ring": "Elden Ring",
+      "Hollow Knight": "Hollow Knight",
+      "Undertale": "Undertale",
+      "Minecraft": "Minecraft"
+    },
     "GAMES": {
       "VIDEO-GAMES": "Videogames",
 
