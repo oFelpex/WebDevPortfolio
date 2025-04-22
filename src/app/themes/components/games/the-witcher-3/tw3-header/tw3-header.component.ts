@@ -33,6 +33,7 @@ import { MobileMenuComponent } from '../../../../../shared/components/header/mob
 export class Tw3NavBarComponent implements OnInit, OnDestroy {
   private router: Router;
   private routerSubscription!: Subscription;
+  private responsiveSubscription!: Subscription;
   private dialog: MatDialog;
   private audioService: AudioService;
   private mobileNavMenuService: MobileNavMenuService;
@@ -72,22 +73,25 @@ export class Tw3NavBarComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.responsiveService.isMobile$.subscribe((isMobile) => {
-      this.isMobile = isMobile;
-      if (!this.isMobile) {
-        if (this.mobileNavMenuService.mobileNavMenu)
-          if (this.mobileNavMenuService.mobileNavMenu.opened)
-            this.mobileNavMenuService.toggleMobileNavMenu();
+    this.responsiveSubscription = this.responsiveService.isMobile$.subscribe(
+      (isMobile) => {
+        this.isMobile = isMobile;
+        if (!this.isMobile) {
+          if (this.mobileNavMenuService.mobileNavMenu)
+            if (this.mobileNavMenuService.mobileNavMenu.opened)
+              this.mobileNavMenuService.toggleMobileNavMenu();
 
-        if (this.mobileSoundboardMenuService.mobileSoundboardMenu)
-          if (this.mobileSoundboardMenuService.mobileSoundboardMenu.opened)
-            this.mobileSoundboardMenuService.toggleMobileSoundboardMenu();
+          if (this.mobileSoundboardMenuService.mobileSoundboardMenu)
+            if (this.mobileSoundboardMenuService.mobileSoundboardMenu.opened)
+              this.mobileSoundboardMenuService.toggleMobileSoundboardMenu();
+        }
       }
-    });
+    );
   }
 
   ngOnDestroy(): void {
     this.routerSubscription.unsubscribe();
+    this.responsiveSubscription.unsubscribe();
   }
 
   private setCurrentIndexByRoute() {
