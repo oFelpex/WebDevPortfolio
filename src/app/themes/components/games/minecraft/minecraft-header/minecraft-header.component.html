@@ -1,8 +1,100 @@
 <header>
   <nav id="minecraft-nav">
+    <button
+      mat-flat-button
+      (click)="playClickSound()"
+      [matMenuTriggerFor]="routes"
+    >
+      <span>Explore</span>
+    </button>
+
+    <mat-menu #routes="matMenu">
+      @for(route of allRoutes; track $index) {
+      <a [routerLink]="[route]">
+        <button mat-menu-item (click)="playClickSound()">
+          <span>{{
+            route.slice(1).charAt(0).toUpperCase() +
+              route.slice(2).toLowerCase()
+          }}</span>
+        </button>
+      </a>
+      }
+    </mat-menu>
+
     <app-logo-effects></app-logo-effects>
     <div id="logo-span">
       <span>{{ phrase }}</span>
     </div>
+
+    <button
+      mat-flat-button
+      (click)="playClickSound()"
+      [matMenuTriggerFor]="settings"
+    >
+      <span>Settings</span>
+    </button>
+    <mat-menu #settings="matMenu" xPosition="before">
+      <button
+        mat-menu-item
+        (click)="playClickSound()"
+        [matMenuTriggerFor]="themes"
+      >
+        <span>Themes</span>
+      </button>
+      <button
+        mat-menu-item
+        (click)="playClickSound()"
+        [matMenuTriggerFor]="langs"
+      >
+        <span>Langs</span>
+      </button>
+    </mat-menu>
+    <mat-menu #themes="matMenu" xPosition="before">
+      <button
+        mat-menu-item
+        (click)="playClickSound()"
+        [matMenuTriggerFor]="games"
+      >
+        <span>Video Games</span>
+      </button>
+      <button
+        mat-menu-item
+        (click)="playClickSound()"
+        [matMenuTriggerFor]="colors"
+      >
+        <span>Colors</span>
+      </button>
+    </mat-menu>
+    <mat-menu #games="matMenu" xPosition="before">
+      @for(game of allGamesThemes; track $index) {
+      <button mat-menu-item (click)="playClickSound(); changeTheme(game)">
+        <span
+          [matBadge]="game.name === actualTheme.name ? 'ON' : ''"
+          matBadgeOverlap="false"
+          matBadgeSize="large"
+          >{{ game.name }}</span
+        >
+      </button>
+      }
+    </mat-menu>
+    <mat-menu #colors="matMenu" xPosition="before">
+      @for(color of allColorThemes; track $index) {
+      <button mat-menu-item (click)="playClickSound(); changeTheme(color)">
+        <span>{{ color.name }}</span>
+      </button>
+      }
+    </mat-menu>
+    <mat-menu #langs="matMenu" xPosition="before">
+      @for(lang of allLangs; track $index) {
+      <button mat-menu-item (click)="changeLang(lang)">
+        <span
+          [matBadge]="lang === actualLang ? 'ON' : ''"
+          matBadgeOverlap="false"
+          matBadgeSize="large"
+          >{{ lang }}</span
+        >
+      </button>
+      }
+    </mat-menu>
   </nav>
 </header>
