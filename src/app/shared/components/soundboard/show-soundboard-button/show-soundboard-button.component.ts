@@ -19,7 +19,7 @@ import { Subscription } from 'rxjs';
 export class ShowSoundboardButtonComponent {
   private audioService: AudioService;
   private themeService: ThemeService;
-  private themeSubscript!: Subscription;
+  private themeSubscription!: Subscription;
 
   public actualTheme!: Themes;
   public showSoundboard: boolean = false;
@@ -30,12 +30,14 @@ export class ShowSoundboardButtonComponent {
   }
 
   ngOnInit(): void {
-    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
-      this.actualTheme = theme;
-    });
+    this.themeSubscription = this.themeService.actualTheme$.subscribe(
+      (theme) => {
+        this.actualTheme = theme;
+      }
+    );
   }
   ngOnDestroy(): void {
-    this.themeSubscript.unsubscribe();
+    this.themeSubscription.unsubscribe();
   }
 
   public playClickSound(themeName: string) {

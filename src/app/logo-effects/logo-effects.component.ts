@@ -27,7 +27,7 @@ export class LogoEffectsComponent implements OnInit, OnDestroy {
   @ViewChild('tw3Effect') tw3Effect!: TheWitcher3EffectComponent;
 
   private themeService: ThemeService;
-  private themeSubscript!: Subscription;
+  private themeSubscription!: Subscription;
 
   public actualTheme!: Themes;
 
@@ -36,12 +36,14 @@ export class LogoEffectsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
-      this.actualTheme = theme;
-    });
+    this.themeSubscription = this.themeService.actualTheme$.subscribe(
+      (theme) => {
+        this.actualTheme = theme;
+      }
+    );
   }
   ngOnDestroy(): void {
-    this.themeSubscript.unsubscribe();
+    this.themeSubscription.unsubscribe();
   }
 
   public playEffect({ name }: Themes) {

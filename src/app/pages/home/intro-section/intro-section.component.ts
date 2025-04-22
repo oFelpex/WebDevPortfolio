@@ -34,7 +34,7 @@ export class IntroSectionComponent implements OnInit, OnDestroy {
   private langSubscription!: Subscription;
   private audioService: AudioService;
   private themeService: ThemeService;
-  private themeSubscript!: Subscription;
+  private themeSubscription!: Subscription;
 
   public actualTheme!: Themes;
 
@@ -45,9 +45,11 @@ export class IntroSectionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
-      this.actualTheme = theme;
-    });
+    this.themeSubscription = this.themeService.actualTheme$.subscribe(
+      (theme) => {
+        this.actualTheme = theme;
+      }
+    );
 
     let typedInstance: Typed;
     let EN_autoTypeArr: string[] = [
@@ -106,6 +108,6 @@ export class IntroSectionComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.langSubscription.unsubscribe();
-    this.themeSubscript.unsubscribe();
+    this.themeSubscription.unsubscribe();
   }
 }

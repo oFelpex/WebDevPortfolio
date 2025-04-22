@@ -46,7 +46,7 @@ export class MobileSoundboardComponent
   private sub!: Subscription;
   private savedSfxVolume: number = 50;
   private savedMusicVolume: number = 50;
-  private themeSubscript!: Subscription;
+  private themeSubscription!: Subscription;
 
   public actualTheme!: Themes;
   public sfxVolume: number = 50;
@@ -71,9 +71,11 @@ export class MobileSoundboardComponent
       this.currentComposer = this.audioService.getCurrentMusicComposer();
     });
 
-    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
-      this.actualTheme = theme;
-    });
+    this.themeSubscription = this.themeService.actualTheme$.subscribe(
+      (theme) => {
+        this.actualTheme = theme;
+      }
+    );
   }
 
   ngAfterViewChecked() {
@@ -86,7 +88,7 @@ export class MobileSoundboardComponent
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
-    this.themeSubscript.unsubscribe();
+    this.themeSubscription.unsubscribe();
   }
 
   public playClickSound(themeName: string) {

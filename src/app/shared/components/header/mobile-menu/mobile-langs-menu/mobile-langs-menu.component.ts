@@ -39,7 +39,7 @@ export class MobileLangsMenuSheetComponent {
   private audioService: AudioService;
   private themeService: ThemeService;
   private responsiveService: ResponsiveService;
-  private themeSubscript!: Subscription;
+  private themeSubscription!: Subscription;
 
   public actualTheme!: Themes;
   public currentLang!: string;
@@ -55,9 +55,11 @@ export class MobileLangsMenuSheetComponent {
 
   ngOnInit(): void {
     this.currentLang = this.translate.currentLang;
-    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
-      this.actualTheme = theme;
-    });
+    this.themeSubscription = this.themeService.actualTheme$.subscribe(
+      (theme) => {
+        this.actualTheme = theme;
+      }
+    );
 
     this.translateSubscription = this.translate.onLangChange
       .asObservable()
@@ -74,7 +76,7 @@ export class MobileLangsMenuSheetComponent {
 
   ngOnDestroy(): void {
     this.translateSubscription.unsubscribe();
-    this.themeSubscript.unsubscribe();
+    this.themeSubscription.unsubscribe();
   }
 
   public changeLanguage(lang: string) {

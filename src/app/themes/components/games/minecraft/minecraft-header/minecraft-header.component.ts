@@ -70,7 +70,7 @@ export class MinecraftHeaderComponent implements OnInit {
   private responsiveSubscription!: Subscription;
   private mobileNavMenuService: MobileNavMenuService;
   private mobileSoundboardMenuService: MobileSoundboardMenuService;
-  private themeSubscript!: Subscription;
+  private themeSubscription!: Subscription;
 
   constructor() {
     this.mobileNavMenuService = inject(MobileNavMenuService);
@@ -86,9 +86,11 @@ export class MinecraftHeaderComponent implements OnInit {
     this.phrase = this.listOfPhrases[this.phraseNumber()];
     this.allLangs = this.translateService.langs;
 
-    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
-      this.actualTheme = theme;
-    });
+    this.themeSubscription = this.themeService.actualTheme$.subscribe(
+      (theme) => {
+        this.actualTheme = theme;
+      }
+    );
 
     this.currentRoute = this.router.url;
     this.routerSubscription = this.router.events.subscribe((event) => {
@@ -115,7 +117,7 @@ export class MinecraftHeaderComponent implements OnInit {
   ngOnDestroy(): void {
     this.routerSubscription.unsubscribe();
     this.responsiveSubscription.unsubscribe();
-    this.themeSubscript.unsubscribe();
+    this.themeSubscription.unsubscribe();
   }
 
   private phraseNumber(): number {

@@ -39,7 +39,7 @@ import { Subscription } from 'rxjs';
 export class DialogsComponent {
   private themeService: ThemeService;
   private audioService: AudioService;
-  private themeSubscript!: Subscription;
+  private themeSubscription!: Subscription;
 
   public actualTheme!: Themes;
   public data = inject(MAT_DIALOG_DATA);
@@ -50,12 +50,14 @@ export class DialogsComponent {
   }
 
   ngOnInit(): void {
-    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
-      this.actualTheme = theme;
-    });
+    this.themeSubscription = this.themeService.actualTheme$.subscribe(
+      (theme) => {
+        this.actualTheme = theme;
+      }
+    );
   }
   ngOnDestroy(): void {
-    this.themeSubscript.unsubscribe();
+    this.themeSubscription.unsubscribe();
   }
 
   public playClickSound() {

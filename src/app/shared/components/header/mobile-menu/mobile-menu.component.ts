@@ -48,7 +48,7 @@ export class MobileMenuComponent
   private audioService: AudioService;
   private themeService: ThemeService;
   private _bottomSheet: MatBottomSheet;
-  private themeSubscript!: Subscription;
+  private themeSubscription!: Subscription;
 
   public actualTheme!: Themes;
 
@@ -59,12 +59,14 @@ export class MobileMenuComponent
     this._bottomSheet = inject(MatBottomSheet);
   }
   ngOnInit(): void {
-    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
-      this.actualTheme = theme;
-    });
+    this.themeSubscription = this.themeService.actualTheme$.subscribe(
+      (theme) => {
+        this.actualTheme = theme;
+      }
+    );
   }
   ngOnDestroy(): void {
-    this.themeSubscript.unsubscribe();
+    this.themeSubscription.unsubscribe();
   }
 
   ngAfterViewChecked() {

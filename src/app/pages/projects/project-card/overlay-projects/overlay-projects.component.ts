@@ -33,7 +33,7 @@ export class OverlayProjectsComponent implements OnInit, OnDestroy {
 
   private audioService: AudioService;
   private themeService: ThemeService;
-  private themeSubscript!: Subscription;
+  private themeSubscription!: Subscription;
 
   public actualTheme!: Themes;
 
@@ -43,12 +43,14 @@ export class OverlayProjectsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
-      this.actualTheme = theme;
-    });
+    this.themeSubscription = this.themeService.actualTheme$.subscribe(
+      (theme) => {
+        this.actualTheme = theme;
+      }
+    );
   }
   ngOnDestroy(): void {
-    this.themeSubscript.unsubscribe();
+    this.themeSubscription.unsubscribe();
   }
 
   public playClickSound(themeName: string) {

@@ -58,7 +58,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
   private translateSubscription!: Subscription;
   private routerSubscription!: Subscription;
   private audioService: AudioService;
-  private themeSubscript!: Subscription;
+  private themeSubscription!: Subscription;
 
   public actualTheme!: Themes;
   public currentRoute!: string;
@@ -80,11 +80,13 @@ export class NavBarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.currentLang = this.translate.currentLang;
 
-    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
-      this.actualTheme = theme;
+    this.themeSubscription = this.themeService.actualTheme$.subscribe(
+      (theme) => {
+        this.actualTheme = theme;
 
-      this.actualThemeKey = `THEMES.${this.actualTheme.type}.${this.actualTheme.name}`;
-    });
+        this.actualThemeKey = `THEMES.${this.actualTheme.type}.${this.actualTheme.name}`;
+      }
+    );
 
     this.translateSubscription = this.translate.onLangChange
       .asObservable()
@@ -102,7 +104,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.routerSubscription.unsubscribe();
     this.translateSubscription.unsubscribe();
-    this.themeSubscript.unsubscribe();
+    this.themeSubscription.unsubscribe();
   }
 
   public changeLanguage(lang: string) {

@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
 })
 export class Tw3DialogGamesComponent implements OnInit, OnDestroy {
   private themeService: ThemeService;
-  private themeSubscript!: Subscription;
+  private themeSubscription!: Subscription;
   public actualTheme!: Themes;
 
   constructor() {
@@ -25,12 +25,14 @@ export class Tw3DialogGamesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
-      this.actualTheme = theme;
-    });
+    this.themeSubscription = this.themeService.actualTheme$.subscribe(
+      (theme) => {
+        this.actualTheme = theme;
+      }
+    );
   }
   ngOnDestroy(): void {
-    this.themeSubscript.unsubscribe();
+    this.themeSubscription.unsubscribe();
   }
 
   public get gamesOptions() {

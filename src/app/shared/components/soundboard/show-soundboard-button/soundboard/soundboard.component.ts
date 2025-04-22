@@ -32,7 +32,7 @@ export class SoundboardComponent implements OnInit, OnDestroy {
   private savedSfxVolume: number = 50;
   private savedMusicVolume: number = 50;
   private sub!: Subscription;
-  private themeSubscript!: Subscription;
+  private themeSubscription!: Subscription;
 
   public actualTheme!: Themes;
   public sfxVolume: number = 50;
@@ -56,13 +56,15 @@ export class SoundboardComponent implements OnInit, OnDestroy {
       this.currentComposer = this.audioService.getCurrentMusicComposer();
     });
 
-    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
-      this.actualTheme = theme;
-    });
+    this.themeSubscription = this.themeService.actualTheme$.subscribe(
+      (theme) => {
+        this.actualTheme = theme;
+      }
+    );
   }
 
   ngOnDestroy(): void {
-    this.themeSubscript.unsubscribe();
+    this.themeSubscription.unsubscribe();
     this.sub.unsubscribe();
   }
 

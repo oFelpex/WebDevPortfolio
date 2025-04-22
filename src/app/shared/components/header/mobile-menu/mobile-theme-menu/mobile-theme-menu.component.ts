@@ -32,7 +32,7 @@ export class MobileThemeMenuSheetComponent implements OnInit, OnDestroy {
   private themeService: ThemeService;
   private audioService: AudioService;
   private responsiveService: ResponsiveService;
-  private themeSubscript!: Subscription;
+  private themeSubscription!: Subscription;
 
   public actualTheme!: Themes;
   public actualThemeKey!: string;
@@ -50,13 +50,15 @@ export class MobileThemeMenuSheetComponent implements OnInit, OnDestroy {
       if (!isMobile && this._bottomSheetRef.instance)
         this._bottomSheetRef.dismiss();
     });
-    this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
-      this.actualTheme = theme;
-      this.actualThemeKey = `THEMES.${this.actualTheme.type}.${this.actualTheme.name}`;
-    });
+    this.themeSubscription = this.themeService.actualTheme$.subscribe(
+      (theme) => {
+        this.actualTheme = theme;
+        this.actualThemeKey = `THEMES.${this.actualTheme.type}.${this.actualTheme.name}`;
+      }
+    );
   }
   ngOnDestroy(): void {
-    this.themeSubscript.unsubscribe();
+    this.themeSubscription.unsubscribe();
   }
   private _bottomSheetRef =
     inject<MatBottomSheetRef<MobileMenuComponent>>(MatBottomSheetRef);
