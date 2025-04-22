@@ -1,8 +1,11 @@
 type Games =
   | 'God Of War'
+  | 'Red Dead Redemption 2'
   | 'The Witcher 3'
+  | 'The Legend of Zelda: BOTW'
   | 'Cyberpunk'
   | 'Elden Ring'
+  | 'Stardew Valley'
   | 'Hollow Knight'
   | 'Undertale'
   | 'Minecraft';
@@ -15,7 +18,11 @@ export interface Themes {
 }
 export const gamesOptions: Themes[] = [
   // {
-  //   name: 'God Of War',
+  //   name: 'God of War',
+  // },
+  // {
+  //   name: 'Red Dead Redemption 2',
+  //   type: 'Games',
   // },
   {
     name: 'The Witcher 3',
@@ -36,6 +43,14 @@ export const gamesOptions: Themes[] = [
   // {
   //   name: 'Undertale',
   //   type: 'Games'
+  // },
+  // {
+  //   name: 'The Legend of Zelda: BOTW',
+  //   type: 'Games',
+  // },
+  // {
+  //   name: 'Stardew Valley',
+  //   type: 'Games',
   // },
   {
     name: 'Minecraft',
