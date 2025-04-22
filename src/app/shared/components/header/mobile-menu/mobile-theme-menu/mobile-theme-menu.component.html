@@ -12,9 +12,7 @@
       <mat-expansion-panel-header>
         <mat-panel-title style="height: 70px">
           <span
-            [matBadge]="
-              getTypeOfActualThemeFromLocalStorage === 'Games' ? 'ON' : ''
-            "
+            [matBadge]="actualTheme.type === 'Games' ? 'ON' : ''"
             matBadgeOverlap="false"
           >
             {{ "NAV-MOBILE.MENU-GAMES" | translate }}
@@ -46,9 +44,7 @@
       <mat-expansion-panel-header>
         <mat-panel-title style="height: 70px">
           <span
-            [matBadge]="
-              getTypeOfActualThemeFromLocalStorage === 'Colors' ? 'ON' : ''
-            "
+            [matBadge]="actualTheme.type === 'Colors' ? 'ON' : ''"
             matBadgeOverlap="false"
           >
             {{ "NAV-MOBILE.MENU-COLORS" | translate }}

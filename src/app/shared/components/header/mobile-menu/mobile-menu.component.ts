@@ -86,10 +86,6 @@ export class MobileMenuComponent
     this.mobileNavMenuService.toggleMobileNavMenu();
   }
 
-  public get typeOfActualTheme(): string {
-    return this.themeService.getTypeOfActualTheme();
-  }
-
   public playClickSound(themeName: string) {
     this.audioService.playClickSound(themeName);
   }

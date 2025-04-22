@@ -12,7 +12,7 @@
       </div>
 
       <!-- change the "Felpex" logo when change theme -->
-      @if(getTypeOfActualThemeFromLocalStorage === "Games") {
+      @if(actualTheme.type === "Games") {
       <app-logo-effects></app-logo-effects>
       <div class="navBar-buttons-container">
         <button
@@ -91,9 +91,7 @@
           class="expandMatMenu"
         >
           <span
-            [matBadge]="
-              getTypeOfActualThemeFromLocalStorage === 'Games' ? 'ON' : ''
-            "
+            [matBadge]="actualTheme.type === 'Games' ? 'ON' : ''"
             matBadgeOverlap="false"
             >{{ "NAV-BAR-LIST.MENU-GAMES" | translate }}</span
           >
@@ -106,9 +104,7 @@
           class="expandMatMenu"
         >
           <span
-            [matBadge]="
-              getTypeOfActualThemeFromLocalStorage === 'Colors' ? 'ON' : ''
-            "
+            [matBadge]="actualTheme.type === 'Colors' ? 'ON' : ''"
             matBadgeOverlap="false"
             >{{ "NAV-BAR-LIST.MENU-COLORS" | translate }}</span
           >

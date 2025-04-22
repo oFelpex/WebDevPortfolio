@@ -58,10 +58,6 @@ export class DialogsComponent {
     this.themeSubscript.unsubscribe();
   }
 
-  public get typeOfActualTheme() {
-    return this.themeService.getTypeOfActualTheme();
-  }
-
   public playClickSound() {
     this.audioService.playClickSound('The Witcher 3');
   }

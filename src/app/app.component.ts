@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, Type } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, Type } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import {
   NavigationCancel,
@@ -18,6 +18,8 @@ import { ThemeService } from './services/theme-service/theme.service';
 import { ResponsiveService } from './services/responsive-service/responsive.service';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { ShowSoundboardButtonComponent } from './shared/components/soundboard/show-soundboard-button/show-soundboard-button.component';
+import { Themes } from './models/themes';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-root',
   imports: [
@@ -29,12 +31,18 @@ import { ShowSoundboardButtonComponent } from './shared/components/soundboard/sh
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   private loadingService: LoadingService;
   private router: Router;
   private translate: TranslateService;
   private themeService: ThemeService;
   private responsiveService: ResponsiveService;
+  private themeSubscription!: Subscription;
+  private responsiveSubscription!: Subscription;
+  private loadingSubscription!: Subscription;
+  private translateSubscription!: Subscription;
+
+  public actualTheme!: Themes;
   public isMobile: boolean = false;
   public isLoading: boolean = false;
   public selectedNavbarComponent!: Type<any>;
@@ -85,13 +93,18 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.themeService.actualTheme$.subscribe(() => {
-      this.selectedNavbarComponent = this.themeService.getHeaderComponent();
-    });
+    this.themeSubscription = this.themeService.actualTheme$.subscribe(
+      (theme) => {
+        this.actualTheme = theme;
+        this.selectedNavbarComponent = this.themeService.getHeaderComponent();
+      }
+    );
 
-    this.responsiveService.isMobile$.subscribe((isMobile) => {
-      this.isMobile = isMobile;
-    });
+    this.responsiveSubscription = this.responsiveService.isMobile$.subscribe(
+      (isMobile) => {
+        this.isMobile = isMobile;
+      }
+    );
     this.translate.addLangs(['en-US', 'pt-BR']);
 
     let lang = localStorage.getItem('lang');
@@ -112,16 +125,20 @@ export class AppComponent implements OnInit {
       }
     }
 
-    this.loadingService.loading$.subscribe((loading) => {
-      this.isLoading = loading;
-    });
+    this.loadingSubscription = this.loadingService.loading$.subscribe(
+      (loading) => {
+        this.isLoading = loading;
+      }
+    );
 
-    this.translate.onLangChange.asObservable().subscribe(() => {
-      const currentRoute = this.router.url;
-      let pageTitle = this.getTitleByRoute(currentRoute);
-      document.title = pageTitle;
-      document.documentElement.lang = this.translate.currentLang;
-    });
+    this.translateSubscription = this.translate.onLangChange
+      .asObservable()
+      .subscribe(() => {
+        const currentRoute = this.router.url;
+        let pageTitle = this.getTitleByRoute(currentRoute);
+        document.title = pageTitle;
+        document.documentElement.lang = this.translate.currentLang;
+      });
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
@@ -140,9 +157,11 @@ export class AppComponent implements OnInit {
       }
     });
   }
-
-  public get getTypeOfActualTheme() {
-    return this.themeService.getTypeOfActualTheme();
+  ngOnDestroy(): void {
+    this.themeSubscription.unsubscribe();
+    this.responsiveSubscription.unsubscribe();
+    this.loadingSubscription.unsubscribe();
+    this.translateSubscription.unsubscribe();
   }
 
   private getTitleByRoute(route: string): string {

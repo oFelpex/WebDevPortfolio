@@ -6,7 +6,7 @@
     position="start"
   >
     <mat-list>
-      @if(typeOfActualTheme === 'Games' && actualTheme.name !== 'Minecraft') {
+      @if(actualTheme.type === 'Games' && actualTheme.name !== 'Minecraft') {
       <app-logo-effects
         (click)="closeNavMenu()"
         style="padding: 20px"

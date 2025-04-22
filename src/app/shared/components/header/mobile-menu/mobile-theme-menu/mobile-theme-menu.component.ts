@@ -52,7 +52,7 @@ export class MobileThemeMenuSheetComponent implements OnInit, OnDestroy {
     });
     this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
       this.actualTheme = theme;
-      this.actualThemeKey = `THEMES.${this.getTypeOfActualThemeFromLocalStorage}.${this.actualTheme.name}`;
+      this.actualThemeKey = `THEMES.${this.actualTheme.type}.${this.actualTheme.name}`;
     });
   }
   ngOnDestroy(): void {
@@ -67,14 +67,11 @@ export class MobileThemeMenuSheetComponent implements OnInit, OnDestroy {
   public get colorsOptions(): Themes[] {
     return this.themeService.getColorsNames();
   }
-  public get getTypeOfActualThemeFromLocalStorage(): string {
-    return this.themeService.getTypeOfActualTheme();
-  }
 
   public changeTheme(theme: Themes): void {
     this.themeService.changeTheme(theme);
     this._bottomSheetRef.dismiss();
-    this.actualThemeKey = `THEMES.${this.getTypeOfActualThemeFromLocalStorage}.${this.actualTheme.name}`;
+    this.actualThemeKey = `THEMES.${this.actualTheme.type}.${this.actualTheme.name}`;
   }
 
   public playClickSound(themeName: string) {

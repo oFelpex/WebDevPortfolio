@@ -44,10 +44,6 @@ export class LogoEffectsComponent implements OnInit, OnDestroy {
     this.themeSubscript.unsubscribe();
   }
 
-  public get getTypeOfActualThemeFromLocalStorage(): string {
-    return this.themeService.getTypeOfActualTheme();
-  }
-
   public playEffect({ name }: Themes) {
     switch (name) {
       case 'God Of War':

@@ -56,22 +56,6 @@ export class ThemeService {
     return this.colorsOptions;
   }
 
-  public getTypeOfActualTheme(): string {
-    const gameThemes = this.getGamesNames();
-    const colorThemes = this.getColorsNames();
-    const actualThemeName = this._actualTheme$.getValue().name;
-
-    if (gameThemes.some((theme) => theme.name === actualThemeName)) {
-      return 'Games';
-    }
-
-    if (colorThemes.some((theme) => theme.name === actualThemeName)) {
-      return 'Colors';
-    }
-
-    return 'Default';
-  }
-
   public changeTheme(theme: Themes) {
     const currentTheme = this._actualTheme$.getValue();
 
@@ -82,7 +66,7 @@ export class ThemeService {
       this.snackBar.openFromComponent(CustomSnackbarComponent, {
         data: {
           message: 'SNACK-BAR.THEMES.DEFAULT-THEME',
-          themeNameMessage: `THEMES.${this.getTypeOfActualTheme()}.${
+          themeNameMessage: `THEMES.${currentTheme.type}.${
             this._actualTheme$.getValue().name
           }`,
           theme: this._actualTheme$.getValue().name,
@@ -90,7 +74,7 @@ export class ThemeService {
         duration: 4000,
       });
       console.log('Actual Theme:', this._actualTheme$.getValue().name);
-      console.log('Type:', this.getTypeOfActualTheme());
+      console.log('Type:', currentTheme.type);
       return;
     } else {
       this._actualTheme$.next(theme);
@@ -101,7 +85,7 @@ export class ThemeService {
     this.snackBar.openFromComponent(CustomSnackbarComponent, {
       data: {
         message: 'SNACK-BAR.THEMES.CHANGE-THEME',
-        themeNameMessage: `THEMES.${this.getTypeOfActualTheme()}.${
+        themeNameMessage: `THEMES.${currentTheme.type}.${
           this._actualTheme$.getValue().name
         }`,
         theme: this._actualTheme$.getValue().name,
@@ -111,7 +95,7 @@ export class ThemeService {
 
     //debug
     console.log('Actual Theme:', this._actualTheme$.getValue().name);
-    console.log('Type:', this.getTypeOfActualTheme());
+    console.log('Type:', currentTheme.type);
   }
 
   private setActualThemeToLocalStorage(theme: Themes) {

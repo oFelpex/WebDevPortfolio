@@ -6,7 +6,7 @@
     <mat-accordion class="accordion" multi>
       <mat-expansion-panel class="expansion-panel" (click)="playClickSound()">
         <mat-expansion-panel-header>
-          <div [class]="typeOfActualTheme === 'Games' ? 'selected' : ''"></div>
+          <div [class]="actualTheme.type === 'Games' ? 'selected' : ''"></div>
           <mat-panel-title>
             {{ "DIALOG-THEMES.VIDEO-GAMES" | translate }}
           </mat-panel-title>

@@ -83,7 +83,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
     this.themeSubscript = this.themeService.actualTheme$.subscribe((theme) => {
       this.actualTheme = theme;
 
-      this.actualThemeKey = `THEMES.${this.getTypeOfActualThemeFromLocalStorage}.${this.actualTheme.name}`;
+      this.actualThemeKey = `THEMES.${this.actualTheme.type}.${this.actualTheme.name}`;
     });
 
     this.translateSubscription = this.translate.onLangChange
@@ -156,13 +156,10 @@ export class NavBarComponent implements OnInit, OnDestroy {
   public get colorsOptions(): Themes[] {
     return this.themeService.getColorsNames();
   }
-  public get getTypeOfActualThemeFromLocalStorage(): string {
-    return this.themeService.getTypeOfActualTheme();
-  }
 
   public changeTheme(theme: Themes) {
     this.themeService.changeTheme(theme);
 
-    this.actualThemeKey = `THEMES.${this.getTypeOfActualThemeFromLocalStorage}.${this.actualTheme.name}`;
+    this.actualThemeKey = `THEMES.${this.actualTheme.type}.${this.actualTheme.name}`;
   }
 }
