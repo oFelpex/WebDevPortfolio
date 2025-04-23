@@ -1,9 +1,11 @@
 <ng-container *ngComponentOutlet="selectedNavbarComponent"></ng-container>
 
-<router-outlet />
-
 @if(isLoading) {
 <app-loading></app-loading>
-} @if(actualTheme.type === 'Games' && !isMobile) {
+}
+
+<router-outlet />
+
+@if(actualTheme.type === 'Games' && !isMobile) {
 <app-show-soundboard-button></app-show-soundboard-button>
 }
