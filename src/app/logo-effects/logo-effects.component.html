@@ -3,12 +3,13 @@
     (click)="playEffect(actualTheme)"
     [matTooltip]="'NAV-BAR-LIST.MAT-TOOL-TIP-EASTER-EGG' | translate"
     [src]="
-      '../../../../assets/images/logos/' +
-      actualTheme.type +
+      '../../../../assets/themes/' +
+      actualTheme.type.toLowerCase() +
       '/' +
-      actualTheme.name +
+      actualTheme.name.toLowerCase() +
+      '/logo' +
       '/logo-' +
-      actualTheme.name +
+      actualTheme.name.toLowerCase() +
       '.webp'
     "
     alt="It's a personality logo that says Felpex"
