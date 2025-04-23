@@ -146,15 +146,15 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
 
     this.tntFront.className = 'tnt-front';
     this.tntFront.src =
-      '../../../../../assets/images/logos/Games/Minecraft/animation/tnt-front.webp';
+      '../../../../../assets/themes/games/minecraft/logo/animation/tnt-front.webp';
 
     this.tntTop.className = 'tnt-top';
     this.tntTop.src =
-      '../../../../../assets/images/logos/Games/Minecraft/animation/tnt-top.webp';
+      '../../../../../assets/themes/games/minecraft/logo/animation/tnt-top.webp';
 
     this.tntBottom.className = 'tnt-bottom';
     this.tntBottom.src =
-      '../../../../../assets/images/logos/Games/Minecraft/animation/tnt-bottom.webp';
+      '../../../../../assets/themes/games/minecraft/logo/animation/tnt-bottom.webp';
 
     this.tntsContainer.append(this.tntFront, this.tntTop, this.tntBottom);
 
