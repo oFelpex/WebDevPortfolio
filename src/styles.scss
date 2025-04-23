@@ -10,7 +10,7 @@
   theme-minecraft-colors;
 @use "./app/themes/games/styles/theme-the-witcher-3-colors.scss" as
   theme-the-witcher-3-colors;
-@use "./app/themes/styles/variables/variables" as var;
+@use "./app/themes/styles-variables/variables" as var;
 
 @font-face {
   font-family: "Roboto";
