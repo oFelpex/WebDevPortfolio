@@ -1,0 +1,12 @@
+main {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  .renderer-container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    filter: contrast(1.8) brightness(0.45) saturate(1.2);
+  }
+}
