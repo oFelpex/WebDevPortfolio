@@ -1,0 +1,60 @@
+@if(data.dialogType === 'Themes') {
+<div id="minecraft-dialog">
+  <h2 mat-dialog-title>Excluir todas as capturas de tela...</h2>
+
+  <mat-dialog-content>
+    <mat-accordion class="accordion" multi>
+      <mat-expansion-panel class="expansion-panel" (click)="playClickSound()">
+        <mat-expansion-panel-header>
+          <div [class]="actualTheme.type === 'Games' ? 'selected' : ''"></div>
+          <mat-panel-title> Video Games </mat-panel-title>
+        </mat-expansion-panel-header>
+        <!-- <app-tw3-dialog-games></app-tw3-dialog-games> -->
+      </mat-expansion-panel>
+      <div></div>
+      <mat-expansion-panel class="expansion-panel" (click)="playClickSound()">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Cores </mat-panel-title>
+        </mat-expansion-panel-header>
+        <!-- <app-tw3-dialog-colors></app-tw3-dialog-colors> -->
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-dialog-content>
+</div>
+} @if(data.dialogType === 'Langs') {
+<div id="minecraft-langs-dialog">
+  <h2 mat-dialog-title>change lang</h2>
+  <mat-dialog-content>
+    <mat-accordion>
+      <div class="expansion-panel-container">
+        <mat-expansion-panel class="expansion-panel">
+          <mat-expansion-panel-header (click)="playClickSound()">
+            <mat-panel-title class="expansion-panel-title">
+              <div class="expansion-panel-top-and-left-border"></div>
+              <div class="expansion-panel-bottom-and-right-border"></div>
+              <span>languages</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <!-- <app-tw3-dialog-langs></app-tw3-dialog-langs> -->
+        </mat-expansion-panel>
+      </div>
+    </mat-accordion>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="tw3-dialog-actions">
+    <div class="tw3-dialog-actions-border">
+      <div class="tw3-dialog-actions-button-container">
+        <button
+          class="tw3-dialog-actions-button"
+          mat-button
+          mat-dialog-close
+          cdkFocusInitial
+          (click)="playClickSound()"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </mat-dialog-actions>
+</div>
+} @if(data.dialogType === 'Soundboard') {}
