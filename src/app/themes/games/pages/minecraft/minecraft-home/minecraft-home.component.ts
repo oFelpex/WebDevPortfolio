@@ -1,6 +1,7 @@
 import {
   Component,
   ElementRef,
+  inject,
   OnDestroy,
   OnInit,
   ViewChild,
@@ -9,6 +10,8 @@ import * as THREE from 'three';
 import { LogoEffectsComponent } from '../../../../../logo-effects/logo-effects.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
+import { AudioService } from '../../../../../services/audio-service/audio.service';
+import { ThemeService } from '../../../../../services/theme-service/theme.service';
 
 @Component({
   selector: 'app-minecraft-home',
@@ -20,6 +23,13 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
   @ViewChild('canvasContainer', { static: true }) canvasContainer!: ElementRef;
 
   public phrase!: string;
+
+  private scene!: THREE.Scene;
+  private camera!: THREE.PerspectiveCamera;
+  private renderer!: THREE.WebGLRenderer;
+  private skybox!: THREE.Mesh;
+  private audioService: AudioService;
+  private themeService: ThemeService;
   private listOfPhrases: string[] = [
     'ONE',
     'TWO',
@@ -33,11 +43,6 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
     'TEN',
     'ELEVEN',
   ];
-
-  private scene!: THREE.Scene;
-  private camera!: THREE.PerspectiveCamera;
-  private renderer!: THREE.WebGLRenderer;
-  private skybox!: THREE.Mesh;
 
   ngOnInit(): void {
     const header = document.getElementById(
@@ -63,6 +68,15 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
     header.style.visibility = 'visible';
     header.style.height = '14vh';
     header.style.minHeight = '60px';
+  }
+
+  constructor() {
+    this.themeService = inject(ThemeService);
+    this.audioService = inject(AudioService);
+  }
+
+  public playClickSound() {
+    this.audioService.playClickSound('Minecraft');
   }
 
   private phraseNumber(): number {

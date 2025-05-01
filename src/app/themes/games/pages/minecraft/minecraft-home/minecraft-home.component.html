@@ -10,19 +10,27 @@
       </div>
     </div>
     <div id="action-buttons">
-      <button class="side-button"><span>T</span></button>
+      <button class="side-button" (click)="playClickSound()">
+        <span>T</span>
+      </button>
       <a routerLink="/about-me" class="router-link">
-        <button><span>About Me</span></button>
+        <button (click)="playClickSound()"><span>About Me</span></button>
       </a>
       <a routerLink="/projects" class="router-link">
-        <button><span>Projects</span></button>
+        <button (click)="playClickSound()"><span>Projects</span></button>
       </a>
       <a routerLink="/contact-me" class="router-link">
-        <button><span>Contact Me</span></button>
+        <button (click)="playClickSound()"><span>Contact Me</span></button>
       </a>
-      <button class="half-button"><span>Quit Game</span></button>
-      <button class="half-button"><span>Options...</span></button>
-      <button class="side-button"><span>S</span></button>
+      <button class="half-button" (click)="playClickSound()">
+        <span>Quit Game</span>
+      </button>
+      <button class="half-button" (click)="playClickSound()">
+        <span>Options...</span>
+      </button>
+      <button class="side-button" (click)="playClickSound()">
+        <span>S</span>
+      </button>
     </div>
   </section>
   <div class="bottom-text"><span>Minecraft 1.20.2</span></div>
