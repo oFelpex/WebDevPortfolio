@@ -64,13 +64,7 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const header = document.getElementById(
-      'minecraft-header'
-    ) as HTMLHeadingElement;
-    header.style.display = 'none';
-    header.style.visibility = 'hidden';
-    header.style.height = '0px';
-    header.style.minHeight = '0px';
+    this.headerSetPosition();
 
     this.soundboardSetPosition();
     this.responsiveSubscription = this.responsiveService.isMobile$.subscribe(
@@ -103,19 +97,36 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.headerRestaurePosition();
+
+    this.showSoundboardSubscription.unsubscribe();
+    this.responsiveSubscription.unsubscribe();
+  }
+
+  private headerSetPosition() {
+    const header = document.getElementById(
+      'minecraft-header'
+    ) as HTMLHeadingElement;
+    if (header) {
+      header.style.display = 'none';
+      header.style.visibility = 'hidden';
+      header.style.height = '0px';
+      header.style.minHeight = '0px';
+    }
+  }
+  private headerRestaurePosition() {
     const header = document.getElementById(
       'minecraft-header'
     ) as HTMLHeadingElement;
 
     this.soundboardRestaurePosition();
 
-    header.style.display = 'block';
-    header.style.visibility = 'visible';
-    header.style.height = '14vh';
-    header.style.minHeight = '60px';
-
-    this.showSoundboardSubscription.unsubscribe();
-    this.responsiveSubscription.unsubscribe();
+    if (header) {
+      header.style.display = 'block';
+      header.style.visibility = 'visible';
+      header.style.height = '14vh';
+      header.style.minHeight = '60px';
+    }
   }
 
   private soundboardSetPosition() {
