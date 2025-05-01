@@ -2,11 +2,194 @@ main {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  button {
+    padding: 2px 0px 0px 2px;
+    background-size: 100% 100%;
+    cursor: pointer;
+    span {
+      text-align: center;
+      font-size: larger;
+    }
+  }
 
   .renderer-container {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
     filter: contrast(1.8) brightness(0.45) saturate(1.2);
+  }
+
+  #main-menu {
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    height: 80vh;
+    // background-color: red;
+
+    #logo-and-span {
+      padding: 0px 40px;
+      // background-color: blue;
+      // width: 100%;
+      #span-phrases {
+        position: absolute;
+        // background-color: aqua;
+        transform: translate(85%, -80%) rotate(-18deg);
+        width: 320px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+        span {
+          width: 100%;
+          white-space: wrap;
+          font-size: 2rem;
+          text-align: center;
+          color: #f7f83b;
+
+          animation: textAnimation 0.3s infinite alternate;
+
+          @keyframes textAnimation {
+            from {
+              transform: scale(1);
+            }
+            to {
+              transform: scale(1.05);
+            }
+          }
+        }
+      }
+    }
+
+    #action-buttons {
+      display: grid;
+      place-items: center;
+      max-width: 765px;
+      min-width: 200px;
+      width: 100%;
+      max-height: 250px;
+      min-height: 100px;
+      height: 100%;
+      // background-color: #f7f83b;
+      grid-template-columns: 1fr 4fr 4fr 1fr;
+      grid-template-rows: repeat(1fr, 3), 2fr;
+      grid-auto-flow: row;
+      grid-auto-rows: auto;
+      row-gap: 0px;
+      column-gap: 6px;
+      font-size: 1.1rem;
+
+      .side-button {
+        background-size: cover;
+        width: 45px;
+        height: 45px;
+        color: #eeeeee;
+        grid-row: 4;
+        grid-column: 1;
+        // align-self: flex-end;
+        justify-self: flex-end;
+
+        &:nth-last-child(1) {
+          grid-column: 4;
+          justify-self: flex-start;
+        }
+      }
+      .router-button {
+        color: #eeeeee;
+        grid-column: 2 / span 2;
+        max-width: 750px;
+        min-width: 200px;
+        width: 100%;
+        height: 45px;
+
+        &:nth-last-of-type(4) {
+          align-self: flex-start;
+        }
+        &:nth-last-of-type(6) {
+          align-self: flex-end;
+        }
+      }
+      .half-button {
+        color: #eeeeee;
+        grid-column: 2;
+        max-width: 100%;
+        min-width: 99px;
+        width: 100%;
+        height: 45px;
+        // align-self: flex-end;
+
+        &:nth-last-of-type(3) {
+          grid-column: 3;
+          grid-row: 4;
+        }
+      }
+    }
+  }
+  .bottom-text {
+    position: absolute;
+    bottom: 0px;
+    padding: 5px;
+    font-size: 1.5rem;
+    pointer-events: none;
+
+    &:nth-last-child(1) {
+      right: 0px;
+    }
+  }
+}
+
+@media (max-width: 820px) {
+  main {
+    #main-menu {
+      justify-content: space-around;
+      #logo-and-span {
+        padding: 20px;
+        #span-phrases {
+          left: 50%;
+          transform: translate(-50%, -30%) rotate(0deg);
+          span {
+            font-size: 1.1rem;
+            text-align: center;
+          }
+        }
+      }
+
+      #action-buttons {
+        max-height: 300px;
+        .side-button {
+          grid-row: 5;
+          grid-column: 2;
+          align-self: flex-start;
+          width: 100%;
+
+          &:nth-last-child(1) {
+            grid-column: 3;
+          }
+        }
+      }
+    }
+    .bottom-text {
+      font-size: 1rem;
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .bottom-text {
+    font-size: 1rem;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    text-align: center;
+    &:nth-last-child(2) {
+      transform: translate(-50%, -150%);
+    }
   }
 }

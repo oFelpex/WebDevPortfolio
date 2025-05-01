@@ -1,20 +1,31 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as THREE from 'three';
+import { LogoEffectsComponent } from '../../../../../logo-effects/logo-effects.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-minecraft-home',
-  imports: [],
+  imports: [LogoEffectsComponent, TranslateModule],
   templateUrl: './minecraft-home.component.html',
   styleUrl: './minecraft-home.component.scss',
 })
 export class MinecraftHomeComponent implements OnInit {
   @ViewChild('canvasContainer', { static: true }) canvasContainer!: ElementRef;
+
+  public phrase!: string;
+  private listOfPhrases: string[] = [
+    'ONE',
+    'TWO',
+    'THREE',
+    'FOUR',
+    'FIVE',
+    'SIX',
+    'SEVEN',
+    'EIGHT',
+    'NINE',
+    'TEN',
+    'ELEVEN',
+  ];
 
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
@@ -29,11 +40,17 @@ export class MinecraftHomeComponent implements OnInit {
     header.style.height = '0px';
     header.style.minHeight = '0px';
 
+    this.phrase = this.listOfPhrases[this.phraseNumber()];
+
     this.initScene();
     this.animate();
   }
 
-  initScene(): void {
+  private phraseNumber(): number {
+    return Math.round(Math.random() * (this.listOfPhrases.length - 1));
+  }
+
+  private initScene(): void {
     this.scene = new THREE.Scene();
 
     const aspect = window.innerWidth / window.innerHeight;
@@ -78,7 +95,7 @@ export class MinecraftHomeComponent implements OnInit {
     });
   }
 
-  animate = () => {
+  private animate = () => {
     requestAnimationFrame(this.animate);
 
     this.skybox.rotation.y -= 0.0003;

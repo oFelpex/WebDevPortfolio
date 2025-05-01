@@ -1,3 +1,26 @@
 <main>
   <div #canvasContainer class="renderer-container"></div>
+  <section id="main-menu">
+    <div id="logo-and-span">
+      <app-logo-effects></app-logo-effects>
+      <div id="span-phrases">
+        <span>{{
+          "THEMES.GAMES.MINECRAFT.PHRASES." + phrase | translate
+        }}</span>
+      </div>
+    </div>
+    <div id="action-buttons">
+      <button class="side-button"><span>T</span></button>
+      <button class="router-button"><span>Singleplayer</span></button>
+      <button class="router-button"><span>Multiplayer</span></button>
+      <button class="router-button"><span>Minecraft Realms</span></button>
+      <button class="half-button"><span>Quit Game</span></button>
+      <button class="half-button"><span>Options...</span></button>
+      <button class="side-button"><span>S</span></button>
+    </div>
+  </section>
+  <div class="bottom-text"><span>Minecraft 1.20.2</span></div>
+  <div class="bottom-text">
+    <span>Copyright Felpex. Do not distribute!. </span>
+  </div>
 </main>
