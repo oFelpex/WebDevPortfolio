@@ -20,6 +20,7 @@ export class ShowSoundboardButtonComponent {
   private audioService: AudioService;
   private themeService: ThemeService;
   private themeSubscription!: Subscription;
+  private showSoundboardSubscription!: Subscription;
 
   public actualTheme!: Themes;
   public showSoundboard: boolean = false;
@@ -35,9 +36,14 @@ export class ShowSoundboardButtonComponent {
         this.actualTheme = theme;
       }
     );
+    this.showSoundboardSubscription =
+      this.audioService.showSoundboard$.subscribe((value) => {
+        this.showSoundboard = value;
+      });
   }
   ngOnDestroy(): void {
     this.themeSubscription.unsubscribe();
+    this.showSoundboardSubscription.unsubscribe();
   }
 
   public playClickSound(themeName: string) {

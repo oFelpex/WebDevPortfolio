@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Musics } from '../../models/musics';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +27,9 @@ export class AudioService {
   public musicVolume: number = 0.5;
   public sfxVolume: number = 0.5;
 
+  private showSoundboardSubject = new BehaviorSubject<boolean>(false);
+  public showSoundboard$ = this.showSoundboardSubject.asObservable();
+
   constructor() {
     this.audioContext = new (window.AudioContext ||
       (window as any).webkitAudioContext)();
@@ -37,6 +41,14 @@ export class AudioService {
     this.sfxGainNode.connect(this.audioContext.destination);
 
     this.initVolumes();
+  }
+
+  public toggleSoundboard(): void {
+    const current = this.showSoundboardSubject.value;
+    this.showSoundboardSubject.next(!current);
+  }
+  public setShowSoundboard(value: boolean): void {
+    this.showSoundboardSubject.next(value);
   }
 
   private initVolumes(): void {
