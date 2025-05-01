@@ -1,15 +1,22 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import * as THREE from 'three';
 import { LogoEffectsComponent } from '../../../../../logo-effects/logo-effects.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-minecraft-home',
-  imports: [LogoEffectsComponent, TranslateModule],
+  imports: [LogoEffectsComponent, RouterModule, TranslateModule],
   templateUrl: './minecraft-home.component.html',
   styleUrl: './minecraft-home.component.scss',
 })
-export class MinecraftHomeComponent implements OnInit {
+export class MinecraftHomeComponent implements OnInit, OnDestroy {
   @ViewChild('canvasContainer', { static: true }) canvasContainer!: ElementRef;
 
   public phrase!: string;
@@ -36,6 +43,7 @@ export class MinecraftHomeComponent implements OnInit {
     const header = document.getElementById(
       'minecraft-header'
     ) as HTMLHeadingElement;
+    header.style.display = 'none';
     header.style.visibility = 'hidden';
     header.style.height = '0px';
     header.style.minHeight = '0px';
@@ -44,6 +52,17 @@ export class MinecraftHomeComponent implements OnInit {
 
     this.initScene();
     this.animate();
+  }
+
+  ngOnDestroy(): void {
+    const header = document.getElementById(
+      'minecraft-header'
+    ) as HTMLHeadingElement;
+
+    header.style.display = 'block';
+    header.style.visibility = 'visible';
+    header.style.height = '14vh';
+    header.style.minHeight = '60px';
   }
 
   private phraseNumber(): number {
