@@ -106,7 +106,7 @@ body.minecraft-theme {
     text-shadow: 1px 1px 0px black;
 
     mat-card {
-      background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg-card.webp");
+      background-image: url("./assets/themes/games/minecraft/backgrounds/cards/minecraft-bg-card.webp");
       background-position: center bottom;
       background-size: auto 300px;
     }
@@ -242,7 +242,7 @@ body.minecraft-theme {
   #soundboard {
     #soundboard-bg {
       background-color: #002e0f;
-      background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg-soundboard.webp");
+      background-image: url("./assets/themes/games/minecraft/backgrounds/soundboard/minecraft-bg-soundboard.webp");
       background-position: center center;
       background-size: auto 300px;
     }
@@ -253,7 +253,6 @@ body.minecraft-theme {
       background-color: rgb(78, 78, 78);
     }
   }
-
   @include mat.theme(
     (
       color: (
@@ -262,6 +261,23 @@ body.minecraft-theme {
       ),
       typography: Roboto,
       density: 0,
+    )
+  );
+  @include mat.dialog-overrides(
+    (
+      container-shape: border-radius 0%,
+      container-color: none,
+      subhead-color: #4c4c4c,
+      subhead-font: "Minecraft",
+      supporting-text-color: #fff,
+    )
+  );
+  @include mat.expansion-overrides(
+    (
+      container-shape: border-radius 0%,
+      container-background-color: #c6c6c6,
+      header-text-color: #4c4c4c,
+      header-indicator-color: #ffffff,
     )
   );
 }
