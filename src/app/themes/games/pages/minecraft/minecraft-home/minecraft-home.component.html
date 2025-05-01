@@ -22,7 +22,7 @@
       <a routerLink="/contact-me" class="router-link">
         <button (click)="playClickSound()"><span>Contact Me</span></button>
       </a>
-      <button class="half-button" (click)="playClickSound()">
+      <button class="half-button" (click)="playClickSound(); quitGame()">
         <span>Quit Game</span>
       </button>
       <button class="half-button" (click)="playClickSound()">

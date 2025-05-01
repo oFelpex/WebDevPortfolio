@@ -75,7 +75,11 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
     this.audioService = inject(AudioService);
   }
 
-  public playClickSound() {
+  public quitGame(): void {
+    this.themeService.changeTheme({ name: 'Light', type: 'Colors' });
+  }
+
+  public playClickSound(): void {
     this.audioService.playClickSound('Minecraft');
   }
 
