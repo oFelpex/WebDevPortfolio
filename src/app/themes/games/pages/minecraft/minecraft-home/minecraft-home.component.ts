@@ -12,18 +12,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { AudioService } from '../../../../../services/audio-service/audio.service';
 import { ThemeService } from '../../../../../services/theme-service/theme.service';
-import { SoundboardComponent } from '../../../../../shared/components/soundboard/show-soundboard-button/soundboard/soundboard.component';
 import { Subscription } from 'rxjs';
 import { ResponsiveService } from '../../../../../services/responsive-service/responsive.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-minecraft-home',
-  imports: [
-    LogoEffectsComponent,
-    RouterModule,
-    TranslateModule,
-    SoundboardComponent,
-  ],
+  imports: [LogoEffectsComponent, RouterModule, MatIconModule, TranslateModule],
   templateUrl: './minecraft-home.component.html',
   styleUrl: './minecraft-home.component.scss',
 })
@@ -32,7 +27,6 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
 
   public phrase!: string;
   public showSoundboard: boolean = false;
-  public isMobile: boolean = false;
 
   private showSoundboardSubscription!: Subscription;
   private responsiveSubscription!: Subscription;
@@ -42,7 +36,6 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
   private skybox!: THREE.Mesh;
   private audioService: AudioService;
   private themeService: ThemeService;
-  private responsiveService: ResponsiveService;
   private listOfPhrases: string[] = [
     'ONE',
     'TWO',
@@ -60,37 +53,17 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
   constructor() {
     this.themeService = inject(ThemeService);
     this.audioService = inject(AudioService);
-    this.responsiveService = inject(ResponsiveService);
   }
 
   ngOnInit(): void {
     this.headerSetPosition();
 
-    this.soundboardSetPosition();
-    this.responsiveSubscription = this.responsiveService.isMobile$.subscribe(
-      (isMobile) => {
-        this.isMobile = isMobile;
-
-        if (!this.isMobile) {
-          this.audioService.setShowSoundboard(false);
-
-          setTimeout(() => {
-            this.soundboardSetPosition();
-          });
-        }
-
-        if (isMobile) {
-          this.audioService.setShowSoundboard(false);
-        }
-      }
-    );
+    this.phrase = this.listOfPhrases[this.phraseNumber()];
 
     this.showSoundboardSubscription =
       this.audioService.showSoundboard$.subscribe((value) => {
         this.showSoundboard = value;
       });
-
-    this.phrase = this.listOfPhrases[this.phraseNumber()];
 
     this.initScene();
     this.animate();
@@ -119,8 +92,6 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
       'minecraft-header'
     ) as HTMLHeadingElement;
 
-    this.soundboardRestaurePosition();
-
     if (header) {
       header.style.display = 'block';
       header.style.visibility = 'visible';
@@ -129,28 +100,8 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  private soundboardSetPosition() {
-    const soundboard = document.getElementById('soundboard') as HTMLDivElement;
-    if (soundboard) {
-      soundboard.style.right = '50%';
-      soundboard.style.transform = 'translate(50%, -10%)';
-    }
-  }
-  private soundboardRestaurePosition() {
-    const soundboard = document.getElementById('soundboard') as HTMLDivElement;
-    if (soundboard) {
-      soundboard.style.right = '20px';
-      soundboard.style.transform = '';
-    }
-  }
-
-  public toggleSoundboard(): void {
-    if (this.isMobile) {
-      // ADD MOBILE MENU TOGGLE HERE
-      return;
-    }
-    this.audioService.toggleSoundboard();
-  }
+  public openSoundboardDialog(): void {}
+  public openLangsDialog(): void {}
 
   public quitGame(): void {
     this.themeService.changeTheme({ name: 'Light', type: 'Colors' });
@@ -169,7 +120,7 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
 
     const aspect = window.innerWidth / window.innerHeight;
     this.camera = new THREE.PerspectiveCamera(85, aspect, 0.1, 1000);
-    this.camera.position.set(0, 0, 0.1); // ligeiramente afastado do centro
+    this.camera.position.set(0, 0, 0.1);
 
     const loader = new THREE.TextureLoader();
     const path = 'assets/themes/games/minecraft/backgrounds/skybox/';
@@ -183,9 +134,7 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
       '1.20_panorama_2.webp', // nz
     ].map((fileName) => {
       const texture = loader.load(path + fileName);
-      texture.flipY = false; // previne espelhamento vertical
-      // texture.wrapS = THREE.RepeatWrapping;
-      // texture.repeat.x = -1;
+      texture.flipY = false;
 
       return new THREE.MeshBasicMaterial({
         map: texture,

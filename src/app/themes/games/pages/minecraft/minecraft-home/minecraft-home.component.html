@@ -11,7 +11,11 @@
     </div>
     <div id="action-buttons">
       <button class="side-button" (click)="playClickSound()">
-        <span>T</span>
+        <span
+          ><mat-icon style="font-family: Material Icons"
+            >language</mat-icon
+          ></span
+        >
       </button>
       <a routerLink="/about-me" class="router-link">
         <button (click)="playClickSound()"><span>About Me</span></button>
@@ -28,11 +32,12 @@
       <button class="half-button" (click)="playClickSound()">
         <span>Options...</span>
       </button>
-      <button
-        class="side-button"
-        (click)="playClickSound(); toggleSoundboard()"
-      >
-        <span>S</span>
+      <button class="side-button" (click)="playClickSound()">
+        <span
+          ><mat-icon style="font-family: Material Icons"
+            >headphones</mat-icon
+          ></span
+        >
       </button>
     </div>
   </section>
@@ -41,6 +46,3 @@
     <span>Copyright Felpex. Do not distribute!. </span>
   </div>
 </main>
-@if(!isMobile) {
-<app-soundboard [showSoundboard]="showSoundboard"></app-soundboard>
-}
