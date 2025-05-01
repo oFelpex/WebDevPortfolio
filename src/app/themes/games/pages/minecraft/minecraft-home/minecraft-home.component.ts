@@ -14,6 +14,8 @@ import { AudioService } from '../../../../../services/audio-service/audio.servic
 import { ThemeService } from '../../../../../services/theme-service/theme.service';
 import { Subscription } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
+import { MinecraftDialogsComponent } from './dialogs/minecraft-dialogs.component';
 
 @Component({
   selector: 'app-minecraft-home',
@@ -26,6 +28,7 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
 
   public phrase!: string;
 
+  private dialog: MatDialog;
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private renderer!: THREE.WebGLRenderer;
@@ -49,6 +52,7 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
   constructor() {
     this.themeService = inject(ThemeService);
     this.audioService = inject(AudioService);
+    this.dialog = inject(MatDialog);
   }
 
   ngOnInit(): void {
@@ -88,8 +92,27 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  public openSoundboardDialog(): void {}
-  public openLangsDialog(): void {}
+  public openThemesDialog() {
+    this.dialog.open(MinecraftDialogsComponent, {
+      data: {
+        dialogType: 'Themes',
+      },
+    });
+  }
+  public openLangsDialog(): void {
+    this.dialog.open(MinecraftDialogsComponent, {
+      data: {
+        dialogType: 'Langs',
+      },
+    });
+  }
+  public openSoundboardDialog(): void {
+    this.dialog.open(MinecraftDialogsComponent, {
+      data: {
+        dialogType: 'Soundboard',
+      },
+    });
+  }
 
   public quitGame(): void {
     this.themeService.changeTheme({ name: 'Light', type: 'Colors' });

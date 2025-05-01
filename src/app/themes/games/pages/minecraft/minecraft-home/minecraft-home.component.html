@@ -10,7 +10,7 @@
       </div>
     </div>
     <div id="action-buttons">
-      <button class="side-button" (click)="playClickSound()">
+      <button class="side-button" (click)="playClickSound(); openLangsDialog()">
         <span
           ><mat-icon style="font-family: Material Icons"
             >language</mat-icon
@@ -29,10 +29,16 @@
       <button class="half-button" (click)="playClickSound(); quitGame()">
         <span>Quit Game</span>
       </button>
-      <button class="half-button" (click)="playClickSound()">
+      <button
+        class="half-button"
+        (click)="playClickSound(); openThemesDialog()"
+      >
         <span>Options...</span>
       </button>
-      <button class="side-button" (click)="playClickSound()">
+      <button
+        class="side-button"
+        (click)="playClickSound(); openSoundboardDialog()"
+      >
         <span
           ><mat-icon style="font-family: Material Icons"
             >headphones</mat-icon
