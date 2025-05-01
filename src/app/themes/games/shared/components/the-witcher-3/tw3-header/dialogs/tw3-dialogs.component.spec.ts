@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DialogsComponent } from './dialogs.component';
+import { TW3DialogsComponent } from './tw3-dialogs.component';
 
 describe('DialogsComponent', () => {
-  let component: DialogsComponent;
-  let fixture: ComponentFixture<DialogsComponent>;
+  let component: TW3DialogsComponent;
+  let fixture: ComponentFixture<TW3DialogsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DialogsComponent]
-    })
-    .compileComponents();
+      imports: [TW3DialogsComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(DialogsComponent);
+    fixture = TestBed.createComponent(TW3DialogsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

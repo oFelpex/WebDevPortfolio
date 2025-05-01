@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-tw3-dialog-games',
   imports: [MatListModule, MatDividerModule, MatButtonModule, MatDialogClose],
   templateUrl: './tw3-dialog-games.component.html',
-  styleUrls: ['./tw3-dialog-games.component.scss', '../../dialog.scss'],
+  styleUrls: ['./tw3-dialog-games.component.scss', '../../tw3-dialog.scss'],
 })
 export class Tw3DialogGamesComponent implements OnInit, OnDestroy {
   private themeService: ThemeService;

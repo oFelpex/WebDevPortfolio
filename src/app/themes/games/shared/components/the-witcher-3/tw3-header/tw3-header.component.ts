@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 
 import { LogoEffectsComponent } from '../../../../../../logo-effects/logo-effects.component';
-import { DialogsComponent } from './dialogs/dialogs.component';
+import { TW3DialogsComponent } from './dialogs/tw3-dialogs.component';
 import { AudioService } from '../../../../../../services/audio-service/audio.service';
 import { MobileSoundboardMenuService } from '../../../../../../services/mobile-soundboard-menu/mobile-soundboard-menu.service';
 import { MobileNavMenuService } from '../../../../../../services/mobile-menu-service/mobile-nav-menu.service';
@@ -119,7 +119,7 @@ export class Tw3HeaderComponent implements OnInit, OnDestroy {
   }
 
   public openThemesDialog() {
-    this.dialog.open(DialogsComponent, {
+    this.dialog.open(TW3DialogsComponent, {
       data: {
         dialogType: 'Themes',
       },
@@ -127,7 +127,7 @@ export class Tw3HeaderComponent implements OnInit, OnDestroy {
   }
 
   public openLangsDialog() {
-    this.dialog.open(DialogsComponent, {
+    this.dialog.open(TW3DialogsComponent, {
       data: {
         dialogType: 'Langs',
       },

@@ -20,7 +20,7 @@ import { Subscription } from 'rxjs';
     TranslateModule,
   ],
   templateUrl: './tw3-dialog-colors.component.html',
-  styleUrls: ['./tw3-dialog-colors.component.scss', '../../dialog.scss'],
+  styleUrls: ['./tw3-dialog-colors.component.scss', '../../tw3-dialog.scss'],
 })
 export class Tw3DialogColorsComponent implements OnInit, OnDestroy {
   private themeService: ThemeService;

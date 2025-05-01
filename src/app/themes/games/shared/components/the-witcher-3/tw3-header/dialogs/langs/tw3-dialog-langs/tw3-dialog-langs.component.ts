@@ -8,7 +8,7 @@ import { MatListModule } from '@angular/material/list';
   selector: 'app-tw3-dialog-langs',
   imports: [MatListModule, MatButtonModule],
   templateUrl: './tw3-dialog-langs.component.html',
-  styleUrls: ['./tw3-dialog-langs.component.scss', '../../dialog.scss'],
+  styleUrls: ['./tw3-dialog-langs.component.scss', '../../tw3-dialog.scss'],
 })
 export class Tw3DialogLangsComponent {
   private translateService: TranslateService;

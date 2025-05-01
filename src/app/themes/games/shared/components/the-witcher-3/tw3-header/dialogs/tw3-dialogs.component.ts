@@ -20,7 +20,7 @@ import { Themes } from '../../../../../../../models/themes';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-dialogs',
+  selector: 'app-tw3-dialogs',
   imports: [
     MatDialogActions,
     MatDialogClose,
@@ -33,10 +33,10 @@ import { Subscription } from 'rxjs';
     Tw3DialogLangsComponent,
     TranslateModule,
   ],
-  templateUrl: './dialogs.component.html',
-  styleUrl: './dialogs.component.scss',
+  templateUrl: './tw3-dialogs.component.html',
+  styleUrl: './tw3-dialogs.component.scss',
 })
-export class DialogsComponent {
+export class TW3DialogsComponent {
   private themeService: ThemeService;
   private audioService: AudioService;
   private themeSubscription!: Subscription;
