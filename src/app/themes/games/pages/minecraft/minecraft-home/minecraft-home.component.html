@@ -28,7 +28,10 @@
       <button class="half-button" (click)="playClickSound()">
         <span>Options...</span>
       </button>
-      <button class="side-button" (click)="playClickSound()">
+      <button
+        class="side-button"
+        (click)="playClickSound(); toggleSoundboard()"
+      >
         <span>S</span>
       </button>
     </div>
@@ -38,3 +41,6 @@
     <span>Copyright Felpex. Do not distribute!. </span>
   </div>
 </main>
+@if(!isMobile) {
+<app-soundboard [showSoundboard]="showSoundboard"></app-soundboard>
+}
