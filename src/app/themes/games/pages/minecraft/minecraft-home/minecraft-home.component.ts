@@ -13,7 +13,6 @@ import { RouterModule } from '@angular/router';
 import { AudioService } from '../../../../../services/audio-service/audio.service';
 import { ThemeService } from '../../../../../services/theme-service/theme.service';
 import { Subscription } from 'rxjs';
-import { ResponsiveService } from '../../../../../services/responsive-service/responsive.service';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -26,10 +25,7 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
   @ViewChild('canvasContainer', { static: true }) canvasContainer!: ElementRef;
 
   public phrase!: string;
-  public showSoundboard: boolean = false;
 
-  private showSoundboardSubscription!: Subscription;
-  private responsiveSubscription!: Subscription;
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private renderer!: THREE.WebGLRenderer;
@@ -60,20 +56,12 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
 
     this.phrase = this.listOfPhrases[this.phraseNumber()];
 
-    this.showSoundboardSubscription =
-      this.audioService.showSoundboard$.subscribe((value) => {
-        this.showSoundboard = value;
-      });
-
     this.initScene();
     this.animate();
   }
 
   ngOnDestroy(): void {
     this.headerRestaurePosition();
-
-    this.showSoundboardSubscription.unsubscribe();
-    this.responsiveSubscription.unsubscribe();
   }
 
   private headerSetPosition() {
