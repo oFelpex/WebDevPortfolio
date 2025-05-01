@@ -28,6 +28,7 @@ export const fadeInDownToUp_fadeOutUpToDown_enter = trigger(
   ]
 );
 
+// soundboard
 export const fadeInDownToUp_fadeOutUpToDown_state = trigger(
   'fadeInDownToUp_fadeOutUpToDown_state',
   [
@@ -36,7 +37,6 @@ export const fadeInDownToUp_fadeOutUpToDown_state = trigger(
       style({
         opacity: 0,
         visibility: 'hidden',
-        transform: 'translateY(200px)',
       })
     ),
     state(
@@ -44,7 +44,6 @@ export const fadeInDownToUp_fadeOutUpToDown_state = trigger(
       style({
         opacity: 1,
         visibility: 'visible',
-        transform: 'translateY(0px)',
       })
     ),
     transition('hide <=> show', animate('300ms ease-in-out')),
