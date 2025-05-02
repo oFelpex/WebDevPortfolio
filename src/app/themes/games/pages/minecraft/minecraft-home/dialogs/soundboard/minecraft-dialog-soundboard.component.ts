@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-soundboard',
+  selector: 'app-minecraft-dialog-soundboard',
   imports: [],
   templateUrl: './minecraft-dialog-soundboard.component.html',
   styleUrl: './minecraft-dialog-soundboard.component.scss',

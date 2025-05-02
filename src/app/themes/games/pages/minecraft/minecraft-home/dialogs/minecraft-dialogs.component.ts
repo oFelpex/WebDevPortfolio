@@ -12,6 +12,7 @@ import { AudioService } from '../../../../../../services/audio-service/audio.ser
 import { ThemeService } from '../../../../../../services/theme-service/theme.service';
 import { Themes } from '../../../../../../models/themes';
 import { Subscription } from 'rxjs';
+import { MinecraftDialogLangsComponent } from './langs/minecraft-dialog-langs.component';
 
 @Component({
   selector: 'app-minecraft-dialogs',
@@ -21,6 +22,7 @@ import { Subscription } from 'rxjs';
     MatDialogActions,
     MatDialogClose,
     MatExpansionModule,
+    MinecraftDialogLangsComponent,
   ],
   templateUrl: './minecraft-dialogs.component.html',
   styleUrl: './minecraft-dialogs.component.scss',

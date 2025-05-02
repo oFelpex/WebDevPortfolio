@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-themes',
+  selector: 'app-minecraft-dialog-colors',
   imports: [],
   templateUrl: './minecraft-dialog-colors.component.html',
   styleUrl: './minecraft-dialog-colors.component.scss',
