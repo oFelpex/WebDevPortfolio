@@ -6,16 +6,17 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import * as THREE from 'three';
-import { LogoEffectsComponent } from '../../../../../logo-effects/logo-effects.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
-import { AudioService } from '../../../../../services/audio-service/audio.service';
-import { ThemeService } from '../../../../../services/theme-service/theme.service';
-import { Subscription } from 'rxjs';
+import * as THREE from 'three';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { MinecraftDialogsComponent } from './dialogs/minecraft-dialogs.component';
+
+import { LogoEffectsComponent } from '../../../../../logo-effects/logo-effects.component';
+import { AudioService } from '../../../../../services/audio-service/audio.service';
+import { ThemeService } from '../../../../../services/theme-service/theme.service';
 
 @Component({
   selector: 'app-minecraft-home',
