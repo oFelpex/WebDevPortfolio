@@ -1,11 +1,6 @@
 #minecraft-dialog {
   background-image: url("../../../../../../../assets/themes/games/minecraft/backgrounds/dialogs/minecraft-dialog-bg.webp");
   background-size: 100% 100%;
-  padding: 10px;
-}
-#minecraft-langs-dialog {
-  background-image: url("../../../../../../../assets/themes/games/minecraft/backgrounds/dialogs/minecraft-dialog-bg.webp");
-  background-size: 100% 100%;
   padding: 6px 14px;
   width: calc(656px / 2);
   height: calc(560px / 2);
@@ -119,7 +114,7 @@
 }
 
 @media (min-width: 820px) {
-  #minecraft-langs-dialog {
+  #minecraft-dialog {
     width: calc(656px / 1.4);
     height: calc(560px / 1.4);
     padding: 32px 36px;
@@ -149,7 +144,7 @@
 }
 
 @media (max-width: 420px) {
-  #minecraft-langs-dialog {
+  #minecraft-dialog {
     width: calc(656px / 2.3);
     height: calc(560px / 2.3);
     padding: 2px 12px;
