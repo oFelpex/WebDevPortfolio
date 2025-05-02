@@ -1,25 +1,50 @@
 @if(data.dialogType === 'Themes') {
 <div id="minecraft-dialog">
-  <h2 mat-dialog-title>Excluir todas as capturas de tela...</h2>
+  <h2 mat-dialog-title>Configurar...</h2>
 
   <mat-dialog-content>
-    <mat-accordion class="accordion" multi>
-      <mat-expansion-panel class="expansion-panel" (click)="playClickSound()">
-        <mat-expansion-panel-header>
-          <div [class]="actualTheme.type === 'Games' ? 'selected' : ''"></div>
-          <mat-panel-title> Video Games </mat-panel-title>
-        </mat-expansion-panel-header>
-        <!-- <app-tw3-dialog-games></app-tw3-dialog-games> -->
-      </mat-expansion-panel>
-      <div></div>
-      <mat-expansion-panel class="expansion-panel" (click)="playClickSound()">
-        <mat-expansion-panel-header>
-          <mat-panel-title> Cores </mat-panel-title>
-        </mat-expansion-panel-header>
-        <!-- <app-tw3-dialog-colors></app-tw3-dialog-colors> -->
-      </mat-expansion-panel>
+    <mat-accordion>
+      <div class="expansion-panel-container">
+        <mat-expansion-panel class="expansion-panel">
+          <mat-expansion-panel-header (click)="playClickSound()">
+            <mat-panel-title class="expansion-panel-title">
+              <div class="expansion-panel-top-and-left-border"></div>
+              <div class="expansion-panel-bottom-and-right-border"></div>
+              <span>Video Games</span></mat-panel-title
+            >
+          </mat-expansion-panel-header>
+          <!-- <app-tw3-dialog-games></app-tw3-dialog-games> -->
+        </mat-expansion-panel>
+      </div>
+
+      <div class="expansion-panel-container">
+        <mat-expansion-panel class="expansion-panel">
+          <mat-expansion-panel-header (click)="playClickSound()">
+            <mat-panel-title class="expansion-panel-title">
+              <div class="expansion-panel-top-and-left-border"></div>
+              <div class="expansion-panel-bottom-and-right-border"></div>
+              <span>Cores</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <!-- <app-tw3-dialog-colors></app-tw3-dialog-colors> -->
+        </mat-expansion-panel>
+      </div>
     </mat-accordion>
   </mat-dialog-content>
+
+  <mat-dialog-actions class="minecraft-dialog-actions">
+    <button
+      class="minecraft-dialog-actions-button"
+      mat-dialog-close
+      cdkFocusInitial
+      (click)="playClickSound()"
+    >
+      <div class="button-main-black-border"></div>
+      <div class="button-top-and-left-border"></div>
+      <div class="button-bottom-and-right-border"></div>
+      <span>Close</span>
+    </button>
+  </mat-dialog-actions>
 </div>
 } @if(data.dialogType === 'Langs') {
 <div id="minecraft-dialog">
