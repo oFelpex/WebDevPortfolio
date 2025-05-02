@@ -23,7 +23,7 @@
 </div>
 } @if(data.dialogType === 'Langs') {
 <div id="minecraft-langs-dialog">
-  <h2 mat-dialog-title>change lang</h2>
+  <h2 mat-dialog-title class="dialog-title">Change lang</h2>
   <mat-dialog-content>
     <mat-accordion>
       <div class="expansion-panel-container">
@@ -32,29 +32,27 @@
             <mat-panel-title class="expansion-panel-title">
               <div class="expansion-panel-top-and-left-border"></div>
               <div class="expansion-panel-bottom-and-right-border"></div>
-              <span>languages</span>
+              <span>Languages</span>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <!-- <app-tw3-dialog-langs></app-tw3-dialog-langs> -->
+          <app-minecraft-dialog-langs></app-minecraft-dialog-langs>
         </mat-expansion-panel>
       </div>
     </mat-accordion>
   </mat-dialog-content>
 
-  <mat-dialog-actions class="tw3-dialog-actions">
-    <div class="tw3-dialog-actions-border">
-      <div class="tw3-dialog-actions-button-container">
-        <button
-          class="tw3-dialog-actions-button"
-          mat-button
-          mat-dialog-close
-          cdkFocusInitial
-          (click)="playClickSound()"
-        >
-          Close
-        </button>
-      </div>
-    </div>
+  <mat-dialog-actions class="minecraft-dialog-actions">
+    <button
+      class="minecraft-dialog-actions-button"
+      mat-dialog-close
+      cdkFocusInitial
+      (click)="playClickSound()"
+    >
+      <div class="button-main-black-border"></div>
+      <div class="button-top-and-left-border"></div>
+      <div class="button-bottom-and-right-border"></div>
+      <span>Close</span>
+    </button>
   </mat-dialog-actions>
 </div>
 } @if(data.dialogType === 'Soundboard') {}
