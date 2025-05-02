@@ -1,1 +1,15 @@
-<p>langs works!</p>
+<mat-list>
+  <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="langs-radio-group"
+    [(ngModel)]="currentLang"
+  >
+    @for(lang of allLangs; track $index) {
+    <mat-radio-button
+      [value]="lang"
+      (change)="changeLang(lang); playClickSound()"
+      >{{ lang }}</mat-radio-button
+    >
+    }
+  </mat-radio-group>
+</mat-list>
