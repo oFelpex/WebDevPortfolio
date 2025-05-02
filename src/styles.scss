@@ -253,6 +253,10 @@ body.minecraft-theme {
       background-color: rgb(78, 78, 78);
     }
   }
+  .mat-expansion-panel-body {
+    padding: 0;
+  }
+
   @include mat.theme(
     (
       color: (
@@ -278,6 +282,13 @@ body.minecraft-theme {
       container-background-color: #c6c6c6,
       header-text-color: #6e6e6e,
       header-indicator-color: #ffffff,
+    )
+  );
+
+  @include mat.radio-overrides(
+    (
+      selected-icon-color: #3c3e3c,
+      unselected-icon-color: #3c3e3c,
     )
   );
 }
