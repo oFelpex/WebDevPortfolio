@@ -291,6 +291,39 @@ body.minecraft-theme {
       unselected-icon-color: #3c3e3c,
     )
   );
+  @include mat.slider-overrides(
+    (
+      //shape da bola de segurar
+      handle-shape: border-radius 0%,
+      //altura da bola
+      handle-height: 35px,
+      //largura da bola
+      handle-width: 20px,
+      //cor da bola
+      handle-color: #c6c6c6,
+      //cor da bola ao segurar com o mouse
+      hover-handle-color: #43a01c,
+      focus-handle-color: #43a01c,
+      //cor da barra ativa
+      active-track-color: #808080,
+      //cor da barra inativa
+      inactive-track-color: #585858,
+      //cor ao segurar
+      hover-state-layer-color: transparent,
+      //altura da barra ativa
+      active-track-height: 15px,
+      //shape da barra ativa
+      active-track-shape: border-radius 0%,
+      //altura da barra inativa
+      inactive-track-height: 15px,
+      //shape da barra inaativa
+      inactive-track-shape: border-radius 0%,
+      //linha interna ativa
+      with-tick-marks-active-container-opacity: 0,
+      //linha interna inativa
+      with-tick-marks-inactive-container-opacity: 0
+    )
+  );
 }
 
 // Theme: the-witcher-3-theme
