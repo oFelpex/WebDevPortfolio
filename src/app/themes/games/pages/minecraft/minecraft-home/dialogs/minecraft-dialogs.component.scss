@@ -6,8 +6,8 @@
   height: calc(560px / 1.4);
   padding: 32px 36px;
 
-  .dialog-title {
-    font-size: 1.8rem;
+  .minecraft-dialog-soundboard-title {
+    padding: 0px 20px;
   }
 
   .expansion-panel-container {
@@ -130,6 +130,10 @@
     width: calc(656px / 2);
     height: calc(841px / 2);
 
+    .minecraft-dialog-soundboard-title {
+      padding: 10px 25px;
+    }
+
     .expansion-panel-container {
       .expansion-panel {
         .expansion-panel-title {
@@ -147,11 +151,6 @@
         }
       }
     }
-    .dialog-title {
-      font-size: larger;
-      margin: -3px 0px;
-      padding: 0px 24px;
-    }
   }
 }
 
@@ -161,6 +160,10 @@
     height: calc(841px / 2.3);
     padding: 2px 12px;
 
+    .minecraft-dialog-soundboard-title {
+      padding: 5px 20px;
+    }
+
     .minecraft-dialog-actions {
       padding: 0px 36px;
       .minecraft-dialog-actions-button {
@@ -169,11 +172,6 @@
           font-size: large;
         }
       }
-    }
-    .dialog-title {
-      font-size: larger;
-      margin: 0px 0px;
-      padding: 0px 24px;
     }
   }
 }

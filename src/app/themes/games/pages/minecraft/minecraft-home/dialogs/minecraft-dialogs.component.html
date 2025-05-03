@@ -82,9 +82,11 @@
 </div>
 } @if(data.dialogType === 'Soundboard') {
 <div id="minecraft-dialog">
-  <h2 mat-dialog-title>Soundboard</h2>
+  <h2 mat-dialog-title class="minecraft-dialog-soundboard-title">Soundboard</h2>
 
-  <mat-dialog-content> <span>Opa</span> </mat-dialog-content>
+  <mat-dialog-content>
+    <app-minecraft-dialog-soundboard></app-minecraft-dialog-soundboard>
+  </mat-dialog-content>
 
   <mat-dialog-actions class="minecraft-dialog-actions">
     <button
