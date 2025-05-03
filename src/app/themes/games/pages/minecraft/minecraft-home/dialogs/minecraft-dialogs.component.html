@@ -13,7 +13,7 @@
               <span>Video Games</span></mat-panel-title
             >
           </mat-expansion-panel-header>
-          <!-- <app-tw3-dialog-games></app-tw3-dialog-games> -->
+          <app-minecraft-dialog-games></app-minecraft-dialog-games>
         </mat-expansion-panel>
       </div>
 
@@ -26,7 +26,7 @@
               <span>Cores</span>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <!-- <app-tw3-dialog-colors></app-tw3-dialog-colors> -->
+          <app-minecraft-dialog-colors></app-minecraft-dialog-colors>
         </mat-expansion-panel>
       </div>
     </mat-accordion>
@@ -48,7 +48,7 @@
 </div>
 } @if(data.dialogType === 'Langs') {
 <div id="minecraft-dialog">
-  <h2 mat-dialog-title class="dialog-title">Change lang</h2>
+  <h2 mat-dialog-title>Change lang</h2>
   <mat-dialog-content>
     <mat-accordion>
       <div class="expansion-panel-container">
@@ -80,4 +80,24 @@
     </button>
   </mat-dialog-actions>
 </div>
-} @if(data.dialogType === 'Soundboard') {}
+} @if(data.dialogType === 'Soundboard') {
+<div id="minecraft-dialog">
+  <h2 mat-dialog-title>Soundboard</h2>
+
+  <mat-dialog-content> <span>Opa</span> </mat-dialog-content>
+
+  <mat-dialog-actions class="minecraft-dialog-actions">
+    <button
+      class="minecraft-dialog-actions-button"
+      mat-dialog-close
+      cdkFocusInitial
+      (click)="playClickSound()"
+    >
+      <div class="button-main-black-border"></div>
+      <div class="button-top-and-left-border"></div>
+      <div class="button-bottom-and-right-border"></div>
+      <span>Close</span>
+    </button>
+  </mat-dialog-actions>
+</div>
+}

@@ -13,6 +13,8 @@ import { ThemeService } from '../../../../../../services/theme-service/theme.ser
 import { Themes } from '../../../../../../models/themes';
 import { Subscription } from 'rxjs';
 import { MinecraftDialogLangsComponent } from './langs/minecraft-dialog-langs.component';
+import { MinecraftDialogGamesComponent } from './themes/games/minecraft-dialog-games.component';
+import { MinecraftDialogColorsComponent } from './themes/colors/minecraft-dialog-colors.component';
 
 @Component({
   selector: 'app-minecraft-dialogs',
@@ -23,6 +25,8 @@ import { MinecraftDialogLangsComponent } from './langs/minecraft-dialog-langs.co
     MatDialogClose,
     MatExpansionModule,
     MinecraftDialogLangsComponent,
+    MinecraftDialogGamesComponent,
+    MinecraftDialogColorsComponent,
   ],
   templateUrl: './minecraft-dialogs.component.html',
   styleUrl: './minecraft-dialogs.component.scss',
