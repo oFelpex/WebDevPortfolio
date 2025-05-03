@@ -1,1 +1,15 @@
-<p>themes works!</p>
+<mat-list>
+  <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="langs-radio-group"
+    [(ngModel)]="currentTheme.name"
+  >
+    @for(colorTheme of allColorsThemes; track $index) {
+    <mat-radio-button
+      [value]="colorTheme.name"
+      (change)="changeTheme(colorTheme); playClickSound()"
+      ><span class="radio-button">{{ colorTheme.name }}</span></mat-radio-button
+    >
+    }
+  </mat-radio-group>
+</mat-list>

@@ -11,7 +11,10 @@ import { AudioService } from '../../../../../../../services/audio-service/audio.
   selector: 'app-minecraft-dialog-langs',
   imports: [MatListModule, MatButtonModule, FormsModule, MatRadioModule],
   templateUrl: './minecraft-dialog-langs.component.html',
-  styleUrl: './minecraft-dialog-langs.component.scss',
+  styleUrls: [
+    './minecraft-dialog-langs.component.scss',
+    '../minecraft-dialog.scss',
+  ],
 })
 export class MinecraftDialogLangsComponent {
   private translateService: TranslateService;

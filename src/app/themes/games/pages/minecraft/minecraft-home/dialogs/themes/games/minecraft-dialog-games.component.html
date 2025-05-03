@@ -1,1 +1,15 @@
-<p>minecraft-dialog-games works!</p>
+<mat-list>
+  <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="langs-radio-group"
+    [(ngModel)]="currentTheme.name"
+  >
+    @for(gameTheme of allGamesThemes; track $index) {
+    <mat-radio-button
+      [value]="gameTheme.name"
+      (change)="changeTheme(gameTheme); playClickSound()"
+      ><span class="radio-button">{{ gameTheme.name }}</span></mat-radio-button
+    >
+    }
+  </mat-radio-group>
+</mat-list>
