@@ -1,14 +1,25 @@
 #minecraft-dialog {
   background-image: url("../../../../../../../assets/themes/games/minecraft/backgrounds/dialogs/minecraft-dialog-bg.webp");
   background-size: 100% 100%;
-  padding: 6px 14px;
-  width: calc(656px / 2);
-  height: calc(560px / 2);
+
+  width: calc(656px / 1.4);
+  height: calc(560px / 1.4);
+  padding: 32px 36px;
+
+  .dialog-title {
+    font-size: 1.8rem;
+  }
 
   .expansion-panel-container {
     border: 3px solid black;
+
     .expansion-panel {
+      margin: 0;
       position: relative;
+
+      .expansion-panel-title {
+        font-size: larger;
+      }
 
       .expansion-panel-top-and-left-border {
         position: absolute;
@@ -24,7 +35,6 @@
         position: absolute;
         width: calc(100% + 3px);
         height: calc(100% + 3px);
-        // border: 3px solid #656465;
         border: 3px solid #000000;
         left: -3px;
         top: -3px;
@@ -113,16 +123,17 @@
   }
 }
 
-@media (min-width: 820px) {
+@media (max-width: 820px) {
   #minecraft-dialog {
-    width: calc(656px / 1.4);
-    height: calc(560px / 1.4);
-    padding: 32px 36px;
+    background-image: url("../../../../../../../assets/themes/games/minecraft/backgrounds/dialogs/minecraft-dialog-bg-mobile.webp");
+    padding: 6px 14px;
+    width: calc(656px / 2);
+    height: calc(841px / 2);
 
     .expansion-panel-container {
       .expansion-panel {
         .expansion-panel-title {
-          font-size: larger;
+          font-size: large;
         }
       }
     }
@@ -130,15 +141,16 @@
     .minecraft-dialog-actions {
       padding: 16px 36px;
       .minecraft-dialog-actions-button {
-        height: 60px;
+        height: 50px;
         span {
           font-size: larger;
         }
       }
     }
     .dialog-title {
-      margin: 0px 0px;
-      font-size: 1.8rem;
+      font-size: larger;
+      margin: -3px 0px;
+      padding: 0px 24px;
     }
   }
 }
@@ -146,15 +158,21 @@
 @media (max-width: 420px) {
   #minecraft-dialog {
     width: calc(656px / 2.3);
-    height: calc(560px / 2.3);
+    height: calc(841px / 2.3);
     padding: 2px 12px;
 
     .minecraft-dialog-actions {
       padding: 0px 36px;
+      .minecraft-dialog-actions-button {
+        height: 40px;
+        span {
+          font-size: large;
+        }
+      }
     }
     .dialog-title {
       font-size: larger;
-      margin: -3px 0px;
+      margin: 0px 0px;
       padding: 0px 24px;
     }
   }
