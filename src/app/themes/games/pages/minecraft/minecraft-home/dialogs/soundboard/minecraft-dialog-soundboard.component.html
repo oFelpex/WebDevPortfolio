@@ -1,1 +1,126 @@
-<p>soundboard works!</p>
+<div id="minecraft-sb">
+  <div id="minecraft-sb-music-progress-container">
+    <h5 id="minecraft-sb-music-title">
+      {{ currentMusic }} • {{ currentComposer }}
+    </h5>
+    <mat-progress-bar
+      mode="determinate"
+      [value]="progress * 100"
+    ></mat-progress-bar>
+
+    <div id="minecraft-sb-music-actions">
+      <button
+        class="minecraft-sb-action-button"
+        (click)="previousMusic(); playClickSound(actualTheme.name)"
+      >
+        <div class="button-main-black-border"></div>
+        <div class="button-top-and-left-border"></div>
+        <div class="button-bottom-and-right-border"></div>
+        <mat-icon style="font-family: Material Icons"> skip_previous </mat-icon>
+      </button>
+      <button
+        class="minecraft-sb-action-button"
+        (click)="playOrStopMusic(); playClickSound(actualTheme.name)"
+      >
+        <div class="button-main-black-border"></div>
+        <div class="button-top-and-left-border"></div>
+        <div class="button-bottom-and-right-border"></div>
+        <mat-icon style="font-family: Material Icons">
+          {{ isPlaying() ? "pause" : "play_arrow" }}
+        </mat-icon>
+      </button>
+      <button
+        class="minecraft-sb-action-button"
+        (click)="nextMusic(); playClickSound(actualTheme.name)"
+      >
+        <div class="button-main-black-border"></div>
+        <div class="button-top-and-left-border"></div>
+        <div class="button-bottom-and-right-border"></div>
+        <mat-icon style="font-family: Material Icons"> skip_next </mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="minecraft-sb-slider-container">
+    <h4 class="minecraft-sb-sub-title">
+      {{ "SOUNDBOARD.SFX-VOLUME" | translate }}
+    </h4>
+    <div class="mute-button-and-slider-container">
+      <button
+        class="minecraft-sb-action-button"
+        (click)="muteSfxVolume(); playClickSound(actualTheme.name)"
+      >
+        <div class="button-main-black-border"></div>
+        <div class="button-top-and-left-border"></div>
+        <div class="button-bottom-and-right-border"></div>
+        <mat-icon style="font-family: Material Icons">
+          {{
+            sfxVolume === 0
+              ? "volume_off"
+              : sfxVolume < 50
+              ? "volume_down"
+              : "volume_up"
+          }}
+        </mat-icon>
+      </button>
+      <mat-slider
+        class="minecraft-sb-slider"
+        min="0"
+        max="100"
+        step="1"
+        showTickMarks
+        discrete
+        [displayWith]="formatLabel"
+      >
+        <div class="minecraft-sb-slider-bg"></div>
+        <input
+          [value]="sfxVolume"
+          (input)="setSfxVolume(sfxSlider.value)"
+          matSliderThumb
+          #sfxSlider
+        />
+      </mat-slider>
+    </div>
+  </div>
+  <div class="minecraft-sb-slider-container">
+    <h4 class="minecraft-sb-sub-title">
+      {{ "SOUNDBOARD.MUSIC-VOLUME" | translate }}
+    </h4>
+    <div class="mute-button-and-slider-container">
+      <button
+        class="minecraft-sb-action-button"
+        (click)="muteMusicVolume(); playClickSound(actualTheme.name)"
+      >
+        <div class="button-main-black-border"></div>
+        <div class="button-top-and-left-border"></div>
+        <div class="button-bottom-and-right-border"></div>
+        <mat-icon style="font-family: Material Icons">
+          {{
+            musicVolume === 0
+              ? "volume_off"
+              : musicVolume < 50
+              ? "volume_down"
+              : "volume_up"
+          }}
+        </mat-icon>
+      </button>
+      <mat-slider
+        class="minecraft-sb-slider"
+        min="0"
+        max="100"
+        step="1"
+        showTickMarks
+        discrete
+        [displayWith]="formatLabel"
+      >
+        <div class="minecraft-sb-slider-bg"></div>
+        <input
+          [value]="musicVolume"
+          (input)="setMusicVolume(musicSlider.value)"
+          matSliderThumb
+          #musicSlider
+        />
+      </mat-slider>
+    </div>
+  </div>
+</div>
