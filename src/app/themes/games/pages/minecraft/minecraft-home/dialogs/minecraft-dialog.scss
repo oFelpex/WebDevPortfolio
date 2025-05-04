@@ -1,4 +1,4 @@
-.langs-radio-group {
+.radio-group {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -6,6 +6,11 @@
   margin-right: 12px;
   .radio-button {
     font-size: 1.2rem;
+    cursor: pointer;
+
+    &:hover {
+      color: #b0fb9d;
+    }
   }
 }
 @media (max-width: 820px) {
