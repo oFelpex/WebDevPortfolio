@@ -35,8 +35,7 @@
         flex-wrap: wrap;
         width: 100%;
 
-        #sfx-slider,
-        #music-slider {
+        .sb-slider {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -44,9 +43,8 @@
 
           .slider-bg {
             position: absolute;
-            height: 30px;
-            width: calc(100% + 23px);
-            box-shadow: 0px 0px 10px black;
+            height: 20px;
+            width: calc(100% + 4px);
           }
         }
 
