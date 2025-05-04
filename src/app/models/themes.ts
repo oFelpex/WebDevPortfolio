@@ -1,4 +1,4 @@
-type Games =
+export type Games =
   | 'God Of War'
   | 'Red Dead Redemption 2'
   | 'The Witcher 3'
@@ -9,7 +9,7 @@ type Games =
   | 'Hollow Knight'
   | 'Undertale'
   | 'Minecraft';
-type Colors = 'Light' | 'Dark' | 'Cosmic';
+export type Colors = 'Light' | 'Dark' | 'Cosmic';
 
 export type ThemeCategory = Games | Colors;
 export interface Themes {

@@ -21,7 +21,7 @@ export class AudioService {
   private pauseTime: number = 0;
   private isPaused: boolean = false;
 
-  private playlist: Musics[] = [];
+  private playlist!: Musics[];
   private currentIndex: number = 0;
 
   public musicVolume: number = 0.5;
@@ -68,6 +68,12 @@ export class AudioService {
   }
 
   public async playPlaylist(playlist: Musics[]) {
+    if (this.playlist) {
+      if (this.playlist[0].gameName === playlist[0].gameName) {
+        console.log(this.playlist);
+        return;
+      }
+    }
     this.playlist = playlist;
     this.currentIndex = 0;
 
