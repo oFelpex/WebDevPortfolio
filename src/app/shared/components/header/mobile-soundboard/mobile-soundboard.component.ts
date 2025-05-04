@@ -76,6 +76,8 @@ export class MobileSoundboardComponent
         this.actualTheme = theme;
       }
     );
+
+    this.addStylesToSliders();
   }
 
   ngAfterViewChecked() {
@@ -89,6 +91,48 @@ export class MobileSoundboardComponent
   ngOnDestroy(): void {
     this.sub.unsubscribe();
     this.themeSubscription.unsubscribe();
+  }
+
+  private addStylesToSliders(): void {
+    const sliders = document.getElementsByClassName(
+      'sb-slider'
+    ) as HTMLCollectionOf<HTMLElement>;
+
+    if (this.actualTheme.name === 'Minecraft') {
+      for (const slider of sliders) {
+        const sliderBG = slider.querySelector('.slider-bg') as HTMLElement;
+        if (sliderBG) {
+          sliderBG.style.backgroundColor = 'black';
+        }
+
+        const thumb = slider.querySelector(
+          '.mdc-slider__thumb-knob'
+        ) as HTMLElement;
+        if (thumb) {
+          thumb.style.border = '3px solid black';
+        }
+
+        const trackActive = slider.querySelector(
+          '.mdc-slider__track--active_fill'
+        ) as HTMLElement;
+        const track = slider.querySelector('.mdc-slider__track') as HTMLElement;
+
+        slider.addEventListener('mouseover', () => {
+          sliderBG.style.backgroundColor = '#fff';
+          thumb.style.backgroundColor = '#43a01c';
+          thumb.style.borderColor = '#fff';
+          track.style.backgroundColor = '#037300';
+          trackActive.style.borderColor = '#4e8836';
+        });
+        slider.addEventListener('mouseout', () => {
+          sliderBG.style.backgroundColor = 'black';
+          thumb.style.backgroundColor = '';
+          thumb.style.borderColor = 'black';
+          track.style.backgroundColor = '';
+          trackActive.style.borderColor = '';
+        });
+      }
+    }
   }
 
   public playClickSound(themeName: string) {
