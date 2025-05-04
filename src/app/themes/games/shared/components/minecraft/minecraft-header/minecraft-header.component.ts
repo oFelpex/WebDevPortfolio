@@ -18,6 +18,8 @@ import { MobileSoundboardMenuService } from '../../../../../../services/mobile-s
 import { MobileMenuComponent } from '../../../../../../shared/components/header/mobile-menu/mobile-menu.component';
 import { MobileSoundboardComponent } from '../../../../../../shared/components/header/mobile-soundboard/mobile-soundboard.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MinecraftDialogsComponent } from '../../../../pages/minecraft/minecraft-home/dialogs/minecraft-dialogs.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-minecraft-header',
@@ -71,8 +73,10 @@ export class MinecraftHeaderComponent implements OnInit {
   private mobileNavMenuService: MobileNavMenuService;
   private mobileSoundboardMenuService: MobileSoundboardMenuService;
   private themeSubscription!: Subscription;
+  private dialog: MatDialog;
 
   constructor() {
+    this.dialog = inject(MatDialog);
     this.mobileNavMenuService = inject(MobileNavMenuService);
     this.mobileSoundboardMenuService = inject(MobileSoundboardMenuService);
     this.audioService = inject(AudioService);
@@ -118,6 +122,14 @@ export class MinecraftHeaderComponent implements OnInit {
     this.routerSubscription.unsubscribe();
     this.responsiveSubscription.unsubscribe();
     this.themeSubscription.unsubscribe();
+  }
+
+  public openSoundboardDialog(): void {
+    this.dialog.open(MinecraftDialogsComponent, {
+      data: {
+        dialogType: 'Soundboard',
+      },
+    });
   }
 
   private phraseNumber(): number {

@@ -63,6 +63,9 @@
       >
         <span>{{ "LANGS.LANGS" | translate }}</span>
       </button>
+      <button mat-menu-item (click)="playClickSound(); openSoundboardDialog()">
+        <span>Soundboard</span>
+      </button>
     </mat-menu>
     <mat-menu #themes="matMenu" xPosition="before">
       <button
