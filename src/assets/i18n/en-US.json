@@ -29,8 +29,11 @@
       "UNDERTALE": {},
 
       "MINECRAFT": {
-        "EXPLORE": "Explore",
-        "SETTINGS": "Settings",
+        "HEADER": {
+          "EXPLORE": "Explore",
+          "SETTINGS": "Settings"
+        },
+
         "PHRASES": {
           "ONE": "Indie games are the best!",
           "TWO": "Trying to be better...",

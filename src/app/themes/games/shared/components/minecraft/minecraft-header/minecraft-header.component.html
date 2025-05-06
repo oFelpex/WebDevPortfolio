@@ -10,7 +10,7 @@
       (click)="playClickSound()"
       [matMenuTriggerFor]="routes"
     >
-      <span>{{ "THEMES.GAMES.MINECRAFT.EXPLORE" | translate }}</span>
+      <span>{{ "THEMES.GAMES.MINECRAFT.HEADER.EXPLORE" | translate }}</span>
     </button>
     <mat-menu #routes="matMenu">
       @for(route of allRoutes; track $index) {
@@ -46,7 +46,7 @@
       (click)="playClickSound()"
       [matMenuTriggerFor]="settings"
     >
-      <span>{{ "THEMES.GAMES.MINECRAFT.SETTINGS" | translate }}</span>
+      <span>{{ "THEMES.GAMES.MINECRAFT.HEADER.SETTINGS" | translate }}</span>
     </button>
     <mat-menu #settings="matMenu" xPosition="before">
       <button
