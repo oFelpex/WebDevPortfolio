@@ -34,6 +34,15 @@
           "SETTINGS": "Configurações"
         },
 
+        "INTRO-PAGE": {
+          "ABOUT-ME": "Sobre mim",
+          "PROJECTS": "Projetos",
+          "CONTACT-ME": "Contato",
+          "OPTIONS": "Configurar...",
+          "QUIT-GAME": "Fechar jogo",
+          "COPYRIGHT": "Direitos autorais Felpex. Não distribua!."
+        },
+
         "PHRASES": {
           "ONE": "Jogos indie são os melhores!",
           "TWO": "Tentando ser melhor...",

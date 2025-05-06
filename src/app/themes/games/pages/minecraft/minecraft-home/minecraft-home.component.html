@@ -18,22 +18,38 @@
         >
       </button>
       <a routerLink="/about-me" class="router-link">
-        <button (click)="playClickSound()"><span>About Me</span></button>
+        <button (click)="playClickSound()">
+          <span>{{
+            "THEMES.GAMES.MINECRAFT.INTRO-PAGE.ABOUT-ME" | translate
+          }}</span>
+        </button>
       </a>
       <a routerLink="/projects" class="router-link">
-        <button (click)="playClickSound()"><span>Projects</span></button>
+        <button (click)="playClickSound()">
+          <span>{{
+            "THEMES.GAMES.MINECRAFT.INTRO-PAGE.PROJECTS" | translate
+          }}</span>
+        </button>
       </a>
       <a routerLink="/contact-me" class="router-link">
-        <button (click)="playClickSound()"><span>Contact Me</span></button>
+        <button (click)="playClickSound()">
+          <span>{{
+            "THEMES.GAMES.MINECRAFT.INTRO-PAGE.CONTACT-ME" | translate
+          }}</span>
+        </button>
       </a>
       <button class="half-button" (click)="playClickSound(); quitGame()">
-        <span>Quit Game</span>
+        <span>{{
+          "THEMES.GAMES.MINECRAFT.INTRO-PAGE.QUIT-GAME" | translate
+        }}</span>
       </button>
       <button
         class="half-button"
         (click)="playClickSound(); openThemesDialog()"
       >
-        <span>Options...</span>
+        <span>{{
+          "THEMES.GAMES.MINECRAFT.INTRO-PAGE.OPTIONS" | translate
+        }}</span>
       </button>
       <button
         class="side-button"
@@ -49,6 +65,6 @@
   </section>
   <div class="bottom-text"><span>Minecraft 1.20.2</span></div>
   <div class="bottom-text">
-    <span>Copyright Felpex. Do not distribute!. </span>
+    <span>{{ "THEMES.GAMES.MINECRAFT.INTRO-PAGE.COPYRIGHT" | translate }}</span>
   </div>
 </main>
