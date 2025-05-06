@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 import {
-  MatDialog,
   MAT_DIALOG_DATA,
   MatDialogTitle,
   MatDialogContent,
@@ -8,10 +9,10 @@ import {
   MatDialogClose,
 } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
+
 import { AudioService } from '../../../../../../services/audio-service/audio.service';
-import { ThemeService } from '../../../../../../services/theme-service/theme.service';
 import { Themes } from '../../../../../../models/themes';
-import { Subscription } from 'rxjs';
+import { ThemeService } from '../../../../../../services/theme-service/theme.service';
 import { MinecraftDialogLangsComponent } from './langs/minecraft-dialog-langs.component';
 import { MinecraftDialogGamesComponent } from './themes/games/minecraft-dialog-games.component';
 import { MinecraftDialogColorsComponent } from './themes/colors/minecraft-dialog-colors.component';

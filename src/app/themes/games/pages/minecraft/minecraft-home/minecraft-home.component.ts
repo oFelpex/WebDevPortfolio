@@ -12,8 +12,8 @@ import * as THREE from 'three';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
-import { MinecraftDialogsComponent } from './dialogs/minecraft-dialogs.component';
 
+import { MinecraftDialogsComponent } from './dialogs/minecraft-dialogs.component';
 import { LogoEffectsComponent } from '../../../../../logo-effects/logo-effects.component';
 import { AudioService } from '../../../../../services/audio-service/audio.service';
 import { ThemeService } from '../../../../../services/theme-service/theme.service';

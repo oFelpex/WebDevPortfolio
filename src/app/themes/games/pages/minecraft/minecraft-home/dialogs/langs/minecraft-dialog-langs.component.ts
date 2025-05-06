@@ -1,15 +1,16 @@
 import { Component, inject } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatListModule } from '@angular/material/list';
+import { FormsModule } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+
 import { MatRadioModule } from '@angular/material/radio';
-import { FormsModule } from '@angular/forms';
+import { MatListModule } from '@angular/material/list';
+
 import { AudioService } from '../../../../../../../services/audio-service/audio.service';
 
 @Component({
   selector: 'app-minecraft-dialog-langs',
-  imports: [MatListModule, MatButtonModule, FormsModule, MatRadioModule],
+  imports: [MatListModule, FormsModule, MatRadioModule],
   templateUrl: './minecraft-dialog-langs.component.html',
   styleUrls: [
     './minecraft-dialog-langs.component.scss',
