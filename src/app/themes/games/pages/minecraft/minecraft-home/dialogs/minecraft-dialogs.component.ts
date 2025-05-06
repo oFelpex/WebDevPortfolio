@@ -17,10 +17,12 @@ import { MinecraftDialogLangsComponent } from './langs/minecraft-dialog-langs.co
 import { MinecraftDialogGamesComponent } from './themes/games/minecraft-dialog-games.component';
 import { MinecraftDialogColorsComponent } from './themes/colors/minecraft-dialog-colors.component';
 import { MinecraftDialogSoundboardComponent } from './soundboard/minecraft-dialog-soundboard.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-minecraft-dialogs',
   imports: [
+    TranslateModule,
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,

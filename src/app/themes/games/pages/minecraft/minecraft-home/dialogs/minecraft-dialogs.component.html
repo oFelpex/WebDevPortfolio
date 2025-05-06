@@ -1,6 +1,8 @@
 @if(data.dialogType === 'Themes') {
 <div id="minecraft-dialog">
-  <h2 mat-dialog-title>Configurar...</h2>
+  <h2 mat-dialog-title>
+    {{ "THEMES.GAMES.MINECRAFT.INTRO-PAGE.OPTIONS" | translate }}
+  </h2>
 
   <mat-dialog-content>
     <mat-accordion>
@@ -10,7 +12,9 @@
             <mat-panel-title class="expansion-panel-title">
               <div class="expansion-panel-top-and-left-border"></div>
               <div class="expansion-panel-bottom-and-right-border"></div>
-              <span>Video Games</span></mat-panel-title
+              <span>{{
+                "DIALOG-THEMES.VIDEO-GAMES" | translate
+              }}</span></mat-panel-title
             >
           </mat-expansion-panel-header>
           <app-minecraft-dialog-games></app-minecraft-dialog-games>
@@ -23,7 +27,7 @@
             <mat-panel-title class="expansion-panel-title">
               <div class="expansion-panel-top-and-left-border"></div>
               <div class="expansion-panel-bottom-and-right-border"></div>
-              <span>Cores</span>
+              <span>{{ "THEMES.Colors.COLORS" | translate }}</span>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <app-minecraft-dialog-colors></app-minecraft-dialog-colors>
@@ -42,13 +46,13 @@
       <div class="button-main-black-border"></div>
       <div class="button-top-and-left-border"></div>
       <div class="button-bottom-and-right-border"></div>
-      <span>Close</span>
+      <span>{{ "DIALOG-THEMES.CLOSE" | translate }}</span>
     </button>
   </mat-dialog-actions>
 </div>
 } @if(data.dialogType === 'Langs') {
 <div id="minecraft-dialog">
-  <h2 mat-dialog-title>Change lang</h2>
+  <h2 mat-dialog-title>{{ "DIALOG-LANGS.CHANGE-LANG-LOW" | translate }}</h2>
   <mat-dialog-content>
     <mat-accordion>
       <div class="expansion-panel-container">
@@ -57,7 +61,7 @@
             <mat-panel-title class="expansion-panel-title">
               <div class="expansion-panel-top-and-left-border"></div>
               <div class="expansion-panel-bottom-and-right-border"></div>
-              <span>Languages</span>
+              <span>{{ "DIALOG-LANGS.LANGUAGES" | translate }}</span>
             </mat-panel-title>
           </mat-expansion-panel-header>
           <app-minecraft-dialog-langs></app-minecraft-dialog-langs>
@@ -76,13 +80,15 @@
       <div class="button-main-black-border"></div>
       <div class="button-top-and-left-border"></div>
       <div class="button-bottom-and-right-border"></div>
-      <span>Close</span>
+      <span>{{ "DIALOG-LANGS.CLOSE" | translate }}</span>
     </button>
   </mat-dialog-actions>
 </div>
 } @if(data.dialogType === 'Soundboard') {
 <div id="minecraft-dialog">
-  <h2 mat-dialog-title class="minecraft-dialog-soundboard-title">Soundboard</h2>
+  <h2 mat-dialog-title class="minecraft-dialog-soundboard-title">
+    {{ "SOUNDBOARD.SOUNDBOARD-LOW" | translate }}
+  </h2>
 
   <mat-dialog-content>
     <app-minecraft-dialog-soundboard></app-minecraft-dialog-soundboard>
