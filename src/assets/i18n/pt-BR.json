@@ -92,6 +92,7 @@
   },
   "DIALOG-LANGS": {
     "CHANGE-LANG": "MUDAR IDIOMA",
+    "CHANGE-LANG-LOW": "Mudar Idioma",
     "LANGUAGES": "Idiomas",
     "DESCRIPTION": "PT-BR ou EN-US",
     "CLOSE": "Fechar"
@@ -128,6 +129,7 @@
 
   "SOUNDBOARD": {
     "SOUNDBOARD": "PAINEL DE SONS",
+    "SOUNDBOARD-LOW": "Painel de Sons",
     "MUSIC-VOLUME": "Músicas: ",
     "SFX-VOLUME": "Efeitos Sonoros: "
   },

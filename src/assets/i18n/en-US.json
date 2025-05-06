@@ -92,6 +92,7 @@
   },
   "DIALOG-LANGS": {
     "CHANGE-LANG": "CHANGE LANG",
+    "CHANGE-LANG-LOW": "Change Lang",
     "LANGUAGES": "Languages",
     "DESCRIPTION": "PT-BR or EN-US",
     "CLOSE": "Close"
@@ -126,6 +127,7 @@
 
   "SOUNDBOARD": {
     "SOUNDBOARD": "SOUNDBOARD",
+    "SOUNDBOARD-LOW": "Soundboard",
     "MUSIC-VOLUME": "Music Volume: ",
     "SFX-VOLUME": "SFX Volume: "
   },
