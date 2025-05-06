@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
@@ -12,7 +13,7 @@ import { MinecraftDialogsComponent } from '../../minecraft-dialogs.component';
 
 @Component({
   selector: 'app-minecraft-dialog-colors',
-  imports: [MatListModule, FormsModule, MatRadioModule],
+  imports: [TranslateModule, MatListModule, FormsModule, MatRadioModule],
   templateUrl: './minecraft-dialog-colors.component.html',
   styleUrls: [
     './minecraft-dialog-colors.component.scss',

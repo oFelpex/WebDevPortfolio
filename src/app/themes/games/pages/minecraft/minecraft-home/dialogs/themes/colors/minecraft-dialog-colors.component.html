@@ -8,7 +8,9 @@
     <mat-radio-button
       [value]="colorTheme.name"
       (change)="changeTheme(colorTheme); playClickSound()"
-      ><span class="radio-button">{{ colorTheme.name }}</span></mat-radio-button
+      ><span class="radio-button">{{
+        "THEMES.Colors." + colorTheme.name | translate
+      }}</span></mat-radio-button
     >
     }
   </mat-radio-group>
