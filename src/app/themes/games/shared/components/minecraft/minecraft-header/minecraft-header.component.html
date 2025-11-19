@@ -15,7 +15,7 @@
     <mat-menu #routes="matMenu">
       @for(route of allRoutes; track $index) {
       <a [routerLink]="[route]">
-        <button mat-menu-item (click)="playClickSound()">
+        <button mat-menu-item (click)="playClickSound()" style="width: 150px">
           <span
             [matBadge]="route === currentRoute ? 'ON' : ''"
             matBadgeOverlap="false"
