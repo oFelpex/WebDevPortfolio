@@ -1,10 +1,18 @@
-<div id="photos-dialog-container">
+<div
+  id="photos-dialog-container"
+  style="display: flex; flex-direction: column; align-items: center"
+>
   <div class="bottom-corners"></div>
   <h2 mat-dialog-title>{{ "ABOUT-PAGE." + photo.name | translate }}</h2>
   <mat-dialog-content>
-    <img style="border-radius: 3px" [src]="photo.imgURL" [alt]="photo.imgAlt" />
+    <img
+      style="border-radius: 3px; height: auto; width: 250px"
+      [src]="photo.imgURL"
+      [alt]="photo.imgAlt"
+    />
   </mat-dialog-content>
   <mat-dialog-actions>
+    @if(actualTheme.type !== 'Games') {
     <button
       (click)="playClickSound(actualTheme.name)"
       mat-button
@@ -13,5 +21,18 @@
     >
       {{ "ABOUT-PAGE.DIALOG-PHOTO-CLOSE-BUTTON" | translate }}
     </button>
+    } @if(actualTheme.name === 'Minecraft') {
+    <button
+      class="minecraft-dialog-actions-button"
+      mat-dialog-close
+      cdkFocusInitial
+      (click)="playClickSound(actualTheme.name)"
+    >
+      <div class="button-main-black-border"></div>
+      <div class="button-top-and-left-border"></div>
+      <div class="button-bottom-and-right-border"></div>
+      <span>{{ "DIALOG-THEMES.CLOSE" | translate }}</span>
+    </button>
+    }
   </mat-dialog-actions>
 </div>

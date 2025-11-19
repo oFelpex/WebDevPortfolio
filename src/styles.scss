@@ -257,6 +257,80 @@ body.minecraft-theme {
     padding: 0;
   }
 
+  #photos-dialog-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px;
+    padding: 30px;
+    background-image: url("./assets/themes/games/minecraft/backgrounds/dialogs/minecraft-dialog-bg-mobile.webp");
+    background-position: center;
+    background-size: 100% 100%;
+
+    mat-dialog-actions {
+      .minecraft-dialog-actions-button {
+        position: relative;
+        box-shadow: none;
+        width: 100px;
+        height: 40px;
+        background-image: none;
+        background-color: #c6c6c6;
+        border-radius: 0px;
+        cursor: pointer;
+        border: none;
+        z-index: 0;
+
+        span {
+          color: #4c4c4c;
+        }
+        .button-main-black-border {
+          position: absolute;
+          width: calc(100% + 6px);
+          height: calc(100% + 6px);
+          border: 3.5px solid black;
+          left: -3px;
+          top: -3px;
+          z-index: 3;
+        }
+        .button-top-and-left-border {
+          pointer-events: none;
+          position: absolute;
+          width: calc(100% + 3px);
+          height: calc(100% + 3px);
+          border: 3px solid #f7f7f7;
+          left: 0;
+          top: 0;
+          z-index: 0;
+        }
+        .button-bottom-and-right-border {
+          pointer-events: none;
+          position: absolute;
+          width: calc(100% + 3px);
+          height: calc(100% + 3px);
+          border: 3px solid #000000;
+          left: -3px;
+          top: -3px;
+          z-index: 1;
+          opacity: 0.3;
+        }
+
+        &:hover {
+          background-color: #218306;
+          .button-main-black-border {
+            border: 3px solid #fff;
+          }
+          .button-top-and-left-border {
+            border: 3px solid #17cd07;
+          }
+          span {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
   @include mat.theme(
     (
       color: (
