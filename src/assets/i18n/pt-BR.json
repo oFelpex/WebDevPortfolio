@@ -20,6 +20,7 @@
     },
     "GAMES": {
       "VIDEO-GAMES": "Videogames",
+      "COPYRIGHT": "Conheça mais sobre ",
 
       "GOD OF WAR": {},
       "THE WITCHER 3": {},
@@ -39,8 +40,7 @@
           "PROJECTS": "Projetos",
           "CONTACT-ME": "Contato",
           "OPTIONS": "Configurar...",
-          "QUIT-GAME": "Fechar jogo",
-          "COPYRIGHT": "Direitos autorais Felpex. Não distribua!."
+          "QUIT-GAME": "Fechar jogo"
         },
 
         "PHRASES": {

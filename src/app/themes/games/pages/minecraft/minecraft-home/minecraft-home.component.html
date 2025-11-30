@@ -63,8 +63,15 @@
       </button>
     </div>
   </section>
-  <div class="bottom-text"><span>Minecraft 1.20.2</span></div>
+  // pointer-events: none;
+  <div class="bottom-text" style="pointer-events: none">
+    <span>Minecraft 1.20.2</span>
+  </div>
   <div class="bottom-text">
-    <span>{{ "THEMES.GAMES.MINECRAFT.INTRO-PAGE.COPYRIGHT" | translate }}</span>
+    <a target="_blank" href="https://www.minecraft.net/pt-br">
+      <span
+        >{{ ("THEMES.GAMES.COPYRIGHT" | translate) + "Minecraft" }}
+      </span></a
+    >
   </div>
 </main>
