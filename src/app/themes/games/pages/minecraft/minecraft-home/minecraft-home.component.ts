@@ -17,6 +17,7 @@ import { MinecraftDialogsComponent } from './dialogs/minecraft-dialogs.component
 import { LogoEffectsComponent } from '../../../../../logo-effects/logo-effects.component';
 import { AudioService } from '../../../../../services/audio-service/audio.service';
 import { ThemeService } from '../../../../../services/theme-service/theme.service';
+import { ResponsiveService } from '../../../../../services/responsive-service/responsive.service';
 
 @Component({
   selector: 'app-minecraft-home',
@@ -28,7 +29,9 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
   @ViewChild('canvasContainer', { static: true }) canvasContainer!: ElementRef;
 
   public phrase!: string;
-
+  public isMobile!: boolean;
+  
+  private responsiveService: ResponsiveService;
   private dialog: MatDialog;
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
@@ -54,6 +57,7 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
     this.themeService = inject(ThemeService);
     this.audioService = inject(AudioService);
     this.dialog = inject(MatDialog);
+    this.responsiveService = inject(ResponsiveService);
   }
 
   ngOnInit(): void {
@@ -63,6 +67,9 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
 
     this.initScene();
     this.animate();
+    this.responsiveService.isMobile$.subscribe((isMobile) => {
+        this.isMobile = isMobile;
+    });
   }
 
   ngOnDestroy(): void {
