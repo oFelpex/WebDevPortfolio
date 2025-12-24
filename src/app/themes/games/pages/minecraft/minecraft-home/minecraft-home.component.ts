@@ -6,7 +6,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import * as THREE from 'three';
 
@@ -30,7 +30,9 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
 
   public phrase!: string;
   public isMobile!: boolean;
+  public actualLang!: string;
   
+  private translateService: TranslateService;
   private responsiveService: ResponsiveService;
   private dialog: MatDialog;
   private scene!: THREE.Scene;
@@ -54,6 +56,7 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
   ];
 
   constructor() {
+    this.translateService = inject(TranslateService);
     this.themeService = inject(ThemeService);
     this.audioService = inject(AudioService);
     this.dialog = inject(MatDialog);
@@ -62,7 +65,12 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.headerSetPosition();
-
+    
+    this.actualLang = this.translateService.currentLang;
+    this.translateService.onLangChange.subscribe((lang: { lang: string; }) => {
+      this.actualLang = lang.lang;
+    });
+    
     this.phrase = this.listOfPhrases[this.phraseNumber()];
 
     this.initScene();

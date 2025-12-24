@@ -70,7 +70,7 @@
     <span>Minecraft 1.20.2</span>
   </div>
   <div class="bottom-text">
-    <a target="_blank" href="https://www.minecraft.net/pt-br">
+    <a target="_blank" [href]="actualLang === 'pt-BR' ? 'https://www.minecraft.net/pt-br' : 'https://www.minecraft.net/en-us'">
       <span
         >{{ ("THEMES.GAMES.COPYRIGHT" | translate) + "Minecraft" }}
       </span></a
