@@ -7,6 +7,7 @@ import { CustomSnackbarComponent } from '../../shared/components/custom-snackbar
 import { Tw3HeaderComponent } from '../../themes/games/shared/components/the-witcher-3/tw3-header/tw3-header.component';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { MinecraftHeaderComponent } from '../../themes/games/shared/components/minecraft/minecraft-header/minecraft-header.component';
+import { AudioService } from '../audio-service/audio.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -15,6 +16,7 @@ export class ThemeService {
   private colorsOptions: Themes[] = colorsOptions;
   private defaultTheme: Themes = defaultTheme;
   private snackBar: MatSnackBar;
+  private audioContext: AudioService;
 
   private _actualTheme$ = new BehaviorSubject<Themes>(this.defaultTheme);
   actualTheme$ = this._actualTheme$.asObservable();
@@ -22,6 +24,7 @@ export class ThemeService {
   constructor() {
     this.initTheme();
     this.snackBar = inject(MatSnackBar);
+    this.audioContext = inject(AudioService);
   }
 
   private initTheme() {
@@ -75,9 +78,11 @@ export class ThemeService {
       console.log('Type:', this._actualTheme$.getValue().type);
       return;
     } else {
+      
       this._actualTheme$.next(theme);
       this.setActualThemeToLocalStorage(theme);
       this.setTheme(theme.name.toLowerCase().replaceAll(' ', '-'));
+      this.audioContext.stopMusic()
     }
 
     this.snackBar.openFromComponent(CustomSnackbarComponent, {
