@@ -16,8 +16,10 @@
   />
 </div>
 
-@switch (actualTheme.name) { @case ("Minecraft") {
-<app-minecraft #minecraftEffect></app-minecraft>
-} @case ("The Witcher 3") {
-<app-the-witcher-3 #tw3Effect></app-the-witcher-3>
-} }
+@switch (actualTheme.name) { 
+  @case ("Minecraft") {
+    <app-minecraft #minecraftEffect></app-minecraft>
+  } @case ("The Witcher 3") {
+    <app-the-witcher-3 #tw3Effect></app-the-witcher-3>
+  } 
+}

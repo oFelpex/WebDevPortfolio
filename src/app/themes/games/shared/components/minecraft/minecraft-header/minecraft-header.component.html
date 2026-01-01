@@ -29,12 +29,6 @@
     }
 
     <app-logo-effects style="height: 80%"></app-logo-effects>
-    <div id="logo-span">
-      @if (!isMobile) {
-        <span>{{ "THEMES.GAMES.MINECRAFT.PHRASES." + phrase | translate }}</span>
-      }
-    </div>
-
     @if(isMobile) {
     <button
       mat-mini-fab
