@@ -1,4 +1,5 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Router, NavigationStart } from '@angular/router';
 
 import { loadFull } from 'tsparticles';
 import {
@@ -13,6 +14,7 @@ import { NgxParticlesModule } from '@tsparticles/angular';
 import { AudioService } from '../../../../services/audio-service/audio.service';
 import { minecraftMusics, Musics } from '../../../../models/musics';
 import { minecraftSFX, SFXs } from '../../../../models/sfxs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-minecraft',
@@ -21,6 +23,8 @@ import { minecraftSFX, SFXs } from '../../../../models/sfxs';
   styleUrl: './minecraft-effect.component.scss',
 })
 export class MinecraftEffectComponent implements OnInit, OnDestroy {
+  private router: Router;
+  private routerSubscription!: Subscription;
   private particlesContainer!: Container | undefined;
   private audioService: AudioService;
   private timeOut: any;
@@ -35,6 +39,7 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.audioService = inject(AudioService);
+    this.router = inject(Router);
   }
 
   private configs: SingleOrMultiple<RecursivePartial<IOptions>> = {
@@ -142,6 +147,17 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
   };
 
   async ngOnInit(): Promise<void> {
+    this.routerSubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.particlesContainer?.destroy();
+        this.cancelTntTimeout();
+        this.audioService.stopSound('Minecraft-tnt-activate');
+        this.audioService.stopSound('Minecraft-tnt-explosion');
+        this.tntsContainer.remove();
+      }
+    });
+
+
     this.tntsContainer.className = 'tnts-container';
 
     this.tntFront.className = 'tnt-front';
@@ -168,13 +184,14 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.routerSubscription.unsubscribe
     this.particlesContainer?.destroy();
     this.cancelTntTimeout();
   }
 
   private startTntTimeout(): void {
     this.timeOut = setTimeout(() => {
-      this.audioService.playSound('Minecraft-tnt-explosion', 'sfx');
+      this.audioService.playSound('Minecraft-tnt-explosion');
       let allTnts = document.getElementsByClassName('tnts-container');
       Array.from(allTnts).forEach((el) => el.remove());
     }, 4100);
@@ -195,7 +212,7 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
       this.particlesContainer?.refresh();
       this.particlesContainer?.play();
       document.body.append(this.tntsContainer);
-      this.audioService.playSound('Minecraft-tnt-activate', 'sfx');
+      this.audioService.playSound('Minecraft-tnt-activate');
     });
   }
 }

@@ -10,6 +10,7 @@ export class AudioService {
   private sounds: { [key: string]: AudioBuffer } = {};
   private musicGainNode: GainNode;
   private sfxGainNode: GainNode;
+  private activeSfx: Map<string, AudioBufferSourceNode[]> = new Map();
 
   private currentMusicSource: AudioBufferSourceNode | null = null;
   private currentMusicName: string | null = null;
@@ -167,23 +168,44 @@ export class AudioService {
     this.playSound(audioName);
   }
 
-  public playSound(
-    audioName: string,
-    type: 'music' | 'sfx' = 'sfx',
-    composer?: string | undefined
-  ): void {
-    const audioBuffer = this.sounds[audioName];
+  public playSound(audioName: string): void {
+  const audioBuffer = this.sounds[audioName];
 
-    if (audioBuffer) {
-      const source = this.audioContext.createBufferSource();
-      source.buffer = audioBuffer;
+  if (audioBuffer) {
+    const source = this.audioContext.createBufferSource();
+    source.buffer = audioBuffer;
+    source.connect(this.sfxGainNode);
 
-      const destination =
-        type === 'music' ? this.musicGainNode : this.sfxGainNode;
-      source.connect(destination);
-      source.start(0);
+    if (!this.activeSfx.has(audioName)) {
+      this.activeSfx.set(audioName, []);
     }
+
+    this.activeSfx.get(audioName)?.push(source);
+    source.start(0);
+    source.onended = () => {
+      const sources = this.activeSfx.get(audioName);
+      if (sources) {
+        const index = sources.indexOf(source);
+        if (index > -1) sources.splice(index, 1);
+        if (sources.length === 0) this.activeSfx.delete(audioName);
+      }
+    };
   }
+}
+
+public stopSound(audioName: string): void {
+  const sources = this.activeSfx.get(audioName);
+  if (sources) {
+    sources.forEach(source => {
+      try {
+        source.stop();
+        source.disconnect();
+      } catch (e) {
+      }
+    });
+    this.activeSfx.delete(audioName);
+  }
+}
 
   public getMusicVolume(): number {
     return this.musicVolume;
