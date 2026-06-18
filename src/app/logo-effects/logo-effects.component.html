@@ -1,5 +1,6 @@
 <div id="navBar-custom-logo">
-  <img
+  @if(logoName) {
+    <img
     (click)="playEffect(actualTheme)"
     [matTooltip]="'NAV-BAR-LIST.MAT-TOOL-TIP-EASTER-EGG' | translate"
     [src]="
@@ -8,12 +9,28 @@
       '/' +
       actualTheme.name.toLowerCase() +
       '/logo' +
-      '/logo-' +
-      actualTheme.name.toLowerCase() +
+      '/' + logoName +
       '.webp'
     "
     alt="It's a personality logo that says Felpex"
   />
+  } @else {    
+    <img
+      (click)="playEffect(actualTheme)"
+      [matTooltip]="'NAV-BAR-LIST.MAT-TOOL-TIP-EASTER-EGG' | translate"
+      [src]="
+        '../../../../assets/themes/' +
+        actualTheme.type.toLowerCase() +
+        '/' +
+        actualTheme.name.toLowerCase() +
+        '/logo' +
+        '/logo-' +
+        actualTheme.name.toLowerCase() +
+        '.webp'
+      "
+      alt="It's a personality logo that says Felpex"
+    />
+  }
 </div>
 
 @switch (actualTheme.name) { @case ("Minecraft") {

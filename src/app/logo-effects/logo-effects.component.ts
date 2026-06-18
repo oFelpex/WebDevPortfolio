@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import { Themes } from '../models/themes';
 import { ThemeService } from '../services/theme-service/theme.service';
@@ -25,7 +25,8 @@ import { Subscription } from 'rxjs';
 export class LogoEffectsComponent implements OnInit, OnDestroy {
   @ViewChild('minecraftEffect') minecraftEffect!: MinecraftEffectComponent;
   @ViewChild('tw3Effect') tw3Effect!: TheWitcher3EffectComponent;
-
+  @Input() logoName?: string;
+  
   private themeService: ThemeService;
   private themeSubscription!: Subscription;
 
