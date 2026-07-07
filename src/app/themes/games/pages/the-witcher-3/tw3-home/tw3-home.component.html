@@ -1,10 +1,18 @@
 <header>
-    <section id="main-menu">
-        <div id="menu-logo">
-            <app-logo-effects logoName="menu-logo"></app-logo-effects>
-            <div id="game-version">v 1.0</div>
-        </div>
-        <div id="menu-options"></div>
-        <div id="menu-footer"></div>
-    </section>
+  <section id="main-menu">
+    <div id="menu-logo">
+      <app-logo-effects logoName="menu-logo"></app-logo-effects>
+      <div id="game-version">v 1.0</div>
+    </div>
+    <div id="action-buttons">
+      <button (click)="playClickSound()">
+        <span>NAVEGAR</span></button
+      ><button (click)="playClickSound()">
+        <span>OPÇÕES</span></button
+      ><button (click)="playClickSound()">
+        <span>SAIR DO JOGO</span>
+      </button>
+    </div>
+    <div id="menu-footer"></div>
+  </section>
 </header>
