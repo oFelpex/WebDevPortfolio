@@ -142,7 +142,9 @@ body.minecraft-theme {
     }
 
     .tnt-front {
-      animation: tnt-front-fall 1.2s ease forwards, tnt-scale 4s ease forwards;
+      animation:
+        tnt-front-fall 1.2s ease forwards,
+        tnt-scale 4s ease forwards;
       z-index: 9;
 
       @keyframes tnt-front-fall {
@@ -155,7 +157,9 @@ body.minecraft-theme {
       }
     }
     .tnt-top {
-      animation: tnt-top-fall 1.2s ease forwards, tnt-scale 4s ease forwards;
+      animation:
+        tnt-top-fall 1.2s ease forwards,
+        tnt-scale 4s ease forwards;
       z-index: 8;
 
       @keyframes tnt-top-fall {
@@ -171,7 +175,9 @@ body.minecraft-theme {
     }
     .tnt-bottom {
       z-index: 8;
-      animation: tnt-bottom-fall 1.2s ease forwards, tnt-scale 4s ease forwards;
+      animation:
+        tnt-bottom-fall 1.2s ease forwards,
+        tnt-scale 4s ease forwards;
 
       @keyframes tnt-bottom-fall {
         0% {
@@ -451,9 +457,6 @@ body.the-witcher-3-theme {
     }
   }
   mat-card {
-    // background-image: url("./assets/themes/games/minecraft/backgrounds/minecraft-bg-card.webp");
-    // background-position: center bottom;
-    // background-size: auto 300px;
     border: thick double #45372e;
   }
 
