@@ -1,2 +1,3 @@
-﻿license: Freeware, Non-Commercial
+﻿license: Freeware, Google Fontes - Non-Commercial
 link: https://www.fontspace.com/thewitcher-font-f25817
+link: https://fonts.google.com/specimen/Barlow+Condensed?preview.script=Latn
