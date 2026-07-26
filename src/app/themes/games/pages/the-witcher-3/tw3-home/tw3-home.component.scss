@@ -1,18 +1,3 @@
-@font-face {
-  font-family: "BarlowCondensed-Regular";
-  src: url("../../../../../../assets/fonts/games/the-witcher-3/BarlowCondensed-Regular.ttf")
-    format("opentype");
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: "BarlowCondensed-Bold";
-  src: url("../../../../../../assets/fonts/games/the-witcher-3/BarlowCondensed-Bold.ttf")
-    format("opentype");
-  font-weight: 700;
-  font-style: bold;
-}
-
 #main-menu {
   position: fixed;
   left: 8.5%;
@@ -22,20 +7,17 @@
   background-color: #000000;
   height: 100%;
   width: 19vw;
-  gap: 5vh;
   padding: 4vh 0vh;
 
   #menu-logo {
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 4;
     // background-color: #8c8d8f;
-    width: 100%;
 
     app-logo-effects {
       // background-color: rgb(47, 0, 255);
-      width: 100%;
-
       ::ng-deep {
         #navBar-custom-logo {
           padding: 0.65vw;
@@ -54,6 +36,8 @@
     align-items: center;
     width: 100%;
     height: 20vh;
+    flex: 5;
+
     // background-color: #f7f6f4;
     button {
       $corner-size: 6px;
@@ -135,14 +119,13 @@
     }
   }
   #menu-footer {
-    position: absolute;
-    bottom: 5vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 0 12px;
-    height: 17vh;
+    padding: 0 0.6vw;
+    height: fit-content;
     width: 100%;
+    flex: 2;
     // background-color: aqua;
 
     button {
@@ -152,46 +135,58 @@
       cursor: pointer;
       background-color: #000;
 
-      .badge-span {
-        font-family: "BarlowCondensed-Regular";
-        font-size: 0.75rem;
-        letter-spacing: 0.4rem;
-        font-weight: bold;
+      .badge-span,
+      .badge-span-title {
+        white-space: nowrap;
         color: #f7f6f4;
         position: absolute;
-        width: 100%;
         left: 50%;
         top: 50%;
+      }
+
+      .badge-span {
+        font-family: "BarlowCondensed-Regular";
+        letter-spacing: 0.4rem;
+        font-weight: bold;
+        font-size: clamp(0.3rem, 0.7vw, 0.75rem);
         transform: translate(-50%, -125%);
       }
       .badge-span-title {
         display: flex;
         justify-content: center;
+        align-items: center;
         gap: 5px;
-        align-items: center;
+
         font-family: "BarlowCondensed-Bold";
-        font-size: 1.75rem;
-        text-align: center;
-        align-items: center;
+        font-size: clamp(0.8rem, 2vw, 1.8rem);
         letter-spacing: 0.1rem;
-        color: #f7f6f4;
-        position: absolute;
-        width: 100%;
-        left: 50%;
-        top: 50%;
+
         transform: translate(-50%, -15%);
 
         .connector {
-          border-top: 2px #45cbc2 solid;
-          border-bottom: 2px #45cbc2 solid;
-          margin-top: 4px;
-          font-size: small;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+
+          border-top: 1px #45cbc2 solid;
+          border-bottom: 1px #45cbc2 solid;
+          padding: 0px 2px;
+
+          font-size: clamp(0.325rem, 1vw, 0.875rem);
+          line-height: 1;
+          margin-top: 1px;
+          padding-right: 0.5px;
 
           &--red {
             border-top-color: #d16f40;
             border-bottom-color: #d16f40;
           }
         }
+      }
+
+      img {
+        min-height: 60px;
+        width: 100%;
       }
     }
   }

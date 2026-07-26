@@ -12,6 +12,20 @@
   font-style: normal;
   font-stretch: condensed;
 }
+@font-face {
+  font-family: "BarlowCondensed-Regular";
+  src: url("../../../../assets/fonts/games/the-witcher-3/BarlowCondensed-Regular.ttf")
+    format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "BarlowCondensed-Bold";
+  src: url("../../../../assets/fonts/games/the-witcher-3/BarlowCondensed-Bold.ttf")
+    format("opentype");
+  font-weight: 700;
+  font-style: bold;
+}
 
 // Note: Color palettes are generated from primary: #F1EFEC, secondary: #EC5228, tertiary: #030303, neutral: #EF9651
 $_palettes: (
