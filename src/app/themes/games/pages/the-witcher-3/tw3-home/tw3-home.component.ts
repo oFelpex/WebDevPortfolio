@@ -8,7 +8,6 @@ import { AudioService } from '../../../../../services/audio-service/audio.servic
 import { ThemeService } from '../../../../../services/theme-service/theme.service';
 import { ResponsiveService } from '../../../../../services/responsive-service/responsive.service';
 import { MatDialog } from '@angular/material/dialog';
-
 @Component({
   selector: 'app-tw3-home',
   imports: [LogoEffectsComponent, RouterModule, MatIconModule, TranslateModule],
@@ -40,6 +39,11 @@ export class Tw3HomeComponent {
     this.audioService.playClickSound('The Witcher 3');
   }
 
+  public exitGame(): void {
+    this.playClickSound();
+    this.themeService.changeTheme({ name: 'Light', type: 'Colors' });
+  }
+
   private headerSetPosition() {
     const header = document.getElementById('tw3-header') as HTMLHeadingElement;
     if (header) {
@@ -48,26 +52,14 @@ export class Tw3HomeComponent {
       header.style.height = '0px';
       header.style.minHeight = '0px';
     }
-
-    const body = document.querySelector('.the-witcher-3-theme') as HTMLElement;
-    if (body) {
-      body.style.backgroundImage =
-        "url('../../../../assets/themes/games/the witcher 3/backgrounds/tw3-bg-home.jpg')";
-    }
   }
   private headerRestaurePosition() {
     const header = document.getElementById('tw3-header') as HTMLHeadingElement;
-
     if (header) {
       header.style.display = 'block';
       header.style.visibility = 'visible';
       header.style.height = '14vh';
       header.style.minHeight = '60px';
-    }
-    const body = document.querySelector('.the-witcher-3-theme') as HTMLElement;
-    if (body) {
-      body.style.backgroundImage =
-        "url('../../../../assets/themes/games/the witcher 3/backgrounds/tw3-bg.webp')";
     }
   }
 }
