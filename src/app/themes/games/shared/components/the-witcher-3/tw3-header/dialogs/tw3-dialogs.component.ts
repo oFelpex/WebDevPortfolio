@@ -6,6 +6,7 @@ import {
   MatDialogTitle,
   MatDialogActions,
   MatDialogClose,
+  MatDialog,
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -40,6 +41,7 @@ export class TW3DialogsComponent {
   private themeService: ThemeService;
   private audioService: AudioService;
   private themeSubscription!: Subscription;
+  private dialog: MatDialog;
 
   public actualTheme!: Themes;
   public data = inject(MAT_DIALOG_DATA);
@@ -47,13 +49,15 @@ export class TW3DialogsComponent {
   constructor() {
     this.audioService = inject(AudioService);
     this.themeService = inject(ThemeService);
+
+    this.dialog = inject(MatDialog);
   }
 
   ngOnInit(): void {
     this.themeSubscription = this.themeService.actualTheme$.subscribe(
       (theme) => {
         this.actualTheme = theme;
-      }
+      },
     );
   }
   ngOnDestroy(): void {
@@ -62,5 +66,22 @@ export class TW3DialogsComponent {
 
   public playClickSound() {
     this.audioService.playClickSound('The Witcher 3');
+  }
+
+  public openThemesDialog() {
+    this.playClickSound();
+    this.dialog.open(TW3DialogsComponent, {
+      data: {
+        dialogType: 'Themes',
+      },
+    });
+  }
+  public openLangsDialog() {
+    this.playClickSound();
+    this.dialog.open(TW3DialogsComponent, {
+      data: {
+        dialogType: 'Langs',
+      },
+    });
   }
 }

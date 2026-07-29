@@ -8,6 +8,7 @@ import { AudioService } from '../../../../../services/audio-service/audio.servic
 import { ThemeService } from '../../../../../services/theme-service/theme.service';
 import { ResponsiveService } from '../../../../../services/responsive-service/responsive.service';
 import { MatDialog } from '@angular/material/dialog';
+import { TW3DialogsComponent } from '../../../shared/components/the-witcher-3/tw3-header/dialogs/tw3-dialogs.component';
 @Component({
   selector: 'app-tw3-home',
   imports: [LogoEffectsComponent, RouterModule, MatIconModule, TranslateModule],
@@ -37,6 +38,15 @@ export class Tw3HomeComponent {
 
   public playClickSound(): void {
     this.audioService.playClickSound('The Witcher 3');
+  }
+
+  public openOptionsDialog(): void {
+    this.playClickSound();
+    this.dialog.open(TW3DialogsComponent, {
+      data: {
+        dialogType: 'HomeOptions',
+      },
+    });
   }
 
   public exitGame(): void {
