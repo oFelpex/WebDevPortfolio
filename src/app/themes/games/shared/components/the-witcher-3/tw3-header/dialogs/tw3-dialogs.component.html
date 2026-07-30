@@ -78,34 +78,32 @@
     </mat-dialog-actions>
   </div>
 } @else if (data.dialogType === "HomeOptions") {
-  <div id="main">
-    <div class="bottom-corners"></div>
+  <div id="main-home">
     <h2 mat-dialog-title>Opções</h2>
 
-    <mat-dialog-content>
-      <div class="">
-        <div class="">
-          <button
-            class=""
-            mat-button
-            mat-dialog-close
-            (click)="openThemesDialog()"
-          >
-            Temas
-          </button>
-        </div>
+    <mat-dialog-content class="tw3-dialog-options-container">
+      <div class="tw3-option-container">
+        <div class="lateral-bar"></div>
+        <button
+          class="tw3-option"
+          mat-button
+          mat-dialog-close
+          (click)="openThemesDialog()"
+        >
+          Temas
+        </button>
       </div>
-      <div class="">
-        <div class="">
-          <button
-            class=""
-            mat-button
-            mat-dialog-close
-            (click)="openLangsDialog()"
-          >
-            Idioma
-          </button>
-        </div>
+      <div class="tw3-option-container">
+        <div class="lateral-bar"></div>
+
+        <button
+          class="tw3-option"
+          mat-button
+          mat-dialog-close
+          (click)="openLangsDialog()"
+        >
+          Idioma
+        </button>
       </div>
     </mat-dialog-content>
 
