@@ -9,9 +9,16 @@ import { ThemeService } from '../../../../../services/theme-service/theme.servic
 import { ResponsiveService } from '../../../../../services/responsive-service/responsive.service';
 import { MatDialog } from '@angular/material/dialog';
 import { TW3DialogsComponent } from '../../../shared/components/the-witcher-3/tw3-header/dialogs/tw3-dialogs.component';
+import { Tw3HomeEffectsComponent } from './tw3-home-effects/tw3-home-effects.component';
 @Component({
   selector: 'app-tw3-home',
-  imports: [LogoEffectsComponent, RouterModule, MatIconModule, TranslateModule],
+  imports: [
+    LogoEffectsComponent,
+    Tw3HomeEffectsComponent,
+    RouterModule,
+    MatIconModule,
+    TranslateModule,
+  ],
   templateUrl: './tw3-home.component.html',
   styleUrl: './tw3-home.component.scss',
 })
