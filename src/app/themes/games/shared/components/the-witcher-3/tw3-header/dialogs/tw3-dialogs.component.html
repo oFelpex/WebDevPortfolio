@@ -79,32 +79,39 @@
   </div>
 } @else if (data.dialogType === "HomeOptions") {
   <div id="main-home">
-    <h2 mat-dialog-title>Opções</h2>
-
     <mat-dialog-content class="tw3-dialog-options-container">
-      <div class="tw3-option-container">
-        <div class="lateral-bar"></div>
-        <button
-          class="tw3-option"
-          mat-button
-          mat-dialog-close
-          (click)="openThemesDialog()"
-        >
-          Temas
-        </button>
-      </div>
-      <div class="tw3-option-container">
-        <div class="lateral-bar"></div>
-
-        <button
-          class="tw3-option"
-          mat-button
-          mat-dialog-close
-          (click)="openLangsDialog()"
-        >
-          Idioma
-        </button>
-      </div>
+      <button class="special-buttons" (click)="openThemesDialog()">
+        <img
+          class="button-bg"
+          src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
+          alt=""
+        />
+        <div class="button-content">
+          <img
+            id="medallion-icon"
+            src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-medallion-icon.webp"
+            alt=""
+          />
+          <span>{{ "UPPERCASE.THEMES" | translate }}</span>
+        </div>
+      </button>
+      <!----------------------------------------------------->
+      <button class="special-buttons" (click)="openLangsDialog()">
+        <img
+          class="button-bg"
+          src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
+          alt=""
+        />
+        <div class="button-content">
+          <img
+            id="langs-icon"
+            src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-langs-icon.webp"
+            alt=""
+          />
+          <span>{{ "UPPERCASE.LANGS" | translate }}</span>
+        </div>
+      </button>
+      <!----------------------------------------------------->
     </mat-dialog-content>
 
     <mat-dialog-actions class="tw3-dialog-actions">
