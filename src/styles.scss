@@ -666,6 +666,8 @@ body.the-witcher-3-theme {
       container-color: #0e0e0c,
       subhead-color: #d3cac1,
       container-shape: border-radius 0%,
+      subhead-font: "BarlowCondensed-Regular",
+      container-max-width: none,
     )
   );
   @include mat.expansion-overrides(

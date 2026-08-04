@@ -1,4 +1,11 @@
-import { Component, inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 
 import { Themes } from '../models/themes';
 import { ThemeService } from '../services/theme-service/theme.service';
@@ -26,7 +33,7 @@ export class LogoEffectsComponent implements OnInit, OnDestroy {
   @ViewChild('minecraftEffect') minecraftEffect!: MinecraftEffectComponent;
   @ViewChild('tw3Effect') tw3Effect!: TheWitcher3EffectComponent;
   @Input() logoName?: string;
-  
+
   private themeService: ThemeService;
   private themeSubscription!: Subscription;
 
@@ -40,7 +47,7 @@ export class LogoEffectsComponent implements OnInit, OnDestroy {
     this.themeSubscription = this.themeService.actualTheme$.subscribe(
       (theme) => {
         this.actualTheme = theme;
-      }
+      },
     );
   }
   ngOnDestroy(): void {
@@ -49,18 +56,20 @@ export class LogoEffectsComponent implements OnInit, OnDestroy {
 
   public playEffect({ name }: Themes) {
     switch (name) {
-      case 'God Of War':
-        break;
       case 'The Witcher 3':
         this.tw3Effect.igni();
         break;
-      case 'Cyberpunk':
+      case 'The Legend of Zelda: BOTW':
+        break;
+      case 'Persona 3':
         break;
       case 'Elden Ring':
         break;
       case 'Hollow Knight':
         break;
       case 'Undertale':
+        break;
+      case 'Red Dead Redemption 2':
         break;
       case 'Minecraft':
         this.minecraftEffect.summonTnt();
