@@ -11,6 +11,7 @@ import { MinecraftHeaderComponent } from '../../themes/games/shared/components/m
   providedIn: 'root',
 })
 export class ThemeService {
+  private themesTypes: ('Games' | 'Colors')[] = ['Games', 'Colors'];
   private gamesOptions: Themes[] = gamesOptions;
   private colorsOptions: Themes[] = colorsOptions;
   private defaultTheme: Themes = defaultTheme;
@@ -38,7 +39,7 @@ export class ThemeService {
         this._actualTheme$.next(this.defaultTheme);
         this.setActualThemeToLocalStorage(this.defaultTheme);
         this.setTheme(
-          this.defaultTheme.name.toLowerCase().replaceAll(' ', '-')
+          this.defaultTheme.name.toLowerCase().replaceAll(' ', '-'),
         );
       }
     } else {
@@ -46,6 +47,10 @@ export class ThemeService {
       this.setActualThemeToLocalStorage(this.defaultTheme);
       this.setTheme(this.defaultTheme.name.toLowerCase().replaceAll(' ', '-'));
     }
+  }
+
+  public getThemesTypes(): ('Games' | 'Colors')[] {
+    return this.themesTypes;
   }
 
   public getGamesNames(): Themes[] {
