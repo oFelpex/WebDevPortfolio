@@ -10,9 +10,10 @@
     },
 
     "Games": {
-      "God of War": "God of War",
+      "Red Dead Redemption 2": "Red Dead Redemption 2",
       "The Witcher 3": "The Witcher 3",
-      "Cyberpunk": "Cyberpunk",
+      "The Legend of Zelda: BOTW": "The Legend of Zelda: BOTW",
+      "Persona 3": "Persona 3",
       "Elden Ring": "Elden Ring",
       "Hollow Knight": "Hollow Knight",
       "Undertale": "Undertale",
@@ -22,9 +23,10 @@
       "VIDEO-GAMES": "Video Games",
       "COPYRIGHT": "Know more about ",
 
-      "GOD OF WAR": {},
+      "Red Dead Redemption 2": {},
       "THE WITCHER 3": {},
-      "CYBERPUNK": {},
+      "The Legend of Zelda: BOTW": {},
+      "Persona 3": {},
       "ELDEN RING": {},
       "HOLLOW KNIGHT": {},
       "UNDERTALE": {},
@@ -87,6 +89,7 @@
   "DIALOG-THEMES": {
     "CHANGE-THEME": "CHANGE THEME",
     "VIDEO-GAMES": "Video Games",
+    "GAMES": "Video Games",
     "COLORS": "Colors",
     "CLOSE": "Close"
   },
