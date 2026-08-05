@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 
 import {
   MAT_DIALOG_DATA,
@@ -20,6 +20,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Themes } from '../../../../../../../models/themes';
 import { Subscription } from 'rxjs';
 
+type HomeMenuState = 'main' | 'themes' | 'langs' | 'gameThemes' | 'colorThemes';
 @Component({
   selector: 'app-tw3-dialogs',
   imports: [
@@ -45,6 +46,7 @@ export class TW3DialogsComponent {
 
   public actualTheme!: Themes;
   public data = inject(MAT_DIALOG_DATA);
+  public currentMenu = signal<HomeMenuState>('main');
 
   constructor() {
     this.audioService = inject(AudioService);
@@ -62,6 +64,16 @@ export class TW3DialogsComponent {
   }
   ngOnDestroy(): void {
     this.themeSubscription.unsubscribe();
+  }
+
+  public get themesTypes(): ('Games' | 'Colors')[] {
+    return this.themeService.getThemesTypes();
+  }
+  public get gamesOptions(): Themes[] {
+    return this.themeService.getGamesNames();
+  }
+  public get colorsOptions(): Themes[] {
+    return this.themeService.getColorsNames();
   }
 
   public playClickSound() {
@@ -83,5 +95,35 @@ export class TW3DialogsComponent {
         dialogType: 'Langs',
       },
     });
+  }
+
+  public openThemesMenu(): void {
+    this.playClickSound();
+    this.currentMenu.set('themes');
+  }
+
+  public openGameThemesMenu(): void {
+    this.playClickSound();
+    this.currentMenu.set('gameThemes');
+  }
+  public openColorThemesMenu(): void {
+    this.playClickSound();
+    this.currentMenu.set('colorThemes');
+  }
+
+  public openLangsMenu(): void {
+    this.playClickSound();
+    this.currentMenu.set('langs');
+  }
+
+  public backToMainMenu(): void {
+    this.playClickSound();
+    this.currentMenu.set('main');
+  }
+
+  public changeThemes(selectedTheme: Themes): void {
+    this.playClickSound();
+    this.dialog.closeAll();
+    this.themeService.changeTheme(selectedTheme);
   }
 }
