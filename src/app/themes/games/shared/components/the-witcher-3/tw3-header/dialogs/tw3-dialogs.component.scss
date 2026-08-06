@@ -88,7 +88,7 @@
 
 #main-home {
   position: relative;
-  background-color: #010000;
+  background-color: #030303;
   $corner-size: 8px;
   width: 60vw;
   min-width: 280px;
@@ -104,15 +104,15 @@
     -webkit-mask-image: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 0) 70%
+      rgba(0, 0, 0, 0) 100%
     );
     mask-image: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 0) 70%
+      rgba(0, 0, 0, 0) 100%
     );
   }
-  .tw3-dialog-options-container {
+  #tw3-dialog-options-container {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -121,6 +121,87 @@
     min-width: 100px;
     width: 100%;
     height: 80%;
+
+    #top-bar-container {
+      position: absolute;
+      top: 5%;
+      left: 0;
+      padding: 0 3vw;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+
+      #weight-and-money {
+        display: flex;
+        gap: 3vw; // VALUE IMPORTANT IN THE FUTURE FOR THE RIGHT SIDE
+
+        .left-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+
+          .number-and-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          span {
+            font-size: 1.2rem;
+            color: #e5e5e5;
+            filter: drop-shadow(0 0 5px #fff);
+          }
+          img {
+            width: 20px;
+            height: 20px;
+            filter: drop-shadow(0 0 4px #ffd9a6);
+          }
+        }
+      }
+
+      #level-xp-and-close {
+        display: flex;
+        align-items: center;
+        gap: 1.5vw;
+        #level-word {
+          padding-bottom: 10px;
+          font-size: 1rem;
+          color: #857d67;
+        }
+        #level-and-xp-bar-container {
+          display: flex;
+          gap: 8px;
+          #level-number {
+            font-size: 2rem;
+            color: #e5e5e5;
+          }
+          #xp-bar-container {
+            max-width: 130px;
+            width: 100vw;
+            min-width: 100px;
+            #xp-bar {
+              margin-top: 3px;
+              height: 10px;
+              width: 100%;
+              background-color: #ffffff;
+              border: 1px solid #857d67;
+              filter: drop-shadow(0 0 2px #ffd9a6);
+            }
+          }
+
+          #xp-number {
+            position: absolute;
+            top: 50%;
+            margin-left: 102px;
+            font-size: 0.9rem;
+            color: #d5d5d5;
+          }
+        }
+      }
+    }
 
     .special-buttons {
       position: relative;

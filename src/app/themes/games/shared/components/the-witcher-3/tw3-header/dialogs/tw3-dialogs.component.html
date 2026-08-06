@@ -79,7 +79,34 @@
   </div>
 } @else if (data.dialogType === "HomeOptions") {
   <div id="main-home">
-    <mat-dialog-content class="tw3-dialog-options-container">
+    <mat-dialog-content id="tw3-dialog-options-container">
+      <div id="top-bar-container">
+        <div id="weight-and-money">
+          <div class="left-container">
+            <span>7 / 60</span>
+            <img
+              src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-weight-icon.webp"
+              alt=""
+            />
+          </div>
+          <div class="left-container">
+            <span>3</span>
+            <img
+              src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-money-icon.webp"
+              alt=""
+            />
+          </div>
+        </div>
+        <div id="level-xp-and-close">
+          <span id="level-word">NÍVEL</span>
+          <div id="level-and-xp-bar-container">
+            <span id="level-number">1</span>
+            <div id="xp-bar-container"><div id="xp-bar"></div></div>
+            <span id="xp-number">513/1000</span>
+          </div>
+          <button>X</button>
+        </div>
+      </div>
       @if (currentMenu() === "main") {
         <button class="special-buttons" (click)="openThemesMenu()">
           <img
@@ -90,7 +117,7 @@
           <div class="button-content">
             <img
               id="medallion-icon"
-              src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-medallion-icon.webp"
+              src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-medallion-icon.webp"
               alt=""
             />
             <span>{{ "UPPERCASE.THEMES" | translate }}</span>
@@ -105,7 +132,7 @@
           <div class="button-content">
             <img
               id="langs-icon"
-              src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-langs-icon.webp"
+              src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-langs-icon.webp"
               alt=""
             />
             <span>{{ "UPPERCASE.LANGS" | translate }}</span>
