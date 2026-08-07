@@ -102,9 +102,15 @@
           <div id="level-and-xp-bar-container">
             <span id="level-number">1</span>
             <div id="xp-bar-container"><div id="xp-bar"></div></div>
-            <span id="xp-number">513/1000</span>
+            <span id="xp-number">652/1000</span>
           </div>
-          <button>X</button>
+          <button
+            id="close-menu-button"
+            mat-dialog-close
+            (click)="playClickSound()"
+          >
+            <span>X</span>
+          </button>
         </div>
       </div>
       @if (currentMenu() === "main") {
