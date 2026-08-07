@@ -194,7 +194,21 @@
           </button>
         }
       } @else if (currentMenu() === "colorThemes") {
-        @for (colorOptions of colorsOptions; track $index) {}
+        @for (colorOption of colorsOptions; track $index) {
+          <button class="special-buttons" (click)="changeThemes(colorOption)">
+            <img
+              class="button-bg"
+              src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
+              alt=""
+            />
+            <div class="button-content">
+              <div
+                [class]="'color-option ' + colorOption.name.toLowerCase()"
+              ></div>
+              <span>{{ "THEMES.Colors." + colorOption.name | translate }}</span>
+            </div>
+          </button>
+        }
       } @else if (currentMenu() === "langs") {
         <!-- @for (langOptions of langsOptions; track $index) {
 
