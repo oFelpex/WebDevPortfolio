@@ -122,7 +122,7 @@
           />
           <div class="button-content">
             <img
-              id="medallion-icon"
+              class="icon-monochrome-without-colored-icon"
               src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-medallion-icon.webp"
               alt=""
             />
@@ -137,7 +137,7 @@
           />
           <div class="button-content">
             <img
-              id="langs-icon"
+              class="icon-monochrome-without-colored-icon"
               src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-langs-icon.webp"
               alt=""
             />
@@ -161,7 +161,7 @@
             />
             <div class="button-content">
               <img
-                id="medallion-icon"
+                class="icon-monochrome-without-colored-icon"
                 src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-{{
                   typeOfThemes.toLowerCase()
                 }}.webp"
@@ -183,9 +183,16 @@
             />
             <div class="button-content">
               <img
-                id="medallion-icon"
-                src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-{{
-                  gameOption.name
+                class="icon-colored"
+                src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/games/tw3-{{
+                  gameOption.name.toLowerCase().replaceAll(' ', '-')
+                }}-colored.webp"
+                alt=""
+              />
+              <img
+                class="icon-monochrome"
+                src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/games/tw3-{{
+                  gameOption.name.toLowerCase().replaceAll(' ', '-')
                 }}.webp"
                 alt=""
               />
@@ -210,9 +217,32 @@
           </button>
         }
       } @else if (currentMenu() === "langs") {
-        <!-- @for (langOptions of langsOptions; track $index) {
-
-        } -->
+        @for (langOption of langsOptions; track $index) {
+          <button class="special-buttons" (click)="changeLang(langOption)">
+            <img
+              class="button-bg"
+              src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
+              alt=""
+            />
+            <div class="button-content">
+              <img
+                class="icon-colored"
+                src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/flags/tw3-flag-{{
+                  langOption
+                }}-colored.webp"
+                alt=""
+              />
+              <img
+                class="icon-monochrome"
+                src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/flags/tw3-flag-{{
+                  langOption
+                }}.webp"
+                alt=""
+              />
+              <span>{{ "LANGS." + langOption | translate }}</span>
+            </div>
+          </button>
+        }
       }
     </mat-dialog-content>
 

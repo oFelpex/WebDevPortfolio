@@ -288,36 +288,39 @@
         height: 100%;
 
         .color-option {
+          margin-bottom: -60px;
           width: 50px;
           height: 50px;
           border-radius: 50%;
           z-index: 1;
           transition: 0.3s;
-          filter: brightness(0) saturate(100%) invert(35%) sepia(4%)
-            saturate(3460%) hue-rotate(338deg) brightness(100%) contrast(97%);
-        }
-        .color-option.light {
-          background-color: #faf9fd;
-        }
-        .color-option.dark {
-          background-color: #222831;
-        }
-        .color-option.cosmic {
-          background-color: #2a004e;
+          background-color: #775542;
         }
 
-        img {
-          transition: 0.3s;
-          padding-top: 5px;
+        .icon-monochrome,
+        .icon-colored,
+        .icon-monochrome-without-colored-icon {
+          position: absolute;
           max-height: 70px;
           min-height: 50px;
           height: 6vh;
-          z-index: 1;
-          pointer-events: none;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -65%);
+          object-fit: contain;
+          transition: opacity 0.3s ease;
+        }
+        .icon-monochrome,
+        .icon-monochrome-without-colored-icon {
           filter: brightness(0) saturate(100%) invert(35%) sepia(4%)
             saturate(3460%) hue-rotate(338deg) brightness(100%) contrast(97%);
+          opacity: 1;
+        }
+        .icon-colored {
+          opacity: 0;
         }
         span {
+          margin-top: 60px;
           padding: 2px;
           transition: 0.3s;
           z-index: 1;
@@ -325,15 +328,27 @@
       }
 
       &:hover {
-        img {
+        .button-bg {
           opacity: 1;
         }
 
         .button-content {
-          .color-option {
-            filter: none;
+          .color-option.light {
+            background-color: #faf9fd;
           }
-          img {
+          .color-option.dark {
+            background-color: #222831;
+          }
+          .color-option.cosmic {
+            background-color: #2a004e;
+          }
+          .icon-monochrome {
+            opacity: 0;
+          }
+          .icon-colored {
+            opacity: 1;
+          }
+          .icon-monochrome-without-colored-icon {
             filter: none;
           }
           span {
