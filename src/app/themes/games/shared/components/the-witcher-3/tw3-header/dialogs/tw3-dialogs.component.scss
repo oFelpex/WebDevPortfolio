@@ -113,14 +113,16 @@
     );
   }
   #tw3-dialog-options-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    gap: 3px;
-    min-width: 100px;
+    display: grid;
+    padding: 40px;
+    grid-template-columns: repeat(auto-fit, 134px);
+    max-width: 85%;
     width: 100%;
-    height: 80%;
+    height: calc(100% - 200px);
+    justify-content: space-evenly;
+    align-content: space-evenly;
+    gap: 0px 100px;
+    margin: 80px auto 0 auto;
 
     #top-bar-container {
       position: absolute;
@@ -255,74 +257,84 @@
 
     .special-buttons {
       position: relative;
-      min-width: 134px;
-      min-height: 86px;
-      transition: 0.3s;
+      width: calc(134px * 1.3);
+      height: calc(86px * 1.3);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      scale: 1.2;
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin-left: -23px;
 
       .button-bg {
         position: absolute;
-        top: 0;
-        left: 0;
+        inset: 0;
+        width: 100%;
+        height: 100%;
         opacity: 0;
-        transition: 0.3s;
+        transition: opacity 0.3s ease;
         z-index: 0;
-        top: 50%;
-        left: 50%;
-        // width: 134px;
-        // height: 86px;
-        transform: translate(-50%, -50%);
         pointer-events: none;
-        object-fit: fill;
+        object-fit: contain;
       }
 
       .button-content {
+        position: relative;
+        z-index: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        width: 100%;
         height: 100%;
 
         .color-option {
-          margin-bottom: -60px;
-          width: 50px;
-          height: 50px;
+          margin-bottom: 20px;
+          width: 70px;
+          height: 70px;
           border-radius: 50%;
           z-index: 1;
-          transition: 0.3s;
           background-color: #775542;
+          transition: 0.3s;
         }
 
         .icon-monochrome,
         .icon-colored,
         .icon-monochrome-without-colored-icon {
           position: absolute;
-          max-height: 70px;
-          min-height: 50px;
-          height: 6vh;
-          top: 50%;
+          max-height: 75px;
+          min-height: 60px;
+          top: 38%;
           left: 50%;
-          transform: translate(-50%, -65%);
+          transform: translate(-50%, -50%);
           object-fit: contain;
-          transition: opacity 0.3s ease;
+          transition:
+            opacity 0.3s ease,
+            filter 0.3s ease;
         }
+
         .icon-monochrome,
         .icon-monochrome-without-colored-icon {
           filter: brightness(0) saturate(100%) invert(35%) sepia(4%)
             saturate(3460%) hue-rotate(338deg) brightness(100%) contrast(97%);
           opacity: 1;
         }
+
         .icon-colored {
           opacity: 0;
         }
+
         span {
-          margin-top: 60px;
-          padding: 2px;
-          transition: 0.3s;
+          position: absolute;
+          bottom: 8px;
+          left: 50%;
+          transform: translateX(-50%);
+          white-space: nowrap;
+          font-size: 1rem;
+          color: #857d67;
+          transition: color 0.3s ease;
           z-index: 1;
         }
       }
@@ -336,9 +348,11 @@
           .color-option.light {
             background-color: #faf9fd;
           }
+
           .color-option.dark {
             background-color: #222831;
           }
+
           .color-option.cosmic {
             background-color: #2a004e;
           }
@@ -352,7 +366,7 @@
             filter: none;
           }
           span {
-            color: #000;
+            color: #e5e5e5;
           }
         }
       }
