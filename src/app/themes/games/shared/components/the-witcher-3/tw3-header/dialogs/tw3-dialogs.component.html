@@ -185,14 +185,20 @@
               <img
                 class="icon-colored"
                 src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/games/tw3-{{
-                  gameOption.name.toLowerCase().replaceAll(' ', '-')
+                  gameOption.name
+                    .toLowerCase()
+                    .replaceAll(' ', '-')
+                    .replaceAll(':', '')
                 }}-colored.webp"
                 alt=""
               />
               <img
                 class="icon-monochrome"
                 src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/games/tw3-{{
-                  gameOption.name.toLowerCase().replaceAll(' ', '-')
+                  gameOption.name
+                    .toLowerCase()
+                    .replaceAll(' ', '-')
+                    .replaceAll(':', '')
                 }}.webp"
                 alt=""
               />

@@ -15,34 +15,34 @@ export interface Themes {
   type: 'Games' | 'Colors';
 }
 export const gamesOptions: Themes[] = [
-  {
-    name: 'Red Dead Redemption 2',
-    type: 'Games',
-  },
+  // {
+  //   name: 'Red Dead Redemption 2',
+  //   type: 'Games',
+  // },
   {
     name: 'The Witcher 3',
     type: 'Games',
   },
-  {
-    name: 'The Legend of Zelda: BOTW',
-    type: 'Games',
-  },
-  {
-    name: 'Persona 3',
-    type: 'Games',
-  },
-  {
-    name: 'Elden Ring',
-    type: 'Games',
-  },
-  {
-    name: 'Hollow Knight',
-    type: 'Games',
-  },
-  {
-    name: 'Undertale',
-    type: 'Games',
-  },
+  // {
+  //   name: 'The Legend of Zelda: BOTW',
+  //   type: 'Games',
+  // },
+  // {
+  //   name: 'Persona 3',
+  //   type: 'Games',
+  // },
+  // {
+  //   name: 'Elden Ring',
+  //   type: 'Games',
+  // },
+  // {
+  //   name: 'Hollow Knight',
+  //   type: 'Games',
+  // },
+  // {
+  //   name: 'Undertale',
+  //   type: 'Games',
+  // },
   {
     name: 'Minecraft',
     type: 'Games',
