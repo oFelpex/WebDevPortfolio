@@ -1,15 +1,15 @@
-:host {
+.tw3-home-canvas-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  pointer-events: none; /* Não bloqueia os cliques nos menus */
+  z-index: -1;
   overflow: hidden;
-}
 
-canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
 }
