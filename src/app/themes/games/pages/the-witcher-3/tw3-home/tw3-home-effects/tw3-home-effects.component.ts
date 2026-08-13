@@ -25,8 +25,10 @@ export class Tw3HomeEffectsComponent implements AfterViewInit, OnDestroy {
 
   private sparkParticles!: THREE.Points;
   private sparkPositions!: Float32Array;
+  private sparkAlphas!: Float32Array;
   private sparkVelocities: THREE.Vector3[] = [];
   private sparkCount = 8;
+  private sparkMaxHeight = 380;
   private sparkDispersalX = 2.5;
   private sparkVelocityToGoUp = 2.5;
   private sparkDispersalZ = 1.5;
@@ -37,6 +39,7 @@ export class Tw3HomeEffectsComponent implements AfterViewInit, OnDestroy {
 
   private flameParticles!: THREE.Points;
   private flamePositions!: Float32Array;
+  private flameAlphas!: Float32Array;
   private flameVelocities: THREE.Vector3[] = [];
   private flameCount = 5;
   private flameMaxHeight = 55;
@@ -144,6 +147,46 @@ export class Tw3HomeEffectsComponent implements AfterViewInit, OnDestroy {
     return new THREE.CanvasTexture(canvas);
   }
 
+  private createParticleShaderMaterial(
+    colorHex: number,
+    pointSize: number,
+    texture?: THREE.Texture,
+  ): THREE.ShaderMaterial {
+    return new THREE.ShaderMaterial({
+      uniforms: {
+        pointTexture: { value: texture || null },
+        baseColor: { value: new THREE.Color(colorHex) },
+        hasTexture: { value: texture ? 1.0 : 0.0 },
+      },
+      vertexShader: `
+        attribute float alpha;
+        varying float vAlpha;
+        void main() {
+          vAlpha = alpha;
+          vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+          gl_PointSize = ${pointSize.toFixed(1)} * (300.0 / -mvPosition.z);
+          gl_Position = projectionMatrix * mvPosition;
+        }
+      `,
+      fragmentShader: `
+        uniform sampler2D pointTexture;
+        uniform vec3 baseColor;
+        uniform float hasTexture;
+        varying float vAlpha;
+        void main() {
+          vec4 texColor = vec4(1.0);
+          if (hasTexture > 0.5) {
+            texColor = texture2D(pointTexture, gl_PointCoord);
+          }
+          gl_FragColor = vec4(baseColor, vAlpha) * texColor;
+        }
+      `,
+      transparent: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+    });
+  }
+
   private createFireAndSparks(): void {
     this.fireLight = new THREE.PointLight(0xffff6d, 3, 400);
     this.fireLight.position.copy(this.firePosition);
@@ -164,6 +207,7 @@ export class Tw3HomeEffectsComponent implements AfterViewInit, OnDestroy {
 
     const sparkGeometry = new THREE.BufferGeometry();
     this.sparkPositions = new Float32Array(this.sparkCount * 3);
+    this.sparkAlphas = new Float32Array(this.sparkCount);
 
     for (let i = 0; i < this.sparkCount; i++) {
       this.sparkPositions[i * 3] =
@@ -172,6 +216,8 @@ export class Tw3HomeEffectsComponent implements AfterViewInit, OnDestroy {
         this.firePosition.y + Math.random() * 180;
       this.sparkPositions[i * 3 + 2] =
         this.firePosition.z + (Math.random() - 0.5) * 15;
+
+      this.sparkAlphas[i] = 0.8;
 
       this.sparkVelocities.push(
         new THREE.Vector3(
@@ -186,21 +232,18 @@ export class Tw3HomeEffectsComponent implements AfterViewInit, OnDestroy {
       'position',
       new THREE.BufferAttribute(this.sparkPositions, 3),
     );
+    sparkGeometry.setAttribute(
+      'alpha',
+      new THREE.BufferAttribute(this.sparkAlphas, 1),
+    );
 
-    const sparkMaterial = new THREE.PointsMaterial({
-      color: 0xff1100,
-      size: 2.5,
-      transparent: true,
-      opacity: 0.8,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false,
-    });
-
+    const sparkMaterial = this.createParticleShaderMaterial(0xff1100, 2.5);
     this.sparkParticles = new THREE.Points(sparkGeometry, sparkMaterial);
     this.scene.add(this.sparkParticles);
 
     const flameGeometry = new THREE.BufferGeometry();
     this.flamePositions = new Float32Array(this.flameCount * 3);
+    this.flameAlphas = new Float32Array(this.flameCount);
 
     for (let i = 0; i < this.flameCount; i++) {
       this.flamePositions[i * 3] =
@@ -208,6 +251,8 @@ export class Tw3HomeEffectsComponent implements AfterViewInit, OnDestroy {
       this.flamePositions[i * 3 + 1] = this.firePosition.y + Math.random() * 20;
       this.flamePositions[i * 3 + 2] =
         this.firePosition.z + (Math.random() - 0.5) * 10;
+
+      this.flameAlphas[i] = 0.6;
 
       this.flameVelocities.push(
         new THREE.Vector3(
@@ -222,17 +267,16 @@ export class Tw3HomeEffectsComponent implements AfterViewInit, OnDestroy {
       'position',
       new THREE.BufferAttribute(this.flamePositions, 3),
     );
+    flameGeometry.setAttribute(
+      'alpha',
+      new THREE.BufferAttribute(this.flameAlphas, 1),
+    );
 
-    const flameMaterial = new THREE.PointsMaterial({
-      map: this.createFlameParticleTexture(),
-      color: 0xffff6d,
-      size: 32,
-      transparent: true,
-      opacity: 0.6,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false,
-      alphaTest: 0.01,
-    });
+    const flameMaterial = this.createParticleShaderMaterial(
+      0xffff6d,
+      32.0,
+      this.createFlameParticleTexture(),
+    );
 
     this.flameParticles = new THREE.Points(flameGeometry, flameMaterial);
     this.scene.add(this.flameParticles);
@@ -263,11 +307,15 @@ export class Tw3HomeEffectsComponent implements AfterViewInit, OnDestroy {
     }
 
     if (this.flameParticles && this.flameParticles.geometry) {
-      const flameAttr = this.flameParticles.geometry.getAttribute(
+      const flamePosAttr = this.flameParticles.geometry.getAttribute(
         'position',
+      ) as THREE.BufferAttribute;
+      const flameAlphaAttr = this.flameParticles.geometry.getAttribute(
+        'alpha',
       ) as THREE.BufferAttribute;
 
       const spawnWidth = 10;
+      const maxFlameOpacity = 0.6;
 
       for (let i = 0; i < this.flameCount; i++) {
         const vel = this.flameVelocities[i];
@@ -276,15 +324,28 @@ export class Tw3HomeEffectsComponent implements AfterViewInit, OnDestroy {
         this.flamePositions[i * 3 + 1] += vel.y;
         this.flamePositions[i * 3 + 2] += vel.z;
 
-        if (
-          this.flamePositions[i * 3 + 1] >
-          this.firePosition.y + this.flameMaxHeight
-        ) {
+        const currentRelativeY =
+          this.flamePositions[i * 3 + 1] - this.firePosition.y;
+        const progress = Math.min(
+          Math.max(currentRelativeY / this.flameMaxHeight, 0),
+          1,
+        );
+
+        if (progress > 0.5) {
+          const fadeOutFactor = (1.0 - progress) / 0.5;
+          this.flameAlphas[i] = maxFlameOpacity * fadeOutFactor;
+        } else {
+          this.flameAlphas[i] = maxFlameOpacity;
+        }
+
+        if (progress >= 1.0) {
           this.flamePositions[i * 3] =
             this.firePosition.x + (Math.random() - 0.5) * spawnWidth;
           this.flamePositions[i * 3 + 1] = this.firePosition.y;
           this.flamePositions[i * 3 + 2] =
             this.firePosition.z + (Math.random() - 0.5) * spawnWidth;
+
+          this.flameAlphas[i] = maxFlameOpacity;
 
           vel.x = (Math.random() - 0.5) * this.flameDispersalX;
           vel.y = Math.random() * 0.4 + this.flameVelocityToGoUp;
@@ -292,13 +353,19 @@ export class Tw3HomeEffectsComponent implements AfterViewInit, OnDestroy {
         }
       }
 
-      flameAttr.needsUpdate = true;
+      flamePosAttr.needsUpdate = true;
+      flameAlphaAttr.needsUpdate = true;
     }
 
     if (this.sparkParticles && this.sparkParticles.geometry) {
-      const positionAttr = this.sparkParticles.geometry.getAttribute(
+      const sparkPosAttr = this.sparkParticles.geometry.getAttribute(
         'position',
       ) as THREE.BufferAttribute;
+      const sparkAlphaAttr = this.sparkParticles.geometry.getAttribute(
+        'alpha',
+      ) as THREE.BufferAttribute;
+
+      const maxSparkOpacity = 0.8;
 
       for (let i = 0; i < this.sparkCount; i++) {
         const vel = this.sparkVelocities[i];
@@ -315,15 +382,28 @@ export class Tw3HomeEffectsComponent implements AfterViewInit, OnDestroy {
 
         vel.y *= 0.98;
 
-        if (
-          this.sparkPositions[i * 3 + 1] > this.firePosition.y + 380 ||
-          vel.y < 0.3
-        ) {
+        const currentRelativeY =
+          this.sparkPositions[i * 3 + 1] - this.firePosition.y;
+        const progress = Math.min(
+          Math.max(currentRelativeY / this.sparkMaxHeight, 0),
+          1,
+        );
+
+        if (progress > 0.6) {
+          const fadeOutFactor = (1.0 - progress) / 0.4;
+          this.sparkAlphas[i] = maxSparkOpacity * fadeOutFactor;
+        } else {
+          this.sparkAlphas[i] = maxSparkOpacity;
+        }
+
+        if (progress >= 1.0 || vel.y < 0.3) {
           this.sparkPositions[i * 3] =
             this.firePosition.x + (Math.random() - 0.5) * 15;
           this.sparkPositions[i * 3 + 1] = this.firePosition.y;
           this.sparkPositions[i * 3 + 2] =
             this.firePosition.z + (Math.random() - 0.5) * 15;
+
+          this.sparkAlphas[i] = maxSparkOpacity;
 
           vel.x = (Math.random() - 0.5) * this.sparkDispersalX;
           vel.y = Math.random() * 2.5 + this.sparkVelocityToGoUp;
@@ -331,7 +411,8 @@ export class Tw3HomeEffectsComponent implements AfterViewInit, OnDestroy {
         }
       }
 
-      positionAttr.needsUpdate = true;
+      sparkPosAttr.needsUpdate = true;
+      sparkAlphaAttr.needsUpdate = true;
     }
 
     this.renderer.render(this.scene, this.camera);
