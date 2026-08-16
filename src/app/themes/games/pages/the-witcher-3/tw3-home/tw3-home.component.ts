@@ -10,6 +10,8 @@ import { ResponsiveService } from '../../../../../services/responsive-service/re
 import { MatDialog } from '@angular/material/dialog';
 import { TW3DialogsComponent } from '../../../shared/components/the-witcher-3/tw3-header/dialogs/tw3-dialogs.component';
 import { Tw3HomeEffectsComponent } from './tw3-home-effects/tw3-home-effects.component';
+
+type dialogType = 'HomeOptions' | 'HomeNavigate';
 @Component({
   selector: 'app-tw3-home',
   imports: [
@@ -47,11 +49,11 @@ export class Tw3HomeComponent {
     this.audioService.playClickSound('The Witcher 3');
   }
 
-  public openOptionsDialog(): void {
+  public openTypeDialog(dialogType: dialogType): void {
     this.playClickSound();
     this.dialog.open(TW3DialogsComponent, {
       data: {
-        dialogType: 'HomeOptions',
+        dialogType: dialogType,
       },
     });
   }
