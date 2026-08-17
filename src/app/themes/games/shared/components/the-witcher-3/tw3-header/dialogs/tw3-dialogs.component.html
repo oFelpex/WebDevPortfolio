@@ -78,7 +78,7 @@
     </mat-dialog-actions>
   </div>
 } @else if (data.dialogType === "HomeOptions") {
-  <div id="main-home">
+  <div id="main-home-options">
     <mat-dialog-content id="tw3-dialog-options-container">
       <div id="top-bar-container">
         <div id="weight-and-money">
@@ -113,8 +113,11 @@
           </button>
         </div>
       </div>
-      @if (currentMenu() === "main") {
-        <button class="special-buttons" (click)="openThemesMenu()">
+      @if (currentOptionsMenu() === "options") {
+        <button
+          class="special-buttons"
+          (click)="openTypeOfOptionsMenu('themes')"
+        >
           <img
             class="button-bg"
             src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
@@ -129,7 +132,10 @@
             <span>{{ "UPPERCASE.THEMES" | translate }}</span>
           </div>
         </button>
-        <button class="special-buttons" (click)="openLangsMenu()">
+        <button
+          class="special-buttons"
+          (click)="openTypeOfOptionsMenu('langs')"
+        >
           <img
             class="button-bg"
             src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
@@ -144,14 +150,14 @@
             <span>{{ "UPPERCASE.LANGS" | translate }}</span>
           </div>
         </button>
-      } @else if (currentMenu() === "themes") {
+      } @else if (currentOptionsMenu() === "themes") {
         @for (typeOfThemes of themesTypes; track $index) {
           <button
             class="special-buttons"
             (click)="
               typeOfThemes === 'Games'
-                ? openGameThemesMenu()
-                : openColorThemesMenu()
+                ? openTypeOfOptionsMenu('gameThemes')
+                : openTypeOfOptionsMenu('colorThemes')
             "
           >
             <img
@@ -173,7 +179,7 @@
             </div>
           </button>
         }
-      } @else if (currentMenu() === "gameThemes") {
+      } @else if (currentOptionsMenu() === "gameThemes") {
         @for (gameOption of gamesOptions; track $index) {
           <button class="special-buttons" (click)="changeThemes(gameOption)">
             <img
@@ -206,7 +212,7 @@
             </div>
           </button>
         }
-      } @else if (currentMenu() === "colorThemes") {
+      } @else if (currentOptionsMenu() === "colorThemes") {
         @for (colorOption of colorsOptions; track $index) {
           <button class="special-buttons" (click)="changeThemes(colorOption)">
             <img
@@ -222,7 +228,7 @@
             </div>
           </button>
         }
-      } @else if (currentMenu() === "langs") {
+      } @else if (currentOptionsMenu() === "langs") {
         @for (langOption of langsOptions; track $index) {
           <button class="special-buttons" (click)="changeLang(langOption)">
             <img
@@ -255,7 +261,7 @@
     <mat-dialog-actions class="tw3-dialog-actions">
       <div class="tw3-dialog-actions-border">
         <div class="tw3-dialog-actions-button-container">
-          @if (currentMenu() === "main") {
+          @if (currentOptionsMenu() === "options") {
             <button
               class="tw3-dialog-actions-button"
               mat-button
@@ -270,7 +276,73 @@
               class="tw3-dialog-actions-button"
               mat-button
               cdkFocusInitial
-              (click)="backToMainMenu()"
+              (click)="openTypeOfOptionsMenu('options')"
+            >
+              {{ "Voltar" }}
+            </button>
+          }
+        </div>
+      </div>
+    </mat-dialog-actions>
+  </div>
+} @else if (data.dialogType === "HomeNavigate") {
+  <div id="main-home-navigate">
+    <mat-dialog-content id="tw3-dialog-navigate-container">
+      <div id="top-bar-container">
+        <div id="weight-and-money">
+          <div class="left-container">
+            <span>7 / 60</span>
+            <img
+              src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-weight-icon.webp"
+              alt=""
+            />
+          </div>
+          <div class="left-container">
+            <span>3</span>
+            <img
+              src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-money-icon.webp"
+              alt=""
+            />
+          </div>
+        </div>
+        <div id="level-xp-and-close">
+          <span id="level-word">NÍVEL</span>
+          <div id="level-and-xp-bar-container">
+            <span id="level-number">1</span>
+            <div id="xp-bar-container"><div id="xp-bar"></div></div>
+            <span id="xp-number">652/1000</span>
+          </div>
+          <button
+            id="close-menu-button"
+            mat-dialog-close
+            (click)="playClickSound()"
+          >
+            <span>X</span>
+          </button>
+        </div>
+      </div>
+      <app-tw3-dialog-navigate></app-tw3-dialog-navigate>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="tw3-dialog-actions">
+      <div class="tw3-dialog-actions-border">
+        <div class="tw3-dialog-actions-button-container">
+          @if (currentOptionsMenu() === "options") {
+            <button
+              class="tw3-dialog-actions-button"
+              mat-button
+              mat-dialog-close
+              cdkFocusInitial
+              (click)="playClickSound()"
+            >
+              {{ "DIALOG-LANGS.CLOSE" | translate }}
+            </button>
+          } @else {
+            <button
+              class="tw3-dialog-actions-button"
+              mat-button
+              cdkFocusInitial
+              (click)="openTypeOfOptionsMenu('options')"
             >
               {{ "Voltar" }}
             </button>

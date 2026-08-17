@@ -1,4 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnDestroy, signal } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import {
   MAT_DIALOG_DATA,
@@ -18,9 +19,15 @@ import { Tw3DialogLangsComponent } from './langs/tw3-dialog-langs/tw3-dialog-lan
 import { AudioService } from '../../../../../../../services/audio-service/audio.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Themes } from '../../../../../../../models/themes';
-import { Subscription } from 'rxjs';
+import { Tw3DialogNavigateComponent } from './themes/tw3-dialog-navigate/tw3-dialog-navigate.component';
 
-type HomeMenuState = 'main' | 'themes' | 'langs' | 'gameThemes' | 'colorThemes';
+type HomeOptionsMenuState =
+  | 'options'
+  | 'themes'
+  | 'langs'
+  | 'gameThemes'
+  | 'colorThemes';
+
 @Component({
   selector: 'app-tw3-dialogs',
   imports: [
@@ -33,12 +40,13 @@ type HomeMenuState = 'main' | 'themes' | 'langs' | 'gameThemes' | 'colorThemes';
     Tw3DialogGamesComponent,
     Tw3DialogColorsComponent,
     Tw3DialogLangsComponent,
+    Tw3DialogNavigateComponent,
     TranslateModule,
   ],
   templateUrl: './tw3-dialogs.component.html',
   styleUrl: './tw3-dialogs.component.scss',
 })
-export class TW3DialogsComponent {
+export class TW3DialogsComponent implements OnDestroy {
   private themeService: ThemeService;
   private audioService: AudioService;
   private themeSubscription!: Subscription;
@@ -47,7 +55,7 @@ export class TW3DialogsComponent {
 
   public actualTheme!: Themes;
   public data = inject(MAT_DIALOG_DATA);
-  public currentMenu = signal<HomeMenuState>('main');
+  public currentOptionsMenu = signal<HomeOptionsMenuState>('options');
 
   constructor() {
     this.audioService = inject(AudioService);
@@ -64,6 +72,7 @@ export class TW3DialogsComponent {
       },
     );
   }
+
   ngOnDestroy(): void {
     this.themeSubscription.unsubscribe();
   }
@@ -103,28 +112,9 @@ export class TW3DialogsComponent {
     });
   }
 
-  public openThemesMenu(): void {
+  public openTypeOfOptionsMenu(optionsMenuType: HomeOptionsMenuState): void {
     this.playClickSound();
-    this.currentMenu.set('themes');
-  }
-
-  public openGameThemesMenu(): void {
-    this.playClickSound();
-    this.currentMenu.set('gameThemes');
-  }
-  public openColorThemesMenu(): void {
-    this.playClickSound();
-    this.currentMenu.set('colorThemes');
-  }
-
-  public openLangsMenu(): void {
-    this.playClickSound();
-    this.currentMenu.set('langs');
-  }
-
-  public backToMainMenu(): void {
-    this.playClickSound();
-    this.currentMenu.set('main');
+    this.currentOptionsMenu.set(optionsMenuType);
   }
 
   public changeThemes(selectedTheme: Themes): void {
