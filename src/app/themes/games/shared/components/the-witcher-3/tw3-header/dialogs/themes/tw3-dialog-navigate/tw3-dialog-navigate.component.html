@@ -2,7 +2,7 @@
   <div id="map-hud">
     <div id="top-right-hud">
       <div class="hud-item right-title">
-        <span> Lilás e groselia </span>
+        <span> Este é o mapa de Toussaint </span>
         <span class="exclamation-span">!</span>
       </div>
       <div class="hud-item right-subtitle">
@@ -25,13 +25,19 @@
         />
         <span> Placa de sinalização </span>
       </div>
-      <div class="hud-item">
-        <img
-          src="../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-mission-icon.webp"
-          alt="Mission icon"
-        />
-        <span> Missão </span>
-      </div>
+
+      @for (otherIcon of someOtherIcons; track $index) {
+        <div class="hud-item">
+          <img [src]="otherIcon.url" [alt]="otherIcon.description" />
+          <span>
+            {{
+              otherIcon.description === someOtherIcons[0].description
+                ? "Missão"
+                : otherIcon.description
+            }}
+          </span>
+        </div>
+      }
     </div>
   </div>
   <div id="map"></div>

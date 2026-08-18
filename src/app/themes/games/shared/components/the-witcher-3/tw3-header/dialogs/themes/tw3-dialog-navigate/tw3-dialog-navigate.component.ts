@@ -10,6 +10,12 @@ interface FastTravel {
   description: string;
   coords: [number, number]; // [Y, X]
 }
+interface OtherIcons {
+  id: string;
+  url: string;
+  description: string;
+  coords: [number, number]; // [Y, X]
+}
 
 @Component({
   selector: 'app-tw3-dialog-navigate',
@@ -48,6 +54,50 @@ export class Tw3DialogNavigateComponent implements AfterViewInit, OnDestroy {
       title: 'Sobre mim',
       description: 'Falo um pouco sobre minha pessoa.',
       coords: [420, 750],
+    },
+  ];
+  public someOtherIcons: OtherIcons[] = [
+    {
+      id: 'mission',
+      url: '../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-mission-icon.webp',
+      description: 'Jogar este jogo maravilhoso',
+      coords: [355, 525], // [Y, X]
+    },
+    {
+      id: 'abandoned-site',
+      url: '../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-abandoned-site-icon.webp',
+      description: 'Abandoned Site',
+      coords: [440, 1065], // [Y, X]
+    },
+    {
+      id: 'armourer',
+      url: '../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-armourer-icon.webp',
+      description: 'Journeyman Armorer',
+      coords: [155, 855], // [Y, X]
+    },
+    {
+      id: 'bandit-camp',
+      url: '../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-bandit-camp-icon.webp',
+      description: 'Bandit Camp',
+      coords: [110, 425], // [Y, X]
+    },
+    {
+      id: 'hidden',
+      url: '../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-hidden-icon.webp',
+      description: 'Hidden Treasure',
+      coords: [525, 855], // [Y, X]
+    },
+    {
+      id: 'monster-den',
+      url: '../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-monster-den-icon.webp',
+      description: 'Monster Den',
+      coords: [525, 260], // [Y, X]
+    },
+    {
+      id: 'reach',
+      url: '../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-roach-icon.webp',
+      description: 'Carpeado',
+      coords: [585, 675], // [Y, X]
     },
   ];
 
@@ -134,33 +184,32 @@ export class Tw3DialogNavigateComponent implements AfterViewInit, OnDestroy {
       });
     });
 
-    const missionIcon = L.divIcon({
-      className: 'tw3-custom-marker-wrapper',
-      html: `
+    this.someOtherIcons.forEach((otherIconPoints) => {
+      const otherIcon = L.divIcon({
+        className: 'tw3-custom-marker-wrapper',
+        html: `
         <div class="tw3-marker-content">
           <img 
-            src="../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-mission-icon.webp" 
+            src="${otherIconPoints.url}" 
             class="tw3-marker-icon" 
-            alt="Icone de missão"
+            alt="${otherIconPoints.description}"
           />
         </div>
       `,
-      iconSize: [27, 34],
-      iconAnchor: [12, 41],
-    });
+        iconSize: [27, 34],
+        iconAnchor: [12, 41],
+      });
 
-    const missionMarker = L.marker(
-      [355, 525], // [Y, X]
-      {
-        icon: missionIcon,
+      const otherIconMarker = L.marker(otherIconPoints.coords, {
+        icon: otherIcon,
         autoPanOnFocus: false,
-      },
-    ).addTo(this.map);
+      }).addTo(this.map);
 
-    missionMarker.bindTooltip('TURN AND FACE THE STRANGE', {
-      direction: 'right',
-      offset: [25, -20], // [X, Y] for some reason
-      className: 'tw3-marker-tooltip',
+      otherIconMarker.bindTooltip(otherIconPoints.description, {
+        direction: 'right',
+        offset: [25, -10], // [X, Y]
+        className: 'tw3-marker-tooltip',
+      });
     });
   }
 
