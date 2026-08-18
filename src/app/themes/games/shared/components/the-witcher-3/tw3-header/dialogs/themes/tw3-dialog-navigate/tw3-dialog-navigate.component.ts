@@ -1,12 +1,14 @@
 import { AfterViewInit, Component, inject, OnDestroy } from '@angular/core';
 import * as L from 'leaflet';
 import { AudioService } from '../../../../../../../../../services/audio-service/audio.service';
+import { Router, RouterModule } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 interface FastTravel {
   id: string;
   title: string;
   description: string;
-  coords: [number, number]; // [y, x]
+  coords: [number, number]; // [Y, X]
 }
 
 @Component({
@@ -17,26 +19,42 @@ interface FastTravel {
 })
 export class Tw3DialogNavigateComponent implements AfterViewInit, OnDestroy {
   private audioService: AudioService;
+  private router: Router;
+  private dialog: MatDialog;
 
   private resizeObserver?: ResizeObserver;
   private map!: L.Map;
   private fastTravelPoints: FastTravel[] = [
     {
-      id: 'novigrad-port',
-      title: 'Porto de Novigrad',
-      description: 'Ponto de viagem rápida perto das docas.',
-      coords: [420, 1050], // [Y, X]
+      id: 'home',
+      title: 'Página inicial',
+      description: 'Você já está aqui!',
+      coords: [585, 675], // [Y, X]
     },
     {
-      id: 'temerian-castle',
-      title: 'Castelo/Fortaleza',
-      description: 'Área com guarda fortemente armada.',
-      coords: [500, 750],
+      id: 'contact-me',
+      title: 'Contatos',
+      description: 'Entre em contato comigo.',
+      coords: [480, 475],
+    },
+    {
+      id: 'projects',
+      title: 'Meus projetos',
+      description: 'Conheça todos os meus projetos.',
+      coords: [355, 640],
+    },
+    {
+      id: 'about-me',
+      title: 'Sobre mim',
+      description: 'Falo um pouco sobre minha pessoa.',
+      coords: [420, 750],
     },
   ];
 
   constructor() {
     this.audioService = inject(AudioService);
+    this.router = inject(Router);
+    this.dialog = inject(MatDialog);
   }
 
   ngAfterViewInit(): void {
@@ -53,7 +71,8 @@ export class Tw3DialogNavigateComponent implements AfterViewInit, OnDestroy {
 
     this.map = L.map('map', {
       crs: L.CRS.Simple,
-      zoom: 0,
+      doubleClickZoom: false,
+      zoom: 0.25,
       minZoom: 0,
       maxZoom: 1,
       zoomSnap: 0.25,
@@ -69,9 +88,7 @@ export class Tw3DialogNavigateComponent implements AfterViewInit, OnDestroy {
     this.addMarkers();
 
     this.map.on('click', (e: L.LeafletMouseEvent) => {
-      console.log(
-        `Coordenada clicada: [${e.latlng.lat.toFixed(1)}, ${e.latlng.lng.toFixed(1)}]`,
-      );
+      console.log(e.latlng.lat.toFixed(1), e.latlng.lng.toFixed(1));
     });
 
     const mapEl = document.getElementById('map')!;
@@ -83,31 +100,67 @@ export class Tw3DialogNavigateComponent implements AfterViewInit, OnDestroy {
   }
 
   private addMarkers(): void {
-    this.fastTravelPoints.forEach((FastTrackPoints) => {
-      // Cria o popup com o conteúdo do marcador
-      const popupContent = `
-        <div style="color: #222;">
-          <h3 style="margin: 0 0 5px 0;">${FastTrackPoints.title}</h3>
-          <p style="margin: 0;">${FastTrackPoints.description}</p>
+    this.fastTravelPoints.forEach((FastTravelPoints) => {
+      const fastTravelIcon = L.divIcon({
+        className: 'tw3-custom-marker-wrapper',
+        html: `
+        <div class="tw3-marker-content">
+          <img 
+            src="../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-fast-travel-icon.webp" 
+            class="tw3-marker-icon" 
+            alt="${FastTravelPoints.title}"
+          />
+          <span class="tw3-marker-label">${FastTravelPoints.title}</span>
         </div>
-      `;
-
-      const defaultIcon = L.icon({
-        iconUrl:
-          '../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-fasttravel-icon.webp',
-        iconSize: [25, 41],
+      `,
+        iconSize: [27, 34],
         iconAnchor: [12, 41],
       });
-      L.Marker.prototype.options.icon = defaultIcon;
 
-      // Adiciona o marcador no mapa
-      const marker = L.marker(FastTrackPoints.coords).addTo(this.map);
-      marker.bindPopup(popupContent);
+      const fastTravelMarker = L.marker(FastTravelPoints.coords, {
+        icon: fastTravelIcon,
+        autoPanOnFocus: false,
+      }).addTo(this.map);
 
-      // Evento de clique opcional para disparar ações no Angular
-      marker.on('click', () => {
-        this.onFastTravelPointSelected(FastTrackPoints);
+      fastTravelMarker.bindTooltip(FastTravelPoints.description, {
+        direction: 'right',
+        offset: [25, -10], // [X, Y]
+        className: 'tw3-marker-tooltip',
       });
+
+      fastTravelMarker.on('click', () => {
+        this.onFastTravelPointSelected(FastTravelPoints);
+        this.dialog.closeAll();
+      });
+    });
+
+    const missionIcon = L.divIcon({
+      className: 'tw3-custom-marker-wrapper',
+      html: `
+        <div class="tw3-marker-content">
+          <img 
+            src="../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-mission-icon.webp" 
+            class="tw3-marker-icon" 
+            alt="Icone de missão"
+          />
+        </div>
+      `,
+      iconSize: [27, 34],
+      iconAnchor: [12, 41],
+    });
+
+    const missionMarker = L.marker(
+      [355, 525], // [Y, X]
+      {
+        icon: missionIcon,
+        autoPanOnFocus: false,
+      },
+    ).addTo(this.map);
+
+    missionMarker.bindTooltip('TURN AND FACE THE STRANGE', {
+      direction: 'right',
+      offset: [25, -20], // [X, Y] for some reason
+      className: 'tw3-marker-tooltip',
     });
   }
 
@@ -115,7 +168,7 @@ export class Tw3DialogNavigateComponent implements AfterViewInit, OnDestroy {
     const container = this.map.getContainer();
     const cw = container.clientWidth;
     const ch = container.clientHeight;
-    if (cw === 0 || ch === 0) return; // ainda não tem tamanho real
+    if (cw === 0 || ch === 0) return;
 
     const scale = Math.max(cw / imgWidth, ch / imgHeight);
     const zoom = Math.log2(scale);
@@ -126,13 +179,13 @@ export class Tw3DialogNavigateComponent implements AfterViewInit, OnDestroy {
     ];
 
     this.map.setMaxBounds(bounds);
-    this.map.setMinZoom(zoom); // nunca deixa dar zoom out além do "cover"
+    this.map.setMinZoom(zoom);
     this.map.setView([-imgHeight / 2, imgWidth / 2], zoom);
   }
 
   private onFastTravelPointSelected(FastTrackPoints: FastTravel): void {
-    console.log('POI Selecionado:', FastTrackPoints);
     this.playClickSound();
+    this.router.navigate(['', FastTrackPoints.id]);
   }
 
   public playClickSound() {
