@@ -65,7 +65,21 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
+    background:
+      linear-gradient(
+        to bottom,
+        #00000085,
+        transparent 10%,
+        transparent 10%,
+        transparent 10%
+      ),
+      linear-gradient(
+        to top,
+        #00000085,
+        transparent 10%,
+        transparent 10%,
+        transparent 10%
+      );
     #top-right-hud {
       align-items: flex-end;
       gap: 4px;
