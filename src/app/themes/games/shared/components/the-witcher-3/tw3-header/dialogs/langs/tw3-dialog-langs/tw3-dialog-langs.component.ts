@@ -1,9 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
+import { LanguageService } from '../../../../../../../../../services/language-service/language.service';
 @Component({
   selector: 'app-tw3-dialog-langs',
   imports: [MatListModule, MatButtonModule],
@@ -11,30 +10,21 @@ import { MatListModule } from '@angular/material/list';
   styleUrls: ['./tw3-dialog-langs.component.scss', '../../tw3-dialog.scss'],
 })
 export class Tw3DialogLangsComponent {
-  private translateService: TranslateService;
-  private translateSubscribe!: Subscription;
-  public allLangs: string[] = [];
-  public currentLang!: string;
+  private languageService: LanguageService;
 
   constructor() {
-    this.translateService = inject(TranslateService);
-    this.allLangs = this.translateService.getLangs();
+    this.languageService = inject(LanguageService);
   }
 
-  ngOnInit(): void {
-    this.currentLang = this.translateService.currentLang;
-    this.translateSubscribe = this.translateService.onLangChange.subscribe(
-      () => {
-        this.currentLang = this.translateService.currentLang;
-      }
-    );
-  }
+  ngOnInit(): void {}
 
-  ngOnDestroy(): void {
-    this.translateSubscribe.unsubscribe();
+  public get currentLang(): string {
+    return this.languageService.getCurrentLanguage();
   }
-
+  public get allLangs(): string[] {
+    return this.languageService.getSupportedLangs();
+  }
   public changeLang(lang: string) {
-    this.translateService.use(lang);
+    this.languageService.setLanguage(lang);
   }
 }

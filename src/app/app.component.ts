@@ -20,6 +20,7 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
 import { ShowSoundboardButtonComponent } from './shared/components/soundboard/show-soundboard-button/show-soundboard-button.component';
 import { Themes } from './models/themes';
 import { Subscription } from 'rxjs';
+import { LanguageService } from './services/language-service/language.service';
 @Component({
   selector: 'app-root',
   imports: [
@@ -34,13 +35,15 @@ import { Subscription } from 'rxjs';
 export class AppComponent implements OnInit, OnDestroy {
   private loadingService: LoadingService;
   private router: Router;
-  private translate: TranslateService;
+
   private themeService: ThemeService;
   private responsiveService: ResponsiveService;
   private themeSubscription!: Subscription;
   private responsiveSubscription!: Subscription;
   private loadingSubscription!: Subscription;
-  private translateSubscription!: Subscription;
+  private languageSubscription!: Subscription;
+  private routerSubscription!: Subscription;
+  private languageService = inject(LanguageService);
 
   public actualTheme!: Themes;
   public isMobile: boolean = false;
@@ -48,7 +51,6 @@ export class AppComponent implements OnInit, OnDestroy {
   public selectedNavbarComponent!: Type<any>;
 
   constructor() {
-    this.translate = inject(TranslateService);
     this.router = inject(Router);
     this.loadingService = inject(LoadingService);
     this.themeService = inject(ThemeService);
@@ -78,16 +80,16 @@ export class AppComponent implements OnInit, OnDestroy {
       matIconRegistry.addSvgIcon(
         icon,
         domSanitizer.bypassSecurityTrustResourceUrl(
-          `assets/icons/social-icons/${icon}.svg`
-        )
+          `assets/icons/social-icons/${icon}.svg`,
+        ),
       );
     });
     hardSkillIcons.forEach((icon) => {
       matIconRegistry.addSvgIcon(
         icon,
         domSanitizer.bypassSecurityTrustResourceUrl(
-          `assets/icons/hardskill-icons/${icon}.svg`
-        )
+          `assets/icons/hardskill-icons/${icon}.svg`,
+        ),
       );
     });
   }
@@ -97,50 +99,30 @@ export class AppComponent implements OnInit, OnDestroy {
       (theme) => {
         this.actualTheme = theme;
         this.selectedNavbarComponent = this.themeService.getHeaderComponent();
-      }
+      },
     );
 
     this.responsiveSubscription = this.responsiveService.isMobile$.subscribe(
       (isMobile) => {
         this.isMobile = isMobile;
-      }
+      },
     );
-    this.translate.addLangs(['en-US', 'pt-BR']);
-
-    let lang = localStorage.getItem('lang');
-    if (lang) {
-      let parsedLang = JSON.parse(lang);
-      this.translate.use(parsedLang);
-      document.documentElement.lang = parsedLang;
-    } else {
-      let browserLang = this.translate.getBrowserCultureLang();
-      if (browserLang) {
-        this.translate.use(browserLang || 'en-US');
-        localStorage.setItem('lang', JSON.stringify(browserLang));
-        document.documentElement.lang = browserLang;
-      } else {
-        this.translate.use('en-US');
-        localStorage.setItem('lang', JSON.stringify('en-US'));
-        document.documentElement.lang = 'en-US';
-      }
-    }
 
     this.loadingSubscription = this.loadingService.loading$.subscribe(
       (loading) => {
         this.isLoading = loading;
-      }
+      },
     );
-
-    this.translateSubscription = this.translate.onLangChange
-      .asObservable()
-      .subscribe(() => {
+    this.languageSubscription =
+      this.languageService.onLanguageChange$.subscribe((e) => {
         const currentRoute = this.router.url;
         let pageTitle = this.getTitleByRoute(currentRoute);
         document.title = pageTitle;
-        document.documentElement.lang = this.translate.currentLang;
+
+        this.languageService.setLanguage(e.lang);
       });
 
-    this.router.events.subscribe((event) => {
+    this.routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.loadingService.show();
       }
@@ -158,10 +140,11 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
   ngOnDestroy(): void {
+    this.routerSubscription.unsubscribe();
+    this.languageSubscription.unsubscribe();
     this.themeSubscription.unsubscribe();
     this.responsiveSubscription.unsubscribe();
     this.loadingSubscription.unsubscribe();
-    this.translateSubscription.unsubscribe();
   }
 
   private getTitleByRoute(route: string): string {
@@ -178,7 +161,7 @@ export class AppComponent implements OnInit, OnDestroy {
       '/contact-me': 'Felpex - Contatos',
     };
 
-    return this.translate.currentLang === 'en-US'
+    return this.languageService.getCurrentLanguage() === 'en-US'
       ? titlesEN_US[route] || 'Ops, something is wrong'
       : titlesPT_BR[route] || 'Opa, algo está errado';
   }

@@ -229,7 +229,7 @@
           </button>
         }
       } @else if (currentOptionsMenu() === "langs") {
-        @for (langOption of langsOptions; track $index) {
+        @for (langOption of allLangs; track $index) {
           <button class="special-buttons" (click)="changeLang(langOption)">
             <img
               class="button-bg"

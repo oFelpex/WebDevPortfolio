@@ -7,15 +7,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 import Typed from 'typed.js';
-import {
-  LangChangeEvent,
-  TranslateModule,
-  TranslateService,
-} from '@ngx-translate/core';
+import { LangChangeEvent, TranslateModule } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { Themes } from '../../../../models/themes';
 import { ThemeService } from '../../../../services/theme-service/theme.service';
 import { AudioService } from '../../../../services/audio-service/audio.service';
+import { LanguageService } from '../../../../services/language-service/language.service';
 
 @Component({
   selector: 'app-intro-section',
@@ -30,16 +27,17 @@ import { AudioService } from '../../../../services/audio-service/audio.service';
   animations: [getDownToUp_getUptoDown_introSection],
 })
 export class IntroSectionComponent implements OnInit, OnDestroy {
-  private translate: TranslateService;
-  private langSubscription!: Subscription;
+  private languageService: LanguageService;
+  private languageSubscription!: Subscription;
+
   private audioService: AudioService;
+
+  public actualTheme!: Themes;
   private themeService: ThemeService;
   private themeSubscription!: Subscription;
 
-  public actualTheme!: Themes;
-
   constructor() {
-    this.translate = inject(TranslateService);
+    this.languageService = inject(LanguageService);
     this.themeService = inject(ThemeService);
     this.audioService = inject(AudioService);
   }
@@ -48,7 +46,7 @@ export class IntroSectionComponent implements OnInit, OnDestroy {
     this.themeSubscription = this.themeService.actualTheme$.subscribe(
       (theme) => {
         this.actualTheme = theme;
-      }
+      },
     );
 
     let typedInstance: Typed;
@@ -64,7 +62,7 @@ export class IntroSectionComponent implements OnInit, OnDestroy {
     ];
     let autoTypeArr: string[] = [];
 
-    this.translate.currentLang === 'en-US'
+    this.languageService.getCurrentLanguage() === 'en-US'
       ? (autoTypeArr = EN_autoTypeArr)
       : (autoTypeArr = ptBR_autoTypeArr);
 
@@ -75,22 +73,23 @@ export class IntroSectionComponent implements OnInit, OnDestroy {
       loop: true,
     });
 
-    this.langSubscription = this.translate.onLangChange.subscribe(
-      (event: LangChangeEvent) => {
-        typedInstance.destroy();
+    this.languageSubscription =
+      this.languageService.onLanguageChange$.subscribe(
+        (event: LangChangeEvent) => {
+          typedInstance.destroy();
 
-        event.lang === 'en-US'
-          ? (autoTypeArr = EN_autoTypeArr)
-          : (autoTypeArr = ptBR_autoTypeArr);
+          event.lang === 'en-US'
+            ? (autoTypeArr = EN_autoTypeArr)
+            : (autoTypeArr = ptBR_autoTypeArr);
 
-        typedInstance = new Typed('.auto-type', {
-          strings: [...autoTypeArr],
-          typeSpeed: 100,
-          backSpeed: 30,
-          loop: true,
-        });
-      }
-    );
+          typedInstance = new Typed('.auto-type', {
+            strings: [...autoTypeArr],
+            typeSpeed: 100,
+            backSpeed: 30,
+            loop: true,
+          });
+        },
+      );
   }
 
   showNavigationCards: boolean = false;
@@ -107,7 +106,7 @@ export class IntroSectionComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.langSubscription.unsubscribe();
+    this.languageSubscription.unsubscribe();
     this.themeSubscription.unsubscribe();
   }
 }

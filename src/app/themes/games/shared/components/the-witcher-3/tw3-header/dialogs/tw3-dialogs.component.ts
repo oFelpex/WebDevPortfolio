@@ -17,9 +17,10 @@ import { Tw3DialogGamesComponent } from './themes/tw3-dialog-games/tw3-dialog-ga
 import { Tw3DialogColorsComponent } from './themes/tw3-dialog-colors/tw3-dialog-colors.component';
 import { Tw3DialogLangsComponent } from './langs/tw3-dialog-langs/tw3-dialog-langs.component';
 import { AudioService } from '../../../../../../../services/audio-service/audio.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { Themes } from '../../../../../../../models/themes';
 import { Tw3DialogNavigateComponent } from './themes/tw3-dialog-navigate/tw3-dialog-navigate.component';
+import { LanguageService } from '../../../../../../../services/language-service/language.service';
 
 type HomeOptionsMenuState =
   | 'options'
@@ -51,7 +52,8 @@ export class TW3DialogsComponent implements OnDestroy {
   private audioService: AudioService;
   private themeSubscription!: Subscription;
   private dialog: MatDialog;
-  private translate: TranslateService;
+
+  private languageService: LanguageService;
 
   public actualTheme!: Themes;
   public data = inject(MAT_DIALOG_DATA);
@@ -60,7 +62,7 @@ export class TW3DialogsComponent implements OnDestroy {
   constructor() {
     this.audioService = inject(AudioService);
     this.themeService = inject(ThemeService);
-    this.translate = inject(TranslateService);
+    this.languageService = inject(LanguageService);
 
     this.dialog = inject(MatDialog);
   }
@@ -87,8 +89,8 @@ export class TW3DialogsComponent implements OnDestroy {
     return this.themeService.getColorsNames();
   }
 
-  public get langsOptions(): string[] {
-    return this.translate.getLangs();
+  public get allLangs(): string[] {
+    return this.languageService.getSupportedLangs();
   }
 
   public playClickSound() {
@@ -126,6 +128,6 @@ export class TW3DialogsComponent implements OnDestroy {
   public changeLang(selectedLang: string): void {
     this.playClickSound();
     this.dialog.closeAll();
-    this.translate.use(selectedLang);
+    this.languageService.setLanguage(selectedLang);
   }
 }
