@@ -1,0 +1,316 @@
+@use "@angular/material" as mat;
+@use "./angular-colors-and-fonts/theme-minecraft-colors" as
+  theme-minecraft-colors;
+
+// Theme: minecraft-theme
+body.minecraft-theme {
+  --background-color: #241e0e;
+  background-image: url("../../../../assets/themes/games/minecraft/backgrounds/minecraft-bg.webp");
+  color: #eaeaea;
+  text-shadow: 1px 1px 0px black;
+
+  *,
+  h1 {
+    font-family: "Minecraft", sans-serif;
+    text-shadow: 1px 1px 0px black;
+
+    mat-card {
+      background-image: url("../../../../assets/themes/games/minecraft/backgrounds/cards/minecraft-bg-card.webp");
+      background-position: center bottom;
+      background-size: auto 300px;
+    }
+
+    button {
+      background-image: url("../../../../assets/themes/games/minecraft/buttons/minecraft-button.webp");
+      border-radius: 2px;
+      border: 2px solid black;
+      background-size: cover;
+      box-shadow: 0px 0px 5px black;
+
+      &:hover {
+        border-color: white;
+      }
+    }
+  }
+
+  $top: 70%;
+  .tnts-container {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+
+    .tnt-top,
+    .tnt-front,
+    .tnt-bottom {
+      position: fixed;
+      pointer-events: none;
+      top: -10%;
+      left: 50%;
+      width: 80px;
+      height: auto;
+    }
+
+    .tnt-front {
+      animation:
+        tnt-front-fall 1.2s ease forwards,
+        tnt-scale 4s ease forwards;
+      z-index: 9;
+
+      @keyframes tnt-front-fall {
+        0% {
+          top: -10%;
+        }
+        100% {
+          top: $top;
+        }
+      }
+    }
+    .tnt-top {
+      animation:
+        tnt-top-fall 1.2s ease forwards,
+        tnt-scale 4s ease forwards;
+      z-index: 8;
+
+      @keyframes tnt-top-fall {
+        0% {
+          top: -10%;
+          height: 0px;
+        }
+        100% {
+          height: 16px;
+          top: calc($top - 46px);
+        }
+      }
+    }
+    .tnt-bottom {
+      z-index: 8;
+      animation:
+        tnt-bottom-fall 1.2s ease forwards,
+        tnt-scale 4s ease forwards;
+
+      @keyframes tnt-bottom-fall {
+        0% {
+          top: calc(-10% + 65px);
+          height: 40px;
+        }
+        100% {
+          height: 0px;
+          top: $top;
+        }
+      }
+    }
+
+    @keyframes tnt-scale {
+      0% {
+        transform: translate(-50%, -50%) scale(1.1);
+        filter: brightness(0) saturate(100%) invert(94%) sepia(8%) saturate(14%)
+          hue-rotate(236deg) brightness(104%) contrast(103%);
+      }
+      10% {
+        transform: translate(-50%, -50%) scale(1);
+        filter: none;
+      }
+      20% {
+        transform: translate(-50%, -50%) scale(1.1);
+        filter: brightness(0) saturate(100%) invert(94%) sepia(8%) saturate(14%)
+          hue-rotate(236deg) brightness(104%) contrast(103%);
+      }
+      30% {
+        transform: translate(-50%, -50%) scale(1);
+        filter: none;
+      }
+      40% {
+        transform: translate(-50%, -50%) scale(1.1);
+        filter: brightness(0) saturate(100%) invert(94%) sepia(8%) saturate(14%)
+          hue-rotate(236deg) brightness(104%) contrast(103%);
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1);
+        filter: none;
+      }
+      60% {
+        transform: translate(-50%, -50%) scale(1.1);
+        filter: brightness(0) saturate(100%) invert(94%) sepia(8%) saturate(14%)
+          hue-rotate(236deg) brightness(104%) contrast(103%);
+      }
+      70% {
+        transform: translate(-50%, -50%) scale(1);
+        filter: none;
+      }
+      80% {
+        transform: translate(-50%, -50%) scale(1.1);
+        filter: brightness(0) saturate(100%) invert(94%) sepia(8%) saturate(14%)
+          hue-rotate(236deg) brightness(104%) contrast(103%);
+      }
+      90% {
+        transform: translate(-50%, -50%) scale(1);
+        filter: none;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1.25);
+        filter: brightness(0) saturate(100%) invert(94%) sepia(8%) saturate(14%)
+          hue-rotate(236deg) brightness(104%) contrast(103%);
+      }
+    }
+  }
+
+  #soundboard {
+    #soundboard-bg {
+      background-color: #002e0f;
+      background-image: url("../../../../assets/themes/games/minecraft/backgrounds/soundboard/minecraft-bg-soundboard.webp");
+      background-position: center center;
+      background-size: auto 300px;
+    }
+
+    .slider-bg {
+      border-radius: 5px;
+      border: 2px ridge;
+      background-color: rgb(78, 78, 78);
+    }
+  }
+  .mat-expansion-panel-body {
+    padding: 0;
+  }
+
+  #photos-dialog-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px;
+    padding: 30px;
+    background-image: url("../../../../assets/themes/games/minecraft/backgrounds/dialogs/minecraft-dialog-bg-mobile.webp");
+    background-position: center;
+    background-size: 100% 100%;
+
+    mat-dialog-actions {
+      .minecraft-dialog-actions-button {
+        position: relative;
+        box-shadow: none;
+        width: 100px;
+        height: 40px;
+        background-image: none;
+        background-color: #c6c6c6;
+        border-radius: 0px;
+        cursor: pointer;
+        border: none;
+        z-index: 0;
+
+        span {
+          color: #4c4c4c;
+        }
+        .button-main-black-border {
+          position: absolute;
+          width: calc(100% + 6px);
+          height: calc(100% + 6px);
+          border: 3.5px solid black;
+          left: -3px;
+          top: -3px;
+          z-index: 3;
+        }
+        .button-top-and-left-border {
+          pointer-events: none;
+          position: absolute;
+          width: calc(100% + 3px);
+          height: calc(100% + 3px);
+          border: 3px solid #f7f7f7;
+          left: 0;
+          top: 0;
+          z-index: 0;
+        }
+        .button-bottom-and-right-border {
+          pointer-events: none;
+          position: absolute;
+          width: calc(100% + 3px);
+          height: calc(100% + 3px);
+          border: 3px solid #000000;
+          left: -3px;
+          top: -3px;
+          z-index: 1;
+          opacity: 0.3;
+        }
+
+        &:hover {
+          background-color: #218306;
+          .button-main-black-border {
+            border: 3px solid #fff;
+          }
+          .button-top-and-left-border {
+            border: 3px solid #17cd07;
+          }
+          span {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  @include mat.theme(
+    (
+      color: (
+        primary: theme-minecraft-colors.$primary-palette,
+        tertiary: theme-minecraft-colors.$tertiary-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+  @include mat.dialog-overrides(
+    (
+      container-shape: border-radius 0%,
+      container-color: none,
+      subhead-color: #4c4c4c,
+      subhead-font: "Minecraft",
+      supporting-text-color: #fff,
+    )
+  );
+  @include mat.expansion-overrides(
+    (
+      container-shape: border-radius 0%,
+      container-background-color: #c6c6c6,
+      header-text-color: #4c4c4c,
+      header-indicator-color: #ffffff,
+    )
+  );
+
+  @include mat.radio-overrides(
+    (
+      selected-icon-color: #3c3e3c,
+      unselected-icon-color: #3c3e3c,
+    )
+  );
+  @include mat.slider-overrides(
+    (
+      //shape da bola de segurar
+      handle-shape: border-radius 0%,
+      //altura da bola
+      handle-height: 35px,
+      //largura da bola
+      handle-width: 20px,
+      //cor da bola
+      handle-color: #c6c6c6,
+      //cor da bola ao segurar com o mouse
+      hover-handle-color: #43a01c,
+      focus-handle-color: #43a01c,
+      //cor da barra ativa
+      active-track-color: #808080,
+      //cor da barra inativa
+      inactive-track-color: #585858,
+      //cor ao segurar
+      hover-state-layer-color: transparent,
+      //altura da barra ativa
+      active-track-height: 15px,
+      //shape da barra ativa
+      active-track-shape: border-radius 0%,
+      //altura da barra inativa
+      inactive-track-height: 15px,
+      //shape da barra inaativa
+      inactive-track-shape: border-radius 0%,
+      //linha interna ativa
+      with-tick-marks-active-container-opacity: 0,
+      //linha interna inativa
+      with-tick-marks-inactive-container-opacity: 0
+    )
+  );
+}

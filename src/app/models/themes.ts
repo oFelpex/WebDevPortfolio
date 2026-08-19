@@ -24,7 +24,7 @@ export const gamesOptions: Themes[] = [
     type: 'Games',
   },
   // {
-  //   name: 'The Legend of Zelda: BOTW',
+  //   name: 'The Legend of Zelda: TOTK',
   //   type: 'Games',
   // },
   // {
