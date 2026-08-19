@@ -98,7 +98,9 @@
           </div>
         </div>
         <div id="level-xp-and-close">
-          <span id="level-word">NÍVEL</span>
+          <span id="level-word">{{
+            "THEMES.GAMES.THE WITCHER 3.DIALOG-HOME.LEVEL" | translate
+          }}</span>
           <div id="level-and-xp-bar-container">
             <span id="level-number">1</span>
             <div id="xp-bar-container"><div id="xp-bar"></div></div>
@@ -261,26 +263,22 @@
     <mat-dialog-actions class="tw3-dialog-actions">
       <div class="tw3-dialog-actions-border">
         <div class="tw3-dialog-actions-button-container">
-          @if (currentOptionsMenu() === "options") {
-            <button
-              class="tw3-dialog-actions-button"
-              mat-button
-              mat-dialog-close
-              cdkFocusInitial
-              (click)="playClickSound()"
-            >
-              {{ "DIALOG-LANGS.CLOSE" | translate }}
-            </button>
-          } @else {
-            <button
-              class="tw3-dialog-actions-button"
-              mat-button
-              cdkFocusInitial
-              (click)="openTypeOfOptionsMenu('options')"
-            >
-              {{ "Voltar" }}
-            </button>
-          }
+          <button
+            class="tw3-dialog-actions-button"
+            mat-button
+            cdkFocusInitial
+            (click)="
+              currentOptionsMenu() === 'options'
+                ? closeAllDialogs()
+                : openTypeOfOptionsMenu('options')
+            "
+          >
+            {{
+              "THEMES.GAMES.THE WITCHER 3.DIALOG-HOME." +
+                (currentOptionsMenu() === "options" ? "CLOSE" : "GO-BACK")
+                | translate
+            }}
+          </button>
         </div>
       </div>
     </mat-dialog-actions>
@@ -306,7 +304,9 @@
           </div>
         </div>
         <div id="level-xp-and-close">
-          <span id="level-word">NÍVEL</span>
+          <span id="level-word">{{
+            "THEMES.GAMES.THE WITCHER 3.DIALOG-HOME.LEVEL" | translate
+          }}</span>
           <div id="level-and-xp-bar-container">
             <span id="level-number">1</span>
             <div id="xp-bar-container"><div id="xp-bar"></div></div>
@@ -327,26 +327,15 @@
     <mat-dialog-actions class="tw3-dialog-actions">
       <div class="tw3-dialog-actions-border">
         <div class="tw3-dialog-actions-button-container">
-          @if (currentOptionsMenu() === "options") {
-            <button
-              class="tw3-dialog-actions-button"
-              mat-button
-              mat-dialog-close
-              cdkFocusInitial
-              (click)="playClickSound()"
-            >
-              {{ "DIALOG-LANGS.CLOSE" | translate }}
-            </button>
-          } @else {
-            <button
-              class="tw3-dialog-actions-button"
-              mat-button
-              cdkFocusInitial
-              (click)="openTypeOfOptionsMenu('options')"
-            >
-              {{ "Voltar" }}
-            </button>
-          }
+          <button
+            class="tw3-dialog-actions-button"
+            mat-button
+            mat-dialog-close
+            cdkFocusInitial
+            (click)="playClickSound()"
+          >
+            {{ "THEMES.GAMES.THE WITCHER 3.DIALOG-HOME.CLOSE" | translate }}
+          </button>
         </div>
       </div>
     </mat-dialog-actions>

@@ -1,12 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { LogoEffectsComponent } from '../../../../../logo-effects/logo-effects.component';
-import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { AudioService } from '../../../../../services/audio-service/audio.service';
 import { ThemeService } from '../../../../../services/theme-service/theme.service';
-import { ResponsiveService } from '../../../../../services/responsive-service/responsive.service';
 import { MatDialog } from '@angular/material/dialog';
 import { TW3DialogsComponent } from '../../../shared/components/the-witcher-3/tw3-header/dialogs/tw3-dialogs.component';
 import { Tw3HomeEffectsComponent } from './tw3-home-effects/tw3-home-effects.component';
@@ -17,7 +15,6 @@ type dialogType = 'HomeOptions' | 'HomeNavigate';
   imports: [
     LogoEffectsComponent,
     Tw3HomeEffectsComponent,
-    RouterModule,
     MatIconModule,
     TranslateModule,
   ],
@@ -25,7 +22,6 @@ type dialogType = 'HomeOptions' | 'HomeNavigate';
   styleUrl: './tw3-home.component.scss',
 })
 export class Tw3HomeComponent {
-  private responsiveService: ResponsiveService;
   private dialog: MatDialog;
   private audioService: AudioService;
   private themeService: ThemeService;
@@ -34,7 +30,6 @@ export class Tw3HomeComponent {
     this.themeService = inject(ThemeService);
     this.audioService = inject(AudioService);
     this.dialog = inject(MatDialog);
-    this.responsiveService = inject(ResponsiveService);
   }
 
   ngOnInit(): void {

@@ -24,7 +24,34 @@
       "COPYRIGHT": "Know more about ",
 
       "Red Dead Redemption 2": {},
-      "THE WITCHER 3": {},
+      "THE WITCHER 3": {
+        "HOME": {
+          "NAVIGATE": "NAVIGATE",
+          "OPTIONS": "OPTIONS",
+          "QUIT-GAME": "QUIT GAME",
+          "COPYRIGHT": "The Witcher 3® is a registered trademark of CD PROJEKT S.A. Unofficial fan project."
+        },
+        "DIALOG-HOME": {
+          "LEVEL": "Level",
+          "GO-BACK": "Return",
+          "CLOSE": "Close"
+        },
+        "NAVIGATE-MAP": {
+          "HUD": {
+            "THIS-IS-THE-MAP": "This is the map of Toussaint",
+            "EXPLORE": "Explore this world!",
+            "SIGNAGE": "Signage",
+            "MISSION": "Mission",
+            "abandoned-site": "Abandoned site",
+            "armourer": "Journeyman armorer",
+            "bandit-camp": "Bandit camp",
+            "hidden": "Hidden treasure",
+            "monster-den": "Monster den",
+            "roach": "Roach"
+          },
+          "MAP-ICONS": {}
+        }
+      },
       "The Legend of Zelda: BOTW": {},
       "Persona 3": {},
       "ELDEN RING": {},

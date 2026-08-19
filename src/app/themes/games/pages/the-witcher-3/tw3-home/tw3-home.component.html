@@ -7,13 +7,19 @@
     <div id="action-buttons">
       <button (click)="openTypeDialog('HomeNavigate')">
         <div class="bottom-corners"></div>
-        <span>NAVEGAR</span></button
+        <span>{{
+          "THEMES.GAMES.THE WITCHER 3.HOME.NAVIGATE" | translate
+        }}</span></button
       ><button (click)="openTypeDialog('HomeOptions')">
         <div class="bottom-corners"></div>
-        <span>OPÇÕES</span></button
+        <span>{{
+          "THEMES.GAMES.THE WITCHER 3.HOME.OPTIONS" | translate
+        }}</span></button
       ><button (click)="exitGame()">
         <div class="bottom-corners"></div>
-        <span>SAIR DO JOGO</span>
+        <span>{{
+          "THEMES.GAMES.THE WITCHER 3.HOME.QUIT-GAME" | translate
+        }}</span>
       </button>
     </div>
     <div id="menu-footer">
@@ -22,22 +28,29 @@
         <span class="badge-span-title"
           >HEARTS<span class="connector">OF</span>STONE</span
         >
-        <img
-          src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-blue-badge.webp"
-          alt=""
-        />
+        <a href="https://www.thewitcher.com/de/pt-br/witcher3" target="_blank">
+          <img
+            src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-blue-badge.webp"
+            alt=""
+        /></a>
       </button>
       <button (click)="playClickSound()">
         <span class="badge-span">EXPANSION PACK</span>
         <span class="badge-span-title"
           >BLOOD<span class="connector connector--red">AND</span>WINE</span
         >
-        <img
-          src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-red-badge.webp"
-          alt=""
-        />
+        <a href="https://www.thewitcher.com/de/pt-br/witcher3" target="_blank"
+          ><img
+            src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-red-badge.webp"
+            alt=""
+        /></a>
       </button>
     </div>
   </section>
 </header>
+<div id="copyright">
+  <a href="https://www.thewitcher.com/de/pt-br/witcher3" target="_blank">
+    {{ "THEMES.GAMES.THE WITCHER 3.HOME.COPYRIGHT" | translate }}</a
+  >
+</div>
 <app-tw3-home-effects></app-tw3-home-effects>

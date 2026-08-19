@@ -118,16 +118,18 @@ export class TW3DialogsComponent implements OnDestroy {
     this.playClickSound();
     this.currentOptionsMenu.set(optionsMenuType);
   }
-
-  public changeThemes(selectedTheme: Themes): void {
+  public closeAllDialogs(): void {
     this.playClickSound();
     this.dialog.closeAll();
+  }
+
+  public changeThemes(selectedTheme: Themes): void {
     this.themeService.changeTheme(selectedTheme);
+    this.closeAllDialogs();
   }
 
   public changeLang(selectedLang: string): void {
-    this.playClickSound();
-    this.dialog.closeAll();
     this.languageService.setLanguage(selectedLang);
+    this.closeAllDialogs();
   }
 }

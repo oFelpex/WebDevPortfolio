@@ -3,28 +3,41 @@ import * as L from 'leaflet';
 import { AudioService } from '../../../../../../../../../services/audio-service/audio.service';
 import { Router, RouterModule } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../../../../../../../../../services/language-service/language.service';
 
 interface FastTravel {
   id: string;
-  title: string;
-  description: string;
+  title: {
+    'en-US': string;
+    'pt-BR': string;
+  };
+  description: {
+    'en-US': string;
+    'pt-BR': string;
+  };
   coords: [number, number]; // [Y, X]
 }
 interface OtherIcons {
   id: string;
   url: string;
-  description: string;
+  description: {
+    'en-US': string;
+    'pt-BR': string;
+  };
   coords: [number, number]; // [Y, X]
 }
 
 @Component({
   selector: 'app-tw3-dialog-navigate',
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './tw3-dialog-navigate.component.html',
   styleUrl: './tw3-dialog-navigate.component.scss',
 })
 export class Tw3DialogNavigateComponent implements AfterViewInit, OnDestroy {
   private audioService: AudioService;
+  private languageService: LanguageService;
+
   private router: Router;
   private dialog: MatDialog;
 
@@ -33,82 +46,112 @@ export class Tw3DialogNavigateComponent implements AfterViewInit, OnDestroy {
   private fastTravelPoints: FastTravel[] = [
     {
       id: 'home',
-      title: 'Página inicial',
-      description: 'Você já está aqui!',
+      title: { 'en-US': 'Home page', 'pt-BR': 'Página inicial' },
+      description: {
+        'en-US': "You're already here!",
+        'pt-BR': 'Você já está aqui!',
+      },
       coords: [585, 675], // [Y, X]
     },
     {
       id: 'contact-me',
-      title: 'Contatos',
-      description: 'Entre em contato comigo.',
+      title: { 'en-US': 'Contacts', 'pt-BR': 'Contatos' },
+      description: {
+        'en-US': 'Get in touch with me.',
+        'pt-BR': 'Entre em contato comigo.',
+      },
       coords: [480, 475],
     },
     {
       id: 'projects',
-      title: 'Meus projetos',
-      description: 'Conheça todos os meus projetos.',
+      title: { 'en-US': 'My projects', 'pt-BR': 'Meus projetos' },
+      description: {
+        'en-US': 'Check out all my projects.',
+        'pt-BR': 'Conheça todos os meus projetos.',
+      },
       coords: [355, 640],
     },
     {
       id: 'about-me',
-      title: 'Sobre mim',
-      description: 'Falo um pouco sobre minha pessoa.',
+      title: { 'en-US': 'About me', 'pt-BR': 'Sobre mim' },
+      description: {
+        'en-US': 'I’ll tell you a little about myself.',
+        'pt-BR': 'Falo um pouco sobre minha pessoa.',
+      },
       coords: [420, 750],
     },
   ];
+
   public someOtherIcons: OtherIcons[] = [
     {
       id: 'mission',
       url: '../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-mission-icon.webp',
-      description: 'Jogar este jogo maravilhoso',
+      description: {
+        'en-US': 'Play this wonderful game.',
+        'pt-BR': 'Jogar este jogo maravilhoso.',
+      },
       coords: [355, 525], // [Y, X]
     },
     {
       id: 'abandoned-site',
       url: '../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-abandoned-site-icon.webp',
-      description: 'Abandoned Site',
+      description: {
+        'en-US': 'Abandoned Site',
+        'pt-BR': 'Local Abandonado',
+      },
       coords: [440, 1065], // [Y, X]
     },
     {
       id: 'armourer',
       url: '../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-armourer-icon.webp',
-      description: 'Journeyman Armorer',
+      description: {
+        'en-US': 'Journeyman Armorer',
+        'pt-BR': 'Armeiro Qualificado',
+      },
       coords: [155, 855], // [Y, X]
     },
     {
       id: 'bandit-camp',
       url: '../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-bandit-camp-icon.webp',
-      description: 'Bandit Camp',
+      description: {
+        'en-US': 'Bandit Camp',
+        'pt-BR': 'Acampamento de Bandidos',
+      },
       coords: [110, 425], // [Y, X]
     },
     {
       id: 'hidden',
       url: '../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-hidden-icon.webp',
-      description: 'Hidden Treasure',
+      description: { 'en-US': 'Hidden Treasure', 'pt-BR': 'Tesouro Escondido' },
       coords: [525, 855], // [Y, X]
     },
     {
       id: 'monster-den',
       url: '../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-monster-den-icon.webp',
-      description: 'Monster Den',
+      description: { 'en-US': 'Monster Den', 'pt-BR': 'Covil dos Monstros' },
       coords: [525, 260], // [Y, X]
     },
     {
-      id: 'reach',
+      id: 'roach',
       url: '../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-roach-icon.webp',
-      description: 'Carpeado',
+      description: { 'en-US': 'Roach', 'pt-BR': 'Carpeado' },
       coords: [585, 675], // [Y, X]
     },
   ];
 
   constructor() {
     this.audioService = inject(AudioService);
+    this.languageService = inject(LanguageService);
     this.router = inject(Router);
     this.dialog = inject(MatDialog);
   }
 
   ngAfterViewInit(): void {
     this.initMap();
+  }
+
+  private get currentLang(): string {
+    return this.languageService.getCurrentLanguage();
   }
 
   private initMap(): void {
@@ -151,6 +194,13 @@ export class Tw3DialogNavigateComponent implements AfterViewInit, OnDestroy {
 
   private addMarkers(): void {
     this.fastTravelPoints.forEach((FastTravelPoints) => {
+      const langKey = this.currentLang as 'en-US' | 'pt-BR';
+      const title =
+        FastTravelPoints.title[langKey] || FastTravelPoints.title['en-US'];
+      const description =
+        FastTravelPoints.description[langKey] ||
+        FastTravelPoints.description['pt-BR'];
+
       const fastTravelIcon = L.divIcon({
         className: 'tw3-custom-marker-wrapper',
         html: `
@@ -160,7 +210,7 @@ export class Tw3DialogNavigateComponent implements AfterViewInit, OnDestroy {
             class="tw3-marker-icon" 
             alt="${FastTravelPoints.title}"
           />
-          <span class="tw3-marker-label">${FastTravelPoints.title}</span>
+          <span class="tw3-marker-label">${title}</span>
         </div>
       `,
         iconSize: [27, 34],
@@ -172,9 +222,9 @@ export class Tw3DialogNavigateComponent implements AfterViewInit, OnDestroy {
         autoPanOnFocus: false,
       }).addTo(this.map);
 
-      fastTravelMarker.bindTooltip(FastTravelPoints.description, {
+      fastTravelMarker.bindTooltip(description, {
         direction: 'right',
-        offset: [25, -10], // [X, Y]
+        offset: [25, -10],
         className: 'tw3-marker-tooltip',
       });
 
@@ -205,9 +255,14 @@ export class Tw3DialogNavigateComponent implements AfterViewInit, OnDestroy {
         autoPanOnFocus: false,
       }).addTo(this.map);
 
-      otherIconMarker.bindTooltip(otherIconPoints.description, {
+      const langKey = this.currentLang as 'en-US' | 'pt-BR';
+      const description =
+        otherIconPoints.description[langKey] ||
+        otherIconPoints.description['en-US'];
+
+      otherIconMarker.bindTooltip(description, {
         direction: 'right',
-        offset: [25, -10], // [X, Y]
+        offset: [25, -10],
         className: 'tw3-marker-tooltip',
       });
     });

@@ -2,7 +2,12 @@
   <div id="map-hud">
     <div id="top-right-hud">
       <div class="hud-item right-title">
-        <span> Este é o mapa de Toussaint </span>
+        <span>
+          {{
+            "THEMES.GAMES.THE WITCHER 3.NAVIGATE-MAP.HUD.THIS-IS-THE-MAP"
+              | translate
+          }}
+        </span>
         <span class="exclamation-span">!</span>
       </div>
       <div class="hud-item right-subtitle">
@@ -10,7 +15,11 @@
           src="../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-second-mission-icon.webp"
           alt="Second mission icon"
         />
-        <span> Explore este mundo! </span>
+        <span>
+          {{
+            "THEMES.GAMES.THE WITCHER 3.NAVIGATE-MAP.HUD.EXPLORE" | translate
+          }}
+        </span>
         <img
           src="../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-mission-icon.webp"
           alt="Mission icon"
@@ -23,7 +32,11 @@
           src="../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-fast-travel-icon.webp"
           alt="Travel icon"
         />
-        <span> Placa de sinalização </span>
+        <span>
+          {{
+            "THEMES.GAMES.THE WITCHER 3.NAVIGATE-MAP.HUD.SIGNAGE" | translate
+          }}
+        </span>
       </div>
 
       @for (otherIcon of someOtherIcons; track $index) {
@@ -31,9 +44,10 @@
           <img [src]="otherIcon.url" [alt]="otherIcon.description" />
           <span>
             {{
-              otherIcon.description === someOtherIcons[0].description
-                ? "Missão"
-                : otherIcon.description
+              "THEMES.GAMES.THE WITCHER 3.NAVIGATE-MAP.HUD." +
+                (otherIcon.description === someOtherIcons[0].description
+                  ? "MISSION"
+                  : otherIcon.id) | translate
             }}
           </span>
         </div>
