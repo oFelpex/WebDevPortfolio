@@ -1,0 +1,12 @@
+$cursor-path: "../../../../../assets/themes/games/the witcher 3/cursor";
+
+$cursor-default:
+  url("#{$cursor-path}/tw3-default.cur") 0 0,
+  auto;
+
+body.the-witcher-3-theme.home-page {
+  &,
+  & * {
+    cursor: $cursor-default !important;
+  }
+}

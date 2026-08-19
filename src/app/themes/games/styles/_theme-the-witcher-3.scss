@@ -1,6 +1,9 @@
 @use "@angular/material" as mat;
+
 @use "./angular-colors-and-fonts/theme-the-witcher-3-colors" as
   theme-the-witcher-3-colors;
+
+@use "./cursor/theme-the-witcher-3-cursors";
 
 body.the-witcher-3-theme {
   $corner-size: 8px;
