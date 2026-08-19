@@ -1,4 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+
 import { LogoEffectsComponent } from '../../../../../logo-effects/logo-effects.component';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
@@ -21,12 +23,16 @@ type dialogType = 'HomeOptions' | 'HomeNavigate';
   templateUrl: './tw3-home.component.html',
   styleUrl: './tw3-home.component.scss',
 })
-export class Tw3HomeComponent {
+export class Tw3HomeComponent implements OnInit, OnDestroy {
   private dialog: MatDialog;
   private audioService: AudioService;
   private themeService: ThemeService;
+  private renderer: Renderer2;
+  private document: Document;
 
   constructor() {
+    this.renderer = inject(Renderer2);
+    this.document = inject(DOCUMENT);
     this.themeService = inject(ThemeService);
     this.audioService = inject(AudioService);
     this.dialog = inject(MatDialog);
@@ -34,10 +40,12 @@ export class Tw3HomeComponent {
 
   ngOnInit(): void {
     this.headerSetPosition();
+    this.renderer.addClass(this.document.body, 'home-page');
   }
 
   ngOnDestroy(): void {
     this.headerRestaurePosition();
+    this.renderer.removeClass(this.document.body, 'home-page');
   }
 
   public playClickSound(): void {
