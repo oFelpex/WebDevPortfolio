@@ -13,7 +13,10 @@
       <div class="hud-item right-subtitle">
         <img
           src="../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-second-mission-icon.webp"
-          alt="Second mission icon"
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.NAVIGATE-MAP.HUD.SECOND-MISSION-ICON-ALT'
+              | translate
+          "
         />
         <span>
           {{
@@ -22,7 +25,10 @@
         </span>
         <img
           src="../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-mission-icon.webp"
-          alt="Mission icon"
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.NAVIGATE-MAP.HUD.MAIN-MISSION-ICON-ALT'
+              | translate
+          "
         />
       </div>
     </div>
@@ -30,7 +36,10 @@
       <div class="hud-item">
         <img
           src="../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-fast-travel-icon.webp"
-          alt="Travel icon"
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.NAVIGATE-MAP.HUD.SIGNAGE-ICON-ALT'
+              | translate
+          "
         />
         <span>
           {{
@@ -41,13 +50,19 @@
 
       @for (otherIcon of someOtherIcons; track $index) {
         <div class="hud-item">
-          <img [src]="otherIcon.url" [alt]="otherIcon.description" />
+          <img
+            [src]="otherIcon.url"
+            [alt]="
+              'THEMES.GAMES.THE WITCHER 3.NAVIGATE-MAP.MAP-ICONS.SOME-OTHER-ICONS-' +
+                otherIcon.id.toUpperCase() | translate
+            "
+          />
           <span>
             {{
               "THEMES.GAMES.THE WITCHER 3.NAVIGATE-MAP.HUD." +
-                (otherIcon.description === someOtherIcons[0].description
+                (otherIcon.id === someOtherIcons[0].id
                   ? "MISSION"
-                  : otherIcon.id) | translate
+                  : otherIcon.id.toUpperCase()) | translate
             }}
           </span>
         </div>

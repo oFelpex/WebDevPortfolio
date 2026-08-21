@@ -25,31 +25,93 @@
 
       "Red Dead Redemption 2": {},
       "THE WITCHER 3": {
+        "BUTTONS": {
+          "ARROW-LEFT-ALT": "A button that is also an arrow pointing to the left",
+          "ARROW-RIGHT-ALT": "A button that is also an arrow pointing to the right",
+          "BUTTONS-BG-ALT": "Stylized yellow background for the button, similar to the ones found in the witcher 3",
+          "MEDALLION-ICON-ALT": "Wolf School Witcher medallion from the game the witcher 3",
+          "LANG-ICON-ALT": "Icon of the letter 'A', referring to the language change",
+
+          "GAMES-ICON-ALT": "Icon of a black game controller, representing custom gaming-style themes",
+          "COLORS-ICON-ALT": "Icon of a painter's palette, representing custom themes on a color palette",
+
+          "MINECRAFT-COLORED-ICON-ALT": "Colorful minecraft icon, click to change the theme",
+          "MINECRAFT-MONOCHROME-ICON-ALT": "Monochromatic minecraft icon, it becomes colorful again when you hover the mouse over it",
+          "THE WITCHER 3-COLORED-ICON-ALT": "Colorful the witcher 3 icon, click to change the theme",
+          "THE WITCHER 3-MONOCHROME-ICON-ALT": "Monochromatic the witcher 3 icon, it becomes colorful again when you hover the mouse over it",
+
+          "PT-BR-COLORED-FLAG-ALT": "Colorful Brazil flag, click to change the language to PT-BR",
+          "PT-BR-MONOCHROME-FLAG-ALT": "Monochromatic Brazil flag, it becomes colorful again when you hover the mouse over it",
+          "EN-US-COLORED-FLAG-ALT": "Colorful USA flag, click to change the language to EN-US",
+          "EN-US-MONOCHROME-FLAG-ALT": "Monochromatic USA flag, it becomes colorful again when you hover the mouse over it"
+        },
         "HOME": {
           "NAVIGATE": "NAVIGATE",
           "OPTIONS": "OPTIONS",
           "QUIT-GAME": "QUIT GAME",
-          "COPYRIGHT": "The Witcher 3® is a registered trademark of CD PROJEKT S.A. Unofficial fan project."
+          "COPYRIGHT": "The Witcher 3® is a registered trademark of CD PROJEKT S.A. Unofficial fan project.",
+
+          "BLUE-BADGE-ALT": "Just a blue trapezoid from the game The Witcher 3 that serves as a container for an advertisement for its downloadable content; clicking it will take you to the game's page",
+          "RED-BADGE-ALT": "Just a red trapezoid from the game The Witcher 3 that serves as a container for an advertisement for its downloadable content; clicking it will take you to the game's page"
         },
         "DIALOG-HOME": {
           "LEVEL": "Level",
           "GO-BACK": "Return",
-          "CLOSE": "Close"
+          "CLOSE": "Close",
+
+          "WEIGHT-ICON-ALT": "Aesthetic weight icon, intended solely as a reference to the witcher 3",
+          "MONEY-ICON-ALT": "Aesthetic coin icon, intended solely as a reference to the witcher 3",
+          "": ""
         },
         "NAVIGATE-MAP": {
           "HUD": {
             "THIS-IS-THE-MAP": "This is the map of Toussaint",
             "EXPLORE": "Explore this world!",
+            "SECOND-MISSION-ICON-ALT": "Secondary quest icon from the witcher 3",
+            "MAIN-MISSION-ICON-ALT": "Main quest icon from the witcher 3",
+
             "SIGNAGE": "Signage",
+            "SIGNAGE-ICON-ALT": "Signpost icon used for fast travel in the game the witcher 3",
             "MISSION": "Mission",
-            "abandoned-site": "Abandoned site",
-            "armourer": "Journeyman armorer",
-            "bandit-camp": "Bandit camp",
-            "hidden": "Hidden treasure",
-            "monster-den": "Monster den",
-            "roach": "Roach"
+            "ABANDONED-SITE": "Abandoned site",
+            "ARMOURER": "Journeyman armorer",
+            "BANDIT-CAMP": "Bandit camp",
+            "HIDDEN": "Hidden treasure",
+            "MONSTER-DEN": "Monster den",
+            "ROACH": "Roach"
           },
-          "MAP-ICONS": {}
+          "MAP-ICONS": {
+            "FAST-TRAVEL-POINT-HOME-TITLE": "Home page",
+            "FAST-TRAVEL-POINT-HOME-DESCRIPTION": "You're already here!",
+            "FAST-TRAVEL-POINT-HOME-ALT": "Fast travel icon that takes you to the home page, but you're already there!",
+
+            "FAST-TRAVEL-POINT-CONTACT-ME-TITLE": "Contacts",
+            "FAST-TRAVEL-POINT-CONTACT-ME-DESCRIPTION": "Get in touch with me.",
+            "FAST-TRAVEL-POINT-CONTACT-ME-ALT": "Fast travel icon that takes you to the Contacts page",
+
+            "FAST-TRAVEL-POINT-PROJECTS-TITLE": "My projects",
+            "FAST-TRAVEL-POINT-PROJECTS-DESCRIPTION": "Check out all my projects.",
+            "FAST-TRAVEL-POINT-PROJECTS-ALT": "Fast travel icon that takes you to the Projects page",
+
+            "FAST-TRAVEL-POINT-ABOUT-ME-TITLE": "About me",
+            "FAST-TRAVEL-POINT-ABOUT-ME-DESCRIPTION": "I'll tell you a little about myself.",
+            "FAST-TRAVEL-POINT-ABOUT-ME-ALT": "Fast travel icon that takes you to the page about myself",
+
+            "SOME-OTHER-ICONS-MISSION": "Play this wonderful game.",
+            "SOME-OTHER-ICONS-MISSION-ALT": "the witcher 3 game quest icon",
+            "SOME-OTHER-ICONS-ABANDONED-SITE": "Abandoned Site",
+            "SOME-OTHER-ICONS-ABANDONED-SITE-ALT": "The witcher 3 game Abandoned Site icon",
+            "SOME-OTHER-ICONS-ARMOURER": "Journeyman Armorer",
+            "SOME-OTHER-ICONS-ARMOURER-ALT": "The witcher 3 game Journeyman Armorer icon",
+            "SOME-OTHER-ICONS-BANDIT-CAMP": "Bandit Camp",
+            "SOME-OTHER-ICONS-BANDIT-CAMP-ALT": "The witcher 3 game Bandit Camp icon",
+            "SOME-OTHER-ICONS-HIDDEN": "Hidden Treasure",
+            "SOME-OTHER-ICONS-HIDDEN-ALT": "The witcher 3 game Hidden Treasure icon",
+            "SOME-OTHER-ICONS-MONSTER-DEN": "Monster Den",
+            "SOME-OTHER-ICONS-MONSTER-DEN-ALT": "The witcher 3 game Monster Den icon",
+            "SOME-OTHER-ICONS-ROACH": "Roach",
+            "SOME-OTHER-ICONS-ROACH-ALT": "The witcher 3 game horse called Roach"
+          }
         }
       },
       "The Legend of Zelda: BOTW": {},
@@ -137,11 +199,13 @@
     },
 
     "NAV-BAR": {
-      "CHANGE-LANG": "Language changed to en-US"
+      "CHANGE-LANG": "Language changed to en-US",
+      "CHANGE-THEME": ""
     },
 
     "NAV-MOBILE": {
-      "CHANGE-LANG": "Language changed to en-US"
+      "CHANGE-LANG": "Language changed to en-US",
+      "CHANGE-THEME": ""
     },
 
     "CONTACT-PAGE": {
@@ -164,6 +228,7 @@
 
   "NAV-BAR-LIST": {
     "MAT-TOOL-TIP-EASTER-EGG": "Click to see a secret",
+    "MAT-TOOL-TIP-EASTER-EGG-ALT": "It's a personality logo that says Felpex",
     "HOME": "Home",
     "ABOUT": "About me",
     "PROJECTS": "Projects",
@@ -214,6 +279,8 @@
     "FIRST-HALF-FELIPE": "Felipe Costa da Silva, 23 years old. Rio Grande do Norte, Brazil.",
     "FIRST-HALF-PARAGRAPH": "I'm studying Science and Technology at the Federal University of Rio Grande do Norte, with an emphasis on Applied Computing, since 2023 I've been studying front end technologies. In my free time I like to play some video games and work on my personal projects.",
 
+    "SECOND-HALF-ALT": "It's photo of myself, I have black hair, using blue t-shirt",
+
     "PHOTOS-FOOTER-CLICK-EXPAND": "Click to expand",
 
     "DIALOG-PHOTO-CLOSE-BUTTON": "Close",
@@ -227,13 +294,17 @@
   "PROJECTS-PAGE": {
     "PROJECTS": "Projects",
 
-    "Explore our premium collection of authentic katanas. Find the perfect sword for collectors, martial artists, and enthusiasts. High-quality craftsmanship and detailed designs for every budget.": "Explore our premium collection of authentic katanas. Find the perfect sword for collectors, martial artists, and enthusiasts. High-quality craftsmanship and detailed designs for every budget.",
+    "GITHUB-ICON-ALT": "Takes you to the repository page on github",
+    "ANCHOR-ICON-ALT": "Takes you to the website deployed",
 
-    "Manage your tasks simply and efficiently with our to-do list app. Easily add, edit, filter and complete tasks.": "Manage your tasks simply and efficiently with our to-do list app. Easily add, edit, filter and complete tasks.",
+    "KATANA-DYNASTY-DESCRIPTION": "Explore our premium collection of authentic katanas. Find the perfect sword for collectors, martial artists, and enthusiasts. High-quality craftsmanship and detailed designs for every budget.",
+    "KATANA-DYNASTY-ALT": "It's a print of the homepage from the site: Katana Dynasty",
 
-    "Order your snack themed with the HORROR of Halloween! Take advantage of the promotions and don't forget to sign up to receive offers from Caldeirão da Bruxa.": "Order your snack themed with the HORROR of Halloween! Take advantage of the promotions and don't forget to sign up to receive offers from Caldeirão da Bruxa.",
+    "TO-DO-LIST-DESCRIPTION": "Manage your tasks simply and efficiently with our to-do list app. Easily add, edit, filter and complete tasks.",
+    "TO-DO-LIST-ALT": "It's a print of the homepage from the site: To-Do-List",
 
-    "Space Hero is a game made for a final project for a college subject, this is a remake of it, but still in the development process.": "Space Hero is a game made for a final project for a college subject, this is a remake of it, but still in the development process."
+    "CALDEIRAO-DA-BRUXA-DESCRIPTION": "Order your snack themed with the HORROR of Halloween! Take advantage of the promotions and don't forget to sign up to receive offers from Caldeirão da Bruxa.",
+    "CALDEIRAO-DA-BRUXA-ALT": "It's a print of the homepage from the site: Caldeirão da Bruxa"
   },
 
   "CONTACT-PAGE": {

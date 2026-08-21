@@ -25,31 +25,93 @@
 
       "Red Dead Redemption 2": {},
       "THE WITCHER 3": {
+        "BUTTONS": {
+          "ARROW-LEFT-ALT": "Um botão que também é uma seta apontando para a esquerda",
+          "ARROW-RIGHT-ALT": "Um botão que também é uma seta apontando para a direita",
+          "BUTTONS-BG-ALT": "Plano de fundo estilizado na cor amarela para o botão, igual aos que tem no jogo the witcher 3",
+          "MEDALLION-ICON-ALT": "Medalhão de bruxo da escola de lobo do jogo the witcher 3",
+          "LANG-ICON-ALT": "Icone da letra 'A', que se refere a mudança de idioma",
+
+          "GAMES-ICON-ALT": "Icone de um controle preto, que representa temas personalizados no estilo de jogos",
+          "COLORS-ICON-ALT": "Icone de uma paleta de pintura, que representa temas personalizados em uma paleta de cores",
+
+          "MINECRAFT-COLORED-ICON-ALT": "Icone colorido do minecraft, clique para alterar o tema",
+          "MINECRAFT-MONOCHROME-ICON-ALT": "Icone monocromático do minecraft, ao passar o mouse em cima, se torna colorido novamente",
+          "THE WITCHER 3-COLORED-ICON-ALT": "Icone colorido do the witcher 3, clique para alterar o tema",
+          "THE WITCHER 3-MONOCHROME-ICON-ALT": "Icone monocromático do the witcher 3, ao passar o mouse em cima, se torna colorido novamente",
+
+          "PT-BR-COLORED-FLAG-ALT": "Bandeira colorida do Brasil, clique para alterar o idioma para PT-BR",
+          "PT-BR-MONOCHROME-FLAG-ALT": "Bandeira monocromática do Brasil, ao passar o mouse em cima, se torna colorido novamente",
+          "EN-US-COLORED-FLAG-ALT": "Bandeira colorida dos EUA, clique para alterar o idioma para EN-US",
+          "EN-US-MONOCHROME-FLAG-ALT": "Bandeira monocromática dos EUA, ao passar o mouse em cima, se torna colorido novamente"
+        },
         "HOME": {
           "NAVIGATE": "NAVEGAR",
           "OPTIONS": "OPÇÕES",
           "QUIT-GAME": "SAIR DO JOGO",
-          "COPYRIGHT": "The Witcher 3® é uma marca registrada da CD PROJEKT S.A. Este projeto não é afiliado ou endossado pela CD PROJEKT RED."
+          "COPYRIGHT": "The Witcher 3® é uma marca registrada da CD PROJEKT S.A. Este projeto não é afiliado ou endossado pela CD PROJEKT RED.",
+
+          "BLUE-BADGE-ALT": "Apenas um trapézio azul do jogo The Witcher 3, e que está servindo de container para o anúncio de seu conteúdo baixável, ao clicar te levará à página do jogo",
+          "RED-BADGE-ALT": "Apenas um trapézio vermelho do jogo The Witcher 3, e que está servindo de container para o anúncio de seu conteúdo baixável, ao clicar te levará à página do jogo"
         },
         "DIALOG-HOME": {
           "LEVEL": "Nível",
           "GO-BACK": "Voltar",
-          "CLOSE": "Fechar"
+          "CLOSE": "Fechar",
+
+          "WEIGHT-ICON-ALT": "Icone estético de peso, apenas para fazer referência ao do jogo the witcher 3",
+          "MONEY-ICON-ALT": "Icone estético de moedas, apenas para fazer referência ao do jogo the witcher 3",
+          "": ""
         },
         "NAVIGATE-MAP": {
           "HUD": {
             "THIS-IS-THE-MAP": "Este é o mapa de Toussaint",
             "EXPLORE": "Explore este mundo!",
+            "SECOND-MISSION-ICON-ALT": "Icone secundario de missão do jogo the witcher 3",
+            "MAIN-MISSION-ICON-ALT": "Icone principal de missão do jogo the witcher 3",
+
             "SIGNAGE": "Placa de sinalização",
+            "SIGNAGE-ICON-ALT": "Icone de placa de sinalização, usada para viagem rápida no jogo the witcher 3",
             "MISSION": "Missão",
-            "abandoned-site": "Local abandonado",
-            "armourer": "Armeiro qualificado",
-            "bandit-camp": "Acampamento de bandidos",
-            "hidden": "Tesouro escondido",
-            "monster-den": "Covil dos monstros",
-            "roach": "Carpeado"
+            "ABANDONED-SITE": "Local abandonado",
+            "ARMOURER": "Armeiro qualificado",
+            "BANDIT-CAMP": "Acampamento de bandidos",
+            "HIDDEN": "Tesouro escondido",
+            "MONSTER-DEN": "Covil dos monstros",
+            "ROACH": "Carpeado"
           },
-          "MAP-ICONS": {}
+          "MAP-ICONS": {
+            "FAST-TRAVEL-POINT-HOME-TITLE": "Página inicial",
+            "FAST-TRAVEL-POINT-HOME-DESCRIPTION": "Você já está aqui!",
+            "FAST-TRAVEL-POINT-HOME-ALT": "Icone de viagem rápida que te leva à Página inicial, mas você já está nela!",
+
+            "FAST-TRAVEL-POINT-CONTACT-ME-TITLE": "Contatos",
+            "FAST-TRAVEL-POINT-CONTACT-ME-DESCRIPTION": "Entre em contato comigo.",
+            "FAST-TRAVEL-POINT-CONTACT-ME-ALT": "Icone de viagem rápida que te leva à página Contatos",
+
+            "FAST-TRAVEL-POINT-PROJECTS-TITLE": "Meus projetos",
+            "FAST-TRAVEL-POINT-PROJECTS-DESCRIPTION": "Conheça todos os meus projetos.",
+            "FAST-TRAVEL-POINT-PROJECTS-ALT": "Icone de viagem rápida que te leva à página Meus Projetos",
+
+            "FAST-TRAVEL-POINT-ABOUT-ME-TITLE": "Sobre mim",
+            "FAST-TRAVEL-POINT-ABOUT-ME-DESCRIPTION": "Falo um pouco sobre minha pessoa.",
+            "FAST-TRAVEL-POINT-ABOUT-ME-ALT": "Icone de viagem rápida que te leva à página Sobre mim",
+
+            "SOME-OTHER-ICONS-MISSION": "Jogar este jogo maravilhoso.",
+            "SOME-OTHER-ICONS-MISSION-ALT": "Icone de missão do jogo the witcher 3",
+            "SOME-OTHER-ICONS-ABANDONED-SITE": "Local Abandonado",
+            "SOME-OTHER-ICONS-ABANDONED-SITE-ALT": "Icone de Local Abandonado do jogo the witcher 3",
+            "SOME-OTHER-ICONS-ARMOURER": "Armeiro Qualificado",
+            "SOME-OTHER-ICONS-ARMOURER-ALT": "Icone de Armeiro Qualificado do jogo the witcher 3",
+            "SOME-OTHER-ICONS-BANDIT-CAMP": "Acampamento de Bandidos",
+            "SOME-OTHER-ICONS-BANDIT-CAMP-ALT": "Icone de Acampamento de Bandidos do jogo the witcher 3",
+            "SOME-OTHER-ICONS-HIDDEN": "Tesouro Escondido",
+            "SOME-OTHER-ICONS-HIDDEN-ALT": "Icone de Tesouro Escondido do jogo the witcher 3",
+            "SOME-OTHER-ICONS-MONSTER-DEN": "Covil dos Monstros",
+            "SOME-OTHER-ICONS-MONSTER-DEN-ALT": "Icone de Covil dos Monstros do jogo the witcher 3",
+            "SOME-OTHER-ICONS-ROACH": "Carpeado",
+            "SOME-OTHER-ICONS-ROACH-ALT": "Icone de do cavalo chamado Carpeado do jogo the witcher 3"
+          }
         }
       },
       "The Legend of Zelda: BOTW": {},
@@ -166,6 +228,7 @@
 
   "NAV-BAR-LIST": {
     "MAT-TOOL-TIP-EASTER-EGG": "Click para ver um segredo",
+    "MAT-TOOL-TIP-EASTER-EGG-ALT": "É um logotipo com personalidade que diz Felpex",
     "HOME": "Início",
     "ABOUT": "Sobre mim",
     "PROJECTS": "Projetos",
@@ -216,6 +279,8 @@
     "FIRST-HALF-FELIPE": "Felipe Costa da Silva, 23 anos de idade. Rio Grande do Norte, Brasil.",
     "FIRST-HALF-PARAGRAPH": "Estou cursando Ciências e Tecnologia na Universidade Federal do Rio Grande do Norte, com ênfase em Computação Aplicada. Desde 2023, estudo tecnologias de front-end. No meu tempo livre, gosto de jogar videogames e trabalhar em meus projetos pessoais.",
 
+    "SECOND-HALF-ALT": "É uma foto minha, tenho cabelo preto e estou usando uma camiseta azul",
+
     "PHOTOS-FOOTER-CLICK-EXPAND": "Clique para expandir",
 
     "DIALOG-PHOTO-CLOSE-BUTTON": "Fechar",
@@ -229,13 +294,17 @@
   "PROJECTS-PAGE": {
     "PROJECTS": "Projetos",
 
-    "Explore our premium collection of authentic katanas. Find the perfect sword for collectors, martial artists, and enthusiasts. High-quality craftsmanship and detailed designs for every budget.": "Explore nossa coleção premium de katanas autênticas. Encontre a espada perfeita para colecionadores, artistas marciais e entusiastas. Artesanato de alta qualidade e designs detalhados para todos os orçamentos.",
+    "GITHUB-ICON-ALT": "Leva você à página do repositório no github",
+    "ANCHOR-ICON-ALT": "Leva você ao site publicado",
 
-    "Manage your tasks simply and efficiently with our to-do list app. Easily add, edit, filter and complete tasks.": "Gerencie suas tarefas de forma simples e eficiente com nosso aplicativo de lista de tarefas. Adicione, edite, filtre e conclua tarefas facilmente.",
+    "KATANA-DYNASTY-DESCRIPTION": "Explore nossa coleção premium de katanas autênticas. Encontre a espada perfeita para colecionadores, artistas marciais e entusiastas. Artesanato de alta qualidade e designs detalhados para todos os orçamentos.",
+    "KATANA-DYNASTY-ALT": "É uma print da página inicial do site: Katana Dynasty",
 
-    "Order your snack themed with the HORROR of Halloween! Take advantage of the promotions and don't forget to sign up to receive offers from Caldeirão da Bruxa.": "Peça seu lanche com o TERROR do Halloween! Aproveite as promoções e não se esqueça de se cadastrar para receber ofertas do Caldeirão da Bruxa.",
+    "TO-DO-LIST-DESCRIPTION": "Gerencie suas tarefas de forma simples e eficiente com nosso aplicativo de lista de tarefas. Adicione, edite, filtre e conclua tarefas facilmente.",
+    "TO-DO-LIST-ALT": "É uma print da página inicial do site: To-Do-List",
 
-    "Space Hero is a game made for a final project for a college subject, this is a remake of it, but still in the development process.": "Space Hero é um jogo feito como projeto final de uma disciplina da faculdade. Esta é uma versão remake, ainda em processo de desenvolvimento."
+    "CALDEIRAO-DA-BRUXA-DESCRIPTION": "Peça seu lanche com o TERROR do Halloween! Aproveite as promoções e não se esqueça de se cadastrar para receber ofertas do Caldeirão da Bruxa.",
+    "CALDEIRAO-DA-BRUXA-ALT": "É um print da página inicial do site: Caldeirão da Bruxa"
   },
 
   "CONTACT-PAGE": {

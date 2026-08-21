@@ -86,14 +86,20 @@
             <span>7 / 60</span>
             <img
               src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-weight-icon.webp"
-              alt=""
+              [alt]="
+                'THEMES.GAMES.THE WITCHER 3.DIALOG-HOME.WEIGHT-ICON-ALT'
+                  | translate
+              "
             />
           </div>
           <div class="left-container">
             <span>3</span>
             <img
               src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-money-icon.webp"
-              alt=""
+              [alt]="
+                'THEMES.GAMES.THE WITCHER 3.DIALOG-HOME.MONEY-ICON-ALT'
+                  | translate
+              "
             />
           </div>
         </div>
@@ -123,13 +129,18 @@
           <img
             class="button-bg"
             src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
-            alt=""
+            [alt]="
+              'THEMES.GAMES.THE WITCHER 3.BUTTONS.BUTTONS-BG-ALT' | translate
+            "
           />
           <div class="button-content">
             <img
               class="icon-monochrome-without-colored-icon"
               src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-medallion-icon.webp"
-              alt=""
+              [alt]="
+                'THEMES.GAMES.THE WITCHER 3.BUTTONS.MEDALLION-ICON-ALT'
+                  | translate
+              "
             />
             <span>{{ "UPPERCASE.THEMES" | translate }}</span>
           </div>
@@ -141,13 +152,17 @@
           <img
             class="button-bg"
             src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
-            alt=""
+            [alt]="
+              'THEMES.GAMES.THE WITCHER 3.BUTTONS.BUTTONS-BG-ALT' | translate
+            "
           />
           <div class="button-content">
             <img
               class="icon-monochrome-without-colored-icon"
               src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-langs-icon.webp"
-              alt=""
+              [alt]="
+                'THEMES.GAMES.THE WITCHER 3.BUTTONS.LANG-ICON-ALT' | translate
+              "
             />
             <span>{{ "UPPERCASE.LANGS" | translate }}</span>
           </div>
@@ -165,7 +180,9 @@
             <img
               class="button-bg"
               src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
-              alt=""
+              [alt]="
+                'THEMES.GAMES.THE WITCHER 3.BUTTONS.BUTTONS-BG-ALT' | translate
+              "
             />
             <div class="button-content">
               <img
@@ -173,7 +190,11 @@
                 src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-{{
                   typeOfThemes.toLowerCase()
                 }}.webp"
-                alt=""
+                [alt]="
+                  'THEMES.GAMES.THE WITCHER 3.BUTTONS.' +
+                    typeOfThemes.toUpperCase() +
+                    '-ICON-ALT' | translate
+                "
               />
               <span>{{
                 "DIALOG-THEMES." + typeOfThemes.toUpperCase() | translate
@@ -187,7 +208,9 @@
             <img
               class="button-bg"
               src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
-              alt=""
+              [alt]="
+                'THEMES.GAMES.THE WITCHER 3.BUTTONS.BUTTONS-BG-ALT' | translate
+              "
             />
             <div class="button-content">
               <img
@@ -198,7 +221,11 @@
                     .replaceAll(' ', '-')
                     .replaceAll(':', '')
                 }}-colored.webp"
-                alt=""
+                [alt]="
+                  'THEMES.GAMES.THE WITCHER 3.BUTTONS.' +
+                    gameOption.name.toUpperCase() +
+                    '-COLORED-ICON-ALT' | translate
+                "
               />
               <img
                 class="icon-monochrome"
@@ -208,7 +235,11 @@
                     .replaceAll(' ', '-')
                     .replaceAll(':', '')
                 }}.webp"
-                alt=""
+                [alt]="
+                  'THEMES.GAMES.THE WITCHER 3.BUTTONS.' +
+                    gameOption.name.toUpperCase() +
+                    '-MONOCHROME-ICON-ALT' | translate
+                "
               />
               <span>{{ "THEMES.Games." + gameOption.name | translate }}</span>
             </div>
@@ -220,7 +251,9 @@
             <img
               class="button-bg"
               src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
-              alt=""
+              [alt]="
+                'THEMES.GAMES.THE WITCHER 3.BUTTONS.BUTTONS-BG-ALT' | translate
+              "
             />
             <div class="button-content">
               <div
@@ -236,7 +269,9 @@
             <img
               class="button-bg"
               src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
-              alt=""
+              [alt]="
+                'THEMES.GAMES.THE WITCHER 3.BUTTONS.BUTTONS-BG-ALT' | translate
+              "
             />
             <div class="button-content">
               <img
@@ -244,14 +279,22 @@
                 src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/flags/tw3-flag-{{
                   langOption
                 }}-colored.webp"
-                alt=""
+                [alt]="
+                  'THEMES.GAMES.THE WITCHER 3.BUTTONS.' +
+                    langOption.toUpperCase() +
+                    '-COLORED-FLAG-ALT' | translate
+                "
               />
               <img
                 class="icon-monochrome"
                 src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/flags/tw3-flag-{{
                   langOption
                 }}.webp"
-                alt=""
+                [alt]="
+                  'THEMES.GAMES.THE WITCHER 3.BUTTONS.' +
+                    langOption.toUpperCase() +
+                    '-MONOCHROME-FLAG-ALT' | translate
+                "
               />
               <span>{{ langOption }}</span>
             </div>
@@ -292,14 +335,20 @@
             <span>7 / 60</span>
             <img
               src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-weight-icon.webp"
-              alt=""
+              [alt]="
+                'THEMES.GAMES.THE WITCHER 3.DIALOG-HOME.WEIGHT-ICON-ALT'
+                  | translate
+              "
             />
           </div>
           <div class="left-container">
             <span>3</span>
             <img
               src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-money-icon.webp"
-              alt=""
+              [alt]="
+                'THEMES.GAMES.THE WITCHER 3.DIALOG-HOME.MONEY-ICON-ALT'
+                  | translate
+              "
             />
           </div>
         </div>
