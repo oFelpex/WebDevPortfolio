@@ -5,6 +5,7 @@ import {
   AfterViewInit,
   OnDestroy,
   HostListener,
+  NgZone,
 } from '@angular/core';
 import * as THREE from 'three';
 
@@ -33,7 +34,9 @@ export class Tw3HomeEffectsComponent implements AfterViewInit, OnDestroy {
   private sparkVelocityToGoUp = 2.5;
   private sparkDispersalZ = 1.5;
 
-  private firePosition = new THREE.Vector3(370, -120, 200); // X, Y, Z
+  private fireScreenAnchor = { xRatio: 1.01, yRatio: 0.85 };
+  private fireDepth = 200;
+  private firePosition = new THREE.Vector3(); // X, Y, Z
   private fireLight!: THREE.PointLight;
   private glowMesh!: THREE.Mesh;
 
@@ -51,6 +54,7 @@ export class Tw3HomeEffectsComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.initThree();
+    this.updateFirePosition();
     this.create2DFog();
     this.createFireAndSparks();
     this.animate();
@@ -62,6 +66,8 @@ export class Tw3HomeEffectsComponent implements AfterViewInit, OnDestroy {
 
     this.camera = new THREE.PerspectiveCamera(60, width / height, 1, 1000);
     this.camera.position.z = 500;
+
+    this.camera.updateMatrixWorld(true);
 
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvasRef.nativeElement,
@@ -282,6 +288,56 @@ export class Tw3HomeEffectsComponent implements AfterViewInit, OnDestroy {
     this.scene.add(this.flameParticles);
   }
 
+  private computeWorldPositionFromScreen(
+    xRatio: number,
+    yRatio: number,
+    depthZ: number,
+  ): THREE.Vector3 {
+    const ndcX = xRatio * 2 - 1;
+    const ndcY = -(yRatio * 2 - 1);
+
+    const vector = new THREE.Vector3(ndcX, ndcY, 0.5);
+    vector.unproject(this.camera);
+
+    const dir = vector.sub(this.camera.position).normalize();
+    const distance = (depthZ - this.camera.position.z) / dir.z;
+
+    return this.camera.position.clone().add(dir.multiplyScalar(distance));
+  }
+
+  private updateFirePosition(): void {
+    const newPos = this.computeWorldPositionFromScreen(
+      this.fireScreenAnchor.xRatio,
+      this.fireScreenAnchor.yRatio,
+      this.fireDepth,
+    );
+
+    const delta = newPos.clone().sub(this.firePosition);
+    this.firePosition.copy(newPos);
+
+    if (this.fireLight) this.fireLight.position.copy(this.firePosition);
+    if (this.glowMesh) {
+      this.glowMesh.position.copy(this.firePosition);
+      this.glowMesh.position.y += 10;
+    }
+
+    this.shiftParticlesBy(this.flamePositions, this.flameCount, delta);
+    this.shiftParticlesBy(this.sparkPositions, this.sparkCount, delta);
+  }
+
+  private shiftParticlesBy(
+    positions: Float32Array | undefined,
+    count: number,
+    delta: THREE.Vector3,
+  ): void {
+    if (!positions) return;
+    for (let i = 0; i < count; i++) {
+      positions[i * 3] += delta.x;
+      positions[i * 3 + 1] += delta.y;
+      positions[i * 3 + 2] += delta.z;
+    }
+  }
+
   private animate = (): void => {
     this.animationFrameId = requestAnimationFrame(this.animate);
 
@@ -427,6 +483,8 @@ export class Tw3HomeEffectsComponent implements AfterViewInit, OnDestroy {
     this.camera.updateProjectionMatrix();
 
     this.renderer.setSize(width, height);
+
+    this.updateFirePosition();
   }
 
   ngOnDestroy(): void {
