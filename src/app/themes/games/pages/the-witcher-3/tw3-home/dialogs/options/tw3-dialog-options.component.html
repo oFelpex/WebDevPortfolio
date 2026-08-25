@@ -1,0 +1,206 @@
+<mat-dialog-content id="tw3-dialog-options-container">
+  <div id="top-bar-container">
+    <div id="weight-and-money">
+      <div class="left-container">
+        <span>7 / 60</span>
+        <img
+          src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-weight-icon.webp"
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.DIALOG-HOME.WEIGHT-ICON-ALT' | translate
+          "
+        />
+      </div>
+      <div class="left-container">
+        <span>3</span>
+        <img
+          src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-money-icon.webp"
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.DIALOG-HOME.MONEY-ICON-ALT' | translate
+          "
+        />
+      </div>
+    </div>
+    <div id="level-xp-and-close">
+      <span id="level-word">{{
+        "THEMES.GAMES.THE WITCHER 3.DIALOG-HOME.LEVEL" | translate
+      }}</span>
+      <div id="level-and-xp-bar-container">
+        <span id="level-number">1</span>
+        <div id="xp-bar-container"><div id="xp-bar"></div></div>
+        <span id="xp-number">652/1000</span>
+      </div>
+      <button
+        id="close-menu-button"
+        mat-dialog-close
+        (click)="playClickSound()"
+      >
+        <span>X</span>
+      </button>
+    </div>
+  </div>
+  @if (currentOptionsMenu() === "options") {
+    <button class="special-buttons" (click)="openTypeOfOptionsMenu('themes')">
+      <img
+        class="button-bg"
+        src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
+        [alt]="'THEMES.GAMES.THE WITCHER 3.BUTTONS.BUTTONS-BG-ALT' | translate"
+      />
+      <div class="button-content">
+        <img
+          class="icon-monochrome-without-colored-icon"
+          src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-medallion-icon.webp"
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.BUTTONS.MEDALLION-ICON-ALT' | translate
+          "
+        />
+        <span>{{ "UPPERCASE.THEMES" | translate }}</span>
+      </div>
+    </button>
+    <button class="special-buttons" (click)="openTypeOfOptionsMenu('langs')">
+      <img
+        class="button-bg"
+        src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
+        [alt]="'THEMES.GAMES.THE WITCHER 3.BUTTONS.BUTTONS-BG-ALT' | translate"
+      />
+      <div class="button-content">
+        <img
+          class="icon-monochrome-without-colored-icon"
+          src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-langs-icon.webp"
+          [alt]="'THEMES.GAMES.THE WITCHER 3.BUTTONS.LANG-ICON-ALT' | translate"
+        />
+        <span>{{ "UPPERCASE.LANGS" | translate }}</span>
+      </div>
+    </button>
+  } @else if (currentOptionsMenu() === "themes") {
+    @for (typeOfThemes of themesTypes; track $index) {
+      <button
+        class="special-buttons"
+        (click)="
+          typeOfThemes === 'Games'
+            ? openTypeOfOptionsMenu('gameThemes')
+            : openTypeOfOptionsMenu('colorThemes')
+        "
+      >
+        <img
+          class="button-bg"
+          src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.BUTTONS.BUTTONS-BG-ALT' | translate
+          "
+        />
+        <div class="button-content">
+          <img
+            class="icon-monochrome-without-colored-icon"
+            src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-{{
+              typeOfThemes.toLowerCase()
+            }}.webp"
+            [alt]="
+              'THEMES.GAMES.THE WITCHER 3.BUTTONS.' +
+                typeOfThemes.toUpperCase() +
+                '-ICON-ALT' | translate
+            "
+          />
+          <span>{{
+            "DIALOG-THEMES." + typeOfThemes.toUpperCase() | translate
+          }}</span>
+        </div>
+      </button>
+    }
+  } @else if (currentOptionsMenu() === "gameThemes") {
+    @for (gameOption of gamesOptions; track $index) {
+      <button class="special-buttons" (click)="changeThemes(gameOption)">
+        <img
+          class="button-bg"
+          src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.BUTTONS.BUTTONS-BG-ALT' | translate
+          "
+        />
+        <div class="button-content">
+          <img
+            class="icon-colored"
+            src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/games/tw3-{{
+              gameOption.name
+                .toLowerCase()
+                .replaceAll(' ', '-')
+                .replaceAll(':', '')
+            }}-colored.webp"
+            [alt]="
+              'THEMES.GAMES.THE WITCHER 3.BUTTONS.' +
+                gameOption.name.toUpperCase() +
+                '-COLORED-ICON-ALT' | translate
+            "
+          />
+          <img
+            class="icon-monochrome"
+            src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/games/tw3-{{
+              gameOption.name
+                .toLowerCase()
+                .replaceAll(' ', '-')
+                .replaceAll(':', '')
+            }}.webp"
+            [alt]="
+              'THEMES.GAMES.THE WITCHER 3.BUTTONS.' +
+                gameOption.name.toUpperCase() +
+                '-MONOCHROME-ICON-ALT' | translate
+            "
+          />
+          <span>{{ "THEMES.Games." + gameOption.name | translate }}</span>
+        </div>
+      </button>
+    }
+  } @else if (currentOptionsMenu() === "colorThemes") {
+    @for (colorOption of colorsOptions; track $index) {
+      <button class="special-buttons" (click)="changeThemes(colorOption)">
+        <img
+          class="button-bg"
+          src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.BUTTONS.BUTTONS-BG-ALT' | translate
+          "
+        />
+        <div class="button-content">
+          <div [class]="'color-option ' + colorOption.name.toLowerCase()"></div>
+          <span>{{ "THEMES.Colors." + colorOption.name | translate }}</span>
+        </div>
+      </button>
+    }
+  } @else if (currentOptionsMenu() === "langs") {
+    @for (langOption of allLangs; track $index) {
+      <button class="special-buttons" (click)="changeLang(langOption)">
+        <img
+          class="button-bg"
+          src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.BUTTONS.BUTTONS-BG-ALT' | translate
+          "
+        />
+        <div class="button-content">
+          <img
+            class="icon-colored"
+            src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/flags/tw3-flag-{{
+              langOption
+            }}-colored.webp"
+            [alt]="
+              'THEMES.GAMES.THE WITCHER 3.BUTTONS.' +
+                langOption.toUpperCase() +
+                '-COLORED-FLAG-ALT' | translate
+            "
+          />
+          <img
+            class="icon-monochrome"
+            src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/flags/tw3-flag-{{
+              langOption
+            }}.webp"
+            [alt]="
+              'THEMES.GAMES.THE WITCHER 3.BUTTONS.' +
+                langOption.toUpperCase() +
+                '-MONOCHROME-FLAG-ALT' | translate
+            "
+          />
+          <span>{{ langOption }}</span>
+        </div>
+      </button>
+    }
+  }
+</mat-dialog-content>

@@ -1,0 +1,62 @@
+#main-home-dialog {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background-color: #030303;
+  $corner-size: 8px;
+  width: 60vw;
+  min-width: 280px;
+  height: 70vh;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: thick double #45372e;
+    pointer-events: none;
+
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  .tw3-dialog-actions {
+    position: absolute;
+    bottom: 0px;
+    z-index: 20;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .tw3-dialog-actions-border {
+      border: 2px solid #181717;
+      width: 100%;
+      padding: 2px;
+      .tw3-dialog-actions-button-container {
+        .tw3-dialog-actions-button {
+          height: 45px;
+          width: 100%;
+          border-radius: 2px;
+          color: #a77e58;
+          background-color: #181717;
+
+          &:hover {
+            background-color: #201f1f;
+          }
+        }
+      }
+    }
+  }
+}

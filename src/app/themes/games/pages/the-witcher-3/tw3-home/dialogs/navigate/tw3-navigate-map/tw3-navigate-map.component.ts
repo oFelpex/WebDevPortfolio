@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, inject, OnDestroy } from '@angular/core';
 import * as L from 'leaflet';
-import { AudioService } from '../../../../../../../../../services/audio-service/audio.service';
+import { AudioService } from '../../../../../../../../services/audio-service/audio.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -15,12 +15,12 @@ interface OtherIcons {
 }
 
 @Component({
-  selector: 'app-tw3-dialog-navigate',
+  selector: 'app-tw3-navigate-map',
   imports: [TranslateModule],
-  templateUrl: './tw3-dialog-navigate.component.html',
-  styleUrl: './tw3-dialog-navigate.component.scss',
+  templateUrl: './tw3-navigate-map.component.html',
+  styleUrl: './tw3-navigate-map.component.scss',
 })
-export class Tw3DialogNavigateComponent implements AfterViewInit, OnDestroy {
+export class Tw3NavigateMapComponent implements AfterViewInit, OnDestroy {
   private audioService: AudioService;
   private translateService: TranslateService;
 

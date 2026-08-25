@@ -14,7 +14,7 @@
         <div class="bottom-corners"></div>
         <span>{{ "THEMES.GAMES.THE WITCHER 3.HOME.OPTIONS" | translate }}</span>
       </button>
-      <button id="open-music-dialog-button">
+      <button (click)="openTypeDialog('HomeMusicPlayer')">
         <div class="bottom-corners"></div>
         <span>{{ "MUSIC DIALOG" | translate }}</span></button
       ><button (click)="exitGame()">

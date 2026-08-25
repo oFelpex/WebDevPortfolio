@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 
 import { LogoEffectsComponent } from '../../../../../../logo-effects/logo-effects.component';
-import { TW3DialogsComponent } from './dialogs/tw3-dialogs.component';
+import { TW3HeaderDialogsComponent } from './dialogs/tw3-header-dialogs.component';
 import { AudioService } from '../../../../../../services/audio-service/audio.service';
 import { MobileSoundboardMenuService } from '../../../../../../services/mobile-soundboard-menu/mobile-soundboard-menu.service';
 import { MobileNavMenuService } from '../../../../../../services/mobile-menu-service/mobile-nav-menu.service';
@@ -85,7 +85,7 @@ export class Tw3HeaderComponent implements OnInit, OnDestroy {
             if (this.mobileSoundboardMenuService.mobileSoundboardMenu.opened)
               this.mobileSoundboardMenuService.toggleMobileSoundboardMenu();
         }
-      }
+      },
     );
   }
 
@@ -97,7 +97,7 @@ export class Tw3HeaderComponent implements OnInit, OnDestroy {
   private setCurrentIndexByRoute() {
     const currentRoute = this.router.url.replace('/', '');
     const index = this.allRoutes.findIndex(
-      (r) => r.toLowerCase() === currentRoute.toLowerCase()
+      (r) => r.toLowerCase() === currentRoute.toLowerCase(),
     );
     this.currentIndex = index >= 0 ? index : 0;
   }
@@ -119,7 +119,7 @@ export class Tw3HeaderComponent implements OnInit, OnDestroy {
   }
 
   public openThemesDialog() {
-    this.dialog.open(TW3DialogsComponent, {
+    this.dialog.open(TW3HeaderDialogsComponent, {
       data: {
         dialogType: 'Themes',
       },
@@ -127,7 +127,7 @@ export class Tw3HeaderComponent implements OnInit, OnDestroy {
   }
 
   public openLangsDialog() {
-    this.dialog.open(TW3DialogsComponent, {
+    this.dialog.open(TW3HeaderDialogsComponent, {
       data: {
         dialogType: 'Langs',
       },

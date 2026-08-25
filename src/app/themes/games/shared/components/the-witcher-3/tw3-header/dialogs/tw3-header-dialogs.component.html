@@ -1,0 +1,80 @@
+@if (data.dialogType === "Themes") {
+  <div id="main">
+    <div class="bottom-corners"></div>
+    <h2 mat-dialog-title>{{ "DIALOG-THEMES.CHANGE-THEME" | translate }}</h2>
+    <mat-dialog-content>
+      <mat-accordion class="accordion" multi>
+        <mat-expansion-panel class="expansion-panel" (click)="playClickSound()">
+          <mat-expansion-panel-header>
+            <div [class]="actualTheme.type === 'Games' ? 'selected' : ''"></div>
+            <mat-panel-title>
+              {{ "DIALOG-THEMES.VIDEO-GAMES" | translate }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-tw3-header-dialog-games></app-tw3-header-dialog-games>
+        </mat-expansion-panel>
+        <div></div>
+        <mat-expansion-panel class="expansion-panel" (click)="playClickSound()">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "DIALOG-THEMES.COLORS" | translate }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-tw3-header-dialog-colors></app-tw3-header-dialog-colors>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="tw3-dialog-actions">
+      <div class="tw3-dialog-actions-border">
+        <div class="tw3-dialog-actions-button-container">
+          <button
+            class="tw3-dialog-actions-button"
+            mat-button
+            mat-dialog-close
+            cdkFocusInitial
+            (click)="playClickSound()"
+          >
+            {{ "DIALOG-THEMES.CLOSE" | translate }}
+          </button>
+        </div>
+      </div>
+    </mat-dialog-actions>
+  </div>
+} @else if (data.dialogType === "Langs") {
+  <div id="main">
+    <div class="bottom-corners"></div>
+    <h2 mat-dialog-title>{{ "DIALOG-LANGS.CHANGE-LANG" | translate }}</h2>
+    <mat-dialog-content>
+      <mat-accordion class="accordion" multi>
+        <mat-expansion-panel class="expansion-panel" (click)="playClickSound()">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "DIALOG-LANGS.LANGUAGES" | translate }}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{ "DIALOG-LANGS.DESCRIPTION" | translate }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-tw3-dialog-langs></app-tw3-dialog-langs>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="tw3-dialog-actions">
+      <div class="tw3-dialog-actions-border">
+        <div class="tw3-dialog-actions-button-container">
+          <button
+            class="tw3-dialog-actions-button"
+            mat-button
+            mat-dialog-close
+            cdkFocusInitial
+            (click)="playClickSound()"
+          >
+            {{ "DIALOG-LANGS.CLOSE" | translate }}
+          </button>
+        </div>
+      </div>
+    </mat-dialog-actions>
+  </div>
+}

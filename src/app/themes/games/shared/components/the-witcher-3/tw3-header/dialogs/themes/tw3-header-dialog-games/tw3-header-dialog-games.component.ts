@@ -1,5 +1,4 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
 
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
@@ -11,18 +10,15 @@ import { Themes } from '../../../../../../../../../models/themes';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-tw3-dialog-colors',
-  imports: [
-    MatDividerModule,
-    MatButtonModule,
-    MatListModule,
-    MatDialogClose,
-    TranslateModule,
+  selector: 'app-tw3-header-dialog-games',
+  imports: [MatListModule, MatDividerModule, MatButtonModule, MatDialogClose],
+  templateUrl: './tw3-header-dialog-games.component.html',
+  styleUrls: [
+    './tw3-header-dialog-games.component.scss',
+    '../../tw3-header-dialogs.scss',
   ],
-  templateUrl: './tw3-dialog-colors.component.html',
-  styleUrls: ['./tw3-dialog-colors.component.scss', '../../tw3-dialog.scss'],
 })
-export class Tw3DialogColorsComponent implements OnInit, OnDestroy {
+export class Tw3HeaderDialogGamesComponent implements OnInit, OnDestroy {
   private themeService: ThemeService;
   private themeSubscription!: Subscription;
   public actualTheme!: Themes;
@@ -30,19 +26,20 @@ export class Tw3DialogColorsComponent implements OnInit, OnDestroy {
   constructor() {
     this.themeService = inject(ThemeService);
   }
+
   ngOnInit(): void {
     this.themeSubscription = this.themeService.actualTheme$.subscribe(
       (theme) => {
         this.actualTheme = theme;
-      }
+      },
     );
   }
-
   ngOnDestroy(): void {
     this.themeSubscription.unsubscribe();
   }
-  public get colorsOptions(): Themes[] {
-    return this.themeService.getColorsNames();
+
+  public get gamesOptions() {
+    return this.themeService.getGamesNames();
   }
 
   public changeTheme(theme: Themes) {

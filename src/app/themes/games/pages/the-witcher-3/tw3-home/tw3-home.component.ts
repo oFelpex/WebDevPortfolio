@@ -8,10 +8,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AudioService } from '../../../../../services/audio-service/audio.service';
 import { ThemeService } from '../../../../../services/theme-service/theme.service';
 import { MatDialog } from '@angular/material/dialog';
-import { TW3DialogsComponent } from '../../../shared/components/the-witcher-3/tw3-header/dialogs/tw3-dialogs.component';
+import { TW3HeaderDialogsComponent } from '../../../shared/components/the-witcher-3/tw3-header/dialogs/tw3-header-dialogs.component';
 import { Tw3HomeEffectsComponent } from './tw3-home-effects/tw3-home-effects.component';
+import { Tw3HomeDialogsComponent } from './dialogs/tw3-home-dialogs.component';
 
-type dialogType = 'HomeOptions' | 'HomeNavigate';
+type dialogType = 'HomeOptions' | 'HomeNavigate' | 'HomeMusicPlayer';
 @Component({
   selector: 'app-tw3-home',
   imports: [
@@ -54,7 +55,7 @@ export class Tw3HomeComponent implements OnInit, OnDestroy {
 
   public openTypeDialog(dialogType: dialogType): void {
     this.playClickSound();
-    this.dialog.open(TW3DialogsComponent, {
+    this.dialog.open(Tw3HomeDialogsComponent, {
       data: {
         dialogType: dialogType,
       },

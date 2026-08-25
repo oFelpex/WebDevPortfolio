@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Tw3DialogGamesComponent } from './tw3-dialog-games.component';
+import { Tw3DialogGamesComponent } from './tw3-header-dialog-games.component';
 
 describe('Tw3DialogGamesComponent', () => {
   let component: Tw3DialogGamesComponent;
@@ -8,9 +8,8 @@ describe('Tw3DialogGamesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Tw3DialogGamesComponent]
-    })
-    .compileComponents();
+      imports: [Tw3DialogGamesComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(Tw3DialogGamesComponent);
     component = fixture.componentInstance;

@@ -41,10 +41,6 @@
 
     // background-color: #f7f6f4;
 
-    #open-music-dialog-button {
-      display: none;
-    }
-
     button {
       $corner-size: 6px;
       position: relative;
@@ -212,29 +208,17 @@
     position: absolute;
     left: 50%;
     transform: translate(-50%, 0%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #000000;
     height: 100%;
     width: 60vw;
     min-width: 320px;
     padding: 4vh 1vh;
-    #action-buttons {
-      #open-music-dialog-button {
-        display: block;
-      }
-    }
   }
 
   #copyright {
-    position: absolute;
     left: 50%;
     transform: translate(-50%, 0%);
     text-align: center;
     width: 100%;
     font-size: small;
-    overflow: hidden;
-    word-wrap: break-word;
   }
 }

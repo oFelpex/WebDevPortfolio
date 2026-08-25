@@ -1,0 +1,35 @@
+<div id="main-home-dialog">
+  @if (dialogType === "HomeNavigate") {
+    <app-tw3-dialog-navigate></app-tw3-dialog-navigate>
+  }
+  @if (dialogType === "HomeOptions") {
+    <app-tw3-dialog-options
+      [(currentOptionsMenu)]="currentOptionsMenu"
+    ></app-tw3-dialog-options>
+  }
+  @if (dialogType === "HomeMusicPlayer") {
+    <app-tw3-dialog-soundboard></app-tw3-dialog-soundboard>
+  }
+  <mat-dialog-actions class="tw3-dialog-actions">
+    <div class="tw3-dialog-actions-border">
+      <div class="tw3-dialog-actions-button-container">
+        <button
+          class="tw3-dialog-actions-button"
+          mat-button
+          cdkFocusInitial
+          (click)="
+            currentOptionsMenu() === 'options'
+              ? closeAllDialogs()
+              : openTypeOfOptionsMenu('options')
+          "
+        >
+          {{
+            "THEMES.GAMES.THE WITCHER 3.DIALOG-HOME." +
+              (currentOptionsMenu() === "options" ? "CLOSE" : "GO-BACK")
+              | translate
+          }}
+        </button>
+      </div>
+    </div>
+  </mat-dialog-actions>
+</div>

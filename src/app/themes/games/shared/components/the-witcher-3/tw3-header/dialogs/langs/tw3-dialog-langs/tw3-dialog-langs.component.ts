@@ -7,7 +7,10 @@ import { LanguageService } from '../../../../../../../../../services/language-se
   selector: 'app-tw3-dialog-langs',
   imports: [MatListModule, MatButtonModule],
   templateUrl: './tw3-dialog-langs.component.html',
-  styleUrls: ['./tw3-dialog-langs.component.scss', '../../tw3-dialog.scss'],
+  styleUrls: [
+    './tw3-dialog-langs.component.scss',
+    '../../tw3-header-dialogs.scss',
+  ],
 })
 export class Tw3DialogLangsComponent {
   private languageService: LanguageService;

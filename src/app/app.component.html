@@ -1,12 +1,16 @@
 <ng-container *ngComponentOutlet="selectedNavbarComponent"></ng-container>
 
-@if(isLoading) {
-<app-loading></app-loading>
+@if (isLoading) {
+  <app-loading></app-loading>
 }
 
 <router-outlet />
 
-@if(actualTheme.type === 'Games' && actualTheme.name !== "Minecraft" &&
-!isMobile) {
-<app-show-soundboard-button></app-show-soundboard-button>
+@if (
+  actualTheme.type === "Games" &&
+  actualTheme.name !== "Minecraft" &&
+  actualTheme.name !== "The Witcher 3" &&
+  !isMobile
+) {
+  <app-show-soundboard-button></app-show-soundboard-button>
 }
