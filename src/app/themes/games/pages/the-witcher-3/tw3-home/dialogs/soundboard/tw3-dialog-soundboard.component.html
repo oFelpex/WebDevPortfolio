@@ -1,3 +1,21 @@
 <div id="soundboard-container">
-  <p>tw3-dialog-soundboard works!</p>
+  <div id="side-music-player"></div>
+  <div id="song-selection-container">
+    <div id="song-selection">
+      @for (tw3Music of tw3Musics; track $index) {
+        <div class="tw3-card-container">
+          <img
+            class="card-img"
+            [src]="getCardFileName(tw3Music.musicName)"
+            [alt]=""
+          />
+          <span class="card-title">TITULO</span>
+          <p class="card-text">
+            testetesoptje soptjeospj toepsjtpo sejoptjesoptjesop
+            jteosjtopsejptoeso jpo jop esjopetjpo
+          </p>
+        </div>
+      }
+    </div>
+  </div>
 </div>
