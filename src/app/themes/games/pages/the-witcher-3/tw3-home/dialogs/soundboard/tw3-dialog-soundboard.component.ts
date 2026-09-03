@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Musics, TW3Musics } from '../../../../../../../models/musics';
+import { MatDialogActions, MatDialogContent } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-tw3-dialog-soundboard',
-  imports: [],
+  imports: [MatDialogContent, MatDialogActions],
   templateUrl: './tw3-dialog-soundboard.component.html',
   styleUrl: './tw3-dialog-soundboard.component.scss',
 })

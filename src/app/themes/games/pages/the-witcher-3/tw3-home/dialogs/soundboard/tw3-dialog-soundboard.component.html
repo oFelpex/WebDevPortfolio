@@ -1,9 +1,10 @@
-<div id="soundboard-container">
+<mat-dialog-content id="soundboard-container">
   <div id="side-music-player"></div>
   <div id="song-selection-container">
     <div id="song-selection">
       @for (tw3Music of tw3Musics; track $index) {
         <div class="tw3-card-container">
+          <div class="card-border"></div>
           <img
             class="card-img"
             [src]="getCardFileName(tw3Music.musicName)"
@@ -17,4 +18,10 @@
       }
     </div>
   </div>
-</div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div>fechar</div>
+</mat-dialog-actions>
+<mat-dialog-actions>
+  <div>voltar, play, passar</div>
+</mat-dialog-actions>

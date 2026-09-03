@@ -4,6 +4,7 @@ $soundboard-smaller-bg: "../../../../../../../../assets/themes/games/the witcher
 
 :host {
   display: block;
+  margin: 0 auto;
 
   background-position: center;
   background-repeat: no-repeat;
@@ -41,11 +42,14 @@ $soundboard-smaller-bg: "../../../../../../../../assets/themes/games/the witcher
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: visible;
+  box-sizing: border-box;
 
   gap: 0.5vw;
   padding: 0.5vw;
   width: 100%;
   height: 100%;
+  max-height: none;
 
   #side-music-player {
     flex: 4;
@@ -90,13 +94,40 @@ $soundboard-smaller-bg: "../../../../../../../../assets/themes/games/the witcher
       .tw3-card-container {
         position: relative;
         width: fit-content;
-        filter: drop-shadow(0px 0px 2px #0000004d);
+        filter: drop-shadow(4px 4px 2px #000000);
+        z-index: 1;
+
+        .card-border {
+          display: none;
+          position: absolute;
+          pointer-events: none;
+          top: -5px;
+          left: -5px;
+          width: calc(100% + 10px);
+          height: calc(100% + 10px);
+          border: 5px solid transparent;
+          background:
+            linear-gradient(transparent 0 0) padding-box,
+            conic-gradient(
+                from 45deg,
+                #bb752f 0deg /* up right */,
+                #b66413 90deg /* down right */,
+                #e49429 180deg /* down left */,
+                #ce8736 270deg /* up left */,
+                #bb752f 360deg /* up right again */
+              )
+              border-box;
+          border-radius: 12px 12px 15px 15px;
+          z-index: 1;
+        }
 
         .card-img {
+          position: relative;
           pointer-events: none;
           aspect-ratio: 322 / 594;
           width: calc(7vw + 20px);
           height: auto;
+          z-index: 2;
         }
 
         .card-title,
@@ -106,6 +137,7 @@ $soundboard-smaller-bg: "../../../../../../../../assets/themes/games/the witcher
           color: #3c3839;
           width: 70%;
           text-align: center;
+          z-index: 2;
         }
         .card-title {
           top: 76%;
@@ -125,6 +157,12 @@ $soundboard-smaller-bg: "../../../../../../../../assets/themes/games/the witcher
         &:nth-of-type(2) .card-title {
           transform: translateX(-50%);
           width: 80%;
+        }
+
+        &:hover {
+          .card-border {
+            display: block;
+          }
         }
       }
 
