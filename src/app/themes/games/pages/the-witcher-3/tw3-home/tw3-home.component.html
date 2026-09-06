@@ -5,19 +5,28 @@
       <div id="game-version">v 1.0</div>
     </div>
     <div id="action-buttons">
-      <button (click)="openTypeDialog('HomeNavigate')">
+      <button
+        (click)="openTypeDialog('HomeNavigate')"
+        (mouseenter)="playMouseEnterOrLeaveSFX()"
+      >
         <div class="bottom-corners"></div>
         <span>{{
           "THEMES.GAMES.THE WITCHER 3.HOME.NAVIGATE" | translate
         }}</span></button
-      ><button (click)="openTypeDialog('HomeOptions')">
+      ><button
+        (click)="openTypeDialog('HomeOptions')"
+        (mouseenter)="playMouseEnterOrLeaveSFX()"
+      >
         <div class="bottom-corners"></div>
         <span>{{ "THEMES.GAMES.THE WITCHER 3.HOME.OPTIONS" | translate }}</span>
       </button>
-      <button (click)="openTypeDialog('HomeMusicPlayer')">
+      <button
+        (click)="openTypeDialog('HomeMusicPlayer')"
+        (mouseenter)="playMouseEnterOrLeaveSFX()"
+      >
         <div class="bottom-corners"></div>
         <span>{{ "MUSIC DIALOG" | translate }}</span></button
-      ><button (click)="exitGame()">
+      ><button (click)="exitGame()" (mouseenter)="playMouseEnterOrLeaveSFX()">
         <div class="bottom-corners"></div>
         <span>{{
           "THEMES.GAMES.THE WITCHER 3.HOME.QUIT-GAME" | translate

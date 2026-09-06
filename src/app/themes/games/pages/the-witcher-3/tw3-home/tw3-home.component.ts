@@ -52,6 +52,9 @@ export class Tw3HomeComponent implements OnInit, OnDestroy {
   public playClickSound(): void {
     this.audioService.playClickSound('The Witcher 3');
   }
+  public playMouseEnterOrLeaveSFX(): void {
+    this.audioService.playSound('The Witcher 3-mouseEnterOrLeave');
+  }
 
   public openTypeDialog(dialogType: dialogType): void {
     this.playClickSound();

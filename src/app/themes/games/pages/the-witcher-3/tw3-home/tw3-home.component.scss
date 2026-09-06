@@ -48,6 +48,18 @@
       width: 97%;
       cursor: pointer;
 
+      @keyframes tw3-button-hover {
+        0% {
+          border: 1px solid #4d4f4e;
+        }
+        50% {
+          border: 1px solid #848886;
+        }
+        100% {
+          border: 1px solid #4d4f4e;
+        }
+      }
+
       &:not(:first-child) {
         margin-top: -5px;
       }
@@ -62,6 +74,7 @@
         height: $corner-size;
         background-color: transparent;
         border: 1px solid #4d4f4e;
+        animation: tw3-button-hover 1s linear infinite;
       }
       &::before {
         top: -1px;
@@ -88,6 +101,7 @@
           width: $corner-size;
           height: $corner-size;
           border: 1px solid #4d4f4e;
+          animation: tw3-button-hover 1s linear infinite;
         }
 
         &::before {
@@ -107,6 +121,7 @@
         box-shadow:
           0 0 0 2px #000,
           0 0 0 3px #4d4f4e;
+        animation: tw3-button-hover 1s linear infinite;
 
         &::before,
         &::after {
