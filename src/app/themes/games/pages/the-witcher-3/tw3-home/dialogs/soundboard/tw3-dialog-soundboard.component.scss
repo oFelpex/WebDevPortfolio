@@ -289,6 +289,71 @@ $soundboard-smaller-bg: "../../../../../../../../assets/themes/games/the witcher
         }
       }
     }
+
+    #song-selection-up-menu {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      top: 1%;
+      left: 25%;
+      width: 75%;
+      height: 10%;
+      padding: 0;
+
+      #close-menu-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        aspect-ratio: 1 / 1;
+
+        height: 80%;
+        width: auto;
+
+        min-height: 10px;
+        max-height: 45px;
+
+        pointer-events: all;
+        cursor: pointer;
+        border: 2px solid #31353b;
+        transition: 0.3s;
+        background-color: #181818;
+
+        &::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border: 2px solid #4b4e55;
+          pointer-events: none;
+
+          -webkit-mask-image: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0) 100%
+          );
+          mask-image: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0) 100%
+          );
+        }
+
+        &:hover {
+          transform: scale(1.05);
+          span {
+            color: #b4a78d;
+          }
+        }
+        span {
+          transition: 0.3s;
+          font-family: "Arial";
+          font-size: 1.3rem;
+          color: #9a8d76;
+          font-weight: bold;
+        }
+      }
+    }
   }
 
   @media (max-width: 1024px) {

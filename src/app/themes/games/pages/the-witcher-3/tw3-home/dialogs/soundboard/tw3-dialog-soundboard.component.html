@@ -1,11 +1,15 @@
 <mat-dialog-content id="soundboard-container">
-  <div id="side-music-player"></div>
+  <div id="side-music-player">
+    <mat-dialog-actions id="side-music-player-actions">
+      <div>voltar, play, passar</div>
+    </mat-dialog-actions>
+  </div>
   <div id="song-selection-container">
     <div id="song-selection">
       @for (tw3Music of tw3Musics; track $index) {
         <div
           class="tw3-card-container"
-          (mouseleave)="playMouseEnterOrLeaveSFX()"
+          (mouseenter)="playMouseEnterOrLeaveSFX()"
         >
           <div class="card-content-clip">
             <div class="card-motion-shine"></div>
@@ -25,11 +29,14 @@
         </div>
       }
     </div>
+    <mat-dialog-actions id="song-selection-up-menu">
+      <button
+        id="close-menu-button"
+        mat-dialog-close
+        (click)="playClickSound()"
+      >
+        <span>X</span>
+      </button>
+    </mat-dialog-actions>
   </div>
 </mat-dialog-content>
-<mat-dialog-actions>
-  <div>fechar</div>
-</mat-dialog-actions>
-<mat-dialog-actions>
-  <div>voltar, play, passar</div>
-</mat-dialog-actions>
