@@ -27,4 +27,8 @@ export const TW3SFX: SFXs[] = [
     SFXName: 'The Witcher 3-clickSound',
     SFXURL: 'assets/sounds/games/the-witcher-3/sfx/button-click.ogg',
   },
+  {
+    SFXName: 'The Witcher 3-mouseEnterOrLeave',
+    SFXURL: 'assets/sounds/games/the-witcher-3/sfx/mouseEnterOrLeave.ogg',
+  },
 ];
