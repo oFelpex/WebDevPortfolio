@@ -55,7 +55,6 @@ $soundboard-smaller-bg: "../../../../../../../../assets/themes/games/the witcher
     flex: 4;
     width: 100%;
     height: 100%;
-    // background-color: rgba(0, 255, 255, 0.25);
   }
   #song-selection-container {
     display: flex;
@@ -65,7 +64,6 @@ $soundboard-smaller-bg: "../../../../../../../../assets/themes/games/the witcher
     flex: 12;
     width: 100%;
     height: 100%;
-    // background-color: rgba(245, 245, 220, 0.25);
 
     #song-selection {
       position: relative;
@@ -78,7 +76,6 @@ $soundboard-smaller-bg: "../../../../../../../../assets/themes/games/the witcher
       top: 3%;
       width: 80%;
       height: 85%;
-      // background-color: rgba(10, 255, 30, 0.25);
 
       > *:nth-child(1),
       > *:nth-child(2),
@@ -92,19 +89,97 @@ $soundboard-smaller-bg: "../../../../../../../../assets/themes/games/the witcher
       }
 
       .tw3-card-container {
+        pointer-events: all;
         position: relative;
         width: fit-content;
         filter: drop-shadow(4px 4px 2px #000000);
         z-index: 1;
 
-        .card-border {
+        .card-content-clip {
           display: none;
           position: absolute;
+          inset: 0;
+          overflow: hidden;
           pointer-events: none;
-          top: -5px;
-          left: -5px;
+          border-radius: 12px 12px 15px 15px; // Has to be the same border-radius from card-border
+          z-index: 3;
+
+          .card-motion-shine {
+            position: absolute;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(
+              to bottom,
+              transparent 0%,
+              #e4932934 50%,
+              transparent 100%
+            );
+
+            animation: motionShineAnimation 1.7s linear infinite;
+
+            @keyframes motionShineAnimation {
+              0% {
+                transform: translateY(300%);
+              }
+              100% {
+                transform: translateY(-500%);
+              }
+            }
+          }
+        }
+        .card-static-shine {
+          display: none;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 25px;
+          height: 85%;
+          border-radius: 50% / 25%;
+          background: radial-gradient(
+            ellipse at center,
+            #fbae62 0%,
+            #fbae627a 50%,
+            transparent 100%
+          );
+          filter: blur(4px);
+          pointer-events: none;
+          z-index: 0;
+          opacity: 0;
+          animation: staticShineAnimation 1.7s linear infinite;
+
+          @keyframes staticShineAnimation {
+            0% {
+              opacity: 0;
+            }
+            40% {
+              opacity: 1;
+            }
+            60% {
+              opacity: 1;
+            }
+            100% {
+              opacity: 0;
+            }
+          }
+        }
+        .card-static-shine.left {
+          left: -15px;
+        }
+        .card-static-shine.right {
+          right: -15px;
+        }
+
+        .card-border {
+          opacity: 0;
+          position: absolute;
+          pointer-events: none;
+          transform: translate(-5px, -5px);
           width: calc(100% + 10px);
           height: calc(100% + 10px);
+          inset: 0;
           border: 5px solid transparent;
           background:
             linear-gradient(transparent 0 0) padding-box,
@@ -160,8 +235,14 @@ $soundboard-smaller-bg: "../../../../../../../../assets/themes/games/the witcher
         }
 
         &:hover {
-          .card-border {
+          .card-static-shine {
             display: block;
+          }
+          .card-content-clip {
+            display: block;
+          }
+          .card-border {
+            opacity: 1;
           }
         }
       }

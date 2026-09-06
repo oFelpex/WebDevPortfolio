@@ -3,7 +3,15 @@
   <div id="song-selection-container">
     <div id="song-selection">
       @for (tw3Music of tw3Musics; track $index) {
-        <div class="tw3-card-container">
+        <div
+          class="tw3-card-container"
+          (mouseleave)="playMouseEnterOrLeaveSFX()"
+        >
+          <div class="card-content-clip">
+            <div class="card-motion-shine"></div>
+          </div>
+          <div class="card-static-shine left"></div>
+          <div class="card-static-shine right"></div>
           <div class="card-border"></div>
           <img
             class="card-img"

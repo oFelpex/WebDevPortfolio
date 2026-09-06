@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Musics, TW3Musics } from '../../../../../../../models/musics';
 import { MatDialogActions, MatDialogContent } from '@angular/material/dialog';
+import { AudioService } from '../../../../../../../services/audio-service/audio.service';
 
 @Component({
   selector: 'app-tw3-dialog-soundboard',
@@ -11,7 +12,16 @@ import { MatDialogActions, MatDialogContent } from '@angular/material/dialog';
 export class Tw3DialogSoundboardComponent {
   public tw3Musics: Musics[] = TW3Musics;
 
-  constructor() {}
+  private audioService: AudioService;
+
+  constructor(audioService: AudioService) {
+    this.audioService = inject(AudioService);
+  }
+
+  public playMouseEnterOrLeaveSFX(): void {
+    // Remamber to change the sound effect to a more appropriate one for mouse enter/leave events
+    this.audioService.playClickSound('The Witcher 3');
+  }
 
   public getCardFileName(tw3MusicName: string): string {
     const cleanMusicName = tw3MusicName
