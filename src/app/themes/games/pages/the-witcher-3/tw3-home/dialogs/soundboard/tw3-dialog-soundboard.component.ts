@@ -6,10 +6,11 @@ import {
   MatDialogContent,
 } from '@angular/material/dialog';
 import { AudioService } from '../../../../../../../services/audio-service/audio.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-tw3-dialog-soundboard',
-  imports: [MatDialogContent, MatDialogActions, MatDialogClose],
+  imports: [MatDialogContent, MatDialogActions, MatDialogClose, MatIconModule],
   templateUrl: './tw3-dialog-soundboard.component.html',
   styleUrl: './tw3-dialog-soundboard.component.scss',
 })

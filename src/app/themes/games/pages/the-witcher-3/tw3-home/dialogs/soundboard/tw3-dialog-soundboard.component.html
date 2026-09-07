@@ -1,7 +1,56 @@
 <mat-dialog-content id="soundboard-container">
   <div id="side-music-player">
     <mat-dialog-actions id="side-music-player-actions">
-      <div>voltar, play, passar</div>
+      <div id="side-music-player-buttons-container">
+        <button
+          class="side-music-player-button"
+          (click)="playClickSound()"
+          (mouseenter)="playMouseEnterOrLeaveSFX()"
+        >
+          <span class="corner corner-tl"></span>
+          <span class="corner corner-tr"></span>
+          <span class="corner corner-bl"></span>
+          <span class="corner corner-br"></span>
+          <mat-icon
+            class="side-music-player-button-icon"
+            aria-hidden="false"
+            aria-label="left arrow icon"
+            fontIcon="arrow_left"
+          ></mat-icon>
+        </button>
+        <button
+          class="side-music-player-button"
+          (click)="playClickSound()"
+          (mouseenter)="playMouseEnterOrLeaveSFX()"
+        >
+          <span class="corner corner-tl"></span>
+          <span class="corner corner-tr"></span>
+          <span class="corner corner-bl"></span>
+          <span class="corner corner-br"></span>
+          <mat-icon
+            class="side-music-player-button-icon"
+            aria-hidden="false"
+            aria-label="play arrow icon"
+            fontIcon="play_arrow"
+          ></mat-icon>
+        </button>
+        <button
+          class="side-music-player-button"
+          (click)="playClickSound()"
+          (mouseenter)="playMouseEnterOrLeaveSFX()"
+        >
+          <span class="corner corner-tl"></span>
+          <span class="corner corner-tr"></span>
+          <span class="corner corner-bl"></span>
+          <span class="corner corner-br"></span>
+          <mat-icon
+            class="side-music-player-button-icon"
+            aria-hidden="false"
+            aria-label="right arrow icon"
+            fontIcon="arrow_right"
+          ></mat-icon>
+        </button>
+      </div>
     </mat-dialog-actions>
   </div>
   <div id="song-selection-container">
@@ -30,10 +79,12 @@
       }
     </div>
     <mat-dialog-actions id="song-selection-up-menu">
+      <h1 id="song-selection-up-menu-title">Cartas no baralho</h1>
       <button
         id="close-menu-button"
         mat-dialog-close
         (click)="playClickSound()"
+        (mouseenter)="playMouseEnterOrLeaveSFX()"
       >
         <span>X</span>
       </button>
