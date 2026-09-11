@@ -31,8 +31,9 @@ export class AudioService {
   public showSoundboard$ = this.showSoundboardSubject.asObservable();
 
   constructor() {
-    this.audioContext = new (window.AudioContext ||
-      (window as any).webkitAudioContext)();
+    this.audioContext = new (
+      window.AudioContext || (window as any).webkitAudioContext
+    )();
 
     this.musicGainNode = this.audioContext.createGain();
     this.musicGainNode.connect(this.audioContext.destination);
@@ -136,6 +137,15 @@ export class AudioService {
     }
   }
 
+  public stopSound() {
+    this.stopMusic();
+    this.currentMusicName = null;
+    this.currentMusicComposer = undefined;
+    this.musicDuration = 0;
+    this.pauseTime = 0;
+    this.isPaused = false;
+  }
+
   public nextMusic() {
     this.currentIndex = (this.currentIndex + 1) % this.playlist.length;
     this.playCurrentTrack();
@@ -150,7 +160,7 @@ export class AudioService {
   public setMusicVolume(value: number): void {
     this.musicGainNode.gain.setValueAtTime(
       value,
-      this.audioContext.currentTime
+      this.audioContext.currentTime,
     );
     this.musicVolume = value;
     localStorage.setItem('musicVolume', JSON.stringify(value));
@@ -170,7 +180,7 @@ export class AudioService {
   public playSound(
     audioName: string,
     type: 'music' | 'sfx' = 'sfx',
-    composer?: string | undefined
+    composer?: string | undefined,
   ): void {
     const audioBuffer = this.sounds[audioName];
 
@@ -183,6 +193,31 @@ export class AudioService {
       source.connect(destination);
       source.start(0);
     }
+  }
+
+  public playSingleTrack(music: Musics): void {
+    this.stopMusic();
+
+    const buffer = this.sounds[music.musicName];
+    if (!buffer) return;
+
+    const source = this.audioContext.createBufferSource();
+    source.buffer = buffer;
+    source.connect(this.musicGainNode);
+    source.start(0);
+
+    this.currentMusicSource = source;
+    this.currentMusicName = music.musicName;
+    this.currentMusicComposer = music.musicComposer;
+    this.musicDuration = buffer.duration;
+    this.musicStartTime = this.audioContext.currentTime;
+    this.isPaused = false;
+
+    source.onended = () => {
+      if (!this.isPaused && this.currentMusicSource === source) {
+        this.currentMusicSource = null;
+      }
+    };
   }
 
   public getMusicVolume(): number {
