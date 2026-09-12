@@ -162,8 +162,7 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
       this.audioService.preloadSound(SFX.SFXName, SFX.SFXURL);
     }
 
-    this.audioService.playPlaylist(this.minecraftMusics);
-
+    await this.audioService.loadPlaylist(this.minecraftMusics);
     await loadFull(tsParticles);
   }
 

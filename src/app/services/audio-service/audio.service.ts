@@ -68,13 +68,16 @@ export class AudioService {
     this.sounds[name] = audioBuffer;
   }
 
-  public async playPlaylist(playlist: Musics[]) {
-    if (this.playlist) {
-      if (this.playlist[0].gameName === playlist[0].gameName) {
-        console.log(this.playlist);
-        return;
-      }
+  public async playPlaylist(playlist: Musics[]): Promise<void> {
+    await this.loadPlaylist(playlist);
+    this.playFromIndex(0);
+  }
+
+  public async loadPlaylist(playlist: Musics[]): Promise<void> {
+    if (this.playlist && this.playlist[0]?.gameName === playlist[0]?.gameName) {
+      return;
     }
+
     this.playlist = playlist;
     this.currentIndex = 0;
 
@@ -82,8 +85,14 @@ export class AudioService {
       await this.preloadSound(music.musicName, music.musicURL);
     }
 
-    this.playCurrentTrack();
+    this.playFromIndex(0);
     this.pauseMusic();
+  }
+  public playFromIndex(index: number): void {
+    if (!this.playlist || index < 0 || index >= this.playlist.length) return;
+
+    this.currentIndex = index;
+    this.playCurrentTrack();
   }
 
   private playCurrentTrack(resume: boolean = false) {
