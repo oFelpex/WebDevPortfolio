@@ -1,5 +1,30 @@
 <mat-dialog-content id="soundboard-container">
   <div id="side-music-player">
+    <div id="side-music-player-title-container">
+      <h1 id="side-music-player-title">
+        {{
+          currentMusicProgress > 0
+            ? "Música: " + currentMusicName
+            : "Selecione uma música"
+        }}
+      </h1>
+      <h2 id="side-music-player-subtitle">
+        {{ currentMusicProgress > 0 ? "Por: " + currentMusicComposer : "" }}
+      </h2>
+    </div>
+    <div
+      id="side-music-player-card-container"
+      #cardTarget
+      [class.has-track]="selectedTrack()"
+    >
+      @if (currentMusicProgress > 0) {
+        <mat-progress-bar
+          id="side-music-player-progress-bar"
+          mode="determinate"
+          [value]="currentMusicProgress * 100"
+        ></mat-progress-bar>
+      }
+    </div>
     <mat-dialog-actions id="side-music-player-actions">
       <div id="side-music-player-buttons-container">
         <button
@@ -20,7 +45,7 @@
         </button>
         <button
           class="side-music-player-button"
-          (click)="playClickSound()"
+          (click)="playClickSound(); pauseOrResumeMusic()"
           (mouseenter)="playMouseEnterOrLeaveSFX()"
         >
           <span class="corner corner-tl"></span>
@@ -30,8 +55,10 @@
           <mat-icon
             class="side-music-player-button-icon"
             aria-hidden="false"
-            aria-label="play arrow icon"
-            fontIcon="play_arrow"
+            [attr.aria-label]="
+              isPlayingMusic ? 'pause icon' : 'play arrow icon'
+            "
+            [fontIcon]="isPlayingMusic ? 'pause' : 'play_arrow'"
           ></mat-icon>
         </button>
         <button
@@ -58,7 +85,9 @@
       @for (tw3Music of tw3Musics; track $index) {
         <div
           class="tw3-card-container"
+          #cardEl
           (mouseenter)="playMouseEnterOrLeaveSFX()"
+          (click)="onSelectTrack(tw3Music, $index, cardEl)"
         >
           <div class="card-content-clip">
             <div class="card-motion-shine"></div>
@@ -71,10 +100,6 @@
             [src]="getCardFileName(tw3Music.musicName)"
             [alt]=""
           />
-          <span class="card-title">{{ tw3Music.musicName }}</span>
-          <p class="card-text">
-            {{ tw3Music.musicComposer }}
-          </p>
         </div>
       }
     </div>

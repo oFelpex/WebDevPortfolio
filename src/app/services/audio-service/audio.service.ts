@@ -247,6 +247,9 @@ export class AudioService {
     return Math.min(elapsed / this.musicDuration, 1);
   }
 
+  public getCurrentMusic(): Musics | null {
+    return this.playlist[this.currentIndex];
+  }
   public getCurrentMusicName(): string | null {
     return this.currentMusicName;
   }
