@@ -89,6 +89,12 @@ export class Tw3DialogSoundboardComponent {
       this.audioService.playFromIndex(0);
     }
   }
+  public nextMusic(): void {
+    this.audioService.nextMusic();
+  }
+  public previousMusic(): void {
+    this.audioService.previousMusic();
+  }
 
   private syncWithCurrentlyPlayingTrack(): void {
     if (!this.audioService.isPlaying()) return;
