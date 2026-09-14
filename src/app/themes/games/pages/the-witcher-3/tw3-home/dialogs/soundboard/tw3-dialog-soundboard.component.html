@@ -1,16 +1,16 @@
 <mat-dialog-content id="soundboard-container">
   <div id="side-music-player">
     <div id="side-music-player-title-container">
-      <h1 id="side-music-player-title">
+      <h2 id="side-music-player-title">
         {{
           currentMusicProgress > 0
             ? "Música: " + currentMusicName
             : "Selecione uma música"
         }}
-      </h1>
-      <h2 id="side-music-player-subtitle">
-        {{ currentMusicProgress > 0 ? "Por: " + currentMusicComposer : "" }}
       </h2>
+      <h3 id="side-music-player-subtitle">
+        {{ currentMusicProgress > 0 ? "Por: " + currentMusicComposer : "" }}
+      </h3>
     </div>
     <div
       id="side-music-player-card-container"
