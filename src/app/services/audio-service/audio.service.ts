@@ -74,9 +74,12 @@ export class AudioService {
   }
 
   public async loadPlaylist(playlist: Musics[]): Promise<void> {
-    if (this.playlist && this.playlist[0]?.gameName === playlist[0]?.gameName) {
-      return;
-    }
+    const isSamePlaylist =
+      this.playlist && this.playlist[0]?.gameName === playlist[0]?.gameName;
+
+    if (isSamePlaylist) return;
+
+    this.unloadCurrentPlaylist();
 
     this.playlist = playlist;
     this.currentIndex = 0;
@@ -84,9 +87,18 @@ export class AudioService {
     for (const music of playlist) {
       await this.preloadSound(music.musicName, music.musicURL);
     }
+  }
+  private unloadCurrentPlaylist(): void {
+    this.stopSound();
 
-    this.playFromIndex(0);
-    this.pauseMusic();
+    this.playlist = undefined as any;
+    this.currentIndex = 0;
+
+    if (this.playlist) {
+      for (const music of this.playlist) {
+        delete this.sounds[music.musicName];
+      }
+    }
   }
   public playFromIndex(index: number): void {
     if (!this.playlist || index < 0 || index >= this.playlist.length) return;
@@ -136,7 +148,6 @@ export class AudioService {
       this.playCurrentTrack(true);
     }
   }
-
   public stopMusic() {
     if (this.currentMusicSource) {
       this.currentMusicSource.onended = null;
@@ -247,8 +258,12 @@ export class AudioService {
     return Math.min(elapsed / this.musicDuration, 1);
   }
 
+  public hasCurrentTrack(): boolean {
+    return this.currentMusicName !== null;
+  }
   public getCurrentMusic(): Musics | null {
-    return this.playlist[this.currentIndex];
+    if (!this.playlist || !this.currentMusicName) return null;
+    return this.playlist[this.currentIndex] ?? null;
   }
   public getCurrentMusicName(): string | null {
     return this.currentMusicName;

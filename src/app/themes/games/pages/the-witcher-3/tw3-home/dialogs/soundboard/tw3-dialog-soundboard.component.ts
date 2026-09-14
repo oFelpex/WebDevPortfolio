@@ -51,10 +51,19 @@ export class Tw3DialogSoundboardComponent {
 
   ngOnInit(): void {
     this.syncWithCurrentlyPlayingTrack();
+
     this.musicProgressSubscription = interval(200).subscribe(() => {
       this.currentMusicProgress = this.audioService.getMusicProgress();
-      this.selectedTrack.set(this.audioService.getCurrentMusic());
       this.currentMusicComposer = this.audioService.getCurrentMusicComposer();
+
+      const currentMusic = this.audioService.getCurrentMusic();
+
+      if (currentMusic && currentMusic !== this.selectedTrack()) {
+        this.selectedTrack.set(currentMusic);
+        this.placeCardInTarget(currentMusic);
+      } else if (!currentMusic) {
+        this.selectedTrack.set(null);
+      }
     });
   }
   ngOnDestroy(): void {
@@ -69,9 +78,16 @@ export class Tw3DialogSoundboardComponent {
   }
 
   public pauseOrResumeMusic(): void {
-    this.isPlayingMusic
-      ? this.audioService.pauseMusic()
-      : this.audioService.resumeMusic();
+    if (this.isPlayingMusic) {
+      this.audioService.pauseMusic();
+      return;
+    }
+
+    if (this.audioService.hasCurrentTrack()) {
+      this.audioService.resumeMusic();
+    } else {
+      this.audioService.playFromIndex(0);
+    }
   }
 
   private syncWithCurrentlyPlayingTrack(): void {
@@ -120,12 +136,9 @@ export class Tw3DialogSoundboardComponent {
 
     this.animateFlip(startEl, targetEl, (clone) => {
       clone.remove();
-
-      this.selectedTrack.set(music);
       this.isAnimating.set(false);
       this.audioService.playFromIndex(index);
-
-      this.placeCardInTarget(music);
+      // selectedTrack + placeCardInTarget agora ficam a cargo do polling
     });
   }
   private animateFlip(

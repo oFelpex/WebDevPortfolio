@@ -53,7 +53,7 @@ export class MinecraftDialogSoundboardComponent {
     this.themeSubscription = this.themeService.actualTheme$.subscribe(
       (theme) => {
         this.actualTheme = theme;
-      }
+      },
     );
 
     this.addStylesToSliders();
@@ -66,18 +66,18 @@ export class MinecraftDialogSoundboardComponent {
 
   private addStylesToSliders(): void {
     const sliders = document.getElementsByClassName(
-      'minecraft-sb-slider'
+      'minecraft-sb-slider',
     ) as HTMLCollectionOf<HTMLElement>;
     for (const slider of sliders) {
       const thumb = slider.querySelector(
-        '.mdc-slider__thumb-knob'
+        '.mdc-slider__thumb-knob',
       ) as HTMLElement;
       if (thumb) {
         thumb.style.border = '3px solid black';
       }
 
       const trackActive = slider.querySelector(
-        '.mdc-slider__track--active_fill'
+        '.mdc-slider__track--active_fill',
       ) as HTMLElement;
       const track = slider.querySelector('.mdc-slider__track') as HTMLElement;
 
@@ -99,7 +99,9 @@ export class MinecraftDialogSoundboardComponent {
   public playClickSound(themeName: string): void {
     this.audioService.playClickSound(themeName);
   }
-
+  public get isPlayingMusic(): boolean {
+    return this.audioService.isPlaying();
+  }
   public previousMusic(): void {
     this.audioService.previousMusic();
   }
@@ -111,9 +113,16 @@ export class MinecraftDialogSoundboardComponent {
     return this.audioService.isPlaying();
   }
   public playOrStopMusic(): void {
-    this.audioService.isPlaying()
-      ? this.audioService.pauseMusic()
-      : this.audioService.resumeMusic();
+    if (this.isPlayingMusic) {
+      this.audioService.pauseMusic();
+      return;
+    }
+
+    if (this.audioService.hasCurrentTrack()) {
+      this.audioService.resumeMusic();
+    } else {
+      this.audioService.playFromIndex(0);
+    }
   }
 
   public setSfxVolume(sliderValue: string): void {
