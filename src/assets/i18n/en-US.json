@@ -30,6 +30,7 @@
           "ARROW-RIGHT-ALT": "A button that is also an arrow pointing to the right",
           "BUTTONS-BG-ALT": "Stylized yellow background for the button, similar to the ones found in the witcher 3",
           "MEDALLION-ICON-ALT": "Wolf School Witcher medallion from the game the witcher 3",
+          "VOLUME-ICON-ALT": "Volume icon, you can change the sfx or the music volume here",
           "LANG-ICON-ALT": "Icon of the letter 'A', referring to the language change",
 
           "GAMES-ICON-ALT": "Icon of a black game controller, representing custom gaming-style themes",
@@ -60,8 +61,7 @@
           "CLOSE": "Close",
 
           "WEIGHT-ICON-ALT": "Aesthetic weight icon, intended solely as a reference to the witcher 3",
-          "MONEY-ICON-ALT": "Aesthetic coin icon, intended solely as a reference to the witcher 3",
-          "": ""
+          "MONEY-ICON-ALT": "Aesthetic coin icon, intended solely as a reference to the witcher 3"
         },
         "NAVIGATE-MAP": {
           "HUD": {
@@ -157,7 +157,8 @@
 
   "UPPERCASE": {
     "THEMES": "THEMES",
-    "LANGS": "LANGS"
+    "LANGS": "LANGS",
+    "VOLUME": "VOLUME"
   },
 
   "ROUTER": {

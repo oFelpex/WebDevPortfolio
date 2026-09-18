@@ -56,6 +56,23 @@
         <span>{{ "UPPERCASE.THEMES" | translate }}</span>
       </div>
     </button>
+    <button class="special-buttons" (click)="openTypeOfOptionsMenu('volumes')">
+      <img
+        class="button-bg"
+        src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
+        [alt]="'THEMES.GAMES.THE WITCHER 3.BUTTONS.BUTTONS-BG-ALT' | translate"
+      />
+      <div class="button-content">
+        <img
+          class="icon-monochrome-without-colored-icon"
+          src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-volume-icon.webp"
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.BUTTONS.VOLUME-ICON-ALT' | translate
+          "
+        />
+        <span>{{ "UPPERCASE.VOLUME" | translate }}</span>
+      </div>
+    </button>
     <button class="special-buttons" (click)="openTypeOfOptionsMenu('langs')">
       <img
         class="button-bg"
@@ -165,6 +182,55 @@
         </div>
       </button>
     }
+  } @else if (currentOptionsMenu() === "volumes") {
+    <div id="volume-options-container">
+      <div class="volume-container" (mouseenter)="playMouseEnterOrLeaveSFX()">
+        <div class="bottom-corners"></div>
+        <span class="volume-option-title">{{
+          "SOUNDBOARD.SFX-VOLUME" | translate
+        }}</span>
+
+        <div class="right-side-content">
+          <span class="volume-value">{{
+            (actualSfxVolume * 100).toFixed()
+          }}</span>
+          <div class="volume-slider-container">
+            <mat-slider class="volume-slider" min="0" max="100" step="1">
+              <input
+                [value]="(actualSfxVolume * 100).toFixed()"
+                (input)="setSfxVolume(sfxSlider.value)"
+                (valueChange)="playMouseEnterOrLeaveSFX()"
+                #sfxSlider
+                matSliderThumb
+              />
+            </mat-slider>
+          </div>
+        </div>
+      </div>
+      <div class="volume-container" (mouseenter)="playMouseEnterOrLeaveSFX()">
+        <div class="bottom-corners"></div>
+        <span class="volume-option-title">{{
+          "SOUNDBOARD.MUSIC-VOLUME" | translate
+        }}</span>
+
+        <div class="right-side-content">
+          <span class="volume-value">{{
+            (actualMusicVolume * 100).toFixed()
+          }}</span>
+          <div class="volume-slider-container">
+            <mat-slider class="volume-slider" min="0" max="100" step="1">
+              <input
+                [value]="(actualMusicVolume * 100).toFixed()"
+                (input)="setMusicVolume(musicSlider.value)"
+                (valueChange)="playMouseEnterOrLeaveSFX()"
+                #musicSlider
+                matSliderThumb
+              />
+            </mat-slider>
+          </div>
+        </div>
+      </div>
+    </div>
   } @else if (currentOptionsMenu() === "langs") {
     @for (langOption of allLangs; track $index) {
       <button class="special-buttons" (click)="changeLang(langOption)">

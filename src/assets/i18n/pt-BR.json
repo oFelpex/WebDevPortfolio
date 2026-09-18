@@ -30,6 +30,7 @@
           "ARROW-RIGHT-ALT": "Um botão que também é uma seta apontando para a direita",
           "BUTTONS-BG-ALT": "Plano de fundo estilizado na cor amarela para o botão, igual aos que tem no jogo the witcher 3",
           "MEDALLION-ICON-ALT": "Medalhão de bruxo da escola de lobo do jogo the witcher 3",
+          "VOLUME-ICON-ALT": "Ícone de volume, você pode ajustar o volume dos efeitos sonoros ou da música aqui",
           "LANG-ICON-ALT": "Icone da letra 'A', que se refere a mudança de idioma",
 
           "GAMES-ICON-ALT": "Icone de um controle preto, que representa temas personalizados no estilo de jogos",
@@ -60,8 +61,7 @@
           "CLOSE": "Fechar",
 
           "WEIGHT-ICON-ALT": "Icone estético de peso, apenas para fazer referência ao do jogo the witcher 3",
-          "MONEY-ICON-ALT": "Icone estético de moedas, apenas para fazer referência ao do jogo the witcher 3",
-          "": ""
+          "MONEY-ICON-ALT": "Icone estético de moedas, apenas para fazer referência ao do jogo the witcher 3"
         },
         "NAVIGATE-MAP": {
           "HUD": {
@@ -157,7 +157,8 @@
 
   "UPPERCASE": {
     "THEMES": "TEMAS",
-    "LANGS": "IDIOMA"
+    "LANGS": "IDIOMA",
+    "VOLUME": "VOLUME"
   },
 
   "ROUTER": {
@@ -223,7 +224,7 @@
     "SOUNDBOARD": "PAINEL DE SONS",
     "SOUNDBOARD-LOW": "Painel de Sons",
     "MUSIC-VOLUME": "Músicas: ",
-    "SFX-VOLUME": "Efeitos Sonoros: "
+    "SFX-VOLUME": "Sons: "
   },
 
   "NAV-BAR-LIST": {
