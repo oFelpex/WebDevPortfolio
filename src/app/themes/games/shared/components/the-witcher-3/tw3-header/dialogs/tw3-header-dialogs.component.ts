@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, signal } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import {
@@ -7,7 +7,6 @@ import {
   MatDialogTitle,
   MatDialogActions,
   MatDialogClose,
-  MatDialog,
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -20,6 +19,7 @@ import { AudioService } from '../../../../../../../services/audio-service/audio.
 import { TranslateModule } from '@ngx-translate/core';
 import { Themes } from '../../../../../../../models/themes';
 import { LanguageService } from '../../../../../../../services/language-service/language.service';
+import { MatSliderModule } from '@angular/material/slider';
 
 @Component({
   selector: 'app-tw3-header-dialogs',
@@ -30,6 +30,7 @@ import { LanguageService } from '../../../../../../../services/language-service/
     MatDialogContent,
     MatButtonModule,
     MatExpansionModule,
+    MatSliderModule,
     Tw3HeaderDialogGamesComponent,
     Tw3HeaderDialogColorsComponent,
     Tw3DialogLangsComponent,
@@ -81,7 +82,24 @@ export class TW3HeaderDialogsComponent implements OnDestroy {
     return this.languageService.getSupportedLangs();
   }
 
-  public playClickSound() {
+  public playClickSound(): void {
     this.audioService.playClickSound('The Witcher 3');
+  }
+  public playMouseEnterOrLeaveSFX(): void {
+    this.audioService.playSound('The Witcher 3-mouseEnterOrLeave');
+  }
+  public get actualMusicVolume(): number {
+    return this.audioService.getMusicVolume();
+  }
+  public get actualSfxVolume(): number {
+    return this.audioService.getSfxVolume();
+  }
+  public setSfxVolume(sliderValue: string): void {
+    const sfxVolume: number = Number(sliderValue) / 100;
+    this.audioService.setSfxVolume(sfxVolume);
+  }
+  public setMusicVolume(sliderValue: string): void {
+    const musicVolume: number = Number(sliderValue) / 100;
+    this.audioService.setMusicVolume(musicVolume);
   }
 }

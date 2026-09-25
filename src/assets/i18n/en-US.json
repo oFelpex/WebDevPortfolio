@@ -192,6 +192,9 @@
     "DESCRIPTION": "PT-BR or EN-US",
     "CLOSE": "Close"
   },
+  "DIALOG-SOUNDS": {
+    "SOUND-OPTIONS": "SOUND OPTIONS"
+  },
 
   "SNACK-BAR": {
     "BUTTON-CLOSE": "Close",

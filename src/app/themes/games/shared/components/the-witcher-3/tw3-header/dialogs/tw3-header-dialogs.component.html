@@ -77,4 +77,74 @@
       </div>
     </mat-dialog-actions>
   </div>
+} @else if (data.dialogType === "Sounds") {
+  <div id="main-sounds">
+    <div class="bottom-corners"></div>
+    <h2 mat-dialog-title>{{ "DIALOG-SOUNDS.SOUND-OPTIONS" | translate }}</h2>
+    <mat-dialog-content id="main-sounds-content">
+      <div class="volume-container" (mouseenter)="playMouseEnterOrLeaveSFX()">
+        <div class="bottom-corners"></div>
+        <span class="volume-option-title">{{
+          "SOUNDBOARD.SFX-VOLUME" | translate
+        }}</span>
+
+        <div class="right-side-content">
+          <span class="volume-value">{{
+            (actualSfxVolume * 100).toFixed()
+          }}</span>
+          <div class="volume-slider-container">
+            <mat-slider class="volume-slider" min="0" max="100" step="1">
+              <input
+                [value]="(actualSfxVolume * 100).toFixed()"
+                (input)="setSfxVolume(sfxSlider.value)"
+                (valueChange)="playMouseEnterOrLeaveSFX()"
+                #sfxSlider
+                matSliderThumb
+              />
+            </mat-slider>
+          </div>
+        </div>
+      </div>
+      <div class="volume-container" (mouseenter)="playMouseEnterOrLeaveSFX()">
+        <div class="bottom-corners"></div>
+        <span class="volume-option-title">{{
+          "SOUNDBOARD.MUSIC-VOLUME" | translate
+        }}</span>
+
+        <div class="right-side-content">
+          <span class="volume-value">{{
+            (actualMusicVolume * 100).toFixed()
+          }}</span>
+          <div class="volume-slider-container">
+            <mat-slider class="volume-slider" min="0" max="100" step="1">
+              <input
+                [value]="(actualMusicVolume * 100).toFixed()"
+                (input)="setMusicVolume(musicSlider.value)"
+                (valueChange)="playMouseEnterOrLeaveSFX()"
+                #musicSlider
+                matSliderThumb
+              />
+            </mat-slider>
+          </div>
+        </div>
+      </div>
+      <div>ABRIR SOUNDBOARD</div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="tw3-dialog-actions">
+      <div class="tw3-dialog-actions-border">
+        <div class="tw3-dialog-actions-button-container">
+          <button
+            class="tw3-dialog-actions-button"
+            mat-button
+            mat-dialog-close
+            cdkFocusInitial
+            (click)="playClickSound()"
+          >
+            {{ "DIALOG-LANGS.CLOSE" | translate }}
+          </button>
+        </div>
+      </div>
+    </mat-dialog-actions>
+  </div>
 }

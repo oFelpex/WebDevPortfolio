@@ -126,6 +126,14 @@ export class Tw3HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
+  public openSoundsDialog() {
+    this.dialog.open(TW3HeaderDialogsComponent, {
+      data: {
+        dialogType: 'Sounds',
+      },
+    });
+  }
+
   public openLangsDialog() {
     this.dialog.open(TW3HeaderDialogsComponent, {
       data: {

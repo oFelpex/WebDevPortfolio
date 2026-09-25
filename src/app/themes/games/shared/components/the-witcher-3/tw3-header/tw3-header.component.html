@@ -75,6 +75,30 @@
           <span>{{ "UPPERCASE.THEMES" | translate }}</span>
         </div>
       </button>
+
+      <button
+        class="special-buttons"
+        (click)="openSoundsDialog(); playClickSound()"
+      >
+        <img
+          class="button-bg"
+          src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.BUTTONS.BUTTONS-BG-ALT' | translate
+          "
+        />
+        <div class="button-content">
+          <img
+            id="medallion-icon"
+            src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-volume-icon.webp"
+            [alt]="
+              'THEMES.GAMES.THE WITCHER 3.BUTTONS.VOLUME-ICON-ALT' | translate
+            "
+          />
+          <span>{{ "UPPERCASE.VOLUME" | translate }}</span>
+        </div>
+      </button>
+
       <button
         class="special-buttons"
         (click)="openLangsDialog(); playClickSound()"
