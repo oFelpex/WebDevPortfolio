@@ -4,12 +4,17 @@
       <h2 id="side-music-player-title">
         {{
           currentMusicProgress > 0
-            ? "Música: " + currentMusicName
-            : "Selecione uma música"
+            ? ("SOUNDBOARD.MUSIC-TITLE"
+              | translate: { musicTitle: currentMusicName })
+            : ("SOUNDBOARD.SELECT-MUSIC" | translate)
         }}
       </h2>
       <h3 id="side-music-player-subtitle">
-        {{ currentMusicProgress > 0 ? "Por: " + currentMusicComposer : "" }}
+        {{
+          currentMusicProgress > 0
+            ? ("SOUNDBOARD.BY" | translate: { composer: currentMusicComposer })
+            : ""
+        }}
       </h3>
     </div>
     <div
@@ -104,7 +109,11 @@
       }
     </div>
     <mat-dialog-actions id="song-selection-up-menu">
-      <h1 id="song-selection-up-menu-title">Cartas no baralho</h1>
+      <h1 id="song-selection-up-menu-title">
+        {{
+          "THEMES.GAMES.THE WITCHER 3.DIALOG-HOME.CARDS-IN-THE-DECK" | translate
+        }}
+      </h1>
       <button
         id="close-menu-button"
         mat-dialog-close

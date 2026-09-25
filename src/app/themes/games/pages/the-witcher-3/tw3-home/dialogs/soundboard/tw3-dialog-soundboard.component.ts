@@ -16,6 +16,7 @@ import { AudioService } from '../../../../../../../services/audio-service/audio.
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { interval, Subscription } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tw3-dialog-soundboard',
@@ -25,6 +26,7 @@ import { interval, Subscription } from 'rxjs';
     MatDialogClose,
     MatIconModule,
     MatProgressBar,
+    TranslateModule,
   ],
   templateUrl: './tw3-dialog-soundboard.component.html',
   styleUrl: './tw3-dialog-soundboard.component.scss',

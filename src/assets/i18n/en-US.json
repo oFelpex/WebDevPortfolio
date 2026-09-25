@@ -61,7 +61,9 @@
           "CLOSE": "Close",
 
           "WEIGHT-ICON-ALT": "Aesthetic weight icon, intended solely as a reference to the witcher 3",
-          "MONEY-ICON-ALT": "Aesthetic coin icon, intended solely as a reference to the witcher 3"
+          "MONEY-ICON-ALT": "Aesthetic coin icon, intended solely as a reference to the witcher 3",
+
+          "CARDS-IN-THE-DECK": "Cards in the deck"
         },
         "NAVIGATE-MAP": {
           "HUD": {
@@ -224,7 +226,10 @@
     "SOUNDBOARD": "SOUNDBOARD",
     "SOUNDBOARD-LOW": "Soundboard",
     "MUSIC-VOLUME": "Music Volume: ",
-    "SFX-VOLUME": "SFX Volume: "
+    "SFX-VOLUME": "SFX Volume: ",
+    "MUSIC-TITLE": "Music: {{ musicTitle }}",
+    "SELECT-MUSIC": "Select a music",
+    "BY": "By: {{ composer }}"
   },
 
   "NAV-BAR-LIST": {

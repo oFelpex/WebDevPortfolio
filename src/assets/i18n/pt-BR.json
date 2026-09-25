@@ -61,7 +61,9 @@
           "CLOSE": "Fechar",
 
           "WEIGHT-ICON-ALT": "Icone estético de peso, apenas para fazer referência ao do jogo the witcher 3",
-          "MONEY-ICON-ALT": "Icone estético de moedas, apenas para fazer referência ao do jogo the witcher 3"
+          "MONEY-ICON-ALT": "Icone estético de moedas, apenas para fazer referência ao do jogo the witcher 3",
+
+          "CARDS-IN-THE-DECK": "Cartas no baralho"
         },
         "NAVIGATE-MAP": {
           "HUD": {
@@ -224,7 +226,10 @@
     "SOUNDBOARD": "PAINEL DE SONS",
     "SOUNDBOARD-LOW": "Painel de Sons",
     "MUSIC-VOLUME": "Músicas: ",
-    "SFX-VOLUME": "Sons: "
+    "SFX-VOLUME": "Sons: ",
+    "MUSIC-TITLE": "Música: {{ musicTitle }}",
+    "SELECT-MUSIC": "Selecione uma música",
+    "BY": "Por: {{ composer }}"
   },
 
   "NAV-BAR-LIST": {
