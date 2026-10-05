@@ -193,6 +193,7 @@
     "CLOSE": "Close"
   },
   "DIALOG-SOUNDS": {
+    "OPEN-SOUNDBOARD": "Open Soundboard",
     "SOUND-OPTIONS": "SOUND OPTIONS"
   },
 

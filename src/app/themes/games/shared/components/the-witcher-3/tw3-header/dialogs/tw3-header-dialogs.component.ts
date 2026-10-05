@@ -7,6 +7,7 @@ import {
   MatDialogTitle,
   MatDialogActions,
   MatDialogClose,
+  MatDialog,
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -20,6 +21,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Themes } from '../../../../../../../models/themes';
 import { LanguageService } from '../../../../../../../services/language-service/language.service';
 import { MatSliderModule } from '@angular/material/slider';
+import { Tw3DialogSoundboardComponent } from '../../../../../pages/the-witcher-3/tw3-home/dialogs/soundboard/tw3-dialog-soundboard.component';
 
 @Component({
   selector: 'app-tw3-header-dialogs',
@@ -43,6 +45,7 @@ export class TW3HeaderDialogsComponent implements OnDestroy {
   private themeService: ThemeService;
   private themeSubscription!: Subscription;
   private audioService: AudioService;
+  private dialog: MatDialog;
 
   private languageService: LanguageService;
 
@@ -54,6 +57,7 @@ export class TW3HeaderDialogsComponent implements OnDestroy {
     this.audioService = inject(AudioService);
     this.themeService = inject(ThemeService);
     this.languageService = inject(LanguageService);
+    this.dialog = inject(MatDialog);
   }
 
   ngOnInit(): void {
@@ -101,5 +105,10 @@ export class TW3HeaderDialogsComponent implements OnDestroy {
   public setMusicVolume(sliderValue: string): void {
     const musicVolume: number = Number(sliderValue) / 100;
     this.audioService.setMusicVolume(musicVolume);
+  }
+
+  public openSoundboardDialog() {
+    this.playClickSound();
+    this.dialog.open(Tw3DialogSoundboardComponent, {});
   }
 }

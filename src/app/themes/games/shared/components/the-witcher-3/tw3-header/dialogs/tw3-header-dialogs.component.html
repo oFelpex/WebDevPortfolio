@@ -4,7 +4,11 @@
     <h2 mat-dialog-title>{{ "DIALOG-THEMES.CHANGE-THEME" | translate }}</h2>
     <mat-dialog-content>
       <mat-accordion class="accordion" multi>
-        <mat-expansion-panel class="expansion-panel" (click)="playClickSound()">
+        <mat-expansion-panel
+          class="expansion-panel"
+          (click)="playClickSound()"
+          (mouseenter)="playMouseEnterOrLeaveSFX()"
+        >
           <mat-expansion-panel-header>
             <div [class]="actualTheme.type === 'Games' ? 'selected' : ''"></div>
             <mat-panel-title>
@@ -14,7 +18,11 @@
           <app-tw3-header-dialog-games></app-tw3-header-dialog-games>
         </mat-expansion-panel>
         <div></div>
-        <mat-expansion-panel class="expansion-panel" (click)="playClickSound()">
+        <mat-expansion-panel
+          class="expansion-panel"
+          (click)="playClickSound()"
+          (mouseenter)="playMouseEnterOrLeaveSFX()"
+        >
           <mat-expansion-panel-header>
             <mat-panel-title>
               {{ "DIALOG-THEMES.COLORS" | translate }}
@@ -34,6 +42,7 @@
             mat-dialog-close
             cdkFocusInitial
             (click)="playClickSound()"
+            (mouseenter)="playMouseEnterOrLeaveSFX()"
           >
             {{ "DIALOG-THEMES.CLOSE" | translate }}
           </button>
@@ -47,7 +56,11 @@
     <h2 mat-dialog-title>{{ "DIALOG-LANGS.CHANGE-LANG" | translate }}</h2>
     <mat-dialog-content>
       <mat-accordion class="accordion" multi>
-        <mat-expansion-panel class="expansion-panel" (click)="playClickSound()">
+        <mat-expansion-panel
+          class="expansion-panel"
+          (click)="playClickSound()"
+          (mouseenter)="playMouseEnterOrLeaveSFX()"
+        >
           <mat-expansion-panel-header>
             <mat-panel-title>
               {{ "DIALOG-LANGS.LANGUAGES" | translate }}
@@ -70,6 +83,7 @@
             mat-dialog-close
             cdkFocusInitial
             (click)="playClickSound()"
+            (mouseenter)="playMouseEnterOrLeaveSFX()"
           >
             {{ "DIALOG-LANGS.CLOSE" | translate }}
           </button>
@@ -128,7 +142,21 @@
           </div>
         </div>
       </div>
-      <div>ABRIR SOUNDBOARD</div>
+      <mat-dialog-actions class="tw3-dialog-actions">
+        <div class="tw3-dialog-actions-border">
+          <div class="tw3-dialog-actions-button-container">
+            <button
+              (click)="openSoundboardDialog()"
+              (mouseenter)="playMouseEnterOrLeaveSFX()"
+              class="tw3-dialog-actions-button"
+              mat-button
+              mat-dialog-close
+            >
+              {{ "DIALOG-SOUNDS.OPEN-SOUNDBOARD" | translate }}
+            </button>
+          </div>
+        </div>
+      </mat-dialog-actions>
     </mat-dialog-content>
 
     <mat-dialog-actions class="tw3-dialog-actions">
@@ -140,6 +168,7 @@
             mat-dialog-close
             cdkFocusInitial
             (click)="playClickSound()"
+            (mouseenter)="playMouseEnterOrLeaveSFX()"
           >
             {{ "DIALOG-LANGS.CLOSE" | translate }}
           </button>
