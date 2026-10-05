@@ -39,10 +39,10 @@ export const gamesOptions: Themes[] = [
   //   name: 'Hollow Knight',
   //   type: 'Games',
   // },
-  // {
-  //   name: 'Undertale',
-  //   type: 'Games',
-  // },
+  {
+    name: 'Undertale',
+    type: 'Games',
+  },
   {
     name: 'Minecraft',
     type: 'Games',
