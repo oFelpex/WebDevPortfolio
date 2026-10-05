@@ -32,8 +32,9 @@ export class AudioService {
   public showSoundboard$ = this.showSoundboardSubject.asObservable();
 
   constructor() {
-    this.audioContext = new (window.AudioContext ||
-      (window as any).webkitAudioContext)();
+    this.audioContext = new (
+      window.AudioContext || (window as any).webkitAudioContext
+    )();
 
     this.musicGainNode = this.audioContext.createGain();
     this.musicGainNode.connect(this.audioContext.destination);
@@ -68,22 +69,43 @@ export class AudioService {
     this.sounds[name] = audioBuffer;
   }
 
-  public async playPlaylist(playlist: Musics[]) {
-    if (this.playlist) {
-      if (this.playlist[0].gameName === playlist[0].gameName) {
-        console.log(this.playlist);
-        return;
-      }
-    }
+  public async playPlaylist(playlist: Musics[]): Promise<void> {
+    await this.loadPlaylist(playlist);
+    this.playFromIndex(0);
+  }
+
+  public async loadPlaylist(playlist: Musics[]): Promise<void> {
+    const isSamePlaylist =
+      this.playlist && this.playlist[0]?.gameName === playlist[0]?.gameName;
+
+    if (isSamePlaylist) return;
+
+    this.unloadCurrentPlaylist();
+
     this.playlist = playlist;
     this.currentIndex = 0;
 
     for (const music of playlist) {
       await this.preloadSound(music.musicName, music.musicURL);
     }
+  }
+  private unloadCurrentPlaylist(): void {
+    this.stopSound();
 
+    this.playlist = undefined as any;
+    this.currentIndex = 0;
+
+    if (this.playlist) {
+      for (const music of this.playlist) {
+        delete this.sounds[music.musicName];
+      }
+    }
+  }
+  public playFromIndex(index: number): void {
+    if (!this.playlist || index < 0 || index >= this.playlist.length) return;
+
+    this.currentIndex = index;
     this.playCurrentTrack();
-    this.pauseMusic();
   }
 
   private playCurrentTrack(resume: boolean = false) {
@@ -127,7 +149,6 @@ export class AudioService {
       this.playCurrentTrack(true);
     }
   }
-
   public stopMusic() {
     if (this.currentMusicSource) {
       this.currentMusicSource.onended = null;
@@ -135,6 +156,15 @@ export class AudioService {
       this.currentMusicSource.disconnect();
       this.currentMusicSource = null;
     }
+  }
+
+  public stopSound() {
+    this.stopMusic();
+    this.currentMusicName = null;
+    this.currentMusicComposer = undefined;
+    this.musicDuration = 0;
+    this.pauseTime = 0;
+    this.isPaused = false;
   }
 
   public nextMusic() {
@@ -151,7 +181,7 @@ export class AudioService {
   public setMusicVolume(value: number): void {
     this.musicGainNode.gain.setValueAtTime(
       value,
-      this.audioContext.currentTime
+      this.audioContext.currentTime,
     );
     this.musicVolume = value;
     localStorage.setItem('musicVolume', JSON.stringify(value));
@@ -168,44 +198,48 @@ export class AudioService {
     this.playSound(audioName);
   }
 
-  public playSound(audioName: string): void {
-  const audioBuffer = this.sounds[audioName];
+  public playSound(
+    audioName: string,
+    type: 'music' | 'sfx' = 'sfx',
+    composer?: string | undefined,
+  ): void {
+    const audioBuffer = this.sounds[audioName];
 
-  if (audioBuffer) {
-    const source = this.audioContext.createBufferSource();
-    source.buffer = audioBuffer;
-    source.connect(this.sfxGainNode);
+    if (audioBuffer) {
+      const source = this.audioContext.createBufferSource();
+      source.buffer = audioBuffer;
 
-    if (!this.activeSfx.has(audioName)) {
-      this.activeSfx.set(audioName, []);
+      const destination =
+        type === 'music' ? this.musicGainNode : this.sfxGainNode;
+      source.connect(destination);
+      source.start(0);
     }
+  }
 
-    this.activeSfx.get(audioName)?.push(source);
+  public playSingleTrack(music: Musics): void {
+    this.stopMusic();
+
+    const buffer = this.sounds[music.musicName];
+    if (!buffer) return;
+
+    const source = this.audioContext.createBufferSource();
+    source.buffer = buffer;
+    source.connect(this.musicGainNode);
     source.start(0);
+
+    this.currentMusicSource = source;
+    this.currentMusicName = music.musicName;
+    this.currentMusicComposer = music.musicComposer;
+    this.musicDuration = buffer.duration;
+    this.musicStartTime = this.audioContext.currentTime;
+    this.isPaused = false;
+
     source.onended = () => {
-      const sources = this.activeSfx.get(audioName);
-      if (sources) {
-        const index = sources.indexOf(source);
-        if (index > -1) sources.splice(index, 1);
-        if (sources.length === 0) this.activeSfx.delete(audioName);
+      if (!this.isPaused && this.currentMusicSource === source) {
+        this.currentMusicSource = null;
       }
     };
   }
-}
-
-public stopSound(audioName: string): void {
-  const sources = this.activeSfx.get(audioName);
-  if (sources) {
-    sources.forEach(source => {
-      try {
-        source.stop();
-        source.disconnect();
-      } catch (e) {
-      }
-    });
-    this.activeSfx.delete(audioName);
-  }
-}
 
   public getMusicVolume(): number {
     return this.musicVolume;
@@ -225,6 +259,13 @@ public stopSound(audioName: string): void {
     return Math.min(elapsed / this.musicDuration, 1);
   }
 
+  public hasCurrentTrack(): boolean {
+    return this.currentMusicName !== null;
+  }
+  public getCurrentMusic(): Musics | null {
+    if (!this.playlist || !this.currentMusicName) return null;
+    return this.playlist[this.currentIndex] ?? null;
+  }
   public getCurrentMusicName(): string | null {
     return this.currentMusicName;
   }

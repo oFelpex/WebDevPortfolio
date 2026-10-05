@@ -8,16 +8,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
-import {
-  LangChangeEvent,
-  TranslateModule,
-  TranslateService,
-} from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AudioService } from '../../../../../services/audio-service/audio.service';
 import { CustomSnackbarComponent } from '../../../../components/custom-snackbar/custom-snackbar.component';
 import { ResponsiveService } from '../../../../../services/responsive-service/responsive.service';
+import { LanguageService } from '../../../../../services/language-service/language.service';
 
 @Component({
   selector: 'app-mobile-langs-menu',
@@ -33,8 +30,7 @@ import { ResponsiveService } from '../../../../../services/responsive-service/re
   styleUrl: './mobile-langs-menu.component.scss',
 })
 export class MobileLangsMenuSheetComponent {
-  private translate: TranslateService;
-  private translateSubscription!: Subscription;
+  private languageService: LanguageService;
   private snackBar: MatSnackBar;
   private audioService: AudioService;
   private themeService: ThemeService;
@@ -42,11 +38,10 @@ export class MobileLangsMenuSheetComponent {
   private themeSubscription!: Subscription;
 
   public actualTheme!: Themes;
-  public currentLang!: string;
   public isMobile: boolean = window.innerWidth <= 820;
 
   constructor() {
-    this.translate = inject(TranslateService);
+    this.languageService = inject(LanguageService);
     this.snackBar = inject(MatSnackBar);
     this.themeService = inject(ThemeService);
     this.audioService = inject(AudioService);
@@ -54,18 +49,11 @@ export class MobileLangsMenuSheetComponent {
   }
 
   ngOnInit(): void {
-    this.currentLang = this.translate.currentLang;
     this.themeSubscription = this.themeService.actualTheme$.subscribe(
       (theme) => {
         this.actualTheme = theme;
-      }
+      },
     );
-
-    this.translateSubscription = this.translate.onLangChange
-      .asObservable()
-      .subscribe((event: LangChangeEvent) => {
-        this.currentLang = event.lang;
-      });
 
     this.responsiveService.isMobile$.subscribe((isMobile) => {
       this.isMobile = isMobile;
@@ -75,13 +63,14 @@ export class MobileLangsMenuSheetComponent {
   }
 
   ngOnDestroy(): void {
-    this.translateSubscription.unsubscribe();
     this.themeSubscription.unsubscribe();
   }
 
+  public get currentLang(): string {
+    return this.languageService.getCurrentLanguage();
+  }
   public changeLanguage(lang: string) {
-    this.translate.use(lang);
-    localStorage.setItem('lang', JSON.stringify(lang));
+    this.languageService.setLanguage(lang);
 
     this.snackBar.openFromComponent(CustomSnackbarComponent, {
       data: {
@@ -90,11 +79,10 @@ export class MobileLangsMenuSheetComponent {
       },
       duration: 4000,
     });
-
-    this._bottomSheetRef.dismiss();
   }
+
   public get AllLangs(): string[] {
-    return this.translate.getLangs();
+    return this.languageService.getSupportedLangs();
   }
 
   private _bottomSheetRef =

@@ -1,4 +1,4 @@
-<header>
+<header id="tw3-header">
   <nav id="tw3-nav">
     <app-logo-effects id="special-logo"></app-logo-effects>
     <div class="mobile-buttons-container">
@@ -16,7 +16,9 @@
         <img
           class="arrow-icon"
           src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-nav-button.webp"
-          alt=""
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.BUTTONS.ARROW-LEFT-ALT' | translate
+          "
         />
         <span class="nav-buttons-text">{{
           "ROUTER-UPPERCASE." +
@@ -29,7 +31,9 @@
         <img
           class="arrow-icon"
           src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-nav-button.webp"
-          alt=""
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.BUTTONS.ARROW-RIGHT-ALT' | translate
+          "
         />
         <span class="nav-buttons-text">{{
           "ROUTER-UPPERCASE." + allRoutes[(currentIndex + 1) % allRoutes.length]
@@ -55,17 +59,46 @@
         <img
           class="button-bg"
           src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
-          alt=""
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.BUTTONS.BUTTONS-BG-ALT' | translate
+          "
         />
         <div class="button-content">
           <img
             id="medallion-icon"
-            src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-medallion-icon.webp"
-            alt=""
+            src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-medallion-icon.webp"
+            [alt]="
+              'THEMES.GAMES.THE WITCHER 3.BUTTONS.MEDALLION-ICON-ALT'
+                | translate
+            "
           />
           <span>{{ "UPPERCASE.THEMES" | translate }}</span>
         </div>
       </button>
+
+      <button
+        class="special-buttons"
+        (click)="openSoundsDialog(); playClickSound()"
+      >
+        <img
+          class="button-bg"
+          src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.BUTTONS.BUTTONS-BG-ALT' | translate
+          "
+        />
+        <div class="button-content">
+          <img
+            id="medallion-icon"
+            src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-volume-icon.webp"
+            [alt]="
+              'THEMES.GAMES.THE WITCHER 3.BUTTONS.VOLUME-ICON-ALT' | translate
+            "
+          />
+          <span>{{ "UPPERCASE.VOLUME" | translate }}</span>
+        </div>
+      </button>
+
       <button
         class="special-buttons"
         (click)="openLangsDialog(); playClickSound()"
@@ -73,21 +106,25 @@
         <img
           class="button-bg"
           src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-buttons-bg.webp"
-          alt=""
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.BUTTONS.BUTTONS-BG-ALT' | translate
+          "
         />
         <div class="button-content">
           <img
             id="langs-icon"
-            src="../../../../../../assets/themes/games/the witcher 3/buttons/tw3-langs-icon.webp"
-            alt=""
+            src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-langs-icon.webp"
+            [alt]="
+              'THEMES.GAMES.THE WITCHER 3.BUTTONS.LANG-ICON-ALT' | translate
+            "
           />
           <span>{{ "UPPERCASE.LANGS" | translate }}</span>
         </div>
       </button>
     </div>
   </nav>
-  @if(isMobile) {
-  <app-mobile-menu></app-mobile-menu>
-  <app-mobile-soundboard></app-mobile-soundboard>
+  @if (isMobile) {
+    <app-mobile-menu></app-mobile-menu>
+    <app-mobile-soundboard></app-mobile-soundboard>
   }
 </header>

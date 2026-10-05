@@ -1,14 +1,12 @@
 export type Games =
-  | 'God Of War'
   | 'Red Dead Redemption 2'
-  | 'The Witcher 3'
-  | 'The Legend of Zelda: BOTW'
-  | 'Cyberpunk'
-  | 'Elden Ring'
-  | 'Stardew Valley'
+  | 'The Witcher 3' // Work in progress
+  | 'The Legend of Zelda: BOTW' // Not sure, but might be Zelda in general
+  | 'Persona 3' // Could be Persona 5, still thinking about it
+  | 'Elden Ring' // It might be Dark Souls instead
   | 'Hollow Knight'
   | 'Undertale'
-  | 'Minecraft';
+  | 'Minecraft'; // Done!
 export type Colors = 'Light' | 'Dark' | 'Cosmic';
 
 export type ThemeCategory = Games | Colors;
@@ -18,9 +16,6 @@ export interface Themes {
 }
 export const gamesOptions: Themes[] = [
   // {
-  //   name: 'God of War',
-  // },
-  // {
   //   name: 'Red Dead Redemption 2',
   //   type: 'Games',
   // },
@@ -29,27 +24,23 @@ export const gamesOptions: Themes[] = [
     type: 'Games',
   },
   // {
-  //   name: 'Cyberpunk',
-  //   type: 'Games'
-  // },
-  // {
-  //   name: 'Elden Ring',
-  //   type: 'Games'
-  // },
-  // {
-  //   name: 'Hollow Knight',
-  //   type: 'Games'
-  // },
-  // {
-  //   name: 'Undertale',
-  //   type: 'Games'
-  // },
-  // {
-  //   name: 'The Legend of Zelda: BOTW',
+  //   name: 'The Legend of Zelda: TOTK',
   //   type: 'Games',
   // },
   // {
-  //   name: 'Stardew Valley',
+  //   name: 'Persona 3',
+  //   type: 'Games',
+  // },
+  // {
+  //   name: 'Elden Ring',
+  //   type: 'Games',
+  // },
+  // {
+  //   name: 'Hollow Knight',
+  //   type: 'Games',
+  // },
+  // {
+  //   name: 'Undertale',
   //   type: 'Games',
   // },
   {

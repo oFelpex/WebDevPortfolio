@@ -176,7 +176,7 @@ export class TheWitcher3EffectComponent implements OnInit {
       this.audioService.preloadSound(SFX.SFXName, SFX.SFXURL);
     }
 
-    this.audioService.playPlaylist(this.TW3Musics);
+    await this.audioService.loadPlaylist(this.TW3Musics);
 
     await loadFull(tsParticles);
   }

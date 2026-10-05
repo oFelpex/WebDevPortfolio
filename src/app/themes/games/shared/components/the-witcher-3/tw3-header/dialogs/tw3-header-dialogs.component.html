@@ -1,0 +1,179 @@
+@if (data.dialogType === "Themes") {
+  <div id="main">
+    <div class="bottom-corners"></div>
+    <h2 mat-dialog-title>{{ "DIALOG-THEMES.CHANGE-THEME" | translate }}</h2>
+    <mat-dialog-content>
+      <mat-accordion class="accordion" multi>
+        <mat-expansion-panel
+          class="expansion-panel"
+          (click)="playClickSound()"
+          (mouseenter)="playMouseEnterOrLeaveSFX()"
+        >
+          <mat-expansion-panel-header>
+            <div [class]="actualTheme.type === 'Games' ? 'selected' : ''"></div>
+            <mat-panel-title>
+              {{ "DIALOG-THEMES.VIDEO-GAMES" | translate }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-tw3-header-dialog-games></app-tw3-header-dialog-games>
+        </mat-expansion-panel>
+        <div></div>
+        <mat-expansion-panel
+          class="expansion-panel"
+          (click)="playClickSound()"
+          (mouseenter)="playMouseEnterOrLeaveSFX()"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "DIALOG-THEMES.COLORS" | translate }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-tw3-header-dialog-colors></app-tw3-header-dialog-colors>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="tw3-dialog-actions">
+      <div class="tw3-dialog-actions-border">
+        <div class="tw3-dialog-actions-button-container">
+          <button
+            class="tw3-dialog-actions-button"
+            mat-button
+            mat-dialog-close
+            cdkFocusInitial
+            (click)="playClickSound()"
+            (mouseenter)="playMouseEnterOrLeaveSFX()"
+          >
+            {{ "DIALOG-THEMES.CLOSE" | translate }}
+          </button>
+        </div>
+      </div>
+    </mat-dialog-actions>
+  </div>
+} @else if (data.dialogType === "Langs") {
+  <div id="main">
+    <div class="bottom-corners"></div>
+    <h2 mat-dialog-title>{{ "DIALOG-LANGS.CHANGE-LANG" | translate }}</h2>
+    <mat-dialog-content>
+      <mat-accordion class="accordion" multi>
+        <mat-expansion-panel
+          class="expansion-panel"
+          (click)="playClickSound()"
+          (mouseenter)="playMouseEnterOrLeaveSFX()"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ "DIALOG-LANGS.LANGUAGES" | translate }}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{ "DIALOG-LANGS.DESCRIPTION" | translate }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-tw3-dialog-langs></app-tw3-dialog-langs>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="tw3-dialog-actions">
+      <div class="tw3-dialog-actions-border">
+        <div class="tw3-dialog-actions-button-container">
+          <button
+            class="tw3-dialog-actions-button"
+            mat-button
+            mat-dialog-close
+            cdkFocusInitial
+            (click)="playClickSound()"
+            (mouseenter)="playMouseEnterOrLeaveSFX()"
+          >
+            {{ "DIALOG-LANGS.CLOSE" | translate }}
+          </button>
+        </div>
+      </div>
+    </mat-dialog-actions>
+  </div>
+} @else if (data.dialogType === "Sounds") {
+  <div id="main-sounds">
+    <div class="bottom-corners"></div>
+    <h2 mat-dialog-title>{{ "DIALOG-SOUNDS.SOUND-OPTIONS" | translate }}</h2>
+    <mat-dialog-content id="main-sounds-content">
+      <div class="volume-container" (mouseenter)="playMouseEnterOrLeaveSFX()">
+        <div class="bottom-corners"></div>
+        <span class="volume-option-title">{{
+          "SOUNDBOARD.SFX-VOLUME" | translate
+        }}</span>
+
+        <div class="right-side-content">
+          <span class="volume-value">{{
+            (actualSfxVolume * 100).toFixed()
+          }}</span>
+          <div class="volume-slider-container">
+            <mat-slider class="volume-slider" min="0" max="100" step="1">
+              <input
+                [value]="(actualSfxVolume * 100).toFixed()"
+                (input)="setSfxVolume(sfxSlider.value)"
+                (valueChange)="playMouseEnterOrLeaveSFX()"
+                #sfxSlider
+                matSliderThumb
+              />
+            </mat-slider>
+          </div>
+        </div>
+      </div>
+      <div class="volume-container" (mouseenter)="playMouseEnterOrLeaveSFX()">
+        <div class="bottom-corners"></div>
+        <span class="volume-option-title">{{
+          "SOUNDBOARD.MUSIC-VOLUME" | translate
+        }}</span>
+
+        <div class="right-side-content">
+          <span class="volume-value">{{
+            (actualMusicVolume * 100).toFixed()
+          }}</span>
+          <div class="volume-slider-container">
+            <mat-slider class="volume-slider" min="0" max="100" step="1">
+              <input
+                [value]="(actualMusicVolume * 100).toFixed()"
+                (input)="setMusicVolume(musicSlider.value)"
+                (valueChange)="playMouseEnterOrLeaveSFX()"
+                #musicSlider
+                matSliderThumb
+              />
+            </mat-slider>
+          </div>
+        </div>
+      </div>
+      <mat-dialog-actions class="tw3-dialog-actions">
+        <div class="tw3-dialog-actions-border">
+          <div class="tw3-dialog-actions-button-container">
+            <button
+              (click)="openSoundboardDialog()"
+              (mouseenter)="playMouseEnterOrLeaveSFX()"
+              class="tw3-dialog-actions-button"
+              mat-button
+              mat-dialog-close
+            >
+              {{ "DIALOG-SOUNDS.OPEN-SOUNDBOARD" | translate }}
+            </button>
+          </div>
+        </div>
+      </mat-dialog-actions>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="tw3-dialog-actions">
+      <div class="tw3-dialog-actions-border">
+        <div class="tw3-dialog-actions-button-container">
+          <button
+            class="tw3-dialog-actions-button"
+            mat-button
+            mat-dialog-close
+            cdkFocusInitial
+            (click)="playClickSound()"
+            (mouseenter)="playMouseEnterOrLeaveSFX()"
+          >
+            {{ "DIALOG-LANGS.CLOSE" | translate }}
+          </button>
+        </div>
+      </div>
+    </mat-dialog-actions>
+  </div>
+}

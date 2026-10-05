@@ -16,17 +16,14 @@ import { ThemeService } from '../../../../services/theme-service/theme.service';
 import { Themes } from '../../../../models/themes';
 import { SocialLinksComponent } from '../../../components/social-links/social-links.component';
 
-import {
-  LangChangeEvent,
-  TranslateModule,
-  TranslateService,
-} from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { AudioService } from '../../../../services/audio-service/audio.service';
 import { CustomSnackbarComponent } from '../../../components/custom-snackbar/custom-snackbar.component';
 import { LogoEffectsComponent } from '../../../../logo-effects/logo-effects.component';
 import { MobileSoundboardMenuService } from '../../../../services/mobile-soundboard-menu/mobile-soundboard-menu.service';
+import { LanguageService } from '../../../../services/language-service/language.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -52,21 +49,20 @@ export class NavBarComponent implements OnInit, OnDestroy {
   private themeService: ThemeService;
   private mobileNavMenuService: MobileNavMenuService;
   private mobileSoundboardMenuService: MobileSoundboardMenuService;
-  private translate: TranslateService;
+  private languageService: LanguageService;
+
   private snackBar: MatSnackBar;
   private router: Router;
-  private translateSubscription!: Subscription;
   private routerSubscription!: Subscription;
   private audioService: AudioService;
   private themeSubscription!: Subscription;
 
   public actualTheme!: Themes;
   public currentRoute!: string;
-  public currentLang!: string;
   public actualThemeKey!: string;
 
   constructor() {
-    this.translate = inject(TranslateService);
+    this.languageService = inject(LanguageService);
 
     this.mobileNavMenuService = inject(MobileNavMenuService);
     this.mobileSoundboardMenuService = inject(MobileSoundboardMenuService);
@@ -78,21 +74,13 @@ export class NavBarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.currentLang = this.translate.currentLang;
-
     this.themeSubscription = this.themeService.actualTheme$.subscribe(
       (theme) => {
         this.actualTheme = theme;
 
         this.actualThemeKey = `THEMES.${this.actualTheme.type}.${this.actualTheme.name}`;
-      }
+      },
     );
-
-    this.translateSubscription = this.translate.onLangChange
-      .asObservable()
-      .subscribe((event: LangChangeEvent) => {
-        this.currentLang = event.lang;
-      });
 
     this.routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -103,13 +91,14 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.routerSubscription.unsubscribe();
-    this.translateSubscription.unsubscribe();
     this.themeSubscription.unsubscribe();
   }
 
+  public get currentLang(): string {
+    return this.languageService.getCurrentLanguage();
+  }
   public changeLanguage(lang: string) {
-    this.translate.use(lang);
-    localStorage.setItem('lang', JSON.stringify(lang));
+    this.languageService.setLanguage(lang);
 
     this.snackBar.openFromComponent(CustomSnackbarComponent, {
       data: {
@@ -119,8 +108,9 @@ export class NavBarComponent implements OnInit, OnDestroy {
       duration: 4000,
     });
   }
+
   public get AllLangs(): string[] {
-    return this.translate.getLangs();
+    return this.languageService.getSupportedLangs();
   }
 
   public playClickSound(themeName: string) {

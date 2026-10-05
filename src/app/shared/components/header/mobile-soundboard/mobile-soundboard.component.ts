@@ -74,7 +74,7 @@ export class MobileSoundboardComponent
     this.themeSubscription = this.themeService.actualTheme$.subscribe(
       (theme) => {
         this.actualTheme = theme;
-      }
+      },
     );
 
     this.addStylesToSliders();
@@ -82,7 +82,7 @@ export class MobileSoundboardComponent
 
   ngAfterViewChecked() {
     this.mobileSoundboardMenuService.setMobileSoundboardDrawer(
-      this.mobileSoundboard
+      this.mobileSoundboard,
     );
 
     this.mobileSoundboardMenuService.changeMobileSoundboardPointerEvents();
@@ -95,7 +95,7 @@ export class MobileSoundboardComponent
 
   private addStylesToSliders(): void {
     const sliders = document.getElementsByClassName(
-      'sb-slider'
+      'sb-slider',
     ) as HTMLCollectionOf<HTMLElement>;
 
     if (this.actualTheme.name === 'Minecraft') {
@@ -106,14 +106,14 @@ export class MobileSoundboardComponent
         }
 
         const thumb = slider.querySelector(
-          '.mdc-slider__thumb-knob'
+          '.mdc-slider__thumb-knob',
         ) as HTMLElement;
         if (thumb) {
           thumb.style.border = '3px solid black';
         }
 
         const trackActive = slider.querySelector(
-          '.mdc-slider__track--active_fill'
+          '.mdc-slider__track--active_fill',
         ) as HTMLElement;
         const track = slider.querySelector('.mdc-slider__track') as HTMLElement;
 

@@ -1,0 +1,42 @@
+<mat-dialog-content id="tw3-dialog-navigate-container">
+  <div id="top-bar-container">
+    <div id="weight-and-money">
+      <div class="left-container">
+        <span>7 / 60</span>
+        <img
+          src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-weight-icon.webp"
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.DIALOG-HOME.WEIGHT-ICON-ALT' | translate
+          "
+        />
+      </div>
+      <div class="left-container">
+        <span>3</span>
+        <img
+          src="../../../../../../assets/themes/games/the witcher 3/buttons/icons/tw3-money-icon.webp"
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.DIALOG-HOME.MONEY-ICON-ALT' | translate
+          "
+        />
+      </div>
+    </div>
+    <div id="level-xp-and-close">
+      <span id="level-word">{{
+        "THEMES.GAMES.THE WITCHER 3.DIALOG-HOME.LEVEL" | translate
+      }}</span>
+      <div id="level-and-xp-bar-container">
+        <span id="level-number">1</span>
+        <div id="xp-bar-container"><div id="xp-bar"></div></div>
+        <span id="xp-number">652/1000</span>
+      </div>
+      <button
+        id="close-menu-button"
+        mat-dialog-close
+        (click)="playClickSound()"
+      >
+        <span>X</span>
+      </button>
+    </div>
+  </div>
+  <app-tw3-navigate-map></app-tw3-navigate-map>
+</mat-dialog-content>

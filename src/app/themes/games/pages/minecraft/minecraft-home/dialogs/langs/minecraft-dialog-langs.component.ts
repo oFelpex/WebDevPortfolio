@@ -1,12 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
 
 import { MatRadioModule } from '@angular/material/radio';
 import { MatListModule } from '@angular/material/list';
 
 import { AudioService } from '../../../../../../../services/audio-service/audio.service';
+import { LanguageService } from '../../../../../../../services/language-service/language.service';
 
 @Component({
   selector: 'app-minecraft-dialog-langs',
@@ -18,36 +17,30 @@ import { AudioService } from '../../../../../../../services/audio-service/audio.
   ],
 })
 export class MinecraftDialogLangsComponent {
-  private translateService: TranslateService;
+  private languageService: LanguageService;
+
   private audioService: AudioService;
-  private translateSubscribe!: Subscription;
-  public allLangs: string[] = [];
-  public currentLang!: string;
 
   constructor() {
-    this.translateService = inject(TranslateService);
+    this.languageService = inject(LanguageService);
     this.audioService = inject(AudioService);
-    this.allLangs = this.translateService.getLangs();
-  }
-
-  ngOnInit(): void {
-    this.currentLang = this.translateService.currentLang;
-    this.translateSubscribe = this.translateService.onLangChange.subscribe(
-      () => {
-        this.currentLang = this.translateService.currentLang;
-      }
-    );
-  }
-
-  ngOnDestroy(): void {
-    this.translateSubscribe.unsubscribe();
   }
 
   public playClickSound(): void {
     this.audioService.playClickSound('Minecraft');
   }
 
+  public get currentLang(): string {
+    return this.languageService.getCurrentLanguage();
+  }
+  public set currentLang(lang: string) {
+    this.changeLang(lang);
+  }
+  public get allLangs(): string[] {
+    return this.languageService.getSupportedLangs();
+  }
   public changeLang(lang: string) {
-    this.translateService.use(lang);
+    this.languageService.setLanguage(lang);
+    this.playClickSound();
   }
 }

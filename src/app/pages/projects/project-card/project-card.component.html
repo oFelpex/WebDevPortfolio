@@ -9,7 +9,11 @@
       [project]="project"
     ></app-overlay-projects>
 
-    <img mat-card-image [src]="project.imgURL" [alt]="project.imgAlt" />
+    <img
+      mat-card-image
+      [src]="project.imgURL"
+      [alt]="'PROJECTS-PAGE.' + project.imgAlt | translate"
+    />
   </div>
   <mat-card-content class="project-card-content">
     <mat-card-title
@@ -25,15 +29,15 @@
     class="project-card-hardSkills-container"
     aria-label="Hard skills of the project."
   >
-    @for(hardSkill of project.hardSkills; track $index) {
-    <mat-chip class="project-card-hardSkills-chips">
-      <mat-icon
-        matChipAvatar
-        [svgIcon]="project.hardSkillsIcons[$index]"
-      ></mat-icon>
+    @for (hardSkill of project.hardSkills; track $index) {
+      <mat-chip class="project-card-hardSkills-chips">
+        <mat-icon
+          matChipAvatar
+          [svgIcon]="project.hardSkillsIcons[$index]"
+        ></mat-icon>
 
-      {{ hardSkill }}
-    </mat-chip>
+        {{ hardSkill }}
+      </mat-chip>
     }
   </mat-chip-set>
   <mat-divider></mat-divider>
@@ -41,22 +45,21 @@
     <button
       (click)="playClickSound(actualTheme.name); goToProject(project.siteURL)"
       mat-icon-button
-      aria-label="Takes you to the repository page on github"
+      [attr.aria-label]="'PROJECTS-PAGE.GITHUB-ICON-ALT' | translate"
     >
       <mat-icon
         svgIcon="icon-github"
-        aria-label="Takes you to the repository page on github"
+        [attr.aria-label]="'PROJECTS-PAGE.GITHUB-ICON-ALT' | translate"
       ></mat-icon>
     </button>
     <button
       (click)="playClickSound(actualTheme.name); goToProject(project.siteURL)"
       mat-icon-button
-      aria-label="Takes you to the website deployed"
+      [attr.aria-label]="'PROJECTS-PAGE.ANCHOR-ICON-ALT' | translate"
     >
       <mat-icon
-        style="font-family: 'Material Icons'"
-        aria-label="Takes you to the website deployed"
-        alt="Takes you to the website deployed"
+        style="font-family: &quot;Material Icons&quot;"
+        [attr.aria-label]="'PROJECTS-PAGE.ANCHOR-ICON-ALT' | translate"
         >open_in_new</mat-icon
       >
     </button>

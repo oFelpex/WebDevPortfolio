@@ -31,8 +31,7 @@ export interface Projects {
 export const allProjects: Projects[] = [
   {
     name: 'Katana Dynasty',
-    description:
-      'Explore our premium collection of authentic katanas. Find the perfect sword for collectors, martial artists, and enthusiasts. High-quality craftsmanship and detailed designs for every budget.',
+    description: 'KATANA-DYNASTY-DESCRIPTION',
     hardSkills: ['HTML', 'SCSS', 'Angular', 'TS', 'Rest API'],
     hardSkillsIcons: [
       'icon-html',
@@ -43,42 +42,29 @@ export const allProjects: Projects[] = [
     ],
     imgURL:
       '../../../assets/images/projects/katana-dynasty/katana-dynasty.webp',
-    imgAlt: `It's a print of the homepage from the site: Katana Dynasty.`,
+    imgAlt: `KATANA-DYNASTY-ALT`,
     githubURL: 'https://github.com/oFelpex/katana-dynasty',
     siteURL: 'https://katana-dynasty.vercel.app/home',
   },
   {
     name: 'To-Do-List',
-    description:
-      'Manage your tasks simply and efficiently with our to-do list app. Easily add, edit, filter and complete tasks.',
+    description: 'TO-DO-LIST-DESCRIPTION',
     imgURL: '../../../assets/images/projects/to-do-list/to-do-list.webp',
     hardSkills: ['HTML', 'CSS', 'TS'],
     hardSkillsIcons: ['icon-html', 'icon-css', 'icon-ts'],
-    imgAlt: `It's a print of the homepage from the site: To-Do-List.`,
+    imgAlt: `TO-DO-LIST-ALT`,
     githubURL: 'https://github.com/oFelpex/projeto-final-ADA-POO-TS',
     siteURL: 'https://ofelpex.github.io/projeto-final-ADA-POO-TS/',
   },
   {
     name: 'Caldeirão da Bruxa',
-    description: `Order your snack themed with the HORROR of Halloween! Take advantage of the promotions and don't forget to sign up to receive offers from Caldeirão da Bruxa.`,
+    description: `CALDEIRAO-DA-BRUXA-DESCRIPTION`,
     hardSkills: ['HTML', 'CSS'],
     hardSkillsIcons: ['icon-html', 'icon-css', 'icon-bootstrap'],
     imgURL:
       '../../../assets/images/projects/caldeirao-da-bruxa/caldeirao-da-bruxa.webp',
-    imgAlt: `It's a print of the homepage from the site: Caldeirão da Bruxa.`,
+    imgAlt: `CALDEIRAO-DA-BRUXA-ALT`,
     githubURL: 'https://github.com/oFelpex/caldeirao-da-bruxa',
     siteURL: 'https://ofelpex.github.io/caldeirao-da-bruxa/',
   },
-  // {
-  //   name: 'Space Hero (remake)',
-  //   description:
-  //     'Space Hero is a game made for a final project for a college subject, this is a remake of it, but still in the development process.',
-  //   hardSkills: ['HTML', 'CSS', 'JS'],
-  //   hardSkillsIcons: ['icon-html', 'icon-css', 'icon-js'],
-  //   imgURL:
-  //     '../../../assets/images/projects/spacehero-remake/spacehero-remake.webp',
-  //   imgAlt: `It's a print of the homepage from the site: Space Hero (remake).`,
-  //   githubURL: 'https://github.com/oFelpex/spacehero-remake',
-  //   siteURL: 'https://ofelpex.github.io/spacehero-remake/',
-  // },
 ];

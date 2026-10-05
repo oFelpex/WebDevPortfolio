@@ -1,0 +1,17 @@
+@use "@angular/material" as mat;
+
+// Theme: light-theme
+body.light-theme {
+  --background-color: #ffffff;
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}

@@ -4,12 +4,10 @@
     class="radio-group"
     [(ngModel)]="currentLang"
   >
-    @for(lang of allLangs; track $index) {
-    <mat-radio-button
-      [value]="lang"
-      (change)="changeLang(lang); playClickSound()"
-      ><span class="radio-button">{{ lang }}</span></mat-radio-button
-    >
+    @for (lang of allLangs; track $index) {
+      <mat-radio-button [value]="lang" (change)="changeLang(lang)"
+        ><span class="radio-button">{{ lang }}</span></mat-radio-button
+      >
     }
   </mat-radio-group>
 </mat-list>

@@ -1,0 +1,73 @@
+<div id="map-container">
+  <div id="map-hud">
+    <div id="top-right-hud">
+      <div class="hud-item right-title">
+        <span>
+          {{
+            "THEMES.GAMES.THE WITCHER 3.NAVIGATE-MAP.HUD.THIS-IS-THE-MAP"
+              | translate
+          }}
+        </span>
+        <span class="exclamation-span">!</span>
+      </div>
+      <div class="hud-item right-subtitle">
+        <img
+          src="../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-second-mission-icon.webp"
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.NAVIGATE-MAP.HUD.SECOND-MISSION-ICON-ALT'
+              | translate
+          "
+        />
+        <span>
+          {{
+            "THEMES.GAMES.THE WITCHER 3.NAVIGATE-MAP.HUD.EXPLORE" | translate
+          }}
+        </span>
+        <img
+          src="../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-mission-icon.webp"
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.NAVIGATE-MAP.HUD.MAIN-MISSION-ICON-ALT'
+              | translate
+          "
+        />
+      </div>
+    </div>
+    <div id="bottom-left-hud">
+      <div class="hud-item">
+        <img
+          src="../../../../../../../../assets/themes/games/the witcher 3/buttons/icons/map/tw3-fast-travel-icon.webp"
+          [alt]="
+            'THEMES.GAMES.THE WITCHER 3.NAVIGATE-MAP.HUD.SIGNAGE-ICON-ALT'
+              | translate
+          "
+        />
+        <span>
+          {{
+            "THEMES.GAMES.THE WITCHER 3.NAVIGATE-MAP.HUD.SIGNAGE" | translate
+          }}
+        </span>
+      </div>
+
+      @for (otherIcon of someOtherIcons; track $index) {
+        <div class="hud-item">
+          <img
+            [src]="otherIcon.url"
+            [alt]="
+              'THEMES.GAMES.THE WITCHER 3.NAVIGATE-MAP.MAP-ICONS.SOME-OTHER-ICONS-' +
+                otherIcon.id.toUpperCase() | translate
+            "
+          />
+          <span>
+            {{
+              "THEMES.GAMES.THE WITCHER 3.NAVIGATE-MAP.HUD." +
+                (otherIcon.id === someOtherIcons[0].id
+                  ? "MISSION"
+                  : otherIcon.id.toUpperCase()) | translate
+            }}
+          </span>
+        </div>
+      }
+    </div>
+  </div>
+  <div id="map"></div>
+</div>

@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslateService } from '@ngx-translate/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -20,6 +19,7 @@ import { MobileSoundboardComponent } from '../../../../../../shared/components/h
 import { MatIconModule } from '@angular/material/icon';
 import { MinecraftDialogsComponent } from '../../../../pages/minecraft/minecraft-home/dialogs/minecraft-dialogs.component';
 import { MatDialog } from '@angular/material/dialog';
+import { LanguageService } from '../../../../../../services/language-service/language.service';
 
 @Component({
   selector: 'app-minecraft-header',
@@ -46,7 +46,7 @@ export class MinecraftHeaderComponent implements OnInit {
     '/about-me',
     '/contact-me',
   ];
-  public allLangs!: string[];
+
   public isMobile: boolean = window.innerWidth <= 820;
   public actualTheme!: Themes;
 
@@ -65,7 +65,7 @@ export class MinecraftHeaderComponent implements OnInit {
   ];
   private themeService: ThemeService;
   private audioService: AudioService;
-  private translateService: TranslateService;
+  private languageService: LanguageService;
   private responsiveService: ResponsiveService;
   private router: Router;
   private routerSubscription!: Subscription;
@@ -81,19 +81,18 @@ export class MinecraftHeaderComponent implements OnInit {
     this.mobileSoundboardMenuService = inject(MobileSoundboardMenuService);
     this.audioService = inject(AudioService);
     this.themeService = inject(ThemeService);
-    this.translateService = inject(TranslateService);
+    this.languageService = inject(LanguageService);
     this.responsiveService = inject(ResponsiveService);
     this.router = inject(Router);
   }
 
   ngOnInit(): void {
     this.phrase = this.listOfPhrases[this.phraseNumber()];
-    this.allLangs = this.translateService.langs;
 
     this.themeSubscription = this.themeService.actualTheme$.subscribe(
       (theme) => {
         this.actualTheme = theme;
-      }
+      },
     );
 
     this.currentRoute = this.router.url;
@@ -114,7 +113,7 @@ export class MinecraftHeaderComponent implements OnInit {
             if (this.mobileSoundboardMenuService.mobileSoundboardMenu.opened)
               this.mobileSoundboardMenuService.toggleMobileSoundboardMenu();
         }
-      }
+      },
     );
   }
 
@@ -146,14 +145,17 @@ export class MinecraftHeaderComponent implements OnInit {
     this.themeService.changeTheme(theme);
   }
 
+  public get allLangs(): string[] {
+    return this.languageService.getSupportedLangs();
+  }
   public changeLang(lang: string): void {
-    this.translateService.use(lang);
+    this.languageService.setLanguage(lang);
   }
   public get actualLang(): string {
-    return this.translateService.currentLang;
+    return this.languageService.getCurrentLanguage();
   }
 
-  public toggleMobileNavMenu() {
+  public toggleMobileNavMenu(): void {
     if (this.mobileSoundboardMenuService.mobileSoundboardMenu) {
       if (this.mobileSoundboardMenuService.mobileSoundboardMenu.opened) {
         this.mobileNavMenuService.toggleMobileNavMenu();
@@ -165,7 +167,7 @@ export class MinecraftHeaderComponent implements OnInit {
     }
     this.mobileNavMenuService.toggleMobileNavMenu();
   }
-  public toggleMobileSoundboardMenu() {
+  public toggleMobileSoundboardMenu(): void {
     if (this.mobileNavMenuService.mobileNavMenu) {
       if (this.mobileNavMenuService.mobileNavMenu.opened) {
         this.mobileSoundboardMenuService.toggleMobileSoundboardMenu();
