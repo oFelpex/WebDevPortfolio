@@ -90,7 +90,7 @@ export class Tw3HomeEffectsComponent implements AfterViewInit, OnDestroy {
       const fogMaterial = new THREE.MeshLambertMaterial({
         map: fogTexture,
         transparent: true,
-        opacity: 0.5,
+        opacity: 0.7,
         depthWrite: false,
       });
 
