@@ -6,6 +6,7 @@ import { ThemeService } from '../../../services/theme-service/theme.service';
 import { HomeComponent } from '../default/home.component';
 import { MinecraftHomeComponent } from '../../../themes/games/pages/minecraft/minecraft-home/minecraft-home.component';
 import { Tw3HomeComponent } from '../../../themes/games/pages/the-witcher-3/tw3-home/tw3-home.component';
+import { UndertaleHomeComponent } from '../../../themes/games/pages/undertale/undertale-home/undertale-home.component';
 
 @Component({
   selector: 'app-home-wrapper',
@@ -33,10 +34,13 @@ export class HomeWrapperComponent implements OnInit, OnDestroy {
           case 'Minecraft':
             this.componentToRender = MinecraftHomeComponent;
             break;
+          case 'Undertale':
+            this.componentToRender = UndertaleHomeComponent;
+            break;
           default:
             this.componentToRender = HomeComponent;
         }
-      }
+      },
     );
   }
   ngOnDestroy(): void {

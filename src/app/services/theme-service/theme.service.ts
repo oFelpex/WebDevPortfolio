@@ -7,6 +7,7 @@ import { CustomSnackbarComponent } from '../../shared/components/custom-snackbar
 import { Tw3HeaderComponent } from '../../themes/games/shared/components/the-witcher-3/tw3-header/tw3-header.component';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { MinecraftHeaderComponent } from '../../themes/games/shared/components/minecraft/minecraft-header/minecraft-header.component';
+import { UndertaleHeaderComponent } from '../../themes/games/shared/components/undertale/undertale-header/undertale-header.component';
 @Injectable({
   providedIn: 'root',
 })
@@ -128,6 +129,8 @@ export class ThemeService {
         return Tw3HeaderComponent;
       case 'Minecraft':
         return MinecraftHeaderComponent;
+      case 'Undertale':
+        return UndertaleHeaderComponent;
       default:
         return HeaderComponent;
     }
