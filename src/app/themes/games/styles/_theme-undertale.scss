@@ -1,0 +1,21 @@
+@use "@angular/material" as mat;
+
+@use "./angular-colors-and-fonts/theme-undertale-colors" as
+  theme-undertale-colors;
+
+body.undertale-theme {
+  background-color: #000;
+  color: #eaeaea;
+  font-family: "Undertale Menu", sans-serif;
+
+  @include mat.theme(
+    (
+      color: (
+        primary: theme-undertale-colors.$primary-palette,
+        tertiary: theme-undertale-colors.$tertiary-palette,
+      ),
+      typography: "Undertale Menu",
+      density: 0,
+    )
+  );
+}
