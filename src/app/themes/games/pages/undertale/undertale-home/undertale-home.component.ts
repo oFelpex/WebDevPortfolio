@@ -1,30 +1,30 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, inject, Renderer2 } from '@angular/core';
-import { ThemeService } from '../../../../../services/theme-service/theme.service';
-import { AudioService } from '../../../../../services/audio-service/audio.service';
+import { DOCUMENT, NgComponentOutlet } from '@angular/common';
+import { Component, inject, Renderer2, signal, Type } from '@angular/core';
+import { undertaleHomeVariations } from './variations/undertale-home-variations';
 
 @Component({
   selector: 'app-undertale-home',
-  imports: [],
+  imports: [NgComponentOutlet],
   templateUrl: './undertale-home.component.html',
   styleUrl: './undertale-home.component.scss',
 })
 export class UndertaleHomeComponent {
-  private audioService: AudioService;
-  private themeService: ThemeService;
   private renderer: Renderer2;
   private document: Document;
+
+  public variation = signal<Type<unknown> | null>(null);
 
   constructor() {
     this.renderer = inject(Renderer2);
     this.document = inject(DOCUMENT);
-    this.themeService = inject(ThemeService);
-    this.audioService = inject(AudioService);
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.headerSetPosition();
     this.renderer.addClass(this.document.body, 'home-page');
+
+    const index = Math.floor(Math.random() * undertaleHomeVariations.length);
+    this.variation.set(await undertaleHomeVariations[index].component());
   }
 
   ngOnDestroy(): void {
