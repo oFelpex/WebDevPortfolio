@@ -1,3 +1,39 @@
 <header id="undertale-home-header">
-  <ng-container *ngComponentOutlet="variation()" />
+  <div id="undertale-door-and-menu">
+    <img
+      id="undertale-door"
+      src="../../../../../../assets/themes/games/undertale/sprites/backgrounds/undertale-menu-door.webp"
+      alt="Undertale Door"
+    />
+    <div id="undertale-menu-container">
+      <div id="undertale-menu-info">
+        <span class="name">FELPEX</span>
+        <span class="level">LV 1</span>
+        <span class="time">1:32</span>
+
+        <span class="location">Ruins - Entrance</span>
+      </div>
+
+      <div id="undertale-menu-btns">
+        <button class="btn btn-navigate">Navigate</button>
+        <button class="btn btn-change-menu">Change Menu</button>
+
+        <button class="btn btn-settings">Settings</button>
+      </div>
+    </div>
+  </div>
+  <div id="undertale-floor-and-c">
+    <div id="floor-stage">
+      <img
+        id="undertale-floor"
+        src="../../../../../../assets/themes/games/undertale/sprites/backgrounds/undertale-menu-floor.webp"
+        alt="Undertale Floor"
+      />
+      <div id="characters-container">
+        <ng-container *ngComponentOutlet="variation()" />
+      </div>
+    </div>
+
+    <span id="undertale-copyright">UNDERTALE V1.08 (C) TOBY FOX 2015-2026</span>
+  </div>
 </header>

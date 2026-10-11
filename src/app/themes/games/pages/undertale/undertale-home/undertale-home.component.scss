@@ -1,0 +1,149 @@
+#undertale-home-header {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 125px;
+  overflow-x: hidden;
+
+  #undertale-door-and-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5vh;
+
+    #undertale-door {
+      margin-top: -10vh;
+      padding: 0 8px;
+      height: auto;
+      width: 100%;
+      min-width: 220px;
+      max-width: 360px;
+      aspect-ratio: 1080 / 831;
+      image-rendering: pixelated;
+    }
+
+    #undertale-menu-container {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      width: 50vw;
+      max-width: 550px;
+      min-width: 300px;
+      padding: 20px;
+      color: #fff;
+      font-size: 1.6rem;
+
+      #undertale-menu-info {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+
+        .name {
+          grid-row: 1;
+          grid-column: 1;
+          text-align: left;
+        }
+
+        .level {
+          grid-row: 1;
+          grid-column: 2;
+          text-align: center;
+        }
+
+        .time {
+          grid-row: 1;
+          grid-column: 3;
+          text-align: right;
+        }
+
+        .location {
+          grid-row: 2;
+          grid-column: 1 / span 3;
+          text-align: left;
+        }
+      }
+
+      #undertale-menu-btns {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        row-gap: 10px;
+        white-space: nowrap;
+
+        .btn {
+          width: fit-content;
+          background: transparent;
+          border: none;
+          color: #fff;
+          cursor: pointer;
+          padding: 0;
+
+          &:hover {
+            color: #fafc13;
+          }
+
+          &.btn-navigate {
+            justify-self: center;
+            text-align: center;
+            grid-row: 1;
+            grid-column: 1;
+          }
+
+          &.btn-change-menu {
+            justify-self: center;
+            text-align: center;
+            grid-row: 1;
+            grid-column: 2;
+          }
+
+          &.btn-settings {
+            justify-self: center;
+            text-align: center;
+            grid-row: 2;
+            grid-column: 1 / span 2;
+          }
+        }
+      }
+    }
+  }
+
+  #undertale-floor-and-c {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    #floor-stage {
+      position: relative;
+      width: 100%;
+      min-width: 300px;
+      max-width: 500px;
+      padding: 0 8px;
+      box-sizing: content-box;
+    }
+
+    #undertale-floor {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1080 / 237;
+      image-rendering: pixelated;
+    }
+
+    #characters-container {
+      position: absolute;
+      inset: 0 8px;
+      pointer-events: none;
+    }
+
+    #undertale-copyright {
+      font-size: 1rem;
+      color: #808080;
+      margin-top: 3vh;
+    }
+  }
+}
