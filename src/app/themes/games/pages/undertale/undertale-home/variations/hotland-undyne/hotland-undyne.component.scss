@@ -1,0 +1,60 @@
+:host {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+#undertale-toriel-sleeping {
+  position: absolute;
+  left: 48%;
+  bottom: 57%;
+  width: 30%;
+  height: auto;
+  transform: translateX(-50%);
+  aspect-ratio: 712 / 768;
+  image-rendering: pixelated;
+}
+
+#undertale-sans {
+  position: absolute;
+  bottom: 420%;
+  left: -8%;
+  width: 14%;
+  height: auto;
+  aspect-ratio: 589 / 768;
+  image-rendering: pixelated;
+
+  @media (max-width: 580px) {
+    left: 10%;
+    bottom: 50%;
+  }
+}
+
+#undertale-papyrus-and-undyne-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(105%);
+  bottom: 60%;
+  width: fit-content;
+  height: auto;
+
+  #undertale-undyne {
+    position: relative;
+    left: -6%;
+    transform: translateY(6%);
+    height: auto;
+    aspect-ratio: 458 / 768;
+    width: 37%;
+  }
+  #undertale-papyrus {
+    aspect-ratio: 457 / 768;
+    width: 28%;
+    height: auto;
+  }
+
+  @media (max-width: 680px) {
+    transform: translateX(50%);
+
+    bottom: 60%;
+  }
+}
