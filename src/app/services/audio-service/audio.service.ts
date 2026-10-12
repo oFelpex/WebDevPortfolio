@@ -100,6 +100,12 @@ export class AudioService {
       }
     }
   }
+
+  public unloadOneSound(music: Musics): void {
+    this.stopSound();
+    delete this.sounds[music.musicName];
+  }
+
   public playFromIndex(index: number): void {
     if (!this.playlist || index < 0 || index >= this.playlist.length) return;
 
@@ -215,7 +221,7 @@ export class AudioService {
     }
   }
 
-  public playSingleTrack(music: Musics): void {
+  public playSingleTrack(music: Musics, loop: boolean = false): void {
     this.stopMusic();
 
     const buffer = this.sounds[music.musicName];
@@ -223,6 +229,9 @@ export class AudioService {
 
     const source = this.audioContext.createBufferSource();
     source.buffer = buffer;
+
+    source.loop = loop;
+
     source.connect(this.musicGainNode);
     source.start(0);
 
@@ -234,7 +243,11 @@ export class AudioService {
     this.isPaused = false;
 
     source.onended = () => {
-      if (!this.isPaused && this.currentMusicSource === source) {
+      if (
+        !this.isPaused &&
+        this.currentMusicSource === source &&
+        !source.loop
+      ) {
         this.currentMusicSource = null;
       }
     };

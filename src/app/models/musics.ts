@@ -73,3 +73,51 @@ export const TW3Musics: Musics[] = [
       'assets/sounds/games/the-witcher-3/music/drink-up-theres-more.ogg',
   },
 ];
+
+export const undertaleMusicsMenuOnly: Musics[] = [
+  {
+    gameName: 'Undertale',
+    musicName: 'Start Menu Music 1',
+    musicComposer: 'Toby Fox',
+    musicURL: 'assets/sounds/games/undertale/music/menu/start-menu-music-1.ogg',
+  },
+  {
+    gameName: 'Undertale',
+    musicName: 'Start Menu Music 2',
+    musicComposer: 'Toby Fox',
+    musicURL: 'assets/sounds/games/undertale/music/menu/start-menu-music-2.ogg',
+  },
+  {
+    gameName: 'Undertale',
+    musicName: 'Start Menu Music 3',
+    musicComposer: 'Toby Fox',
+    musicURL: 'assets/sounds/games/undertale/music/menu/start-menu-music-3.ogg',
+  },
+  {
+    gameName: 'Undertale',
+    musicName: 'Start Menu Music 4',
+    musicComposer: 'Toby Fox',
+    musicURL: 'assets/sounds/games/undertale/music/menu/start-menu-music-4.ogg',
+  },
+  {
+    gameName: 'Undertale',
+    musicName: 'Start Menu Music 5',
+    musicComposer: 'Toby Fox',
+    musicURL: 'assets/sounds/games/undertale/music/menu/start-menu-music-5.ogg',
+  },
+  {
+    gameName: 'Undertale',
+    musicName: 'Start Menu Music Full',
+    musicComposer: 'Toby Fox',
+    musicURL:
+      'assets/sounds/games/undertale/music/menu/start-menu-music-full.ogg',
+  },
+];
+export const undertaleMusics: Musics[] = [
+  {
+    gameName: 'Undertale',
+    musicName: 'Crossroads',
+    musicComposer: 'Toby Fox',
+    musicURL: 'assets/sounds/games/undertale/music/crossroads.ogg',
+  },
+];
