@@ -66,6 +66,13 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
     });
   }
 
+  public mouseEnterOrLeaveSFX(): void {
+    this.audioService.playSound('Undertale-mouseEnterOrLeave');
+  }
+  public playClicksound(): void {
+    this.audioService.playClickSound('Undertale');
+  }
+
   private headerSetPosition() {
     const header = document.getElementById(
       'undertale-header',

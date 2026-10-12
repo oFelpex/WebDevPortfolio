@@ -15,10 +15,28 @@
       </div>
 
       <div id="undertale-menu-btns">
-        <button class="btn btn-navigate">Navigate</button>
-        <button class="btn btn-change-menu">Change Menu</button>
+        <button
+          class="btn btn-navigate"
+          (mouseenter)="mouseEnterOrLeaveSFX()"
+          (click)="playClicksound()"
+        >
+          Navigate
+        </button>
+        <button
+          class="btn btn-change-menu"
+          (mouseenter)="mouseEnterOrLeaveSFX()"
+          (click)="playClicksound()"
+        >
+          Change Menu
+        </button>
 
-        <button class="btn btn-settings">Settings</button>
+        <button
+          class="btn btn-settings"
+          (mouseenter)="mouseEnterOrLeaveSFX()"
+          (click)="playClicksound()"
+        >
+          Settings
+        </button>
       </div>
     </div>
   </div>
