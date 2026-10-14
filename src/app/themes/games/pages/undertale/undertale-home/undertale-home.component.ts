@@ -11,9 +11,14 @@ import {
 } from '@angular/core';
 import { undertaleHomeVariations } from './variations/undertale-home-variations';
 import { AudioService } from '../../../../../services/audio-service/audio.service';
-import { Musics, undertaleMusicsMenuOnly } from '../../../../../models/musics';
+import {
+  Musics,
+  undertaleMusicsConfigMenuOnly,
+  undertaleMusicsMenuOnly,
+} from '../../../../../models/musics';
 import { SFXs, undertaleSFX } from '../../../../../models/sfxs';
 
+type undertaleMenus = 'mainMenu' | 'configMenu' | 'navigateMenu';
 @Component({
   selector: 'app-undertale-home',
   imports: [NgComponentOutlet],
@@ -25,10 +30,16 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
   private document: Document;
   private audioService: AudioService;
 
-  private undertaleMusicsHome: Musics[] = undertaleMusicsMenuOnly;
+  private undertaleMusicsMainMenu: Musics[] = undertaleMusicsMenuOnly;
+  private undertaleMusicsConfigMenu: Musics[] = undertaleMusicsConfigMenuOnly;
   private undertaleSFXHome: SFXs[] = undertaleSFX;
 
+  private variationIndex: number = Math.floor(
+    Math.random() * undertaleHomeVariations.length,
+  );
   public variation = signal<Type<unknown> | null>(null);
+
+  public currentMenuState = signal<undertaleMenus>('mainMenu');
 
   constructor() {
     this.renderer = inject(Renderer2);
@@ -41,29 +52,58 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
     this.headerSetPosition();
     this.renderer.addClass(this.document.body, 'home-page');
 
-    const index = Math.floor(Math.random() * undertaleHomeVariations.length);
-    this.variation.set(await undertaleHomeVariations[index].component());
-
     this.undertaleSFXHome.map((HomeSFXs) => {
       this.audioService.preloadSound(HomeSFXs.SFXName, HomeSFXs.SFXURL);
     });
 
-    const preloadPromises = this.undertaleMusicsHome.map((HomeMusic) =>
-      this.audioService.preloadSound(HomeMusic.musicName, HomeMusic.musicURL),
+    this.variation.set(
+      await undertaleHomeVariations[this.variationIndex].component(),
+    );
+
+    const preloadPromises = this.undertaleMusicsMainMenu.map((mainMenuMusic) =>
+      this.audioService.preloadSound(
+        mainMenuMusic.musicName,
+        mainMenuMusic.musicURL,
+      ),
     );
 
     await Promise.all(preloadPromises);
 
-    this.audioService.playSingleTrack(this.undertaleMusicsHome[index], true);
+    this.audioService.playSingleTrack(
+      this.undertaleMusicsMainMenu[this.variationIndex],
+      true,
+    );
   }
 
   ngOnDestroy(): void {
     this.headerRestaurePosition();
     this.renderer.removeClass(this.document.body, 'home-page');
 
-    this.undertaleMusicsHome.map((HomeMusic) => {
-      this.audioService.unloadOneSound(HomeMusic);
-    });
+    this.unloadMusicsFromMenuType('mainMenu');
+    this.unloadMusicsFromMenuType('configMenu');
+    this.unloadMusicsFromMenuType('navigateMenu');
+  }
+
+  // NEEDS TO BE VISITED WHEN CREATING NAVIGATE MENU
+  private unloadMusicsFromMenuType(menuType: undertaleMenus) {
+    switch (menuType) {
+      case 'mainMenu':
+        this.undertaleMusicsMainMenu.map((mainMenuMusic) => {
+          this.audioService.unloadOneSound(mainMenuMusic);
+        });
+        break;
+      case 'navigateMenu':
+        // this.undertaleMusicsNavigateMenu.map((navigateMenuMusic) => {
+        //   this.audioService.unloadOneSound(navigateMenuMusic);
+        // });
+
+        break;
+      case 'configMenu':
+        this.undertaleMusicsConfigMenu.map((configMenuMusic) => {
+          this.audioService.unloadOneSound(configMenuMusic);
+        });
+        break;
+    }
   }
 
   public mouseEnterOrLeaveSFX(): void {
@@ -94,5 +134,30 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
       header.style.height = '14vh';
       header.style.minHeight = '60px';
     }
+  }
+
+  public async changeMenuVariation(): Promise<void> {
+    this.playClicksound();
+
+    if (this.variationIndex < undertaleHomeVariations.length - 1) {
+      this.variationIndex++;
+    } else {
+      this.variationIndex = 0;
+    }
+
+    this.variation.set(
+      await undertaleHomeVariations[this.variationIndex].component(),
+    );
+    this.audioService.playSingleTrack(
+      this.undertaleMusicsMainMenu[this.variationIndex],
+      true,
+    );
+  }
+
+  public openConfigMenu(): void {
+    this.playClicksound();
+    this.unloadMusicsFromMenuType('mainMenu');
+
+    this.currentMenuState.set('configMenu');
   }
 }
