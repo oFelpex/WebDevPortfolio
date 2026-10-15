@@ -1,6 +1,6 @@
 <header id="undertale-home-header">
   @if (currentMenuState() === "mainMenu") {
-    <div id="undertale-door-and-menu">
+    <section id="undertale-door-and-menu">
       <img
         id="undertale-door"
         src="../../../../../../assets/themes/games/undertale/sprites/backgrounds/undertale-menu-door.webp"
@@ -40,8 +40,8 @@
           </button>
         </div>
       </div>
-    </div>
-    <div id="undertale-floor-and-c">
+    </section>
+    <section id="undertale-floor-and-c">
       <div id="floor-stage">
         <img
           id="undertale-floor"
@@ -56,8 +56,8 @@
       <span id="undertale-copyright"
         >UNDERTALE V1.08 (C) TOBY FOX 2015-2026</span
       >
-    </div>
+    </section>
   } @else if (currentMenuState() === "configMenu") {
-    teste
+    <section id="undertale-settings" @undertaleOpenFromCenter>test</section>
   }
 </header>

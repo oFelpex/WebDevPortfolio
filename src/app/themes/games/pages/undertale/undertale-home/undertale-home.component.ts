@@ -17,6 +17,7 @@ import {
   undertaleMusicsMenuOnly,
 } from '../../../../../models/musics';
 import { SFXs, undertaleSFX } from '../../../../../models/sfxs';
+import { undertaleOpenFromCenter } from '../../../../../shared/animations/games/undertale-animations';
 
 type undertaleMenus = 'mainMenu' | 'configMenu' | 'navigateMenu';
 @Component({
@@ -24,6 +25,7 @@ type undertaleMenus = 'mainMenu' | 'configMenu' | 'navigateMenu';
   imports: [NgComponentOutlet],
   templateUrl: './undertale-home.component.html',
   styleUrl: './undertale-home.component.scss',
+  animations: [undertaleOpenFromCenter],
 })
 export class UndertaleHomeComponent implements OnInit, OnDestroy {
   private renderer: Renderer2;
@@ -156,6 +158,7 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
 
   public openConfigMenu(): void {
     this.playClicksound();
+    this.audioService.playSound('Undertale-enterConfig', 'sfx');
     this.unloadMusicsFromMenuType('mainMenu');
 
     this.currentMenuState.set('configMenu');

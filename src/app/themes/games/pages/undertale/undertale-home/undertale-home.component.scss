@@ -7,7 +7,6 @@
   align-items: center;
   gap: 200px;
   overflow-x: hidden;
-
   #undertale-door-and-menu {
     position: relative;
     display: flex;
@@ -148,5 +147,13 @@
       color: #808080;
       margin-top: 3vh;
     }
+  }
+
+  #undertale-settings {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
   }
 }
