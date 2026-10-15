@@ -19,14 +19,14 @@
           <button
             class="btn btn-navigate"
             (mouseenter)="mouseEnterOrLeaveSFX()"
-            (click)="playClicksound()"
+            (click)="playClickSound()"
           >
             Navigate
           </button>
           <button
             class="btn btn-change-menu"
             (mouseenter)="mouseEnterOrLeaveSFX()"
-            (click)="changeMenuVariation()"
+            (click)="playClickSound(); changeMenuVariation()"
           >
             Change Menu
           </button>
@@ -34,7 +34,13 @@
           <button
             class="btn btn-settings"
             (mouseenter)="mouseEnterOrLeaveSFX()"
-            (click)="openConfigMenu()"
+            (click)="
+              playClickSound();
+              unloadMusicsChangeMenuAndPreloadNewMusics(
+                'mainMenu',
+                'configMenu'
+              )
+            "
           >
             Settings
           </button>
@@ -58,6 +64,34 @@
       >
     </section>
   } @else if (currentMenuState() === "configMenu") {
-    <section id="undertale-settings" @undertaleOpenFromCenter>test</section>
+    <section id="undertale-settings" @undertaleOpenFromCenter>
+      <h1 id="undertale-config-title">SETTINGS</h1>
+      <div id="undertale-config-options-container">
+        <button
+          class="btn"
+          (mouseenter)="mouseEnterOrLeaveSFX()"
+          (click)="
+            playClickSound();
+            unloadMusicsChangeMenuAndPreloadNewMusics('configMenu', 'mainMenu')
+          "
+        >
+          EXIT
+        </button>
+        <button
+          class="btn"
+          (mouseenter)="mouseEnterOrLeaveSFX()"
+          (click)="playClickSound()"
+        >
+          LANGUAGE + lang
+        </button>
+        <button
+          class="btn"
+          (mouseenter)="mouseEnterOrLeaveSFX()"
+          (click)="playClickSound()"
+        >
+          CHANGE THEME + theme
+        </button>
+      </div>
+    </section>
   }
 </header>

@@ -62,19 +62,7 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
       await undertaleHomeVariations[this.variationIndex].component(),
     );
 
-    const preloadPromises = this.undertaleMusicsMainMenu.map((mainMenuMusic) =>
-      this.audioService.preloadSound(
-        mainMenuMusic.musicName,
-        mainMenuMusic.musicURL,
-      ),
-    );
-
-    await Promise.all(preloadPromises);
-
-    this.audioService.playSingleTrack(
-      this.undertaleMusicsMainMenu[this.variationIndex],
-      true,
-    );
+    this.preloadMusicsAndPlay('mainMenu');
   }
 
   ngOnDestroy(): void {
@@ -85,7 +73,47 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
     this.unloadMusicsFromMenuType('configMenu');
     this.unloadMusicsFromMenuType('navigateMenu');
   }
+  // NEEDS TO BE VISITED WHEN CREATING NAVIGATE MENU
+  private async preloadMusicsAndPlay(menu: undertaleMenus): Promise<void> {
+    let musics: Musics[] = [];
 
+    switch (menu) {
+      case 'mainMenu':
+        musics = this.undertaleMusicsMainMenu;
+        await Promise.all(
+          musics.map((music) =>
+            this.audioService.preloadSound(music.musicName, music.musicURL),
+          ),
+        );
+
+        const trackToPlay = musics[this.variationIndex];
+
+        if (trackToPlay) {
+          this.audioService.playSingleTrack(trackToPlay, true);
+        }
+        break;
+      case 'navigateMenu':
+        // musics = this.undertaleMusicsNavigateMenu;
+        break;
+      case 'configMenu':
+        musics = this.undertaleMusicsConfigMenu;
+        this.audioService.playSound('Undertale-enterConfig', 'sfx');
+
+        await Promise.all(
+          musics.map((music) =>
+            this.audioService.preloadSound(music.musicName, music.musicURL),
+          ),
+        );
+
+        setTimeout(() => {
+          this.audioService.playSingleTrack(
+            musics[this.getActualSeasonInBrazil()],
+            true,
+          );
+        }, 1000);
+        break;
+    }
+  }
   // NEEDS TO BE VISITED WHEN CREATING NAVIGATE MENU
   private unloadMusicsFromMenuType(menuType: undertaleMenus) {
     switch (menuType) {
@@ -108,10 +136,54 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
     }
   }
 
+  private getActualSeasonInBrazil(): number {
+    const now = new Date();
+    const month = now.getMonth() + 1;
+    const day = now.getDate();
+
+    let season = '';
+
+    if (
+      (month === 3 && day >= 20) ||
+      month === 4 ||
+      month === 5 ||
+      (month === 6 && day <= 20)
+    ) {
+      season = 'fall';
+    } else if (
+      (month === 6 && day >= 21) ||
+      month === 7 ||
+      month === 8 ||
+      (month === 9 && day <= 21)
+    ) {
+      season = 'winter';
+    } else if (
+      (month === 9 && day >= 22) ||
+      month === 10 ||
+      month === 11 ||
+      (month === 12 && day <= 20)
+    ) {
+      season = 'spring';
+    } else {
+      season = 'summer';
+    }
+
+    switch (season) {
+      case 'fall':
+        return 1;
+      case 'winter':
+        return 0;
+      case 'summer':
+        return 2;
+      default:
+        return 1;
+    }
+  }
+
   public mouseEnterOrLeaveSFX(): void {
     this.audioService.playSound('Undertale-mouseEnterOrLeave');
   }
-  public playClicksound(): void {
+  public playClickSound(): void {
     this.audioService.playClickSound('Undertale');
   }
 
@@ -139,8 +211,6 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
   }
 
   public async changeMenuVariation(): Promise<void> {
-    this.playClicksound();
-
     if (this.variationIndex < undertaleHomeVariations.length - 1) {
       this.variationIndex++;
     } else {
@@ -156,11 +226,12 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
     );
   }
 
-  public openConfigMenu(): void {
-    this.playClicksound();
-    this.audioService.playSound('Undertale-enterConfig', 'sfx');
-    this.unloadMusicsFromMenuType('mainMenu');
-
-    this.currentMenuState.set('configMenu');
+  public async unloadMusicsChangeMenuAndPreloadNewMusics(
+    fromWhere: undertaleMenus,
+    toWhere: undertaleMenus,
+  ): Promise<void> {
+    this.unloadMusicsFromMenuType(fromWhere);
+    this.currentMenuState.set(toWhere);
+    this.preloadMusicsAndPlay(toWhere);
   }
 }
