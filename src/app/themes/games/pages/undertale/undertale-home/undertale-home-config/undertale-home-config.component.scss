@@ -1,0 +1,135 @@
+:host {
+  display: contents;
+}
+
+#undertale-settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-width: 300px;
+  max-width: 600px;
+  height: 100vh;
+  font-size: 2.2rem;
+  background: #000;
+
+  #undertale-particles-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+
+    .particle {
+      position: absolute;
+      top: -10%;
+      image-rendering: pixelated;
+      animation-name: rotateParticle;
+      animation-timing-function: linear, ease-in-out;
+      animation-iteration-count: infinite, infinite;
+      opacity: 0.8;
+
+      @keyframes rotateParticle {
+        0% {
+          transform: rotate(0deg);
+        }
+        50% {
+          transform: rotate(180deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
+
+    .particle.anim-fall-right {
+      animation-name: rotateParticle, animFallRight;
+      animation-timing-function: linear, ease-in-out, ease-in-out;
+
+      @keyframes animFallRight {
+        0% {
+          margin-left: 0%;
+          top: -10%;
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.9;
+        }
+        25% {
+          margin-left: 10%;
+        }
+        50% {
+          margin-left: 40%;
+        }
+        90% {
+          opacity: 0.9;
+        }
+        100% {
+          margin-left: 80%;
+          top: 110%;
+          opacity: 0;
+        }
+      }
+    }
+
+    .particle.anim-fall-left {
+      animation-name: rotateParticle, animFallLeft;
+      animation-timing-function: linear, ease-in-out, ease-in-out;
+
+      @keyframes animFallLeft {
+        0% {
+          margin-left: 0%;
+          top: -10%;
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.9;
+        }
+        25% {
+          margin-left: -10%;
+        }
+        50% {
+          margin-left: -40%;
+        }
+        90% {
+          opacity: 0.9;
+        }
+        100% {
+          margin-left: -80%;
+          top: 110%;
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  #undertale-config-title {
+    font-weight: normal;
+    text-align: center;
+    z-index: 1;
+  }
+
+  #undertale-config-options-container {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    gap: 18px;
+    width: fit-content;
+    font-size: 1.5rem;
+    margin: 8px;
+
+    .btn {
+      width: fit-content;
+      background: transparent;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      padding: 0;
+
+      &:hover {
+        color: #fafc13;
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+<section id="undertale-settings" @undertaleOpenFromCenter>
+  <div id="undertale-particles-container">
+    @for (p of particles; track p.id) {
+      <img
+        [src]="p.src"
+        [class]="'particle ' + p.animClass"
+        [style.left.%]="p.left"
+        [style.animation-duration.s]="p.duration"
+        [style.animation-delay.s]="p.delay"
+        [style.width.px]="p.size"
+        alt="Seasonal particle"
+      />
+    }
+  </div>
+  <h1 id="undertale-config-title">SETTINGS</h1>
+  <div id="undertale-config-options-container">
+    <button
+      class="btn"
+      (mouseenter)="mouseEnterOrLeaveSFX()"
+      (click)="onExit()"
+    >
+      EXIT
+    </button>
+    <button
+      class="btn"
+      (mouseenter)="mouseEnterOrLeaveSFX()"
+      (click)="playClickSound()"
+    >
+      LANGUAGE + lang
+    </button>
+    <button
+      class="btn"
+      (mouseenter)="mouseEnterOrLeaveSFX()"
+      (click)="playClickSound()"
+    >
+      CHANGE THEME + theme
+    </button>
+  </div>
+</section>

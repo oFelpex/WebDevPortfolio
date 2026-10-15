@@ -149,43 +149,50 @@
     }
   }
 
-  #undertale-settings {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    min-width: 300px;
-    max-width: 600px;
-    height: 100vh;
-    font-size: 2.2rem;
-    background: #000;
+  // #undertale-settings {
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   width: 100%;
+  //   min-width: 300px;
+  //   max-width: 600px;
+  //   height: 100vh;
+  //   font-size: 2.2rem;
+  //   background: #000;
 
-    #undertale-config-title {
-      justify-self: unset;
-      font-weight: normal;
-      text-align: center;
-    }
+  //   #undertale-leafs-container {
+  //     position: fixed;
+  //     width: 100vw;
+  //     height: 100vh;
+  //     pointer-events: none;
+  //   }
 
-    #undertale-config-options-container {
-      display: flex;
-      flex-direction: column;
-      align-self: flex-start;
-      gap: 18px;
-      width: fit-content;
-      font-size: 1.5rem;
+  //   #undertale-config-title {
+  //     justify-self: unset;
+  //     font-weight: normal;
+  //     text-align: center;
+  //   }
 
-      .btn {
-        width: fit-content;
-        background: transparent;
-        border: none;
-        color: #fff;
-        cursor: pointer;
-        padding: 0;
+  //   #undertale-config-options-container {
+  //     display: flex;
+  //     flex-direction: column;
+  //     align-self: flex-start;
+  //     gap: 18px;
+  //     width: fit-content;
+  //     font-size: 1.5rem;
 
-        &:hover {
-          color: #fafc13;
-        }
-      }
-    }
-  }
+  //     .btn {
+  //       width: fit-content;
+  //       background: transparent;
+  //       border: none;
+  //       color: #fff;
+  //       cursor: pointer;
+  //       padding: 0;
+
+  //       &:hover {
+  //         color: #fafc13;
+  //       }
+  //     }
+  //   }
+  // }
 }

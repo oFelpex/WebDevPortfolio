@@ -64,34 +64,10 @@
       >
     </section>
   } @else if (currentMenuState() === "configMenu") {
-    <section id="undertale-settings" @undertaleOpenFromCenter>
-      <h1 id="undertale-config-title">SETTINGS</h1>
-      <div id="undertale-config-options-container">
-        <button
-          class="btn"
-          (mouseenter)="mouseEnterOrLeaveSFX()"
-          (click)="
-            playClickSound();
-            unloadMusicsChangeMenuAndPreloadNewMusics('configMenu', 'mainMenu')
-          "
-        >
-          EXIT
-        </button>
-        <button
-          class="btn"
-          (mouseenter)="mouseEnterOrLeaveSFX()"
-          (click)="playClickSound()"
-        >
-          LANGUAGE + lang
-        </button>
-        <button
-          class="btn"
-          (mouseenter)="mouseEnterOrLeaveSFX()"
-          (click)="playClickSound()"
-        >
-          CHANGE THEME + theme
-        </button>
-      </div>
-    </section>
+    <app-undertale-home-config
+      (exit)="
+        unloadMusicsChangeMenuAndPreloadNewMusics('configMenu', 'mainMenu')
+      "
+    />
   }
 </header>
