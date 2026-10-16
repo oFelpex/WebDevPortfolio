@@ -3,21 +3,11 @@ import { AudioService } from '../../../../../../services/audio-service/audio.ser
 import { undertaleMusicsConfigMenuOnly } from '../../../../../../models/musics';
 import { undertaleOpenFromCenter } from '../../../../../../shared/animations/games/undertale-animations';
 import { CommonModule } from '@angular/common';
-interface Leaf {
-  id: number;
-  sprite: number; // 1, 2 ou 3
-  left: number; // Porcentagem da largura da tela (0 a 100)
-  duration: number; // Tempo que demora para cair (segundos)
-  delay: number; // Atraso para começar a cair
-  size: number; // Tamanho em pixels
-  rotationSpeed: number;
-  drift: string; // Direção do vento ('left' ou 'right')
-}
 interface Particle {
   id: number;
   src: string;
   left: number;
-  duration: number;
+  duration?: number;
   delay: number;
   size: number;
   animClass: string;
@@ -36,7 +26,6 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
   private currentSeason: number = 1;
   public particles: Particle[] = [];
 
-  public leaves: Leaf[] = [];
   public exit = output<void>();
 
   constructor() {
@@ -44,7 +33,7 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit(): Promise<void> {
-    this.currentSeason = this.getActualSeasonInBrazil();
+    this.currentSeason = 3;
 
     this.audioService.playSound('Undertale-enterConfig', 'sfx');
     await Promise.all(
@@ -63,7 +52,7 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
       };
       const musicIndex = musicIndexMap[season] ?? 1;
 
-      this.audioService.playSingleTrack(this.musics[musicIndex], true);
+      this.audioService.playSingleTrack(this.musics[2], true);
       this.setupSeasonParticles(90);
     }, 900);
   }
@@ -167,12 +156,21 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
           size = Math.random() * 12 + 16;
           break;
 
-        case 3: // SUMMER - 1 sprite
+        case 3: // SUMMER - 1 sprite and only 1 image
           spriteSrc = `${basePath}undertale-sun.webp`;
           animClass = 'anim-sun';
-          duration = Math.random() * 6 + 4;
-          size = Math.random() * 6 + 8;
-          break;
+          size = 128;
+
+          this.particles.push({
+            id: i,
+            src: spriteSrc,
+            left: 60,
+            delay: 0,
+            size: size,
+            animClass: animClass,
+          });
+
+          return;
       }
 
       this.particles.push({

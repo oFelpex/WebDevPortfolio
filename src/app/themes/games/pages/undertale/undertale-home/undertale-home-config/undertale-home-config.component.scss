@@ -101,6 +101,46 @@
         }
       }
     }
+
+    .particle.anim-sun {
+      position: relative;
+      top: 10%;
+      width: 500px;
+      height: auto;
+      animation:
+        pulseScale 1.4s ease-in-out infinite,
+        wander 4s ease-in-out infinite;
+
+      @keyframes pulseScale {
+        0% {
+          scale: 1;
+        }
+        50% {
+          scale: 1.5;
+        }
+        100% {
+          scale: 1;
+        }
+      }
+
+      @keyframes wander {
+        0% {
+          translate: 0px 0px;
+        }
+        25% {
+          translate: 30px 30px;
+        }
+        50% {
+          translate: 0px 60px;
+        }
+        75% {
+          translate: -30px 30px;
+        }
+        100% {
+          translate: 0px 0px;
+        }
+      }
+    }
   }
 
   #undertale-config-title {
