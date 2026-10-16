@@ -33,8 +33,7 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
   private audioService: AudioService;
   private musics = undertaleMusicsConfigMenuOnly;
   private timeoutIdToPlayConfigMusics: number | undefined;
-  // private currentSeason: number = this.getActualSeasonInBrazil();
-  private currentSeason: number = 0;
+  private currentSeason: number = 1;
   public particles: Particle[] = [];
 
   public leaves: Leaf[] = [];
@@ -45,6 +44,8 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit(): Promise<void> {
+    this.currentSeason = this.getActualSeasonInBrazil();
+
     this.audioService.playSound('Undertale-enterConfig', 'sfx');
     await Promise.all(
       this.musics.map((music) =>
@@ -53,30 +54,18 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
     );
 
     this.timeoutIdToPlayConfigMusics = setTimeout(() => {
-      if (this.getActualSeasonInBrazil() === 3) {
-        this.audioService.playSingleTrack(this.musics[2], true);
-        // this.generateConfigFallenAnimations(100);
-        this.setupSeasonParticles(100);
+      const season = this.getActualSeasonInBrazil();
+      const musicIndexMap: Record<number, number> = {
+        0: 0,
+        1: 1,
+        2: 1,
+        3: 2,
+      };
+      const musicIndex = musicIndexMap[season] ?? 1;
 
-        console.log('season:' + this.getActualSeasonInBrazil());
-        return;
-      } else if (this.getActualSeasonInBrazil() === 2) {
-        this.audioService.playSingleTrack(this.musics[1], true);
-        // this.generateConfigFallenAnimations(100);
-        this.setupSeasonParticles(100);
-
-        console.log('season:' + this.getActualSeasonInBrazil());
-        return;
-      }
-      this.audioService.playSingleTrack(
-        this.musics[this.getActualSeasonInBrazil()],
-        true,
-      );
-      // this.generateConfigFallenAnimations(100);
-      this.setupSeasonParticles(100);
-
-      console.log('season:' + this.getActualSeasonInBrazil());
-    }, 1000);
+      this.audioService.playSingleTrack(this.musics[musicIndex], true);
+      this.setupSeasonParticles(90);
+    }, 900);
   }
 
   ngOnDestroy(): void {
@@ -142,23 +131,6 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
     this.exit.emit();
   }
 
-  public generateConfigFallenAnimations(count: number): void {
-    if (this.getActualSeasonInBrazil() !== 3) {
-      for (let i = 0; i < count; i++) {
-        this.leaves.push({
-          id: i,
-          sprite: i % 3,
-          left: Math.random() * 100,
-          duration: Math.random() * 2 + 3, // between 3s and 5s to fall
-          delay: Math.random() * 3, //
-          size: Math.random() * 8 + 16, // between 16px - 24px
-          rotationSpeed: Math.random() * 3 + 2,
-          drift: Math.random() > 0.5 ? 'drift-right' : 'drift-left',
-        });
-      }
-    }
-  }
-
   private setupSeasonParticles(count: number): void {
     const basePath =
       '../../../../../../../assets/themes/games/undertale/sprites/others/config-sprites/';
@@ -174,7 +146,7 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
           spriteSrc = `${basePath}undertale-snow.webp`;
           animClass =
             Math.random() > 0.5 ? 'anim-fall-right' : 'anim-fall-left';
-          duration = Math.random() * 6 + 6;
+          duration = Math.random() * 4 + 5;
           size = Math.random() * 12 + 16;
           break;
 
@@ -183,11 +155,14 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
           spriteSrc = `${basePath}undertale-leaf-${leafIndex}.webp`;
           animClass =
             Math.random() > 0.5 ? 'anim-fall-right' : 'anim-fall-left';
+          duration = Math.random() * 4 + 5;
+          size = Math.random() * 12 + 16;
           break;
 
         case 2: // SPRING - 1 sprite
           spriteSrc = `${basePath}undertale-spring-leaf.webp`;
-          Math.random() > 0.5 ? 'anim-fall-right' : 'anim-fall-left';
+          animClass =
+            Math.random() > 0.5 ? 'anim-fall-right' : 'anim-fall-left';
           duration = Math.random() * 4 + 5;
           size = Math.random() * 12 + 16;
           break;
