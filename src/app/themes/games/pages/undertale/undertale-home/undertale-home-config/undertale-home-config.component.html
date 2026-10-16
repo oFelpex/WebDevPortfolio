@@ -19,21 +19,32 @@
       (mouseenter)="mouseEnterOrLeaveSFX()"
       (click)="onExit()"
     >
-      EXIT
+      <span>EXIT</span>
     </button>
     <button
       class="btn"
       (mouseenter)="mouseEnterOrLeaveSFX()"
       (click)="playClickSound()"
     >
-      LANGUAGE + lang
+      <span>LANGUAGE + lang</span>
     </button>
     <button
       class="btn"
       (mouseenter)="mouseEnterOrLeaveSFX()"
       (click)="playClickSound()"
     >
-      CHANGE THEME + theme
+      <span>CHANGE THEME + theme</span>
     </button>
+  </div>
+  <div id="annoying-dog-and-his-message">
+    <div id="dog-message-container">
+      <span>{{ annoyingDog.phrasesFromTheDog }}</span>
+    </div>
+    <img
+      [src]="annoyingDog.src"
+      [class]="'annoyingDog ' + annoyingDog.animClass"
+      [style.width.px]="annoyingDog.size"
+      alt="Seasonal annoying dog"
+    />
   </div>
 </section>

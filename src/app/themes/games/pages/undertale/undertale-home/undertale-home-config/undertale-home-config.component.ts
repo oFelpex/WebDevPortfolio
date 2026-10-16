@@ -12,6 +12,13 @@ interface Particle {
   size: number;
   animClass: string;
 }
+interface annoyingDog {
+  id: string;
+  src: string;
+  size: number;
+  phrasesFromTheDog: string;
+  animClass?: string;
+}
 @Component({
   selector: 'app-undertale-home-config',
   imports: [CommonModule],
@@ -23,8 +30,9 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
   private audioService: AudioService;
   private musics = undertaleMusicsConfigMenuOnly;
   private timeoutIdToPlayConfigMusics: number | undefined;
-  private currentSeason: number = 1;
+  public currentSeason: number = 1;
   public particles: Particle[] = [];
+  public annoyingDog!: annoyingDog;
 
   public exit = output<void>();
 
@@ -41,9 +49,10 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
         this.audioService.preloadSound(music.musicName, music.musicURL),
       ),
     );
+    this.setupSeasonParticlesAndDog(90);
 
     this.timeoutIdToPlayConfigMusics = setTimeout(() => {
-      const season = this.getActualSeasonInBrazil();
+      const season = this.currentSeason;
       const musicIndexMap: Record<number, number> = {
         0: 0,
         1: 1,
@@ -52,8 +61,7 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
       };
       const musicIndex = musicIndexMap[season] ?? 1;
 
-      this.audioService.playSingleTrack(this.musics[2], true);
-      this.setupSeasonParticles(90);
+      this.audioService.playSingleTrack(this.musics[musicIndex], true);
     }, 900);
   }
 
@@ -120,8 +128,8 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
     this.exit.emit();
   }
 
-  private setupSeasonParticles(count: number): void {
-    const basePath =
+  private setupSeasonParticlesAndDog(count: number): void {
+    const baseParticleOrDogPath =
       '../../../../../../../assets/themes/games/undertale/sprites/others/config-sprites/';
 
     for (let i = 0; i < count; i++) {
@@ -132,7 +140,7 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
 
       switch (this.currentSeason) {
         case 0: // WINTER - 1 sprite
-          spriteSrc = `${basePath}undertale-snow.webp`;
+          spriteSrc = `${baseParticleOrDogPath}undertale-snow.webp`;
           animClass =
             Math.random() > 0.5 ? 'anim-fall-right' : 'anim-fall-left';
           duration = Math.random() * 4 + 5;
@@ -141,7 +149,7 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
 
         case 1: // FALL - 3 sprites
           const leafIndex = i % 3; // 0, 1 or 2
-          spriteSrc = `${basePath}undertale-leaf-${leafIndex}.webp`;
+          spriteSrc = `${baseParticleOrDogPath}undertale-leaf-${leafIndex}.webp`;
           animClass =
             Math.random() > 0.5 ? 'anim-fall-right' : 'anim-fall-left';
           duration = Math.random() * 4 + 5;
@@ -149,7 +157,7 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
           break;
 
         case 2: // SPRING - 1 sprite
-          spriteSrc = `${basePath}undertale-spring-leaf.webp`;
+          spriteSrc = `${baseParticleOrDogPath}undertale-spring-leaf.webp`;
           animClass =
             Math.random() > 0.5 ? 'anim-fall-right' : 'anim-fall-left';
           duration = Math.random() * 4 + 5;
@@ -157,7 +165,7 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
           break;
 
         case 3: // SUMMER - 1 sprite and only 1 image
-          spriteSrc = `${basePath}undertale-sun.webp`;
+          spriteSrc = `${baseParticleOrDogPath}undertale-sun.webp`;
           animClass = 'anim-sun';
           size = 128;
 
@@ -169,19 +177,57 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
             size: size,
             animClass: animClass,
           });
-
-          return;
+          //PRECISA SER REVISTO URGENTE
+          break;
       }
+
+      if (this.currentSeason === 3) break;
 
       this.particles.push({
         id: i,
         src: spriteSrc,
         left: Math.random() * 100,
         duration: duration,
-        delay: Math.random() * 3,
+        delay: Math.random() * 10,
         size: size,
         animClass: animClass,
       });
+    }
+
+    switch (this.currentSeason) {
+      case 0:
+        this.annoyingDog = {
+          id: 'winter',
+          src: `${baseParticleOrDogPath}undertale-dog-winter.webp`,
+          size: 128,
+          phrasesFromTheDog: 'cold outside but stay warm inside of you',
+        };
+        break;
+      case 1:
+        this.annoyingDog = {
+          id: 'fall',
+          src: `${baseParticleOrDogPath}undertale-dog-fall.webp`,
+          size: 128,
+          phrasesFromTheDog: 'sweep a leaf, sweep away a troubles',
+        };
+        break;
+      case 2:
+        this.annoyingDog = {
+          id: 'spring',
+          src: `${baseParticleOrDogPath}undertale-dog-spring.gif`,
+          size: 128,
+          phrasesFromTheDog: 'spring time back to school',
+        };
+        break;
+      case 3:
+        this.annoyingDog = {
+          id: 'summer',
+          src: `${baseParticleOrDogPath}undertale-dog-summer.gif`,
+          size: 128,
+          phrasesFromTheDog: `try to withstand the sun's life-giving rays`,
+          animClass: 'anim-dog-summer',
+        };
+        break;
     }
   }
 }
