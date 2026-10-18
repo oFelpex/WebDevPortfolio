@@ -1,0 +1,9 @@
+<div id="undertale-dialog-container">
+  @if (dialogData === "themeDialog") {
+    <app-undertale-themes-dialog></app-undertale-themes-dialog>
+  } @else if (dialogData === "navigationDialog") {
+    <app-undertale-navigation-dialog></app-undertale-navigation-dialog>
+  } @else if (dialogData === "soundboardDialog") {
+    <app-undertale-soundboard-dialog></app-undertale-soundboard-dialog>
+  }
+</div>

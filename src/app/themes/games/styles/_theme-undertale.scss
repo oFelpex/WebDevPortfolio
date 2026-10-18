@@ -8,6 +8,10 @@ body.undertale-theme {
   color: #eaeaea;
   font-family: "Undertale Menu", sans-serif;
 
+  .mat-mdc-dialog-container {
+    border: 3px solid #fff !important;
+  }
+
   @include mat.theme(
     (
       color: (
@@ -16,6 +20,15 @@ body.undertale-theme {
       ),
       typography: "Undertale Menu",
       density: 0,
+    )
+  );
+  @include mat.dialog-overrides(
+    (
+      container-color: #000000,
+      subhead-color: #fff,
+      container-shape: border-radius 0%,
+      subhead-font: "Undertale Menu",
+      container-max-width: none,
     )
   );
 }

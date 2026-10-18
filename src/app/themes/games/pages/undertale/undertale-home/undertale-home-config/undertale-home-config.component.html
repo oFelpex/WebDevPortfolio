@@ -24,16 +24,19 @@
     <button
       class="btn"
       (mouseenter)="mouseEnterOrLeaveSFX()"
-      (click)="playClickSound()"
+      (click)="
+        playClickSound();
+        changeLanguage(actualLang === 'en-US' ? 'pt-BR' : 'en-US')
+      "
     >
-      <span>LANGUAGE + lang</span>
+      <span>LANGUAGE {{ actualLang }}</span>
     </button>
     <button
       class="btn"
       (mouseenter)="mouseEnterOrLeaveSFX()"
-      (click)="playClickSound()"
+      (click)="playClickSound(); openThemeDialog()"
     >
-      <span>CHANGE THEME + theme</span>
+      <span>CHANGE THEME</span>
     </button>
   </div>
   <div id="annoying-dog-and-his-message">

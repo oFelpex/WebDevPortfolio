@@ -3,6 +3,9 @@ import { AudioService } from '../../../../../../services/audio-service/audio.ser
 import { undertaleMusicsConfigMenuOnly } from '../../../../../../models/musics';
 import { undertaleOpenFromCenter } from '../../../../../../shared/animations/games/undertale-animations';
 import { CommonModule } from '@angular/common';
+import { LanguageService } from '../../../../../../services/language-service/language.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UndertaleDialogsComponent } from '../dialogs/undertale-dialogs.component';
 interface Particle {
   id: number;
   src: string;
@@ -30,6 +33,8 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
   private audioService: AudioService;
   private musics = undertaleMusicsConfigMenuOnly;
   private timeoutIdToPlayConfigMusics: number | undefined;
+  private dialog: MatDialog;
+  public languageService: LanguageService;
   public currentSeason: number = 1;
   public particles: Particle[] = [];
   public annoyingDog!: annoyingDog;
@@ -37,19 +42,22 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
   public exit = output<void>();
 
   constructor() {
+    this.dialog = inject(MatDialog);
     this.audioService = inject(AudioService);
+    this.languageService = inject(LanguageService);
   }
 
   async ngOnInit(): Promise<void> {
-    this.currentSeason = 3;
+    this.currentSeason = this.getActualSeasonInBrazil();
 
     this.audioService.playSound('Undertale-enterConfig', 'sfx');
+    this.setupSeasonParticlesAndDog(90);
+
     await Promise.all(
       this.musics.map((music) =>
         this.audioService.preloadSound(music.musicName, music.musicURL),
       ),
     );
-    this.setupSeasonParticlesAndDog(90);
 
     this.timeoutIdToPlayConfigMusics = setTimeout(() => {
       const season = this.currentSeason;
@@ -69,6 +77,17 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
     this.musics.forEach((music) => this.audioService.unloadOneSound(music));
     clearTimeout(this.timeoutIdToPlayConfigMusics);
   }
+
+  public get actualLang(): string {
+    return this.languageService.getCurrentLanguage();
+  }
+  public changeLanguage(newLang: string): void {
+    this.languageService.setLanguage(newLang);
+  }
+  public openThemeDialog(): void {
+    this.dialog.open(UndertaleDialogsComponent, { data: 'themeDialog' });
+  }
+
   private getActualSeasonInBrazil(): number {
     const now = new Date();
     const month = now.getMonth() + 1;
