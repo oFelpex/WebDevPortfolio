@@ -1,11 +1,22 @@
 <header id="undertale-home-header">
   @if (currentMenuState() === "mainMenu") {
     <section id="undertale-door-and-menu">
-      <img
-        id="undertale-door"
-        src="../../../../../../assets/themes/games/undertale/sprites/backgrounds/undertale-menu-door.webp"
-        alt="Undertale Door"
-      />
+      <div id="undertale-door-with-soundboard-img">
+        <img
+          id="undertale-door"
+          src="../../../../../../assets/themes/games/undertale/sprites/backgrounds/undertale-menu-door.webp"
+          alt="Undertale Door"
+        />
+        <img
+          id="undertale-soundboard-menu"
+          src="../../../../../../assets/themes/games/undertale/sprites/others/soundboard/undertale-soundboard-menu.webp"
+          alt="Undertale music location"
+          (click)="
+            playClickSound();
+            unloadMusicsChangeMenuAndPreloadNewMusics('mainMenu', 'soundboard')
+          "
+        />
+      </div>
       <div id="undertale-menu-container">
         <div id="undertale-menu-info">
           <span class="name">FELPEX</span>
@@ -19,7 +30,7 @@
           <button
             class="btn btn-navigate"
             (mouseenter)="mouseEnterOrLeaveSFX()"
-            (click)="playClickSound()"
+            (click)="playClickSound(); openNaviationDialog()"
           >
             Navigate
           </button>
@@ -69,5 +80,7 @@
         unloadMusicsChangeMenuAndPreloadNewMusics('configMenu', 'mainMenu')
       "
     />
+  } @else if (currentMenuState() === "soundboard") {
+    <app-undertale-home-soundboard></app-undertale-home-soundboard>
   }
 </header>

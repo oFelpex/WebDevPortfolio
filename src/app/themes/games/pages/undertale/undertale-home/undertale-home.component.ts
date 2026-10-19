@@ -13,11 +13,18 @@ import { AudioService } from '../../../../../services/audio-service/audio.servic
 import { Musics, undertaleMusicsMenuOnly } from '../../../../../models/musics';
 import { SFXs, undertaleSFX } from '../../../../../models/sfxs';
 import { UndertaleHomeConfigComponent } from './undertale-home-config/undertale-home-config.component';
+import { MatDialog } from '@angular/material/dialog';
+import { UndertaleDialogsComponent } from './dialogs/undertale-dialogs.component';
+import { UndertaleHomeSoundboardComponent } from './undertale-home-soundboard/undertale-home-soundboard.component';
 
-type undertaleMenus = 'mainMenu' | 'configMenu' | 'navigateMenu';
+type undertaleMenus = 'mainMenu' | 'configMenu' | 'soundboard';
 @Component({
   selector: 'app-undertale-home',
-  imports: [NgComponentOutlet, UndertaleHomeConfigComponent],
+  imports: [
+    NgComponentOutlet,
+    UndertaleHomeConfigComponent,
+    UndertaleHomeSoundboardComponent,
+  ],
   templateUrl: './undertale-home.component.html',
   styleUrl: './undertale-home.component.scss',
 })
@@ -25,6 +32,7 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
   private renderer: Renderer2;
   private document: Document;
   private audioService: AudioService;
+  private dialog: MatDialog;
 
   private undertaleMusicsMainMenu: Musics[] = undertaleMusicsMenuOnly;
   private undertaleSFXHome: SFXs[] = undertaleSFX;
@@ -41,6 +49,7 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
     this.document = inject(DOCUMENT);
 
     this.audioService = inject(AudioService);
+    this.dialog = inject(MatDialog);
   }
 
   async ngOnInit(): Promise<void> {
@@ -64,7 +73,6 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
 
     this.unloadMusicsFromMenuType('mainMenu');
     this.unloadMusicsFromMenuType('configMenu');
-    this.unloadMusicsFromMenuType('navigateMenu');
   }
   private headerSetPosition(): void {
     const header = document.getElementById(
@@ -95,7 +103,9 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
   public playClickSound(): void {
     this.audioService.playClickSound('Undertale');
   }
-
+  public openNaviationDialog(): void {
+    this.dialog.open(UndertaleDialogsComponent, { data: 'navigationDialog' });
+  }
   // NEEDS TO BE VISITED WHEN CREATING NAVIGATE MENU
   private async preloadMusicsAndPlay(menu: undertaleMenus): Promise<void> {
     let musics: Musics[] = [];
@@ -115,7 +125,7 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
           this.audioService.playSingleTrack(trackToPlay, true);
         }
         break;
-      case 'navigateMenu':
+      case 'soundboard':
         // musics = this.undertaleMusicsNavigateMenu;
         break;
     }
@@ -128,7 +138,7 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
           this.audioService.unloadOneSound(mainMenuMusic);
         });
         break;
-      case 'navigateMenu':
+      case 'soundboard':
         // this.undertaleMusicsNavigateMenu.map((navigateMenuMusic) => {
         //   this.audioService.unloadOneSound(navigateMenuMusic);
         // });
@@ -143,7 +153,7 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
   ): Promise<void> {
     this.unloadMusicsFromMenuType(fromWhere);
     this.currentMenuState.set(toWhere);
-    this.preloadMusicsAndPlay(toWhere);
+    if (toWhere !== 'soundboard') this.preloadMusicsAndPlay(toWhere);
   }
 
   public async changeMenuVariation(): Promise<void> {

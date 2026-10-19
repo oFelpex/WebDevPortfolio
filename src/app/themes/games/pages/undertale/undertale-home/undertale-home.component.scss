@@ -16,16 +16,35 @@
     padding: 0 8px;
     gap: 5vh;
     z-index: 4;
-
-    #undertale-door {
-      margin-top: 5vh;
-      padding: 0 8px;
-      height: auto;
-      width: 100%;
-      min-width: 220px;
-      max-width: 360px;
-      aspect-ratio: 1080 / 831;
-      image-rendering: pixelated;
+    #undertale-door-with-soundboard-img {
+      position: relative;
+      #undertale-door,
+      #undertale-soundboard-menu {
+        margin-top: 5vh;
+        padding: 0 8px;
+        height: auto;
+        width: 100%;
+        min-width: 220px;
+        max-width: 360px;
+        aspect-ratio: 1080 / 831;
+        image-rendering: pixelated;
+        pointer-events: none;
+        z-index: 0;
+      }
+      #undertale-soundboard-menu {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-51%, -25%);
+        height: auto;
+        width: 100%;
+        min-width: 90px;
+        max-width: 125px;
+        aspect-ratio: 663 / 640;
+        cursor: pointer;
+        pointer-events: all;
+        z-index: 1;
+      }
     }
 
     #undertale-menu-container {
