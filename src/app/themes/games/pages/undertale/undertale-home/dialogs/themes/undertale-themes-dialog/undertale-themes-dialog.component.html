@@ -1,1 +1,63 @@
-<p>undertale-themes-dialog works!</p>
+<div id="undertale-themes-dialog">
+  <div class="undertale-themes-container">
+    <h2 class="undertale-title">Change the theme</h2>
+    <span>Actual type: {{ actualTheme.type }}</span>
+    <span>Name: {{ actualTheme.name }}</span>
+  </div>
+  <div class="undertale-themes-container">
+    @if (whatMenuItWillShow() === "typeSelection") {
+      <h2 class="undertale-title">Select the type of theme</h2>
+      <div id="undertale-btn-container">
+        @for (type of typesOfThemes; track $index) {
+          <button
+            class="undertale-btn"
+            (mouseenter)="mouseEnterOrLeaveSFX()"
+            (click)="playClickSound(); changeWhatMenuItWillShow(type)"
+          >
+            <span>* {{ type }}</span>
+          </button>
+        }
+      </div>
+    } @else if (whatMenuItWillShow() === "GamesSelection") {
+      <h2 class="undertale-title">Select the game you want</h2>
+      <div id="undertale-btn-container">
+        @for (game of gameOptions; track $index) {
+          <button
+            class="undertale-btn"
+            (mouseenter)="mouseEnterOrLeaveSFX()"
+            (click)="playClickSound(); changeTheme(game)"
+          >
+            <span>* {{ game.name }}</span>
+          </button>
+        }
+      </div>
+      <button
+        class="undertale-back-btn"
+        (mouseenter)="mouseEnterOrLeaveSFX()"
+        (click)="playClickSound(); changeWhatMenuItWillShow('type')"
+      >
+        <span>Back</span>
+      </button>
+    } @else if (whatMenuItWillShow() === "ColorsSelection") {
+      <h2 class="undertale-title">Select the color you want</h2>
+      <div id="undertale-btn-container">
+        @for (color of colorOptions; track $index) {
+          <button
+            class="undertale-btn"
+            (mouseenter)="mouseEnterOrLeaveSFX()"
+            (click)="playClickSound(); changeTheme(color)"
+          >
+            <span>* {{ color.name }}</span>
+          </button>
+        }
+      </div>
+      <button
+        class="undertale-back-btn"
+        (mouseenter)="mouseEnterOrLeaveSFX()"
+        (click)="playClickSound(); changeWhatMenuItWillShow('type')"
+      >
+        <span>Back</span>
+      </button>
+    }
+  </div>
+</div>

@@ -1,0 +1,48 @@
+#undertale-themes-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .undertale-title {
+    font-weight: normal;
+  }
+
+  .undertale-themes-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+
+    #undertale-btn-container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .undertale-btn,
+    .undertale-back-btn {
+      width: fit-content;
+      background: transparent;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      padding: 0;
+
+      span {
+        text-shadow: 0px 0px 5px #000000;
+      }
+
+      &:hover {
+        color: #fafc13;
+      }
+    }
+    .undertale-back-btn {
+      position: relative;
+      left: 50%;
+      margin-top: 10px;
+      transform: translateX(-50%);
+    }
+  }
+}
