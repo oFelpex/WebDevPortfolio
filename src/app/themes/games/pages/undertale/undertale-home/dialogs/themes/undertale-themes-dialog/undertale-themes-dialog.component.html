@@ -18,6 +18,13 @@
           </button>
         }
       </div>
+      <button
+        class="undertale-back-btn"
+        (mouseenter)="mouseEnterOrLeaveSFX()"
+        (click)="playClickSound(); closeDialog()"
+      >
+        <span>Back</span>
+      </button>
     } @else if (whatMenuItWillShow() === "GamesSelection") {
       <h2 class="undertale-title">Select the game you want</h2>
       <div id="undertale-btn-container">

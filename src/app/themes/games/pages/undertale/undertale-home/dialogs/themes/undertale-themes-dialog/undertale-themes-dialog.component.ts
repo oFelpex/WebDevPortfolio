@@ -62,6 +62,9 @@ export class UndertaleThemesDialogComponent {
   }
   public changeTheme(theme: Themes): void {
     this.themeService.changeTheme(theme);
+    this.closeDialog();
+  }
+  public closeDialog(): void {
     this.dialog.closeAll();
   }
 }
