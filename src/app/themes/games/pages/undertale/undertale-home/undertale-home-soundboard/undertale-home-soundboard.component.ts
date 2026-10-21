@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-undertale-home-soundboard',
   imports: [],
   templateUrl: './undertale-home-soundboard.component.html',
-  styleUrl: './undertale-home-soundboard.component.scss'
+  styleUrl: './undertale-home-soundboard.component.scss',
 })
-export class UndertaleHomeSoundboardComponent {
-
-}
+export class UndertaleHomeSoundboardComponent {}

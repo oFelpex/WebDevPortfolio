@@ -1,0 +1,58 @@
+#undertale-soundboard {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  #undertale-soundboard-bg {
+    width: 100vw;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: 960 / 360;
+    image-rendering: pixelated;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  #undertale-soundboard-npcs-container {
+    position: fixed;
+    left: 3%;
+    bottom: 0;
+    width: 100vw;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    image-rendering: pixelated;
+    z-index: 1;
+    box-sizing: border-box;
+
+    .undertale-soundboard-npc-img {
+      position: absolute;
+      pointer-events: none;
+      bottom: 290px;
+      width: 100%;
+      aspect-ratio: 960 / 360;
+    }
+  }
+
+  #undertale-soundboard-menu-container {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    height: 300px;
+    width: 80%;
+    background-color: #000;
+    border: 5px solid #fff;
+    z-index: 2;
+
+    #undertale-soundboard-menu-playing {
+      position: absolute;
+      right: 0;
+      background-color: #000;
+      width: 35%;
+      height: 100%;
+      border-left: 5px solid #fff;
+    }
+  }
+}
