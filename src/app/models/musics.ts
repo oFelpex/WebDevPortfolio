@@ -144,8 +144,67 @@ export const undertaleMusicsConfigMenuOnly: Musics[] = [
 export const undertaleMusics: Musics[] = [
   {
     gameName: 'Undertale',
-    musicName: '',
+    musicName: 'Bonetrousle',
     musicComposer: 'Toby Fox',
-    musicURL: 'assets/sounds/games/undertale/music/',
+    musicURL: 'assets/sounds/games/undertale/music/soundboard/bonetrousle.ogg',
+  },
+  {
+    gameName: 'Undertale',
+    musicName: 'Bring It In, Guys!',
+    musicComposer: 'Toby Fox',
+    musicURL:
+      'assets/sounds/games/undertale/music/soundboard/bring-it-in-guys.ogg',
+  },
+  {
+    gameName: 'Undertale',
+    musicName: 'Death By Glamour',
+    musicComposer: 'Toby Fox',
+    musicURL:
+      'assets/sounds/games/undertale/music/soundboard/death-by-glamour.ogg',
+  },
+  {
+    gameName: 'Undertale',
+    musicName: 'Dummy!',
+    musicComposer: 'Toby Fox',
+    musicURL: 'assets/sounds/games/undertale/music/soundboard/dummy.ogg',
+  },
+  {
+    gameName: 'Undertale',
+    musicName: 'Fallen Down (Reprise)',
+    musicComposer: 'Toby Fox',
+    musicURL:
+      'assets/sounds/games/undertale/music/soundboard/fallen-down-reprise.ogg',
+  },
+  {
+    gameName: 'Undertale',
+    musicName: 'Finale',
+    musicComposer: 'Toby Fox',
+    musicURL: 'assets/sounds/games/undertale/music/soundboard/finale.ogg',
+  },
+  {
+    gameName: 'Undertale',
+    musicName: 'Hopes And Dreams',
+    musicComposer: 'Toby Fox',
+    musicURL:
+      'assets/sounds/games/undertale/music/soundboard/hopes-and-dreams.ogg',
+  },
+  {
+    gameName: 'Undertale',
+    musicName: `It's Raining Somewhere Else`,
+    musicComposer: 'Toby Fox',
+    musicURL:
+      'assets/sounds/games/undertale/music/soundboard/its-raining-somewhere-else.ogg',
+  },
+  {
+    gameName: 'Undertale',
+    musicName: 'Megalovania',
+    musicComposer: 'Toby Fox',
+    musicURL: 'assets/sounds/games/undertale/music/soundboard/megalovania.ogg',
+  },
+  {
+    gameName: 'Undertale',
+    musicName: 'Respite',
+    musicComposer: 'Toby Fox',
+    musicURL: 'assets/sounds/games/undertale/music/soundboard/respite.ogg',
   },
 ];
