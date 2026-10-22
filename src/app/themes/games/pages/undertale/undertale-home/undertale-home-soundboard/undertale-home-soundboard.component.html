@@ -22,6 +22,54 @@
     />
   </div>
   <div id="undertale-soundboard-menu-container">
+    <div id="undertale-soundboard-menu-selecting-music">
+      <h1 id="undertale-soundboard-title">Choose a music</h1>
+
+      <div id="undertale-soundboard-menu-music-list-and-btns">
+        <ul id="undertale-soundboard-music-list-container">
+          @for (music of visibleItems(); track music) {
+            <li class="undertale-soundboard-music-item">
+              <span
+                (mouseenter)="mouseEnterOrLeaveSFX()"
+                (click)="playClickSound()"
+              >
+                {{ music.musicName }}</span
+              >
+            </li>
+          }
+        </ul>
+        <div id="undertale-soundboard-next-prev-btns-container">
+          <button
+            mat-button
+            class="undertale-soundboard-next-prev-btn"
+            (mouseenter)="mouseEnterOrLeaveSFX()"
+            (click)="prevMusicOnTheList(); playClickSound()"
+          >
+            <mat-icon class="undertale-soundboard-next-prev-btn-icon"
+              >arrow_drop_up</mat-icon
+            >
+          </button>
+          <button
+            mat-button
+            class="undertale-soundboard-next-prev-btn"
+            (mouseenter)="mouseEnterOrLeaveSFX()"
+            (click)="playClickSound(); nextMusicOnTheList()"
+          >
+            <mat-icon class="undertale-soundboard-next-prev-btn-icon"
+              >arrow_drop_down</mat-icon
+            >
+          </button>
+        </div>
+      </div>
+      <button
+        mat-button
+        id="back-to-home-btn"
+        (mouseenter)="mouseEnterOrLeaveSFX()"
+        (click)="onExit(); playClickSound()"
+      >
+        Back
+      </button>
+    </div>
     <div id="undertale-soundboard-menu-playing"></div>
   </div>
 </section>

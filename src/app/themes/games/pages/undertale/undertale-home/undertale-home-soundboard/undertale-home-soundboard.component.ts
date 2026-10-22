@@ -1,9 +1,70 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  OnInit,
+  output,
+  signal,
+} from '@angular/core';
+import { AudioService } from '../../../../../../services/audio-service/audio.service';
+import { Musics, undertaleMusics } from '../../../../../../models/musics';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-undertale-home-soundboard',
-  imports: [],
+  imports: [MatIconModule, MatButtonModule],
   templateUrl: './undertale-home-soundboard.component.html',
   styleUrl: './undertale-home-soundboard.component.scss',
 })
-export class UndertaleHomeSoundboardComponent {}
+export class UndertaleHomeSoundboardComponent implements OnInit {
+  private audioService: AudioService;
+  private currentMusicIndex = signal(0);
+  public allUndertaleMusics: Musics[] = undertaleMusics;
+  public exit = output<void>();
+
+  constructor() {
+    this.audioService = inject(AudioService);
+  }
+
+  ngOnInit(): void {
+    //NEED TO MAKE THIS HAPPEN ONCE UNDERTALE THEME CAMES UP
+    this.allUndertaleMusics.map((music) => {
+      this.audioService.preloadSound(music.musicName, music.musicURL);
+    });
+  }
+  public onExit(): void {
+    this.exit.emit();
+  }
+  public mouseEnterOrLeaveSFX(): void {
+    this.audioService.playSound('Undertale-mouseEnterOrLeave');
+  }
+  public playClickSound(): void {
+    this.audioService.playClickSound('Undertale');
+  }
+
+  public visibleItems = computed(() => {
+    const list = this.allUndertaleMusics;
+    const start = this.currentMusicIndex();
+
+    return [
+      list[start % list.length],
+      list[(start + 1) % list.length],
+      list[(start + 2) % list.length],
+    ];
+  });
+
+  public nextMusicOnTheList(): void {
+    this.currentMusicIndex.update(
+      (index) => (index + 1) % this.allUndertaleMusics.length,
+    );
+  }
+
+  prevMusicOnTheList(): void {
+    this.currentMusicIndex.update(
+      (index) =>
+        (index - 1 + this.allUndertaleMusics.length) %
+        this.allUndertaleMusics.length,
+    );
+  }
+}

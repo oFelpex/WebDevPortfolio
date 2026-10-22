@@ -37,6 +37,9 @@
 
   #undertale-soundboard-menu-container {
     position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     left: 50%;
     bottom: 20px;
     transform: translateX(-50%);
@@ -46,13 +49,103 @@
     border: 5px solid #fff;
     z-index: 2;
 
-    #undertale-soundboard-menu-playing {
-      position: absolute;
-      right: 0;
-      background-color: #000;
-      width: 35%;
+    #undertale-soundboard-menu-selecting-music {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-direction: column;
       height: 100%;
+      min-width: 250px;
+      background-color: #000;
+      flex: 3;
+
+      #undertale-soundboard-title {
+        cursor: default;
+        margin: 0px;
+        font-size: 2.5rem;
+        font-weight: normal;
+      }
+
+      #undertale-soundboard-menu-music-list-and-btns {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0px 20px;
+        margin-bottom: 5%;
+        width: 100%;
+        gap: 15px;
+
+        #undertale-soundboard-next-prev-btns-container {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          .undertale-soundboard-next-prev-btn {
+            width: fit-content;
+            background: transparent;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            padding: 0;
+
+            &:hover {
+              background-color: #181818;
+              .undertale-soundboard-next-prev-btn-icon {
+                color: #fafc13;
+              }
+            }
+            .undertale-soundboard-next-prev-btn-icon {
+              pointer-events: none;
+              margin-left: 7px;
+              width: 100%;
+              height: auto;
+              color: #fff;
+              font-size: 5rem;
+            }
+          }
+        }
+
+        #undertale-soundboard-music-list-container {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          min-width: 0;
+          flex: 1;
+
+          .undertale-soundboard-music-item {
+            font-size: xx-large;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-width: 0;
+
+            span {
+              cursor: pointer;
+
+              &:hover {
+                color: #fafc13;
+              }
+            }
+          }
+        }
+      }
+    }
+    #undertale-soundboard-menu-playing {
+      height: 100%;
+      background-color: #000;
       border-left: 5px solid #fff;
+      flex: 2;
+    }
+
+    #back-to-home-btn {
+      position: absolute;
+      bottom: 20px;
+      font-size: xx-large;
+      color: #fff;
+
+      &:hover {
+        background-color: #181818;
+        color: #fafc13;
+      }
     }
   }
 }

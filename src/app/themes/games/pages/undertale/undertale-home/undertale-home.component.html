@@ -81,6 +81,10 @@
       "
     />
   } @else if (currentMenuState() === "soundboard") {
-    <app-undertale-home-soundboard></app-undertale-home-soundboard>
+    <app-undertale-home-soundboard
+      (exit)="
+        unloadMusicsChangeMenuAndPreloadNewMusics('soundboard', 'mainMenu')
+      "
+    ></app-undertale-home-soundboard>
   }
 </header>
