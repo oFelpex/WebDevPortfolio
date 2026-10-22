@@ -7,7 +7,11 @@ import {
   signal,
 } from '@angular/core';
 import { AudioService } from '../../../../../../services/audio-service/audio.service';
-import { Musics, undertaleMusics } from '../../../../../../models/musics';
+import {
+  Musics,
+  undertaleMusics,
+  undertaleSoundboardMenuOnly,
+} from '../../../../../../models/musics';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -20,6 +24,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class UndertaleHomeSoundboardComponent implements OnInit {
   private audioService: AudioService;
   private currentMusicIndex = signal(0);
+  private soundboardMusic: Musics = undertaleSoundboardMenuOnly;
   public allUndertaleMusics: Musics[] = undertaleMusics;
   public exit = output<void>();
 
@@ -27,11 +32,18 @@ export class UndertaleHomeSoundboardComponent implements OnInit {
     this.audioService = inject(AudioService);
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     //NEED TO MAKE THIS HAPPEN ONCE UNDERTALE THEME CAMES UP
-    this.allUndertaleMusics.map((music) => {
-      this.audioService.preloadSound(music.musicName, music.musicURL);
-    });
+    await Promise.all(
+      this.allUndertaleMusics.map((music) =>
+        this.audioService.preloadSound(music.musicName, music.musicURL),
+      ),
+    );
+    await this.audioService.preloadSound(
+      this.soundboardMusic.musicName,
+      this.soundboardMusic.musicURL,
+    );
+    this.audioService.playSingleTrack(this.soundboardMusic, true);
   }
   public onExit(): void {
     this.exit.emit();

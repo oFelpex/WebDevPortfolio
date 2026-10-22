@@ -141,6 +141,12 @@ export const undertaleMusicsConfigMenuOnly: Musics[] = [
       'assets/sounds/games/undertale/music/config-menu/uwa-so-heats.ogg',
   },
 ];
+export const undertaleSoundboardMenuOnly: Musics = {
+  gameName: 'Undertale',
+  musicName: 'Sound Studio',
+  musicComposer: 'Toby Fox',
+  musicURL: 'assets/sounds/games/undertale/music/soundboard/sound-studio.ogg',
+};
 export const undertaleMusics: Musics[] = [
   {
     gameName: 'Undertale',
