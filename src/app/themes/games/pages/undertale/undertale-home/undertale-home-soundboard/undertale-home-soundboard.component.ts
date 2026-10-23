@@ -2,6 +2,7 @@ import {
   Component,
   computed,
   inject,
+  OnDestroy,
   OnInit,
   output,
   signal,
@@ -21,7 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './undertale-home-soundboard.component.html',
   styleUrl: './undertale-home-soundboard.component.scss',
 })
-export class UndertaleHomeSoundboardComponent implements OnInit {
+export class UndertaleHomeSoundboardComponent implements OnInit, OnDestroy {
   private audioService: AudioService;
   private currentMusicIndex = signal(0);
   private soundboardMusic: Musics = undertaleSoundboardMenuOnly;
@@ -34,16 +35,16 @@ export class UndertaleHomeSoundboardComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     //NEED TO MAKE THIS HAPPEN ONCE UNDERTALE THEME CAMES UP
-    await Promise.all(
-      this.allUndertaleMusics.map((music) =>
-        this.audioService.preloadSound(music.musicName, music.musicURL),
-      ),
-    );
+    await this.audioService.loadPlaylist(this.allUndertaleMusics);
+
     await this.audioService.preloadSound(
       this.soundboardMusic.musicName,
       this.soundboardMusic.musicURL,
     );
     this.audioService.playSingleTrack(this.soundboardMusic, true);
+  }
+  ngOnDestroy(): void {
+    this.audioService.unloadOneSound(this.soundboardMusic);
   }
   public onExit(): void {
     this.exit.emit();
@@ -72,11 +73,19 @@ export class UndertaleHomeSoundboardComponent implements OnInit {
     );
   }
 
-  prevMusicOnTheList(): void {
+  public prevMusicOnTheList(): void {
     this.currentMusicIndex.update(
       (index) =>
         (index - 1 + this.allUndertaleMusics.length) %
         this.allUndertaleMusics.length,
     );
+  }
+
+  public playPlaylistStartingOnThisOne(music: Musics) {
+    const index = this.allUndertaleMusics.findIndex((m) => m === music);
+
+    if (index !== -1) {
+      this.audioService.playFromIndex(index);
+    }
   }
 }

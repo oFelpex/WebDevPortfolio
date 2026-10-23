@@ -31,7 +31,7 @@
             <li class="undertale-soundboard-music-item">
               <span
                 (mouseenter)="mouseEnterOrLeaveSFX()"
-                (click)="playClickSound()"
+                (click)="playClickSound(); playPlaylistStartingOnThisOne(music)"
               >
                 {{ music.musicName }}</span
               >
