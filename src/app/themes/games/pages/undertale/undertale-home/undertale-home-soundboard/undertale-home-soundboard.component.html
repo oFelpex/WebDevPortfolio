@@ -30,6 +30,11 @@
           @for (music of visibleMusics(); track music) {
             <li class="undertale-soundboard-music-item">
               <span
+                [class]="
+                  music.musicName === currentMusic()
+                    ? 'undertale-soundboard-music-item-span-playing'
+                    : 'undertale-soundboard-music-item-span'
+                "
                 (mouseenter)="mouseEnterOrLeaveSFX()"
                 (click)="playClickSound(); playPlaylistStartingOnThisOne(music)"
               >
@@ -74,9 +79,18 @@
       <div id="undertale-soundboard-menu-playing-content">
         @if (isPlayingSomeMusicFromThePlaylist) {
           <div id="undertale-soundboard-menu-playing-music-container">
-            <span class="music-and-composer">{{ currentMusic() }}</span>
-            <span class="music-and-composer"> ● </span>
-            <span class="music-and-composer">{{ currentComposer() }}</span>
+            <div id="undertale-soundboard-menu-music-and-composer-container">
+              <span class="music-and-composer">{{ currentMusic() }}</span>
+              <span class="music-and-composer"> ● </span>
+              <span class="music-and-composer">{{ currentComposer() }}</span>
+            </div>
+
+            <div id="undertale-soundboard-menu-playing-progress-bar-container">
+              <mat-progress-bar
+                mode="determinate"
+                [value]="progress() * 100"
+              ></mat-progress-bar>
+            </div>
           </div>
         } @else {
           <h2 class="undertale-soundboard-title">Select a music</h2>

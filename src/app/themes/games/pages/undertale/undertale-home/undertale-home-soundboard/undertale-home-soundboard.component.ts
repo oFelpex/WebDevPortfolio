@@ -17,10 +17,11 @@ import {
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { fadeIn_fadeOut_longer } from '../../../../../../shared/animations/fade-animations';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-undertale-home-soundboard',
-  imports: [MatIconModule, MatButtonModule],
+  imports: [MatIconModule, MatButtonModule, MatProgressBarModule],
   templateUrl: './undertale-home-soundboard.component.html',
   styleUrl: './undertale-home-soundboard.component.scss',
   animations: [fadeIn_fadeOut_longer],
