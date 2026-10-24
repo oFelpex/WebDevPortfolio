@@ -126,6 +126,43 @@
             <mat-icon>skip_next</mat-icon>
           </button>
         </div>
+        <div id="undertale-soundboard-menu-playing-volume-btn-container">
+          <div class="volume-control">
+            <button
+              class="volume-btn"
+              mat-icon-button
+              aria-label="Music volume"
+            >
+              <mat-icon>music_note</mat-icon>
+            </button>
+            <div class="volume-slider-wrapper">
+              <mat-slider min="0" max="100" step="1" class="volume-slider">
+                <input
+                  matSliderThumb
+                  [value]="musicVolume * 100"
+                  (input)="setMusicVolume(musicSlider.valueAsNumber / 100)"
+                  #musicSlider
+                />
+              </mat-slider>
+            </div>
+          </div>
+
+          <div class="volume-control">
+            <button class="volume-btn" mat-icon-button aria-label="SFX volume">
+              <mat-icon>headphones</mat-icon>
+            </button>
+            <div class="volume-slider-wrapper">
+              <mat-slider min="0" max="100" step="1" class="volume-slider">
+                <input
+                  matSliderThumb
+                  [value]="sfxVolume * 100"
+                  (input)="setSfxVolume(sfxSlider.valueAsNumber / 100)"
+                  #sfxSlider
+                />
+              </mat-slider>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

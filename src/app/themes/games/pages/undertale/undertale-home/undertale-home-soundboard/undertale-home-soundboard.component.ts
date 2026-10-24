@@ -14,14 +14,20 @@ import {
   undertaleMusics,
   undertaleSoundboardMenuOnly,
 } from '../../../../../../models/musics';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { fadeIn_fadeOut_longer } from '../../../../../../shared/animations/fade-animations';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSliderModule } from '@angular/material/slider';
 
 @Component({
   selector: 'app-undertale-home-soundboard',
-  imports: [MatIconModule, MatButtonModule, MatProgressBarModule],
+  imports: [
+    MatIconModule,
+    MatButtonModule,
+    MatProgressBarModule,
+    MatSliderModule,
+  ],
   templateUrl: './undertale-home-soundboard.component.html',
   styleUrl: './undertale-home-soundboard.component.scss',
   animations: [fadeIn_fadeOut_longer],
@@ -64,6 +70,18 @@ export class UndertaleHomeSoundboardComponent implements OnInit, OnDestroy {
 
   public get isPlayingSomeMusicFromThePlaylist(): boolean {
     return this.audioService.isPlayingFromThePlaylist();
+  }
+  public get musicVolume(): number {
+    return this.audioService.getMusicVolume();
+  }
+  public setMusicVolume(volume: number) {
+    this.audioService.setMusicVolume(volume);
+  }
+  public get sfxVolume(): number {
+    return this.audioService.getSfxVolume();
+  }
+  public setSfxVolume(volume: number) {
+    this.audioService.setSfxVolume(volume);
   }
   public playPreviousMusic(): void {
     this.audioService.previousMusic();

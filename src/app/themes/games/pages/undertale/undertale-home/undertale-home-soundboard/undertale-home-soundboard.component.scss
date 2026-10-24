@@ -142,6 +142,7 @@
       flex: 2;
 
       #undertale-soundboard-menu-playing-content {
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -180,6 +181,77 @@
             &:hover {
               color: #fafc13;
               background-color: #18181883;
+            }
+          }
+        }
+        #undertale-soundboard-menu-playing-volume-btn-container {
+          position: absolute;
+          left: 50%;
+          bottom: 20px;
+          transform: translate(-50%, 0%);
+          width: 80%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 30px;
+
+          .volume-control {
+            display: flex;
+            align-items: center;
+            border-radius: 999px;
+            transition: background-color 0.3s;
+
+            .volume-btn {
+              color: #fff;
+              scale: 1.5;
+              flex-shrink: 0;
+
+              &:hover {
+                color: #fafc13;
+                background-color: #18181883;
+              }
+            }
+
+            .volume-slider-wrapper {
+              width: 0;
+              overflow: hidden;
+              opacity: 0;
+              transition:
+                width 0.3s ease,
+                opacity 0.2s ease,
+                margin 0.3s ease;
+            }
+
+            // expande ao passar o mouse ou focar via teclado
+            &:hover,
+            &:focus-within {
+              background-color: #18181883;
+
+              .volume-slider-wrapper {
+                width: 90px;
+                opacity: 1;
+                margin: 0 14px 0 6px;
+              }
+
+              .volume-btn {
+                color: #fafc13;
+              }
+            }
+
+            // estilo do slider (pixel/Undertale)
+            .volume-slider {
+              width: 100%;
+              min-width: 0;
+              margin: 0;
+              --mdc-slider-active-track-color: #fafc13;
+              --mdc-slider-inactive-track-color: #555;
+              --mdc-slider-handle-color: #fff;
+              --mdc-slider-focus-handle-color: #fafc13;
+              --mdc-slider-hover-handle-color: #fafc13;
+              --mdc-slider-active-track-height: 4px;
+              --mdc-slider-inactive-track-height: 4px;
+              --mdc-slider-handle-width: 12px;
+              --mdc-slider-handle-height: 12px;
             }
           }
         }
