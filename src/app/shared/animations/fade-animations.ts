@@ -1,7 +1,5 @@
 import {
   animate,
-  query,
-  stagger,
   state,
   style,
   transition,
@@ -26,4 +24,12 @@ export const fadeIn_fadeOut = trigger('fadeIn_fadeOut', [
     animate('200ms ease-in-out', style({ opacity: 1 })),
   ]),
   transition(':leave', [animate('300ms ease-in-out', style({ opacity: 0 }))]),
+]);
+
+export const fadeIn_fadeOut_longer = trigger('fadeIn_fadeOut_longer', [
+  transition(':enter', [
+    style({ opacity: 0 }),
+    animate('800ms ease-in-out', style({ opacity: 1 })),
+  ]),
+  transition(':leave', [animate('800ms ease-in-out', style({ opacity: 0 }))]),
 ]);

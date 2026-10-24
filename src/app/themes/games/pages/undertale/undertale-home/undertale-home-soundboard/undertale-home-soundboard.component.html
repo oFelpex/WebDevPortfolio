@@ -1,4 +1,4 @@
-<section id="undertale-soundboard">
+<section id="undertale-soundboard" @fadeIn_fadeOut_longer>
   <img
     id="undertale-soundboard-bg"
     src="../../../../../../../assets/themes/games/undertale/sprites/others/soundboard/undertale-soundboard-bg.gif"
@@ -23,11 +23,11 @@
   </div>
   <div id="undertale-soundboard-menu-container">
     <div id="undertale-soundboard-menu-selecting-music">
-      <h1 id="undertale-soundboard-title">Choose a music</h1>
+      <h1 class="undertale-soundboard-title">Choose a music</h1>
 
       <div id="undertale-soundboard-menu-music-list-and-btns">
         <ul id="undertale-soundboard-music-list-container">
-          @for (music of visibleItems(); track music) {
+          @for (music of visibleMusics(); track music) {
             <li class="undertale-soundboard-music-item">
               <span
                 (mouseenter)="mouseEnterOrLeaveSFX()"
@@ -70,6 +70,49 @@
         Back
       </button>
     </div>
-    <div id="undertale-soundboard-menu-playing"></div>
+    <div id="undertale-soundboard-menu-playing">
+      <div id="undertale-soundboard-menu-playing-content">
+        @if (isPlayingSomeMusicFromThePlaylist) {
+          <div id="undertale-soundboard-menu-playing-music-container">
+            <span class="music-and-composer">{{ currentMusic() }}</span>
+            <span class="music-and-composer"> ● </span>
+            <span class="music-and-composer">{{ currentComposer() }}</span>
+          </div>
+        } @else {
+          <h2 class="undertale-soundboard-title">Select a music</h2>
+        }
+        <div id="undertale-soundboard-menu-playing-btns-container">
+          <button
+            class="undertale-soundboard-menu-playing-btns"
+            [disabled]="!isPlayingSomeMusicFromThePlaylist"
+            mat-icon-button
+            (mouseenter)="mouseEnterOrLeaveSFX()"
+            (click)="playClickSound(); playPreviousMusic()"
+          >
+            <mat-icon>skip_previous</mat-icon>
+          </button>
+          <button
+            class="undertale-soundboard-menu-playing-btns"
+            [disabled]="!isPlayingSomeMusicFromThePlaylist"
+            mat-icon-button
+            (mouseenter)="mouseEnterOrLeaveSFX()"
+            (click)="playClickSound(); pauseOrPlayMusic()"
+          >
+            <mat-icon>{{
+              isPlaying() ? "pause_circle" : "play_circle"
+            }}</mat-icon>
+          </button>
+          <button
+            class="undertale-soundboard-menu-playing-btns"
+            [disabled]="!isPlayingSomeMusicFromThePlaylist"
+            mat-icon-button
+            (mouseenter)="mouseEnterOrLeaveSFX()"
+            (click)="playClickSound(); playNextMusic()"
+          >
+            <mat-icon>skip_next</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

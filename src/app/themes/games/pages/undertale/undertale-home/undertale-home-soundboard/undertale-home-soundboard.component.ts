@@ -5,6 +5,7 @@ import {
   OnDestroy,
   OnInit,
   output,
+  Signal,
   signal,
 } from '@angular/core';
 import { AudioService } from '../../../../../../services/audio-service/audio.service';
@@ -15,37 +16,66 @@ import {
 } from '../../../../../../models/musics';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { fadeIn_fadeOut_longer } from '../../../../../../shared/animations/fade-animations';
 
 @Component({
   selector: 'app-undertale-home-soundboard',
   imports: [MatIconModule, MatButtonModule],
   templateUrl: './undertale-home-soundboard.component.html',
   styleUrl: './undertale-home-soundboard.component.scss',
+  animations: [fadeIn_fadeOut_longer],
 })
 export class UndertaleHomeSoundboardComponent implements OnInit, OnDestroy {
   private audioService: AudioService;
   private currentMusicIndex = signal(0);
   private soundboardMusic: Musics = undertaleSoundboardMenuOnly;
+
   public allUndertaleMusics: Musics[] = undertaleMusics;
   public exit = output<void>();
+  public progress!: Signal<number>;
+  public currentMusic!: Signal<string | null>;
+  public currentComposer!: Signal<string | undefined>;
+  public isPlaying!: Signal<boolean>;
 
   constructor() {
     this.audioService = inject(AudioService);
   }
 
   async ngOnInit(): Promise<void> {
+    this.progress = this.audioService.progress;
+    this.currentMusic = this.audioService.currentMusicName;
+    this.currentComposer = this.audioService.currentMusicComposer;
+    this.isPlaying = this.audioService.isPlaying;
+
     //NEED TO MAKE THIS HAPPEN ONCE UNDERTALE THEME CAMES UP
-    await this.audioService.loadPlaylist(this.allUndertaleMusics);
+    this.audioService.loadPlaylist(this.allUndertaleMusics);
 
     await this.audioService.preloadSound(
       this.soundboardMusic.musicName,
       this.soundboardMusic.musicURL,
     );
+
     this.audioService.playSingleTrack(this.soundboardMusic, true);
   }
   ngOnDestroy(): void {
     this.audioService.unloadOneSound(this.soundboardMusic);
   }
+
+  public get isPlayingSomeMusicFromThePlaylist(): boolean {
+    return this.audioService.isPlayingFromThePlaylist();
+  }
+  public playPreviousMusic(): void {
+    this.audioService.previousMusic();
+  }
+  public pauseOrPlayMusic(): void {
+    this.audioService.isPlaying()
+      ? this.audioService.pauseMusic()
+      : this.audioService.resumeMusic();
+  }
+  public playNextMusic(): void {
+    this.audioService.nextMusic();
+  }
+
   public onExit(): void {
     this.exit.emit();
   }
@@ -56,7 +86,7 @@ export class UndertaleHomeSoundboardComponent implements OnInit, OnDestroy {
     this.audioService.playClickSound('Undertale');
   }
 
-  public visibleItems = computed(() => {
+  public visibleMusics = computed(() => {
     const list = this.allUndertaleMusics;
     const start = this.currentMusicIndex();
 
