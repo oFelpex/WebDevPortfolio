@@ -1,0 +1,76 @@
+#undertale-navigation-menu-container {
+  #navigation-bg-container {
+    position: relative;
+    width: fit-content;
+    height: 100vh;
+    max-width: 100%;
+
+    #navigation-menu-btns-container {
+      position: absolute;
+      width: 75%;
+      left: 50%;
+      top: 10%;
+      transform: translateX(-50%);
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .navigation-menu-btns {
+        color: #fff;
+        scale: 1.8;
+
+        &:hover {
+          color: #fafc13;
+          background-color: #18181883;
+        }
+      }
+      #navigation-menu-location-span {
+        cursor: default;
+        pointer-events: none;
+        font-size: xx-large;
+      }
+    }
+    #navigation-bg-img {
+      position: relative;
+      display: block;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+
+      height: 100vh;
+      width: auto;
+      max-width: 100vw;
+      max-height: 100vh;
+
+      aspect-ratio: 465 / 640;
+      object-fit: contain;
+      pointer-events: none;
+      image-rendering: pixelated;
+      cursor: default;
+      z-index: 0;
+    }
+    #navigation-frisk-img {
+      position: relative;
+      bottom: 55%;
+      left: 1%;
+
+      height: auto;
+      width: clamp(30px, 8vw, 55px);
+      pointer-events: none;
+      image-rendering: pixelated;
+      z-index: 2;
+    }
+    #navigation-bird-img {
+      position: relative;
+      bottom: 60%;
+      left: 15%;
+
+      width: clamp(25px, 7vw, 45px);
+      height: auto;
+      pointer-events: none;
+      image-rendering: pixelated;
+      z-index: 1;
+    }
+  }
+}
