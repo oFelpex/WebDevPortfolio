@@ -30,7 +30,13 @@
           <button
             class="btn btn-navigate"
             (mouseenter)="mouseEnterOrLeaveSFX()"
-            (click)="playClickSound(); openNaviationDialog()"
+            (click)="
+              playClickSound();
+              unloadMusicsChangeMenuAndPreloadNewMusics(
+                'mainMenu',
+                'navigationMenu'
+              )
+            "
           >
             Navigate
           </button>
@@ -74,6 +80,8 @@
         >UNDERTALE V1.08 (C) TOBY FOX 2015-2026</span
       >
     </section>
+  } @else if (currentMenuState() === "navigationMenu") {
+    <app-undertale-home-navigation></app-undertale-home-navigation>
   } @else if (currentMenuState() === "configMenu") {
     <app-undertale-home-config
       (exit)="

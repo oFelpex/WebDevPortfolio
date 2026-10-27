@@ -16,14 +16,20 @@ import { UndertaleHomeConfigComponent } from './undertale-home-config/undertale-
 import { MatDialog } from '@angular/material/dialog';
 import { UndertaleDialogsComponent } from './dialogs/undertale-dialogs.component';
 import { UndertaleHomeSoundboardComponent } from './undertale-home-soundboard/undertale-home-soundboard.component';
+import { UndertaleHomeNavigationComponent } from './undertale-home-navigation/undertale-home-navigation.component';
 
-type undertaleMenus = 'mainMenu' | 'configMenu' | 'soundboard';
+type undertaleMenus =
+  | 'mainMenu'
+  | 'configMenu'
+  | 'navigationMenu'
+  | 'soundboard';
 @Component({
   selector: 'app-undertale-home',
   imports: [
     NgComponentOutlet,
     UndertaleHomeConfigComponent,
     UndertaleHomeSoundboardComponent,
+    UndertaleHomeNavigationComponent,
   ],
   templateUrl: './undertale-home.component.html',
   styleUrl: './undertale-home.component.scss',
@@ -142,6 +148,12 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
         // this.undertaleMusicsNavigateMenu.map((navigateMenuMusic) => {
         //   this.audioService.unloadOneSound(navigateMenuMusic);
         // });
+
+        break;
+      case 'navigationMenu':
+        this.undertaleMusicsMainMenu.map((navigateMenuMusic) => {
+          this.audioService.unloadOneSound(navigateMenuMusic);
+        });
 
         break;
     }

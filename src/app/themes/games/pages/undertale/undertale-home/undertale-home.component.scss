@@ -61,6 +61,7 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(2, 1fr);
+        cursor: default;
 
         .name {
           grid-row: 1;
