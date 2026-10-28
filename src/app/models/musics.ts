@@ -147,6 +147,13 @@ export const undertaleSoundboardMenuOnly: Musics = {
   musicComposer: 'Toby Fox',
   musicURL: 'assets/sounds/games/undertale/music/soundboard/sound-studio.ogg',
 };
+export const undertaleNavigationBirdTheme: Musics = {
+  gameName: 'Undertale',
+  musicName: 'Bird That Carries You Over A Disproportionately Small Gap',
+  musicComposer: 'Toby Fox',
+  musicURL:
+    'assets/sounds/games/undertale/music/navigation-menu/bird-that-carries-you-over-a-disproportionately-small-gap.ogg',
+};
 export const undertaleNavigationMenuOnly: Musics[] = [
   {
     gameName: 'Undertale',

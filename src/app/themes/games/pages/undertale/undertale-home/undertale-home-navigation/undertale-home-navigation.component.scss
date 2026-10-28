@@ -1,11 +1,42 @@
+@use "sass:math";
+
+$total: 26.4; // duração total, em segundos
+$speed: 1; // 2 = o dobro da velocidade
+
+@function t($seconds) {
+  @return math.div($seconds, $total) * 100%;
+}
+
+// tamanho dos sprites (% da largura do container)
+$frisk-w: 8.35%;
+$bird-w: 6.85%;
+
+// posição inicial (a que você já tinha) e final (espelhada)
+$frisk-x0: 1%;
+$frisk-x1: 100% - $frisk-x0 - $frisk-w;
+$frisk-ground: 44.7%;
+
+$bird-x0: 15%;
+$bird-x1: 100% - $bird-x0 - $bird-w;
+$bird-ground: 50.3%;
+
+// pássaro em cima da cabeça do Frisk (relativo ao Frisk)
+$carry-dx: 0.75%;
+$carry-dy: -3.2%;
+
+// voo
+$rise: 20%; // quanto sobem antes de atravessar
+$sag: 2.5%; // quanto vão descendo durante a travessia
+$fly-top: $frisk-ground - $rise;
+$fly-top-end: $fly-top + $sag;
+
 #undertale-navigation-menu-container {
   #navigation-bg-container {
     position: relative;
     width: fit-content;
     height: 100vh;
     max-width: 100%;
-
-    #navigation-menu-btns-container {
+    #navigation-menu-container {
       position: absolute;
       width: 75%;
       left: 50%;
@@ -15,21 +46,46 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-direction: column;
+      gap: 10px;
+      #navigation-menu-fly-span {
+        font-size: x-large;
+        text-shadow: 0px 0px 5px #000000;
+      }
 
-      .navigation-menu-btns {
+      #navigation-menu-btns-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        .navigation-menu-btns {
+          color: #fff;
+          scale: 1.8;
+
+          &:hover {
+            color: #fafc13;
+            background-color: #18181883;
+          }
+        }
+        #navigation-menu-location-span {
+          text-shadow: 0px 0px 5px #000000;
+          cursor: default;
+          pointer-events: none;
+          font-size: xx-large;
+        }
+      }
+
+      #navigation-menu-go-btn {
+        font-size: x-large;
         color: #fff;
-        scale: 1.8;
+        text-shadow: 0px 0px 5px #000000;
+        background-color: #36363644;
 
         &:hover {
           color: #fafc13;
           background-color: #18181883;
         }
-      }
-      #navigation-menu-location-span {
-        text-shadow: 0px 0px 5px #000000;
-        cursor: default;
-        pointer-events: none;
-        font-size: xx-large;
       }
     }
     #navigation-bg-img {
@@ -51,27 +107,116 @@
       cursor: default;
       z-index: 0;
     }
-    #navigation-frisk-img {
-      position: relative;
-      bottom: 55%;
-      left: 1%;
-
+    #navigation-frisk-img,
+    #navigation-bird-img {
+      position: absolute;
       height: auto;
-      width: clamp(30px, 8vw, 55px);
       pointer-events: none;
       image-rendering: pixelated;
+
+      // sem animation-delay e sem o bloco prefers-reduced-motion
+      animation-duration: #{math.div($total, $speed)}s;
+      animation-timing-function: linear;
+      animation-fill-mode: forwards; // fica na posição final
+    }
+
+    #navigation-frisk-img {
+      left: $frisk-x0;
+      top: $frisk-ground;
+      width: $frisk-w;
       z-index: 2;
     }
     #navigation-bird-img {
-      position: relative;
-      bottom: 60%;
-      left: 15%;
-
-      width: clamp(25px, 7vw, 45px);
-      height: auto;
-      pointer-events: none;
-      image-rendering: pixelated;
+      left: $bird-x0;
+      top: $bird-ground;
+      width: $bird-w;
       z-index: 1;
     }
+
+    // a animação só começa com a classe
+    &.flying {
+      #navigation-frisk-img {
+        animation-name: frisk-journey;
+      }
+      #navigation-bird-img {
+        animation-name: bird-journey;
+      }
+    }
+  }
+}
+
+@keyframes frisk-journey {
+  0%,
+  #{t(2.4)} {
+    left: $frisk-x0;
+    top: $frisk-ground;
+  }
+  #{t(6)} {
+    left: $frisk-x0;
+    top: $fly-top;
+  }
+  #{t(19.5)} {
+    left: $frisk-x1;
+    top: $fly-top-end;
+  }
+  #{t(23.7)},
+  100% {
+    left: $frisk-x1;
+    top: $frisk-ground;
+  }
+}
+
+@keyframes bird-journey {
+  0%,
+  #{t(0.5)} {
+    left: $bird-x0;
+    top: $bird-ground;
+    transform: scaleX(1);
+  }
+  #{t(1.5)} {
+    // chegou na cabeça
+    left: $frisk-x0 + $carry-dx;
+    top: $frisk-ground + $carry-dy;
+    transform: scaleX(1);
+  }
+  #{t(1.55)},
+  #{t(2.4)} {
+    // vira e espera
+    left: $frisk-x0 + $carry-dx;
+    top: $frisk-ground + $carry-dy;
+    transform: scaleX(-1);
+  }
+  #{t(6)} {
+    left: $frisk-x0 + $carry-dx;
+    top: $fly-top + $carry-dy;
+    transform: scaleX(-1);
+  }
+  #{t(19.5)} {
+    left: $frisk-x1 + $carry-dx;
+    top: $fly-top-end + $carry-dy;
+    transform: scaleX(-1);
+  }
+  #{t(23.7)} {
+    left: $frisk-x1 + $carry-dx;
+    top: $frisk-ground + $carry-dy;
+    transform: scaleX(-1);
+  }
+  #{t(24.3)} {
+    // solta e desliza para trás
+    left: $frisk-x1 + $carry-dx;
+    top: $frisk-ground - 1.6%;
+    transform: scaleX(-1);
+  }
+  #{t(25.2)} {
+    left: $bird-x1;
+    top: $frisk-ground - 1.6%;
+    transform: scaleX(-1);
+  }
+  #{t(25.5)},
+  100% {
+    // pousa
+    left: $bird-x1;
+    top: $bird-ground;
+    transform: scaleX(-1);
   }
 }

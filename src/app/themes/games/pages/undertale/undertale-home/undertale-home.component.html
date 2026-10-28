@@ -81,7 +81,11 @@
       >
     </section>
   } @else if (currentMenuState() === "navigationMenu") {
-    <app-undertale-home-navigation></app-undertale-home-navigation>
+    <app-undertale-home-navigation
+      (exit)="
+        unloadMusicsChangeMenuAndPreloadNewMusics('navigationMenu', 'mainMenu')
+      "
+    ></app-undertale-home-navigation>
   } @else if (currentMenuState() === "configMenu") {
     <app-undertale-home-config
       (exit)="

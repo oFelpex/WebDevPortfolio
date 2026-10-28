@@ -1,22 +1,37 @@
 <section id="undertale-navigation-menu-container" @fadeIn_fadeOut_longer>
-  <div id="navigation-bg-container">
-    <div id="navigation-menu-btns-container">
+  <div id="navigation-bg-container" [class.flying]="isFlying()">
+    <div id="navigation-menu-container">
+      <span id="navigation-menu-fly-span">Voar para</span>
+      <div id="navigation-menu-btns-container">
+        <button
+          class="navigation-menu-btns"
+          mat-icon-button
+          [disabled]="isFlying()"
+          (mouseenter)="mouseEnterOrLeaveSFX()"
+          (click)="playClickSound(); changeToNextLocation('previous')"
+        >
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <span id="navigation-menu-location-span">{{
+          locationPages[currentLocation()]
+        }}</span>
+        <button
+          class="navigation-menu-btns"
+          mat-icon-button
+          [disabled]="isFlying()"
+          (mouseenter)="mouseEnterOrLeaveSFX()"
+          (click)="playClickSound(); changeToNextLocation('next')"
+        >
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </div>
       <button
-        class="navigation-menu-btns"
-        mat-icon-button
-        (mouseenter)="mouseEnterOrLeaveSFX()"
-        (click)="playClickSound(); changeToNextLocation('previous')"
+        id="navigation-menu-go-btn"
+        mat-button
+        [disabled]="isFlying()"
+        (click)="playClickSound(); startFlight()"
       >
-        <mat-icon>keyboard_arrow_left</mat-icon>
-      </button>
-      <span id="navigation-menu-location-span">{{ currentLocation() }}</span>
-      <button
-        class="navigation-menu-btns"
-        mat-icon-button
-        (mouseenter)="mouseEnterOrLeaveSFX()"
-        (click)="playClickSound(); changeToNextLocation('next')"
-      >
-        <mat-icon>keyboard_arrow_right</mat-icon>
+        Go!
       </button>
     </div>
     <img
@@ -33,8 +48,11 @@
     />
     <img
       id="navigation-bird-img"
-      src="../../../../../../../assets/themes/games/undertale/sprites/others/navigation-menu/bird-idle.gif"
+      src="../../../../../../../assets/themes/games/undertale/sprites/others/navigation-menu/bird-{{
+        isFlying() ? 'flying' : 'idle'
+      }}.gif"
       alt="A sprite of the bird that carries you over a disproportionately small gap"
+      (animationend)="onFlightEnd()"
     />
   </div>
 </section>
