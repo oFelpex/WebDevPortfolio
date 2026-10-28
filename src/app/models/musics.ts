@@ -150,16 +150,9 @@ export const undertaleSoundboardMenuOnly: Musics = {
 export const undertaleNavigationMenuOnly: Musics[] = [
   {
     gameName: 'Undertale',
-    musicName: 'Another Medium',
+    musicName: 'Snowy',
     musicComposer: 'Toby Fox',
-    musicURL:
-      'assets/sounds/games/undertale/music/navigation-menu/another-medium.ogg',
-  },
-  {
-    gameName: 'Undertale',
-    musicName: 'CORE',
-    musicComposer: 'Toby Fox',
-    musicURL: 'assets/sounds/games/undertale/music/navigation-menu/core.ogg',
+    musicURL: 'assets/sounds/games/undertale/music/navigation-menu/snowy.ogg',
   },
   {
     gameName: 'Undertale',
@@ -170,9 +163,16 @@ export const undertaleNavigationMenuOnly: Musics[] = [
   },
   {
     gameName: 'Undertale',
-    musicName: 'Snowy',
+    musicName: 'Another Medium',
     musicComposer: 'Toby Fox',
-    musicURL: 'assets/sounds/games/undertale/music/navigation-menu/snowy.ogg',
+    musicURL:
+      'assets/sounds/games/undertale/music/navigation-menu/another-medium.ogg',
+  },
+  {
+    gameName: 'Undertale',
+    musicName: 'CORE',
+    musicComposer: 'Toby Fox',
+    musicURL: 'assets/sounds/games/undertale/music/navigation-menu/core.ogg',
   },
 ];
 export const undertaleMusics: Musics[] = [

@@ -1,17 +1,29 @@
 <section id="undertale-navigation-menu-container">
   <div id="navigation-bg-container">
     <div id="navigation-menu-btns-container">
-      <button class="navigation-menu-btns" mat-icon-button>
+      <button
+        class="navigation-menu-btns"
+        mat-icon-button
+        (mouseenter)="mouseEnterOrLeaveSFX()"
+        (click)="playClickSound(); changeToNextLocation('previous')"
+      >
         <mat-icon>keyboard_arrow_left</mat-icon>
       </button>
-      <span id="navigation-menu-location-span">The Core</span>
-      <button class="navigation-menu-btns" mat-icon-button>
+      <span id="navigation-menu-location-span">{{ currentLocation() }}</span>
+      <button
+        class="navigation-menu-btns"
+        mat-icon-button
+        (mouseenter)="mouseEnterOrLeaveSFX()"
+        (click)="playClickSound(); changeToNextLocation('next')"
+      >
         <mat-icon>keyboard_arrow_right</mat-icon>
       </button>
     </div>
     <img
       id="navigation-bg-img"
-      src="../../../../../../../assets/themes/games/undertale/sprites/others/navigation-menu/backgrounds/waterfall-bg.webp"
+      src="../../../../../../../assets/themes/games/undertale/sprites/others/navigation-menu/backgrounds/{{
+        currentLocation().toLowerCase().replaceAll(' ', '-')
+      }}-bg.webp"
       alt=" area background"
     />
     <img
