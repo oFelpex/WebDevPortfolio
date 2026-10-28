@@ -6,6 +6,7 @@ import {
   Musics,
   undertaleNavigationMenuOnly,
 } from '../../../../../../models/musics';
+import { fadeIn_fadeOut_longer } from '../../../../../../shared/animations/fade-animations';
 
 type UndertaleLocations = 'Snowdin' | 'Waterfall' | 'The Core' | 'Hotland';
 @Component({
@@ -13,6 +14,7 @@ type UndertaleLocations = 'Snowdin' | 'Waterfall' | 'The Core' | 'Hotland';
   imports: [MatButtonModule, MatIconModule],
   templateUrl: './undertale-home-navigation.component.html',
   styleUrl: './undertale-home-navigation.component.scss',
+  animations: [fadeIn_fadeOut_longer],
 })
 export class UndertaleHomeNavigationComponent implements OnInit, OnDestroy {
   private audioService: AudioService;
