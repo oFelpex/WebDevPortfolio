@@ -4,7 +4,7 @@
   theme-undertale-colors;
 
 body.undertale-theme {
-  background-color: #000;
+  --background-color: #000;
   color: #eaeaea;
   font-family: "Undertale Menu", sans-serif;
 
@@ -25,6 +25,11 @@ body.undertale-theme {
         color: #fafc13;
         background-color: #18181883;
       }
+    }
+  }
+  * {
+    mat-card {
+      background-color: #000;
     }
   }
 
