@@ -1,42 +1,87 @@
 <header id="undertale-header">
   <nav id="undertale-nav">
-    <button
-      class="corner-btn"
-      mat-icon-button
-      (mouseenter)="mouseEnterOrLeaveSFX()"
-      (click)="goToHomeMenu('soundboard')"
-    >
-      <mat-icon>music_note</mat-icon>
-    </button>
-    <div id="undertale-middle-action-container">
-      <a [routerLink]="['/home']" (mouseenter)="mouseEnterOrLeaveSFX()"
-        ><button class="middle-action-btn" mat-button>Home</button></a
+    @if (!isMobile) {
+      <button
+        class="corner-btn"
+        mat-icon-button
+        (mouseenter)="mouseEnterOrLeaveSFX()"
+        (click)="goToHomeMenu('soundboard')"
       >
+        <mat-icon>music_note</mat-icon>
+      </button>
+      <div id="undertale-middle-action-container">
+        <a [routerLink]="['/home']" (mouseenter)="mouseEnterOrLeaveSFX()"
+          ><button class="middle-action-btn" mat-button>Home</button></a
+        >
 
-      <a [routerLink]="['/about-me']" (mouseenter)="mouseEnterOrLeaveSFX()"
-        ><button class="middle-action-btn" mat-button>About-me</button></a
+        <a [routerLink]="['/about-me']" (mouseenter)="mouseEnterOrLeaveSFX()"
+          ><button class="middle-action-btn" mat-button>About-me</button></a
+        >
+
+        <app-logo-effects logoName="logo-undertale"></app-logo-effects>
+
+        <a [routerLink]="['/projects']" (mouseenter)="mouseEnterOrLeaveSFX()"
+          ><button class="middle-action-btn" mat-button>Projects</button></a
+        >
+
+        <a [routerLink]="['/contact-me']" (mouseenter)="mouseEnterOrLeaveSFX()"
+          ><button class="middle-action-btn" mat-button>Contact-me</button></a
+        >
+      </div>
+      <button
+        class="corner-btn"
+        mat-icon-button
+        (mouseenter)="mouseEnterOrLeaveSFX()"
+        (click)="goToHomeMenu('configMenu')"
       >
+        <mat-icon>settings</mat-icon>
+      </button>
+    } @else {
+      <button
+        class="corner-btn"
+        mat-icon-button
+        [matMenuTriggerFor]="routesMenu"
+        (mouseenter)="mouseEnterOrLeaveSFX()"
+        (click)="playClickSound()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #routesMenu="matMenu">
+        <a [routerLink]="['/home']">
+          <button mat-menu-item (click)="playClickSound()">Home</button>
+        </a>
+        <a [routerLink]="['/about-me']">
+          <button mat-menu-item (click)="playClickSound()">About-me</button>
+        </a>
+        <a [routerLink]="['/projects']">
+          <button mat-menu-item (click)="playClickSound()">Projects</button>
+        </a>
+        <a [routerLink]="['/contact-me']">
+          <button mat-menu-item (click)="playClickSound()">Contact-me</button>
+        </a>
+      </mat-menu>
 
       <app-logo-effects logoName="logo-undertale"></app-logo-effects>
 
-      <a [routerLink]="['/projects']" (mouseenter)="mouseEnterOrLeaveSFX()"
-        ><button class="middle-action-btn" mat-button>Projects</button></a
+      <button
+        class="corner-btn"
+        mat-icon-button
+        [matMenuTriggerFor]="optionsMenu"
+        (mouseenter)="mouseEnterOrLeaveSFX()"
+        (click)="playClickSound()"
       >
-
-      <a [routerLink]="['/contact-me']" (mouseenter)="mouseEnterOrLeaveSFX()"
-        ><button class="middle-action-btn" mat-button>Contact-me</button></a
-      >
-    </div>
-    <button
-      class="corner-btn"
-      mat-icon-button
-      (mouseenter)="mouseEnterOrLeaveSFX()"
-      (click)="goToHomeMenu('configMenu')"
-    >
-      <mat-icon>settings</mat-icon>
-    </button>
-    @if (isMobile) {
-      <app-mobile-menu></app-mobile-menu>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #optionsMenu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="goToHomeMenu('soundboard')">
+          <mat-icon>music_note</mat-icon>
+          <span>Soundboard</span>
+        </button>
+        <button mat-menu-item (click)="goToHomeMenu('configMenu')">
+          <mat-icon>settings</mat-icon>
+          <span>Config</span>
+        </button>
+      </mat-menu>
     }
   </nav>
 </header>

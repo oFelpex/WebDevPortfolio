@@ -1,31 +1,29 @@
-import { Component, inject } from '@angular/core';
-import { MobileNavMenuService } from '../../../../../../services/mobile-menu-service/mobile-nav-menu.service';
-import { MobileSoundboardMenuService } from '../../../../../../services/mobile-soundboard-menu/mobile-soundboard-menu.service';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ResponsiveService } from '../../../../../../services/responsive-service/responsive.service';
 import { AudioService } from '../../../../../../services/audio-service/audio.service';
-import { MobileMenuComponent } from '../../../../../../shared/components/header/mobile-menu/mobile-menu.component';
 import { LogoEffectsComponent } from '../../../../../../logo-effects/logo-effects.component';
 import { Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { SFXs, undertaleSFX } from '../../../../../../models/sfxs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-undertale-header',
   imports: [
-    MobileMenuComponent,
     LogoEffectsComponent,
     RouterLink,
     MatButtonModule,
     MatIconModule,
+    MatMenuModule,
   ],
   templateUrl: './undertale-header.component.html',
   styleUrl: './undertale-header.component.scss',
 })
-export class UndertaleHeaderComponent {
-  private mobileNavMenuService: MobileNavMenuService;
-  private mobileSoundboardMenuService: MobileSoundboardMenuService;
+export class UndertaleHeaderComponent implements OnInit, OnDestroy {
   private responsiveService: ResponsiveService;
+  private responsiveSubscriber!: Subscription;
   private audioService: AudioService;
   private router: Router;
   private undertaleSFXHome: SFXs[] = undertaleSFX;
@@ -34,8 +32,6 @@ export class UndertaleHeaderComponent {
 
   constructor() {
     this.audioService = inject(AudioService);
-    this.mobileNavMenuService = inject(MobileNavMenuService);
-    this.mobileSoundboardMenuService = inject(MobileSoundboardMenuService);
     this.responsiveService = inject(ResponsiveService);
     this.router = inject(Router);
   }
@@ -43,6 +39,13 @@ export class UndertaleHeaderComponent {
     this.undertaleSFXHome.map((SFX) =>
       this.audioService.preloadSound(SFX.SFXName, SFX.SFXURL),
     );
+
+    this.responsiveSubscriber = this.responsiveService.isMobile$.subscribe(
+      (isMobile) => (this.isMobile = isMobile),
+    );
+  }
+  ngOnDestroy(): void {
+    this.responsiveSubscriber.unsubscribe();
   }
   public mouseEnterOrLeaveSFX(): void {
     this.audioService.playSound('Undertale-mouseEnterOrLeave');
