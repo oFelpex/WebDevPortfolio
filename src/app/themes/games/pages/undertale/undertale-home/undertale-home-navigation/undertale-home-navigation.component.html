@@ -29,6 +29,7 @@
         id="navigation-menu-go-btn"
         mat-button
         [disabled]="isFlying()"
+        (mouseenter)="mouseEnterOrLeaveSFX()"
         (click)="playClickSound(); startFlight()"
       >
         Go!

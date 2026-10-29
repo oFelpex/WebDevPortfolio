@@ -1,7 +1,28 @@
 <header id="undertale-header">
-  <nav id="undertale-nav">teste</nav>
-  @if (isMobile) {
-    <app-mobile-menu></app-mobile-menu>
-    <app-mobile-soundboard></app-mobile-soundboard>
-  }
+  <nav id="undertale-nav">
+    <button class="corner-btn" mat-icon-button [routerLink]="['/home']">
+      <mat-icon>music_note</mat-icon>
+    </button>
+    <div id="undertale-middle-action-container">
+      <button class="middle-action-btn" mat-button>
+        <a [routerLink]="['/home']">Home</a>
+      </button>
+      <button class="middle-action-btn" mat-button>
+        <a [routerLink]="['/about-me']">About-me</a>
+      </button>
+      <app-logo-effects logoName="logo-undertale"></app-logo-effects>
+      <button class="middle-action-btn" mat-button>
+        <a [routerLink]="['/projects']">Projects</a>
+      </button>
+      <button class="middle-action-btn" mat-button>
+        <a [routerLink]="['/contact-me']">Contact-me</a>
+      </button>
+    </div>
+    <button class="corner-btn" mat-icon-button [routerLink]="['/home']">
+      <mat-icon>settings</mat-icon>
+    </button>
+    @if (isMobile) {
+      <app-mobile-menu></app-mobile-menu>
+    }
+  </nav>
 </header>

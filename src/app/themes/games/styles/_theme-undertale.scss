@@ -16,6 +16,17 @@ body.undertale-theme {
   h6 {
     font-weight: normal;
   }
+  button {
+    &:hover {
+      color: #fafc13;
+      background-color: #18181883;
+
+      a {
+        color: #fafc13;
+        background-color: #18181883;
+      }
+    }
+  }
 
   .mat-mdc-dialog-container {
     border: 3px solid #fff !important;

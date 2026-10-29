@@ -1,0 +1,46 @@
+#undertale-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 8vh;
+  background: linear-gradient(#131313, #000);
+  #undertale-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 1920px;
+    width: 100%;
+    padding: 0 20px;
+
+    .corner-btn {
+      font-size: larger;
+      color: aliceblue;
+      scale: 1.2;
+
+      &:hover {
+        color: #fafc13;
+        background-color: #18181883;
+      }
+    }
+    #undertale-middle-action-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      height: 100%;
+      max-width: 740px;
+      width: 100%;
+
+      app-logo-effects {
+        height: 60%;
+      }
+
+      .middle-action-btn {
+        font-size: larger;
+        color: aliceblue;
+      }
+    }
+  }
+}
