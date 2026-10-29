@@ -11,10 +11,7 @@
           id="undertale-soundboard-menu"
           src="../../../../../../assets/themes/games/undertale/sprites/others/soundboard/undertale-soundboard-menu.webp"
           alt="Undertale music location"
-          (click)="
-            playClickSound();
-            unloadMusicsChangeMenuAndPreloadNewMusics('mainMenu', 'soundboard')
-          "
+          (click)="playClickSound(); goToMenu('soundboard')"
         />
       </div>
       <div id="undertale-menu-container">
@@ -30,13 +27,7 @@
           <button
             class="btn btn-navigate"
             (mouseenter)="mouseEnterOrLeaveSFX()"
-            (click)="
-              playClickSound();
-              unloadMusicsChangeMenuAndPreloadNewMusics(
-                'mainMenu',
-                'navigationMenu'
-              )
-            "
+            (click)="playClickSound(); goToMenu('navigationMenu')"
           >
             Navigate
           </button>
@@ -51,13 +42,7 @@
           <button
             class="btn btn-settings"
             (mouseenter)="mouseEnterOrLeaveSFX()"
-            (click)="
-              playClickSound();
-              unloadMusicsChangeMenuAndPreloadNewMusics(
-                'mainMenu',
-                'configMenu'
-              )
-            "
+            (click)="playClickSound(); goToMenu('configMenu')"
           >
             Settings
           </button>
@@ -82,21 +67,13 @@
     </section>
   } @else if (currentMenuState() === "navigationMenu") {
     <app-undertale-home-navigation
-      (exit)="
-        unloadMusicsChangeMenuAndPreloadNewMusics('navigationMenu', 'mainMenu')
-      "
+      (exit)="goToMenu('mainMenu')"
     ></app-undertale-home-navigation>
   } @else if (currentMenuState() === "configMenu") {
-    <app-undertale-home-config
-      (exit)="
-        unloadMusicsChangeMenuAndPreloadNewMusics('configMenu', 'mainMenu')
-      "
-    />
+    <app-undertale-home-config (exit)="goToMenu('mainMenu')" />
   } @else if (currentMenuState() === "soundboard") {
     <app-undertale-home-soundboard
-      (exit)="
-        unloadMusicsChangeMenuAndPreloadNewMusics('soundboard', 'mainMenu')
-      "
+      (exit)="goToMenu('mainMenu')"
     ></app-undertale-home-soundboard>
   }
 </header>

@@ -1,24 +1,38 @@
 <header id="undertale-header">
   <nav id="undertale-nav">
-    <button class="corner-btn" mat-icon-button [routerLink]="['/home']">
+    <button
+      class="corner-btn"
+      mat-icon-button
+      (mouseenter)="mouseEnterOrLeaveSFX()"
+      (click)="goToHomeMenu('soundboard')"
+    >
       <mat-icon>music_note</mat-icon>
     </button>
     <div id="undertale-middle-action-container">
-      <button class="middle-action-btn" mat-button>
-        <a [routerLink]="['/home']">Home</a>
-      </button>
-      <button class="middle-action-btn" mat-button>
-        <a [routerLink]="['/about-me']">About-me</a>
-      </button>
+      <a [routerLink]="['/home']" (mouseenter)="mouseEnterOrLeaveSFX()"
+        ><button class="middle-action-btn" mat-button>Home</button></a
+      >
+
+      <a [routerLink]="['/about-me']" (mouseenter)="mouseEnterOrLeaveSFX()"
+        ><button class="middle-action-btn" mat-button>About-me</button></a
+      >
+
       <app-logo-effects logoName="logo-undertale"></app-logo-effects>
-      <button class="middle-action-btn" mat-button>
-        <a [routerLink]="['/projects']">Projects</a>
-      </button>
-      <button class="middle-action-btn" mat-button>
-        <a [routerLink]="['/contact-me']">Contact-me</a>
-      </button>
+
+      <a [routerLink]="['/projects']" (mouseenter)="mouseEnterOrLeaveSFX()"
+        ><button class="middle-action-btn" mat-button>Projects</button></a
+      >
+
+      <a [routerLink]="['/contact-me']" (mouseenter)="mouseEnterOrLeaveSFX()"
+        ><button class="middle-action-btn" mat-button>Contact-me</button></a
+      >
     </div>
-    <button class="corner-btn" mat-icon-button [routerLink]="['/home']">
+    <button
+      class="corner-btn"
+      mat-icon-button
+      (mouseenter)="mouseEnterOrLeaveSFX()"
+      (click)="goToHomeMenu('configMenu')"
+    >
       <mat-icon>settings</mat-icon>
     </button>
     @if (isMobile) {

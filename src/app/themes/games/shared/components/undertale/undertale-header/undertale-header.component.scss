@@ -40,6 +40,11 @@
       .middle-action-btn {
         font-size: larger;
         color: aliceblue;
+
+        &:hover {
+          color: #fafc13;
+          background-color: #18181883;
+        }
       }
     }
   }
