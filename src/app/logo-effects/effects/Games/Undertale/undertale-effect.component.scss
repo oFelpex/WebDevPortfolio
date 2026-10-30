@@ -1,0 +1,146 @@
+// animationDuration
+$duration: 21.5s;
+// attackDuration
+$attack-duration: 1s;
+$transition-duration: 1s;
+// orbitSpeed
+$orbit-speed: 3.5s;
+$soul-size: 48px;
+$attack-height: 28px;
+
+#undertale-effect-container {
+  --radius: 200px;
+
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  animation:
+    fade-in 0.5s ease-out,
+    fade-out 0.5s ease-in ($duration - 0.5s) forwards;
+}
+
+.soul {
+  width: $soul-size;
+  height: $soul-size;
+  max-width: none;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.red-soul {
+  position: absolute;
+  width: $soul-size * 1.5;
+  height: $soul-size * 1.5;
+  transition: filter 0.2s;
+}
+
+.souls-orbit {
+  position: absolute;
+  width: 0;
+  height: 0;
+  animation: spin $orbit-speed linear infinite;
+}
+
+.soul-arm {
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation:
+    expand $transition-duration ease-out forwards,
+    collapse $transition-duration ease-in ($duration - $transition-duration)
+      forwards;
+
+  .soul {
+    position: absolute;
+    top: -$soul-size * 0.5;
+    left: -$soul-size * 0.5;
+    animation: counter-spin $orbit-speed linear infinite;
+  }
+}
+
+.attack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fly $attack-duration ease-in forwards;
+}
+
+.attack-sprite {
+  height: $attack-height;
+  width: auto;
+  max-width: none;
+  image-rendering: pixelated;
+  animation: counter-spin $orbit-speed linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes counter-spin {
+  from {
+    transform: rotate(calc(-1 * var(--angle)));
+  }
+  to {
+    transform: rotate(calc(-1 * var(--angle) - 360deg));
+  }
+}
+
+@keyframes expand {
+  from {
+    transform: rotate(var(--angle)) translateY(0);
+  }
+  to {
+    transform: rotate(var(--angle)) translateY(calc(-1 * var(--radius)));
+  }
+}
+
+@keyframes collapse {
+  from {
+    transform: rotate(var(--angle)) translateY(calc(-1 * var(--radius)));
+  }
+  to {
+    transform: rotate(var(--angle)) translateY(0);
+  }
+}
+
+@keyframes fly {
+  0% {
+    transform: translateY(0) scale(0.3);
+  }
+  20% {
+    transform: translateY(calc(var(--radius) * 0.15)) scale(1);
+  }
+  100% {
+    transform: translateY(calc(var(--radius) - #{$soul-size * 0.6})) scale(1);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 820px) {
+  #undertale-effect-container {
+    --radius: 120px;
+  }
+}

@@ -71,7 +71,7 @@ export class LogoEffectsComponent implements OnInit, OnDestroy {
       case 'Hollow Knight':
         break;
       case 'Undertale':
-        this.undertaleEffect.test();
+        this.undertaleEffect.finale();
         break;
       case 'Red Dead Redemption 2':
         break;

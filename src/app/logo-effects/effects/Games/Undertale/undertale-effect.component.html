@@ -1,1 +1,30 @@
-<p>undertale-effect works!</p>
+@if (isPlaying()) {
+  <div id="undertale-effect-container">
+    <div class="souls-orbit">
+      @for (soul of souls; track soul.name) {
+        <div class="soul-arm" [style.--angle]="soul.angle + 'deg'">
+          @for (attack of attacksOf(soul); track attack.id) {
+            <div class="attack" (animationend)="onAttackHit($event, attack)">
+              <img
+                class="attack-sprite"
+                [style.animation-delay]="attack.spinDelay"
+                [src]="spritesPath + soul.name + '-soul-attack.webp'"
+                [alt]="soul.name + ' soul attack sprite'"
+              />
+            </div>
+          }
+          <img
+            class="soul"
+            [src]="spritesPath + soul.name + '-soul.webp'"
+            [alt]="soul.name + ' soul sprite'"
+          />
+        </div>
+      }
+    </div>
+    <img
+      class="soul red-soul"
+      [src]="spritesPath + 'red-soul.webp'"
+      alt="Red soul sprite"
+    />
+  </div>
+}
