@@ -54,7 +54,6 @@ export class UndertaleHomeSoundboardComponent implements OnInit, OnDestroy {
     this.currentComposer = this.audioService.currentMusicComposer;
     this.isPlaying = this.audioService.isPlaying;
 
-    //NEED TO MAKE THIS HAPPEN ONCE UNDERTALE THEME CAMES UP
     this.audioService.loadPlaylist(this.allUndertaleMusics);
 
     await this.audioService.preloadSound(
@@ -66,6 +65,8 @@ export class UndertaleHomeSoundboardComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.audioService.unloadOneSound(this.soundboardMusic);
+
+    this.audioService.unloadCurrentPlaylist();
   }
 
   public get isPlayingSomeMusicFromThePlaylist(): boolean {

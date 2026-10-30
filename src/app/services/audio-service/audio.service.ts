@@ -129,7 +129,7 @@ export class AudioService {
     }
   }
 
-  private unloadCurrentPlaylist(): void {
+  public unloadCurrentPlaylist(): void {
     this.stopSound();
 
     if (this.playlist) {
@@ -256,18 +256,20 @@ export class AudioService {
     audioName: string,
     type: 'music' | 'sfx' = 'sfx',
     composer?: string | undefined,
-  ): void {
+  ): AudioBufferSourceNode | null {
     const audioBuffer = this.sounds[audioName];
+    if (!audioBuffer) return null;
 
-    if (audioBuffer) {
-      const source = this.audioContext.createBufferSource();
-      source.buffer = audioBuffer;
+    const source = this.audioContext.createBufferSource();
+    source.buffer = audioBuffer;
 
-      const destination =
-        type === 'music' ? this.musicGainNode : this.sfxGainNode;
-      source.connect(destination);
-      source.start(0);
-    }
+    const destination =
+      type === 'music' ? this.musicGainNode : this.sfxGainNode;
+    source.connect(destination);
+    source.start(0);
+
+    // Retorna o som para quem precisar interrompê-lo antes do fim
+    return source;
   }
 
   public playSingleTrack(music: Musics, loop: boolean = false): void {

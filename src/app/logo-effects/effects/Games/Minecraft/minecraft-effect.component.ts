@@ -169,6 +169,8 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.particlesContainer?.destroy();
     this.cancelTntTimeout();
+
+    this.audioService.unloadCurrentPlaylist();
   }
 
   private startTntTimeout(): void {
