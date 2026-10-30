@@ -44,6 +44,7 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
   private undertaleSFXHome: SFXs[] = undertaleSFX;
 
   private isFirstMenu = true;
+  private isDestroyed = false;
   private router: Router;
   private route: ActivatedRoute;
   private destroyRef: DestroyRef;
@@ -90,11 +91,13 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.isDestroyed = true;
     this.headerRestaurePosition();
     this.renderer.removeClass(this.document.body, 'home-page');
 
     this.unloadMainMenuMusics();
   }
+
   public goToMenu(menu: undertaleMenus): void {
     this.router.navigate([], {
       relativeTo: this.route,
@@ -122,6 +125,7 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
 
     if (menu === 'mainMenu') {
       if (!wasFirst) await this.nextMacrotask();
+      if (this.isDestroyed) return;
       this.playMainMenuMusic();
     }
   }
@@ -137,6 +141,10 @@ export class UndertaleHomeComponent implements OnInit, OnDestroy {
       ),
     );
 
+    if (this.isDestroyed) {
+      this.unloadMainMenuMusics();
+      return;
+    }
     if (this.currentMenuState() !== 'mainMenu') return;
 
     const trackToPlay = this.undertaleMusicsMainMenu[this.variationIndex];
