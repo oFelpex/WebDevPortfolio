@@ -17,6 +17,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MinecraftEffectComponent } from './effects/Games/Minecraft/minecraft-effect.component';
 import { TheWitcher3EffectComponent } from './effects/Games/The Witcher 3/the-witcher-3-effect.component';
 import { Subscription } from 'rxjs';
+import { UndertaleEffectComponent } from './effects/Games/Undertale/undertale-effect.component';
 
 @Component({
   selector: 'app-logo-effects',
@@ -25,6 +26,7 @@ import { Subscription } from 'rxjs';
     TranslateModule,
     MinecraftEffectComponent,
     TheWitcher3EffectComponent,
+    UndertaleEffectComponent,
   ],
   templateUrl: './logo-effects.component.html',
   styleUrl: './logo-effects.component.scss',
@@ -32,6 +34,7 @@ import { Subscription } from 'rxjs';
 export class LogoEffectsComponent implements OnInit, OnDestroy {
   @ViewChild('minecraftEffect') minecraftEffect!: MinecraftEffectComponent;
   @ViewChild('tw3Effect') tw3Effect!: TheWitcher3EffectComponent;
+  @ViewChild('undertaleEffect') undertaleEffect!: UndertaleEffectComponent;
   @Input() logoName?: string;
 
   private themeService: ThemeService;
@@ -68,6 +71,7 @@ export class LogoEffectsComponent implements OnInit, OnDestroy {
       case 'Hollow Knight':
         break;
       case 'Undertale':
+        this.undertaleEffect.test();
         break;
       case 'Red Dead Redemption 2':
         break;

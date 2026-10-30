@@ -1,20 +1,21 @@
 <div id="navBar-custom-logo">
-  @if(logoName) {
+  @if (logoName) {
     <img
-    (click)="playEffect(actualTheme)"
-    [matTooltip]="'NAV-BAR-LIST.MAT-TOOL-TIP-EASTER-EGG' | translate"
-    [src]="
-      '../../../../assets/themes/' +
-      actualTheme.type.toLowerCase() +
-      '/' +
-      actualTheme.name.toLowerCase() +
-      '/logo' +
-      '/' + logoName +
-      '.webp'
-    "
-    [alt]="'NAV-BAR-LIST.MAT-TOOL-TIP-EASTER-EGG-ALT' | translate"
-  />
-  } @else {    
+      (click)="playEffect(actualTheme)"
+      [matTooltip]="'NAV-BAR-LIST.MAT-TOOL-TIP-EASTER-EGG' | translate"
+      [src]="
+        '../../../../assets/themes/' +
+        actualTheme.type.toLowerCase() +
+        '/' +
+        actualTheme.name.toLowerCase() +
+        '/logo' +
+        '/' +
+        logoName +
+        '.webp'
+      "
+      [alt]="'NAV-BAR-LIST.MAT-TOOL-TIP-EASTER-EGG-ALT' | translate"
+    />
+  } @else {
     <img
       (click)="playEffect(actualTheme)"
       [matTooltip]="'NAV-BAR-LIST.MAT-TOOL-TIP-EASTER-EGG' | translate"
@@ -33,8 +34,14 @@
   }
 </div>
 
-@switch (actualTheme.name) { @case ("Minecraft") {
-<app-minecraft #minecraftEffect></app-minecraft>
-} @case ("The Witcher 3") {
-<app-the-witcher-3 #tw3Effect></app-the-witcher-3>
-} }
+@switch (actualTheme.name) {
+  @case ("Minecraft") {
+    <app-minecraft #minecraftEffect></app-minecraft>
+  }
+  @case ("The Witcher 3") {
+    <app-the-witcher-3 #tw3Effect></app-the-witcher-3>
+  }
+  @case ("Undertale") {
+    <app-undertale #undertaleEffect></app-undertale>
+  }
+}
