@@ -18,6 +18,8 @@ import { UndertaleHomeSoundboardComponent } from './undertale-home-soundboard/un
 import { UndertaleHomeNavigationComponent } from './undertale-home-navigation/undertale-home-navigation.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 type undertaleMenus =
   | 'mainMenu'
@@ -28,6 +30,8 @@ type undertaleMenus =
   selector: 'app-undertale-home',
   imports: [
     NgComponentOutlet,
+    TranslateModule,
+    MatTooltipModule,
     UndertaleHomeConfigComponent,
     UndertaleHomeSoundboardComponent,
     UndertaleHomeNavigationComponent,

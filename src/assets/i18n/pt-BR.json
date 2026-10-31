@@ -127,7 +127,22 @@
           "MOBILE-OPEN-OTHER-MENU": "Outras configurações"
         },
         "HOME": {
-          "MAIN-MENU": {},
+          "MAIN-MENU": {
+            "LV": "NI  1",
+            "RUINS": "Ruínas - Entrada",
+            "NAVIGATE": "Navegar",
+            "CHANGE-MENU": "Alterar menu",
+            "SETTINGS": "Configurações",
+
+            "TOOLTIP": {
+              "MUSIC-SHOP": "Ir para o painel de sons"
+            },
+            "ALT": {
+              "DOOR": "Sprite da porta de Undertale, do menu principal",
+              "MUSIC-SHOP": "Loja de músicas do jogo Deltarune",
+              "FLOOR": "Sprite do chão de Undertale, presente no menu principal, é onde Flowey ou os outros personagens ficam durante o menu principal"
+            }
+          },
           "CONFIG-MENU": {},
           "SOUNDBOARD-MENU": {}
         }

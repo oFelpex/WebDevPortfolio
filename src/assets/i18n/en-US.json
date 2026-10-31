@@ -127,7 +127,23 @@
           "MOBILE-OPEN-OTHER-MENU": "Other Settings"
         },
         "HOME": {
-          "MAIN-MENU": {},
+          "MAIN-MENU": {
+            "LV": "LV  1",
+            "RUINS": "Ruins - Entrance",
+            "NAVIGATE": "Navigate",
+            "CHANGE-MENU": "Change Menu",
+            "SETTINGS": "Settings",
+
+            "TOOLTIP": {
+              "MUSIC-SHOP": "Go to soundboard"
+            },
+            "ALT": {
+              "DOOR": "Undertale door sprite from the main menu",
+              "MUSIC-SHOP": "Deltarune music shop",
+              "FLOOR": "Undertale floor sprite from the main menu, it is where Flowey or the other characters are on during the main menu"
+            }
+          },
+          "NAVIGATION-MENU": {},
           "CONFIG-MENU": {},
           "SOUNDBOARD-MENU": {}
         }
