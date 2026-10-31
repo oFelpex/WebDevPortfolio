@@ -169,7 +169,25 @@
               }
             }
           },
+          "DIALOGS": {
+            "THEMES": {
+              "CHANGE-THEME": "Alterar o tema",
+              "ACTUAL-TYPE": "Tipo atual: ",
+              "THEME-NAME": "Nome: ",
+
+              "TYPE-SELECTION": {
+                "TYPE-SELECT": "Selecione o tipo de tema"
+              },
+              "GAME-SELECTION": {
+                "GAME-SELECT": "Selecione o jogo que você quer"
+              },
+              "COLOR-SELECTION": {
+                "COLOR-SELECT": "Selecione a cor que você quer"
+              }
+            }
+          },
           "CONFIG-MENU": {},
+          "NAVIGATION-MENU": {},
           "SOUNDBOARD-MENU": {}
         }
       },
@@ -235,7 +253,8 @@
     "VIDEO-GAMES": "Videogames",
     "GAMES": "Videogames",
     "COLORS": "Cores",
-    "CLOSE": "Fechar"
+    "CLOSE": "Fechar",
+    "BACK": "Voltar"
   },
   "DIALOG-LANGS": {
     "CHANGE-LANG": "MUDAR IDIOMA",

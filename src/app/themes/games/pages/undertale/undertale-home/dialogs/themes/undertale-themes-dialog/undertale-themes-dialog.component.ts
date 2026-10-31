@@ -4,7 +4,8 @@ import { Subscription } from 'rxjs';
 import { Themes } from '../../../../../../../../models/themes';
 import { CommonModule } from '@angular/common';
 import { AudioService } from '../../../../../../../../services/audio-service/audio.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { TranslateModule } from '@ngx-translate/core';
 
 type themesSelectionMenu =
   | 'typeSelection'
@@ -12,7 +13,7 @@ type themesSelectionMenu =
   | 'ColorsSelection';
 @Component({
   selector: 'app-undertale-themes-dialog',
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule, MatDialogModule],
   templateUrl: './undertale-themes-dialog.component.html',
   styleUrl: './undertale-themes-dialog.component.scss',
 })
@@ -62,9 +63,6 @@ export class UndertaleThemesDialogComponent {
   }
   public changeTheme(theme: Themes): void {
     this.themeService.changeTheme(theme);
-    this.closeDialog();
-  }
-  public closeDialog(): void {
     this.dialog.closeAll();
   }
 }
