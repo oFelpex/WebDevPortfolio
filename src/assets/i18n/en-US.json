@@ -120,7 +120,18 @@
       "Persona 3": {},
       "ELDEN RING": {},
       "HOLLOW KNIGHT": {},
-      "UNDERTALE": {},
+      "UNDERTALE": {
+        "TOOLTIP": {
+          "CONFIG": "Settings",
+          "MOBILE-OPEN-ROUTES-MENU": "Navigation menu",
+          "MOBILE-OPEN-OTHER-MENU": "Other Settings"
+        },
+        "HOME": {
+          "MAIN-MENU": {},
+          "CONFIG-MENU": {},
+          "SOUNDBOARD-MENU": {}
+        }
+      },
 
       "MINECRAFT": {
         "HEADER": {

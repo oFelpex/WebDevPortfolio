@@ -8,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { SFXs, undertaleSFX } from '../../../../../../models/sfxs';
 import { Subscription } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-undertale-header',
@@ -17,6 +19,8 @@ import { Subscription } from 'rxjs';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatTooltipModule,
+    TranslateModule,
   ],
   templateUrl: './undertale-header.component.html',
   styleUrl: './undertale-header.component.scss',

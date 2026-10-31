@@ -120,7 +120,18 @@
       "Persona 3": {},
       "ELDEN RING": {},
       "HOLLOW KNIGHT": {},
-      "UNDERTALE": {},
+      "UNDERTALE": {
+        "TOOLTIP": {
+          "CONFIG": "Configuração",
+          "MOBILE-OPEN-ROUTES-MENU": "Menu de navegação",
+          "MOBILE-OPEN-OTHER-MENU": "Outras configurações"
+        },
+        "HOME": {
+          "MAIN-MENU": {},
+          "CONFIG-MENU": {},
+          "SOUNDBOARD-MENU": {}
+        }
+      },
 
       "MINECRAFT": {
         "HEADER": {
@@ -192,7 +203,6 @@
     "DESCRIPTION": "PT-BR ou EN-US",
     "CLOSE": "Fechar"
   },
-
   "DIALOG-SOUNDS": {
     "OPEN-SOUNDBOARD": "Abrir Painel de Sons",
     "SOUND-OPTIONS": "OPÇÕES DE SOM"
