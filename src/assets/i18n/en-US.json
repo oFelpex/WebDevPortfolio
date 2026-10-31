@@ -140,7 +140,33 @@
             "ALT": {
               "DOOR": "Undertale door sprite from the main menu",
               "MUSIC-SHOP": "Deltarune music shop",
-              "FLOOR": "Undertale floor sprite from the main menu, it is where Flowey or the other characters are on during the main menu"
+              "FLOOR": "Undertale floor sprite from the main menu, it is where Flowey or the other characters are on during the main menu",
+
+              "VARIATIONS": {
+                "RUINS-FLOWEY": "Character Flowey in the middle of the floor",
+                "TORIEL": "Character Toriel in her chair",
+                "TORIEL-SLEEPING": "Character Toriel sleeping on her chair",
+                "SANS-POSE": "Character Sans with his left eye closed",
+                "UNDYNE-POSE": "Character Undyne above character Papyrus, striking a pose",
+                "PAPYRUS-POSE": "Character Papyrus below the character Undyne, striking a pose",
+
+                "CORE-ALPHYS": {
+                  "SIGN": "Sign from Sans that says 'Out for lunch'",
+                  "ALPHYS": "Character Alphys, below characters Undyne and Papyrus"
+                },
+
+                "THE-END": {
+                  "NAPSTABLOOK": "Character Napstablook",
+                  "METTATON": "Character Mettaton",
+                  "ALPHYS": "Character Alphys",
+                  "UNDYNE": "Character Undyne",
+                  "PAPYRUS": "Character Papyrus",
+                  "TORIEL": "Character Toriel",
+                  "SANS": "Character Sans",
+                  "ASGORE": "Character Asgore",
+                  "MONSTER KID": "Character Monster Kid"
+                }
+              }
             }
           },
           "NAVIGATION-MENU": {},

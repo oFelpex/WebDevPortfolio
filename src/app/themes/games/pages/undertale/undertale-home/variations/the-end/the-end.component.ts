@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-the-end',
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './the-end.component.html',
-  styleUrl: './the-end.component.scss'
+  styleUrl: './the-end.component.scss',
 })
-export class TheEndComponent {
-
-}
+export class TheEndComponent {}

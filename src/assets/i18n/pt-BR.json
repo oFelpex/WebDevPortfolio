@@ -140,7 +140,33 @@
             "ALT": {
               "DOOR": "Sprite da porta de Undertale, do menu principal",
               "MUSIC-SHOP": "Loja de músicas do jogo Deltarune",
-              "FLOOR": "Sprite do chão de Undertale, presente no menu principal, é onde Flowey ou os outros personagens ficam durante o menu principal"
+              "FLOOR": "Sprite do chão de Undertale, presente no menu principal, é onde Flowey ou os outros personagens ficam durante o menu principal",
+
+              "VARIATIONS": {
+                "RUINS-FLOWEY": "Personagem Flowey no meio do chão",
+                "TORIEL": "Personagem Toriel em sua cadeira",
+                "TORIEL-SLEEPING": "Personagem Toriel dormindo em sua cadeira",
+                "SANS-POSE": "Personagem Sans com o olho esquerdo fechado",
+                "UNDYNE-POSE": "Personagem Undyne acima do personagem Papyrus, fazendo uma pose",
+                "PAPYRUS-POSE": "Personagem Papyrus abaixo da personagem Undyne, fazendo uma pose",
+
+                "CORE-ALPHYS": {
+                  "SIGN": "Placa do Sans que diz 'Fora para o almoço'",
+                  "ALPHYS": "Personagem Alphys, abaixo dos personagens Undyne e Papyrus"
+                },
+
+                "THE-END": {
+                  "NAPSTABLOOK": "Personagem Napstablook",
+                  "METTATON": "Personagem Mettaton",
+                  "ALPHYS": "Personagem Alphys",
+                  "UNDYNE": "Personagem Undyne",
+                  "PAPYRUS": "Personagem Papyrus",
+                  "TORIEL": "Personagem Toriel",
+                  "SANS": "Personagem Sans",
+                  "ASGORE": "Personagem Asgore",
+                  "MONSTER KID": "Personagem Monster Kid"
+                }
+              }
             }
           },
           "CONFIG-MENU": {},
