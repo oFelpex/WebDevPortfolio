@@ -89,7 +89,6 @@ export class ThemeService {
       this._actualTheme$.next(theme);
       this.setActualThemeToLocalStorage(theme);
       this.setTheme(theme.name.toLowerCase().replaceAll(' ', '-'));
-      this.audioContext.stopMusic();
     }
 
     this.snackBar.openFromComponent(CustomSnackbarComponent, {
