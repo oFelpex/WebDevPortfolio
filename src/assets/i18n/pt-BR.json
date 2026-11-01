@@ -120,7 +120,123 @@
       "Persona 3": {},
       "ELDEN RING": {},
       "HOLLOW KNIGHT": {},
-      "UNDERTALE": {},
+      "UNDERTALE": {
+        "TOOLTIP": {
+          "CONFIG": "Configuração",
+          "MOBILE-OPEN-ROUTES-MENU": "Menu de navegação",
+          "MOBILE-OPEN-OTHER-MENU": "Outras configurações"
+        },
+        "HOME": {
+          "MAIN-MENU": {
+            "LV": "NI  1",
+            "RUINS": "Ruínas - Entrada",
+            "NAVIGATE": "Navegar",
+            "CHANGE-MENU": "Alterar menu",
+            "SETTINGS": "Configurações",
+
+            "TOOLTIP": {
+              "MUSIC-SHOP": "Ir para o painel de sons"
+            },
+            "ALT": {
+              "DOOR": "Sprite da porta de Undertale, do menu principal",
+              "MUSIC-SHOP": "Loja de músicas do jogo Deltarune",
+              "FLOOR": "Sprite do chão de Undertale, presente no menu principal, é onde Flowey ou os outros personagens ficam durante o menu principal",
+
+              "VARIATIONS": {
+                "RUINS-FLOWEY": "Personagem Flowey no meio do chão",
+                "TORIEL": "Personagem Toriel em sua cadeira",
+                "TORIEL-SLEEPING": "Personagem Toriel dormindo em sua cadeira",
+                "SANS-POSE": "Personagem Sans com o olho esquerdo fechado",
+                "UNDYNE-POSE": "Personagem Undyne acima do personagem Papyrus, fazendo uma pose",
+                "PAPYRUS-POSE": "Personagem Papyrus abaixo da personagem Undyne, fazendo uma pose",
+
+                "CORE-ALPHYS": {
+                  "SIGN": "Placa do Sans que diz 'Fora para o almoço'",
+                  "ALPHYS": "Personagem Alphys, abaixo dos personagens Undyne e Papyrus"
+                },
+
+                "THE-END": {
+                  "NAPSTABLOOK": "Personagem Napstablook",
+                  "METTATON": "Personagem Mettaton",
+                  "ALPHYS": "Personagem Alphys",
+                  "UNDYNE": "Personagem Undyne",
+                  "PAPYRUS": "Personagem Papyrus",
+                  "TORIEL": "Personagem Toriel",
+                  "SANS": "Personagem Sans",
+                  "ASGORE": "Personagem Asgore",
+                  "MONSTER-KID": "Personagem Monster Kid"
+                }
+              }
+            }
+          },
+          "DIALOGS": {
+            "THEMES": {
+              "CHANGE-THEME": "Alterar o tema",
+              "ACTUAL-TYPE": "Tipo atual: ",
+              "THEME-NAME": "Nome: ",
+
+              "TYPE-SELECTION": {
+                "TYPE-SELECT": "Selecione o tipo de tema"
+              },
+              "GAME-SELECTION": {
+                "GAME-SELECT": "Selecione o jogo que você quer"
+              },
+              "COLOR-SELECTION": {
+                "COLOR-SELECT": "Selecione a cor que você quer"
+              }
+            }
+          },
+          "CONFIG-MENU": {
+            "SETTINGS": "CONFIGURAÇÕES",
+            "EXIT": "SAIR",
+            "LANGUAGE": "IDIOMA",
+            "CHANGE-THEME": "MUDAR TEMA",
+
+            "PHRASES": {
+              "WINTER": "pule a fogueira, deixe as preocupações queimarem",
+              "FALL": "as folhas caem, mas você continua de pé",
+              "SPRING": "reta final do ano, aguente firme!",
+              "SUMMER": "tente resistir aos raios de sol que dão vida"
+            }
+          },
+          "NAVIGATION-MENU": {
+            "FLY": "Voar para",
+            "GO": "Ir!",
+
+            "ALT": {
+              "FRISK": "Um sprite de Frisk olhando para a direita",
+              "BIRD-IDLE": "Um sprite do pássaro que te transporta por uma lacuna desproporcionalmente pequena, em sua animação de parado",
+              "BIRD-FLYING": "Um sprite do pássaro que te transporta por uma lacuna desproporcionalmente pequena, com uma animação de voo",
+
+              "BACKGROUNDS": {
+                "HOME": "Plano de fundo da área de Snowdin",
+                "PROJECTS": "Plano de fundo da área de Waterfall",
+                "ABOUT-ME": "Plano de fundo da área de Hotland",
+                "CONTACT-ME": "Plano de fundo da área do Core"
+              }
+            }
+          },
+          "SOUNDBOARD-MENU": {
+            "CHOOSE-MUSIC": "Escolha uma música",
+            "SELECT-MUSIC": "Selecione uma música",
+            "BACK": "Voltar",
+
+            "TOOLTIPS": {
+              "PREV-MENU-BTN": "Subir menu",
+              "NEXT-MENU-BTN": "Descer menu",
+              "SKIP-PREV-BTN": "Ir para a música anterior",
+              "SKIP-NEXT-BTN": "Pular para a próxima música",
+              "PAUSE-PLAY-BTN": "Pausar ou reproduzir música"
+            },
+            "ALT": {
+              "DELTARUNE-MUSIC-SHOP": "Fundo da loja de música de Deltarune",
+              "DELTARUNE-CAPN": "Personagem Cap'n de Deltarune, em sua animação de parado",
+              "DELTARUNE-SWEET": "Personagem Sweet de Deltarune, em sua animação de parado",
+              "DELTARUNE-K_K": " Personagem K_K de Deltarune, em sua animação de parado"
+            }
+          }
+        }
+      },
 
       "MINECRAFT": {
         "HEADER": {
@@ -183,7 +299,8 @@
     "VIDEO-GAMES": "Videogames",
     "GAMES": "Videogames",
     "COLORS": "Cores",
-    "CLOSE": "Fechar"
+    "CLOSE": "Fechar",
+    "BACK": "Voltar"
   },
   "DIALOG-LANGS": {
     "CHANGE-LANG": "MUDAR IDIOMA",
@@ -192,7 +309,6 @@
     "DESCRIPTION": "PT-BR ou EN-US",
     "CLOSE": "Fechar"
   },
-
   "DIALOG-SOUNDS": {
     "OPEN-SOUNDBOARD": "Abrir Painel de Sons",
     "SOUND-OPTIONS": "OPÇÕES DE SOM"

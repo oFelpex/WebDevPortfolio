@@ -1,0 +1,91 @@
+<header id="undertale-home-header">
+  @if (currentMenuState() === "mainMenu") {
+    <section id="undertale-door-and-menu">
+      <div id="undertale-door-with-soundboard-img">
+        <img
+          id="undertale-door"
+          src="../../../../../../assets/themes/games/undertale/sprites/backgrounds/undertale-menu-door.webp"
+          [alt]="'THEMES.GAMES.UNDERTALE.HOME.MAIN-MENU.ALT.DOOR' | translate"
+        />
+        <img
+          id="undertale-soundboard-menu"
+          src="../../../../../../assets/themes/games/undertale/sprites/others/soundboard/undertale-soundboard-menu.webp"
+          [alt]="
+            'THEMES.GAMES.UNDERTALE.HOME.MAIN-MENU.ALT.MUSIC-SHOP' | translate
+          "
+          [matTooltip]="
+            'THEMES.GAMES.UNDERTALE.HOME.MAIN-MENU.TOOLTIP.MUSIC-SHOP'
+              | translate
+          "
+          (click)="playClickSound(); goToMenu('soundboard')"
+        />
+      </div>
+      <div id="undertale-menu-container">
+        <div id="undertale-menu-info">
+          <span class="name">FELPEX</span>
+          <span class="level">{{
+            "THEMES.GAMES.UNDERTALE.HOME.MAIN-MENU.LV" | translate
+          }}</span>
+          <span class="time">1:32</span>
+
+          <span class="location">{{
+            "THEMES.GAMES.UNDERTALE.HOME.MAIN-MENU.RUINS" | translate
+          }}</span>
+        </div>
+
+        <div id="undertale-menu-btns">
+          <button
+            class="btn btn-navigate"
+            (mouseenter)="mouseEnterOrLeaveSFX()"
+            (click)="playClickSound(); goToMenu('navigationMenu')"
+          >
+            {{ "THEMES.GAMES.UNDERTALE.HOME.MAIN-MENU.NAVIGATE" | translate }}
+          </button>
+          <button
+            class="btn btn-change-menu"
+            (mouseenter)="mouseEnterOrLeaveSFX()"
+            (click)="playClickSound(); changeMenuVariation()"
+          >
+            {{
+              "THEMES.GAMES.UNDERTALE.HOME.MAIN-MENU.CHANGE-MENU" | translate
+            }}
+          </button>
+
+          <button
+            class="btn btn-settings"
+            (mouseenter)="mouseEnterOrLeaveSFX()"
+            (click)="playClickSound(); goToMenu('configMenu')"
+          >
+            {{ "THEMES.GAMES.UNDERTALE.HOME.MAIN-MENU.SETTINGS" | translate }}
+          </button>
+        </div>
+      </div>
+    </section>
+    <section id="undertale-floor-and-c">
+      <div id="floor-stage">
+        <img
+          id="undertale-floor"
+          src="../../../../../../assets/themes/games/undertale/sprites/backgrounds/undertale-menu-floor.webp"
+          [alt]="'THEMES.GAMES.UNDERTALE.HOME.MAIN-MENU.ALT.FLOOR' | translate"
+        />
+        <div id="characters-container">
+          <ng-container *ngComponentOutlet="variation()" />
+        </div>
+      </div>
+
+      <span id="undertale-copyright"
+        >UNDERTALE V1.08 (C) TOBY FOX 2015-2026</span
+      >
+    </section>
+  } @else if (currentMenuState() === "navigationMenu") {
+    <app-undertale-home-navigation
+      (exit)="goToMenu('mainMenu')"
+    ></app-undertale-home-navigation>
+  } @else if (currentMenuState() === "configMenu") {
+    <app-undertale-home-config (exit)="goToMenu('mainMenu')" />
+  } @else if (currentMenuState() === "soundboard") {
+    <app-undertale-home-soundboard
+      (exit)="goToMenu('mainMenu')"
+    ></app-undertale-home-soundboard>
+  }
+</header>

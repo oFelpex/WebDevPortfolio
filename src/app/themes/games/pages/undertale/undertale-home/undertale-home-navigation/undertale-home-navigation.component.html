@@ -1,0 +1,69 @@
+<section id="undertale-navigation-menu-container" @fadeIn_fadeOut_longer>
+  <div id="navigation-bg-container" [class.flying]="isFlying()">
+    <div id="navigation-menu-container">
+      <span id="navigation-menu-fly-span">{{
+        "THEMES.GAMES.UNDERTALE.HOME.NAVIGATION-MENU.FLY" | translate
+      }}</span>
+      <div id="navigation-menu-btns-container">
+        <button
+          class="navigation-menu-btns"
+          mat-icon-button
+          [disabled]="isFlying()"
+          (mouseenter)="mouseEnterOrLeaveSFX()"
+          (click)="playClickSound(); changeToNextLocation('previous')"
+        >
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <span id="navigation-menu-location-span">{{
+          "ROUTER." + locationPages[currentLocation()].toUpperCase() | translate
+        }}</span>
+        <button
+          class="navigation-menu-btns"
+          mat-icon-button
+          [disabled]="isFlying()"
+          (mouseenter)="mouseEnterOrLeaveSFX()"
+          (click)="playClickSound(); changeToNextLocation('next')"
+        >
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </div>
+      <button
+        id="navigation-menu-go-btn"
+        mat-button
+        [disabled]="isFlying()"
+        (mouseenter)="mouseEnterOrLeaveSFX()"
+        (click)="playClickSound(); startFlight()"
+      >
+        {{ "THEMES.GAMES.UNDERTALE.HOME.NAVIGATION-MENU.GO" | translate }}
+      </button>
+    </div>
+    <img
+      id="navigation-bg-img"
+      src="../../../../../../../assets/themes/games/undertale/sprites/others/navigation-menu/backgrounds/{{
+        currentLocation().toLowerCase().replaceAll(' ', '-')
+      }}-bg.webp"
+      [alt]="
+        'THEMES.GAMES.UNDERTALE.HOME.NAVIGATION-MENU.ALT.BACKGROUNDS.' +
+          locationPages[currentLocation()].toUpperCase() | translate
+      "
+    />
+    <img
+      id="navigation-frisk-img"
+      src="../../../../../../../assets/themes/games/undertale/sprites/others/navigation-menu/frisk.webp"
+      [alt]="
+        'THEMES.GAMES.UNDERTALE.HOME.NAVIGATION-MENU.ALT.FRISK' | translate
+      "
+    />
+    <img
+      id="navigation-bird-img"
+      src="../../../../../../../assets/themes/games/undertale/sprites/others/navigation-menu/bird-{{
+        isFlying() ? 'flying' : 'idle'
+      }}.gif"
+      [alt]="
+        'THEMES.GAMES.UNDERTALE.HOME.NAVIGATION-MENU.ALT.BIRD-' +
+          (isFlying() ? 'FLYING' : 'IDLE') | translate
+      "
+      (animationend)="onFlightEnd()"
+    />
+  </div>
+</section>

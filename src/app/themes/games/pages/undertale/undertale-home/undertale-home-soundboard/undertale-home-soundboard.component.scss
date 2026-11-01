@@ -1,0 +1,394 @@
+#undertale-soundboard {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  #undertale-soundboard-bg {
+    width: 100vw;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: 960 / 360;
+    image-rendering: pixelated;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  #undertale-soundboard-npcs-container {
+    position: fixed;
+    left: 3%;
+    bottom: 0;
+    width: 100vw;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    image-rendering: pixelated;
+    z-index: 1;
+    box-sizing: border-box;
+
+    .undertale-soundboard-npc-img {
+      position: absolute;
+      pointer-events: none;
+      bottom: 290px;
+      width: 100%;
+      aspect-ratio: 960 / 360;
+    }
+  }
+
+  #undertale-soundboard-menu-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    height: 300px;
+    width: 80%;
+    background-color: #000;
+    border: 5px solid #fff;
+    z-index: 2;
+
+    .undertale-soundboard-title {
+      text-align: center;
+      cursor: default;
+      margin: 0px;
+      font-size: 2.5rem;
+      font-weight: normal;
+    }
+
+    #undertale-soundboard-menu-selecting-music {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-direction: column;
+      height: 100%;
+      min-width: 250px;
+      background-color: #000;
+      flex: 3;
+
+      #undertale-soundboard-menu-music-list-and-btns {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0px 20px;
+        margin-bottom: 5%;
+        width: 100%;
+        gap: 15px;
+
+        #undertale-soundboard-next-prev-btns-container {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          .undertale-soundboard-next-prev-btn {
+            width: fit-content;
+            background: transparent;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            padding: 0;
+
+            &:hover {
+              background-color: #18181883;
+              .undertale-soundboard-next-prev-btn-icon {
+                color: #fafc13;
+              }
+            }
+            .undertale-soundboard-next-prev-btn-icon {
+              pointer-events: none;
+              margin-left: 7px;
+              width: 100%;
+              height: auto;
+              color: #fff;
+              font-size: 5rem;
+            }
+          }
+        }
+
+        #undertale-soundboard-music-list-container {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          min-width: 0;
+          flex: 1;
+
+          .undertale-soundboard-music-item {
+            font-size: xx-large;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-width: 0;
+
+            .undertale-soundboard-music-item-span,
+            .undertale-soundboard-music-item-span-playing {
+              cursor: pointer;
+
+              &:hover {
+                color: #fafc13;
+              }
+            }
+            .undertale-soundboard-music-item-span-playing {
+              color: #c9cc11;
+            }
+          }
+        }
+      }
+    }
+    #undertale-soundboard-menu-playing {
+      padding: 8px 15px;
+      height: 100%;
+      background-color: #000;
+      border-left: 5px solid #fff;
+      flex: 2;
+
+      #undertale-soundboard-menu-playing-content {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+
+        #undertale-soundboard-menu-playing-music-container {
+          #undertale-soundboard-menu-music-and-composer-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            .music-and-composer {
+              cursor: default;
+              font-size: xx-large;
+            }
+          }
+        }
+
+        #undertale-soundboard-menu-playing-btns-container {
+          width: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+
+          .undertale-soundboard-menu-playing-btns {
+            color: #fff;
+            scale: 1.8;
+
+            &:disabled {
+              color: #6e6e6e;
+            }
+
+            &:hover {
+              color: #fafc13;
+              background-color: #18181883;
+            }
+          }
+        }
+        #undertale-soundboard-menu-playing-volume-btn-container {
+          width: 80%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          justify-self: flex-end;
+          gap: 30px;
+
+          .volume-control {
+            display: flex;
+            align-items: center;
+            border-radius: 999px;
+            transition: background-color 0.3s;
+
+            .volume-btn {
+              color: #fff;
+              scale: 1.5;
+              flex-shrink: 0;
+
+              &:hover {
+                color: #fafc13;
+                background-color: #18181883;
+              }
+            }
+
+            .volume-slider-wrapper {
+              width: 0;
+              overflow: hidden;
+              opacity: 0;
+              transition:
+                width 0.3s ease,
+                opacity 0.2s ease,
+                margin 0.3s ease;
+            }
+
+            &:hover,
+            &:focus-within {
+              background-color: #18181883;
+
+              .volume-slider-wrapper {
+                width: 120px;
+                opacity: 1;
+                margin: 0 0px 0 0px;
+              }
+
+              .volume-btn {
+                color: #fafc13;
+              }
+            }
+
+            .volume-slider {
+              width: 60%;
+              min-width: 0;
+              margin: 0 20px 0 20px;
+              --mdc-slider-active-track-color: #fafc13;
+              --mdc-slider-inactive-track-color: #555;
+              --mdc-slider-handle-color: #fff;
+              --mdc-slider-focus-handle-color: #fafc13;
+              --mdc-slider-hover-handle-color: #fafc13;
+              --mdc-slider-active-track-height: 4px;
+              --mdc-slider-inactive-track-height: 4px;
+              --mdc-slider-handle-width: 12px;
+              --mdc-slider-handle-height: 12px;
+            }
+          }
+        }
+      }
+    }
+
+    #back-to-home-btn {
+      position: absolute;
+      bottom: 20px;
+      font-size: xx-large;
+      color: #fff;
+
+      &:hover {
+        background-color: #18181883;
+        color: #fafc13;
+      }
+    }
+  }
+  @media (max-width: 820px) {
+    $menu-height: 62vh;
+    $menu-bottom: 10px;
+
+    height: 100dvh;
+
+    #undertale-soundboard-npcs-container {
+      left: 0;
+
+      .undertale-soundboard-npc-img {
+        bottom: calc(#{$menu-height} + #{$menu-bottom} - 10px);
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150%;
+      }
+    }
+
+    #undertale-soundboard-menu-container {
+      flex-direction: column;
+      bottom: $menu-bottom;
+      height: $menu-height;
+      width: 92%;
+      border-width: 4px;
+
+      .undertale-soundboard-title {
+        font-size: 1.8rem;
+      }
+
+      #undertale-soundboard-menu-selecting-music {
+        justify-content: flex-start;
+        gap: 4px;
+        width: 100%;
+        min-width: 0;
+        min-height: 0;
+        padding-top: 8px;
+        box-sizing: border-box;
+
+        #undertale-soundboard-menu-music-list-and-btns {
+          flex: 1;
+          min-height: 0;
+          margin-bottom: 0;
+          padding: 0 10px;
+          box-sizing: border-box;
+
+          #undertale-soundboard-music-list-container {
+            padding-left: 20px;
+            margin: 0;
+
+            .undertale-soundboard-music-item {
+              font-size: x-large;
+            }
+          }
+
+          #undertale-soundboard-next-prev-btns-container {
+            gap: 8px;
+
+            .undertale-soundboard-next-prev-btn {
+              .undertale-soundboard-next-prev-btn-icon {
+                margin-left: 0;
+                font-size: 3.5rem;
+                width: 3.5rem;
+                height: 3.5rem;
+              }
+            }
+          }
+        }
+      }
+
+      #undertale-soundboard-menu-playing {
+        width: 100%;
+        min-height: 0;
+        padding: 8px 10px;
+        border-left: none;
+        border-top: 4px solid #fff;
+        box-sizing: border-box;
+
+        #undertale-soundboard-menu-playing-content {
+          #undertale-soundboard-menu-playing-music-container {
+            width: 100%;
+
+            #undertale-soundboard-menu-music-and-composer-container {
+              flex-wrap: wrap;
+              gap: 6px;
+              text-align: center;
+
+              .music-and-composer {
+                font-size: x-large;
+              }
+            }
+          }
+
+          #undertale-soundboard-menu-playing-btns-container {
+            width: 70%;
+
+            .undertale-soundboard-menu-playing-btns {
+              scale: 1.4;
+            }
+          }
+
+          #undertale-soundboard-menu-playing-volume-btn-container {
+            width: 100%;
+            gap: 15px;
+
+            .volume-control {
+              .volume-btn {
+                scale: 1.2;
+              }
+
+              &:hover,
+              &:focus-within {
+                .volume-slider-wrapper {
+                  width: 100px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      #back-to-home-btn {
+        position: static;
+        flex-shrink: 0;
+        margin-bottom: 4px;
+        font-size: x-large;
+      }
+    }
+  }
+}

@@ -3,11 +3,12 @@ import { colorsOptions, defaultTheme, Themes } from '../../models/themes';
 import { gamesOptions } from '../../models/themes';
 import { BehaviorSubject } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { CustomSnackbarComponent } from '../../shared/components/custom-snackbar/custom-snackbar.component';
 import { Tw3HeaderComponent } from '../../themes/games/shared/components/the-witcher-3/tw3-header/tw3-header.component';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { MinecraftHeaderComponent } from '../../themes/games/shared/components/minecraft/minecraft-header/minecraft-header.component';
-import { AudioService } from '../audio-service/audio.service';
+import { UndertaleHeaderComponent } from '../../themes/games/shared/components/undertale/undertale-header/undertale-header.component';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,7 +18,7 @@ export class ThemeService {
   private colorsOptions: Themes[] = colorsOptions;
   private defaultTheme: Themes = defaultTheme;
   private snackBar: MatSnackBar;
-  private audioContext: AudioService;
+  private router: Router;
 
   private _actualTheme$ = new BehaviorSubject<Themes>(this.defaultTheme);
   actualTheme$ = this._actualTheme$.asObservable();
@@ -25,7 +26,7 @@ export class ThemeService {
   constructor() {
     this.initTheme();
     this.snackBar = inject(MatSnackBar);
-    this.audioContext = inject(AudioService);
+    this.router = inject(Router);
   }
 
   private initTheme() {
@@ -65,6 +66,8 @@ export class ThemeService {
   }
 
   public changeTheme(theme: Themes) {
+    this.resetHomeUrl();
+
     if (this._actualTheme$.getValue().name === theme.name) {
       this._actualTheme$.next(this.defaultTheme);
       this.setActualThemeToLocalStorage(this.defaultTheme);
@@ -83,11 +86,10 @@ export class ThemeService {
       console.log('Type:', this._actualTheme$.getValue().type);
       return;
     } else {
-      
       this._actualTheme$.next(theme);
       this.setActualThemeToLocalStorage(theme);
       this.setTheme(theme.name.toLowerCase().replaceAll(' ', '-'));
-      this.audioContext.stopMusic()
+      this.audioContext.stopMusic();
     }
 
     this.snackBar.openFromComponent(CustomSnackbarComponent, {
@@ -104,6 +106,11 @@ export class ThemeService {
     //debug
     console.log('Actual Theme:', this._actualTheme$.getValue().name);
     console.log('Type:', this._actualTheme$.getValue().type);
+  }
+
+  private resetHomeUrl(): void {
+    if (!this.router.url.startsWith('/home')) return;
+    this.router.navigateByUrl('/home', { replaceUrl: true });
   }
 
   private setActualThemeToLocalStorage(theme: Themes) {
@@ -133,6 +140,8 @@ export class ThemeService {
         return Tw3HeaderComponent;
       case 'Minecraft':
         return MinecraftHeaderComponent;
+      case 'Undertale':
+        return UndertaleHeaderComponent;
       default:
         return HeaderComponent;
     }

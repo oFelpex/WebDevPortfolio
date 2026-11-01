@@ -49,6 +49,11 @@ export class AppComponent implements OnInit, OnDestroy {
   public isMobile: boolean = false;
   public isLoading: boolean = false;
   public selectedNavbarComponent!: Type<any>;
+  private readonly themesWithoutSoundboard = [
+    'Minecraft',
+    'The Witcher 3',
+    'Undertale',
+  ] as const;
 
   constructor() {
     this.router = inject(Router);
@@ -145,6 +150,14 @@ export class AppComponent implements OnInit, OnDestroy {
     this.themeSubscription.unsubscribe();
     this.responsiveSubscription.unsubscribe();
     this.loadingSubscription.unsubscribe();
+  }
+
+  public get showSoundboardButton(): boolean {
+    return (
+      this.actualTheme.type === 'Games' &&
+      !this.themesWithoutSoundboard.includes(this.actualTheme.name as any) &&
+      !this.isMobile
+    );
   }
 
   private getTitleByRoute(route: string): string {

@@ -6,11 +6,6 @@
 
 <router-outlet />
 
-@if (
-  actualTheme.type === "Games" &&
-  actualTheme.name !== "Minecraft" &&
-  actualTheme.name !== "The Witcher 3" &&
-  !isMobile
-) {
+@if (showSoundboardButton) {
   <app-show-soundboard-button></app-show-soundboard-button>
 }

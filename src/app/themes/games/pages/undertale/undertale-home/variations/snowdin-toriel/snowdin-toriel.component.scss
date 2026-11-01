@@ -1,0 +1,17 @@
+:host {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+img {
+  position: absolute;
+  left: 47%;
+  bottom: 58%;
+  width: 27.5%;
+  height: auto;
+  transform: translateX(-50%);
+  aspect-ratio: 694 / 768;
+  pointer-events: none;
+  image-rendering: pixelated;
+}

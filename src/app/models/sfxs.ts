@@ -32,3 +32,29 @@ export const TW3SFX: SFXs[] = [
     SFXURL: 'assets/sounds/games/the-witcher-3/sfx/mouseEnterOrLeave.ogg',
   },
 ];
+
+export const undertaleFinaleSFX: SFXs[] = [
+  {
+    SFXName: 'Undertale-finale-effect',
+    SFXURL: 'assets/sounds/games/undertale/sfx/undertale-finale-effect.ogg',
+  },
+  {
+    SFXName: 'Undertale-heal-effect',
+    SFXURL: 'assets/sounds/games/undertale/sfx/undertale-heal-effect.ogg',
+  },
+];
+export const undertaleSFX: SFXs[] = [
+  {
+    SFXName: 'Undertale-clickSound',
+    SFXURL: 'assets/sounds/games/undertale/sfx/button-click.ogg',
+  },
+  {
+    SFXName: 'Undertale-mouseEnterOrLeave',
+    SFXURL: 'assets/sounds/games/undertale/sfx/mouseEnterOrLeave.ogg',
+  },
+
+  {
+    SFXName: 'Undertale-enterConfig',
+    SFXURL: 'assets/sounds/games/undertale/sfx/undertale-enter-config.ogg',
+  },
+];

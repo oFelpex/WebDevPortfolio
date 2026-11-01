@@ -1,0 +1,99 @@
+<div id="undertale-themes-dialog">
+  <div class="undertale-themes-container">
+    <h2 class="undertale-title">
+      {{
+        "THEMES.GAMES.UNDERTALE.HOME.DIALOGS.THEMES.CHANGE-THEME" | translate
+      }}
+    </h2>
+    <span>{{
+      ("THEMES.GAMES.UNDERTALE.HOME.DIALOGS.THEMES.ACTUAL-TYPE" | translate) +
+        ("THEMES." + actualTheme.type.toUpperCase() + ".VIDEO-GAMES"
+          | translate)
+    }}</span>
+    <span>{{
+      ("THEMES.GAMES.UNDERTALE.HOME.DIALOGS.THEMES.THEME-NAME" | translate) +
+        actualTheme.name
+    }}</span>
+  </div>
+  <div class="undertale-themes-container">
+    @if (whatMenuItWillShow() === "typeSelection") {
+      <h2 class="undertale-title">
+        {{
+          "THEMES.GAMES.UNDERTALE.HOME.DIALOGS.THEMES.TYPE-SELECTION.TYPE-SELECT"
+            | translate
+        }}
+      </h2>
+      <div id="undertale-btn-container">
+        @for (type of typesOfThemes; track $index) {
+          <button
+            class="undertale-btn"
+            (mouseenter)="mouseEnterOrLeaveSFX()"
+            (click)="playClickSound(); changeWhatMenuItWillShow(type)"
+          >
+            <span
+              >* {{ "DIALOG-THEMES." + type.toUpperCase() | translate }}</span
+            >
+          </button>
+        }
+      </div>
+      <button
+        class="undertale-back-btn"
+        mat-dialog-close
+        (mouseenter)="mouseEnterOrLeaveSFX()"
+        (click)="playClickSound()"
+      >
+        <span>{{ "DIALOG-THEMES.CLOSE" | translate }}</span>
+      </button>
+    } @else if (whatMenuItWillShow() === "GamesSelection") {
+      <h2 class="undertale-title">
+        {{
+          "THEMES.GAMES.UNDERTALE.HOME.DIALOGS.THEMES.GAME-SELECTION.GAME-SELECT"
+            | translate
+        }}
+      </h2>
+      <div id="undertale-btn-container">
+        @for (game of gameOptions; track $index) {
+          <button
+            class="undertale-btn"
+            (mouseenter)="mouseEnterOrLeaveSFX()"
+            (click)="playClickSound(); changeTheme(game)"
+          >
+            <span>* {{ game.name }}</span>
+          </button>
+        }
+      </div>
+      <button
+        class="undertale-back-btn"
+        (mouseenter)="mouseEnterOrLeaveSFX()"
+        (click)="playClickSound(); changeWhatMenuItWillShow('type')"
+      >
+        <span>{{ "DIALOG-THEMES.BACK" | translate }}</span>
+      </button>
+    } @else if (whatMenuItWillShow() === "ColorsSelection") {
+      <h2 class="undertale-title">
+        {{
+          "THEMES.GAMES.UNDERTALE.HOME.DIALOGS.THEMES.COLOR-SELECTION.COLOR-SELECT"
+            | translate
+        }}
+      </h2>
+      <div id="undertale-btn-container">
+        @for (color of colorOptions; track $index) {
+          <button
+            class="undertale-btn"
+            (mouseenter)="mouseEnterOrLeaveSFX()"
+            (click)="playClickSound(); changeTheme(color)"
+          >
+            <span>* {{ "THEMES.Colors." + color.name | translate }}</span>
+          </button>
+        }
+      </div>
+      <button
+        class="undertale-back-btn"
+        (mouseenter)="mouseEnterOrLeaveSFX()"
+        (click)="playClickSound(); changeWhatMenuItWillShow('type')"
+      >
+        <span>{{ "DIALOG-THEMES.BACK" | translate }}</span>
+      </button>
+    }
+  </div>
+</div>

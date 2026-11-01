@@ -1,0 +1,59 @@
+@use "@angular/material" as mat;
+
+@use "./angular-colors-and-fonts/theme-undertale-colors" as
+  theme-undertale-colors;
+
+body.undertale-theme {
+  --background-color: #000;
+  color: #eaeaea;
+  font-family: "Undertale Menu", sans-serif;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: normal;
+  }
+  button {
+    &:hover {
+      color: #fafc13;
+      background-color: #18181883;
+
+      a {
+        color: #fafc13;
+        background-color: #18181883;
+      }
+    }
+  }
+  * {
+    mat-card {
+      background-color: #000;
+    }
+  }
+
+  .mat-mdc-dialog-container {
+    border: 3px solid #fff !important;
+  }
+
+  @include mat.theme(
+    (
+      color: (
+        primary: theme-undertale-colors.$primary-palette,
+        tertiary: theme-undertale-colors.$tertiary-palette,
+      ),
+      typography: "Undertale Menu",
+      density: 0,
+    )
+  );
+  @include mat.dialog-overrides(
+    (
+      container-color: #000000,
+      subhead-color: #fff,
+      container-shape: border-radius 0%,
+      subhead-font: "Undertale Menu",
+      container-max-width: none,
+    )
+  );
+}

@@ -184,6 +184,8 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
     this.routerSubscription.unsubscribe;
     this.particlesContainer?.destroy();
     this.cancelTntTimeout();
+
+    this.audioService.unloadCurrentPlaylist();
   }
 
   private startTntTimeout(): void {
@@ -198,7 +200,7 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
     clearTimeout(this.timeOut);
   }
 
-  async summonTnt(): Promise<void> {
+  public async summonTnt(): Promise<void> {
     this.cancelTntTimeout();
 
     let options: SingleOrMultiple<RecursivePartial<IOptions>> = this.configs;

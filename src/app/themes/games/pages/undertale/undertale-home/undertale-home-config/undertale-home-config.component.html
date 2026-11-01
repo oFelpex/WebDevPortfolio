@@ -1,0 +1,63 @@
+<section id="undertale-settings" @undertaleOpenFromCenter>
+  <div id="undertale-particles-container">
+    @for (p of particles; track p.id) {
+      <img
+        [src]="p.src"
+        [class]="'particle ' + p.animClass"
+        [style.left.%]="p.left"
+        [style.animation-duration.s]="p.duration"
+        [style.animation-delay.s]="p.delay"
+        [style.width.px]="p.size"
+        alt="Seasonal particle"
+      />
+    }
+  </div>
+  <h1 id="undertale-config-title">
+    {{ "THEMES.GAMES.UNDERTALE.HOME.CONFIG-MENU.SETTINGS" | translate }}
+  </h1>
+  <div id="undertale-config-options-container">
+    <button
+      class="btn"
+      (mouseenter)="mouseEnterOrLeaveSFX()"
+      (click)="onExit()"
+    >
+      <span>{{
+        "THEMES.GAMES.UNDERTALE.HOME.CONFIG-MENU.EXIT" | translate
+      }}</span>
+    </button>
+    <button
+      class="btn"
+      (mouseenter)="mouseEnterOrLeaveSFX()"
+      (click)="
+        playClickSound();
+        changeLanguage(actualLang === 'en-US' ? 'pt-BR' : 'en-US')
+      "
+    >
+      <span>{{
+        ("THEMES.GAMES.UNDERTALE.HOME.CONFIG-MENU.LANGUAGE" | translate) +
+          " " +
+          actualLang
+      }}</span>
+    </button>
+    <button
+      class="btn"
+      (mouseenter)="mouseEnterOrLeaveSFX()"
+      (click)="playClickSound(); openThemeDialog()"
+    >
+      <span>{{
+        "THEMES.GAMES.UNDERTALE.HOME.CONFIG-MENU.CHANGE-THEME" | translate
+      }}</span>
+    </button>
+  </div>
+  <div id="annoying-dog-and-his-message">
+    <div id="dog-message-container">
+      <span>{{ annoyingDog.phrasesFromTheDog | translate }}</span>
+    </div>
+    <img
+      [src]="annoyingDog.src"
+      [class]="'annoyingDog ' + annoyingDog.animClass"
+      [style.width.px]="annoyingDog.size"
+      alt="Seasonal annoying dog"
+    />
+  </div>
+</section>

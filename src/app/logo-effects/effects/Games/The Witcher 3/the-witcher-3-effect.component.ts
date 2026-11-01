@@ -184,6 +184,8 @@ export class TheWitcher3EffectComponent implements OnInit {
   ngOnDestroy(): void {
     this.particlesContainer?.destroy();
     this.clearIgniTimeOut();
+
+    this.audioService.unloadCurrentPlaylist();
   }
 
   private startIgniTimeOut(): void {

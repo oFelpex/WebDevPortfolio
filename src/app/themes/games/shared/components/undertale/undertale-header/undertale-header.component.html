@@ -1,0 +1,111 @@
+<header id="undertale-header">
+  <nav id="undertale-nav">
+    @if (!isMobile) {
+      <button
+        class="corner-btn"
+        mat-icon-button
+        [matTooltip]="'SOUNDBOARD.SOUNDBOARD-LOW' | translate"
+        (mouseenter)="mouseEnterOrLeaveSFX()"
+        (click)="goToHomeMenu('soundboard')"
+      >
+        <mat-icon>music_note</mat-icon>
+      </button>
+      <div id="undertale-middle-action-container">
+        <a [routerLink]="['/home']" (mouseenter)="mouseEnterOrLeaveSFX()"
+          ><button class="middle-action-btn" mat-button>
+            {{ "ROUTER.HOME" | translate }}
+          </button></a
+        >
+
+        <a [routerLink]="['/about-me']" (mouseenter)="mouseEnterOrLeaveSFX()"
+          ><button class="middle-action-btn" mat-button>
+            {{ "ROUTER.ABOUT-ME" | translate }}
+          </button></a
+        >
+
+        <app-logo-effects logoName="logo-undertale"></app-logo-effects>
+
+        <a [routerLink]="['/projects']" (mouseenter)="mouseEnterOrLeaveSFX()"
+          ><button class="middle-action-btn" mat-button>
+            {{ "ROUTER.PROJECTS" | translate }}
+          </button></a
+        >
+
+        <a [routerLink]="['/contact-me']" (mouseenter)="mouseEnterOrLeaveSFX()"
+          ><button class="middle-action-btn" mat-button>
+            {{ "ROUTER.CONTACT-ME" | translate }}
+          </button></a
+        >
+      </div>
+      <button
+        class="corner-btn"
+        mat-icon-button
+        [matTooltip]="'THEMES.GAMES.UNDERTALE.TOOLTIP.CONFIG' | translate"
+        (mouseenter)="mouseEnterOrLeaveSFX()"
+        (click)="goToHomeMenu('configMenu')"
+      >
+        <mat-icon>settings</mat-icon>
+      </button>
+    } @else {
+      <button
+        class="corner-btn"
+        mat-icon-button
+        [matTooltip]="
+          'THEMES.GAMES.UNDERTALE.TOOLTIP.MOBILE-OPEN-ROUTES-MENU' | translate
+        "
+        [matMenuTriggerFor]="routesMenu"
+        (mouseenter)="mouseEnterOrLeaveSFX()"
+        (click)="playClickSound()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #routesMenu="matMenu">
+        <a [routerLink]="['/home']">
+          <button mat-menu-item (click)="playClickSound()">
+            {{ "ROUTER.HOME" | translate }}
+          </button>
+        </a>
+        <a [routerLink]="['/about-me']">
+          <button mat-menu-item (click)="playClickSound()">
+            {{ "ROUTER.ABOUT-ME" | translate }}
+          </button>
+        </a>
+        <a [routerLink]="['/projects']">
+          <button mat-menu-item (click)="playClickSound()">
+            {{ "ROUTER.PROJECTS" | translate }}
+          </button>
+        </a>
+        <a [routerLink]="['/contact-me']">
+          <button mat-menu-item (click)="playClickSound()">
+            {{ "ROUTER.CONTACT-ME" | translate }}
+          </button>
+        </a>
+      </mat-menu>
+
+      <app-logo-effects logoName="logo-undertale"></app-logo-effects>
+
+      <button
+        class="corner-btn"
+        mat-icon-button
+        [matTooltip]="
+          'THEMES.GAMES.UNDERTALE.TOOLTIP.MOBILE-OPEN-OTHER-MENU' | translate
+        "
+        [matMenuTriggerFor]="optionsMenu"
+        (mouseenter)="mouseEnterOrLeaveSFX()"
+        (click)="playClickSound()"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #optionsMenu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="goToHomeMenu('soundboard')">
+          <mat-icon>music_note</mat-icon>
+          <span>Soundboard</span>
+        </button>
+        <button mat-menu-item (click)="goToHomeMenu('configMenu')">
+          <mat-icon>settings</mat-icon>
+          <span>Config</span>
+        </button>
+      </mat-menu>
+    }
+  </nav>
+</header>

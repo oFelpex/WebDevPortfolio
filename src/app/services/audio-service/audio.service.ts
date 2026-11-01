@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { computed, inject, Injectable, NgZone, signal } from '@angular/core';
 import { Musics } from '../../models/musics';
 import { BehaviorSubject } from 'rxjs';
 
@@ -6,6 +6,8 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class AudioService {
+  private ngZone = inject(NgZone);
+
   private audioContext: AudioContext;
   private sounds: { [key: string]: AudioBuffer } = {};
   private musicGainNode: GainNode;
@@ -13,20 +15,41 @@ export class AudioService {
   private activeSfx: Map<string, AudioBufferSourceNode[]> = new Map();
 
   private currentMusicSource: AudioBufferSourceNode | null = null;
-  private currentMusicName: string | null = null;
-  private currentMusicComposer: string | undefined;
 
   private musicStartTime: number = 0;
   private musicDuration: number = 0;
-
   private pauseTime: number = 0;
-  private isPaused: boolean = false;
 
   private playlist!: Musics[];
   private currentIndex: number = 0;
 
   public musicVolume: number = 0.5;
   public sfxVolume: number = 0.5;
+
+  private _currentMusic = signal<Musics | null>(null);
+  private _isPaused = signal(false);
+  private _isCurrentTrackFromPlaylist = signal(false);
+  private _progress = signal(0);
+
+  public readonly currentMusic = this._currentMusic.asReadonly();
+  public readonly currentMusicName = computed(
+    () => this._currentMusic()?.musicName ?? null,
+  );
+  public readonly currentMusicComposer = computed(
+    () => this._currentMusic()?.musicComposer,
+  );
+
+  public readonly progress = this._progress.asReadonly();
+  public readonly isPaused = this._isPaused.asReadonly();
+
+  public readonly isPlaying = computed(
+    () => this._currentMusic() !== null && !this._isPaused(),
+  );
+  public readonly isPlayingFromThePlaylist = computed(
+    () => this._isCurrentTrackFromPlaylist() && this._currentMusic() !== null,
+  );
+
+  private progressTimer: ReturnType<typeof setInterval> | null = null;
 
   private showSoundboardSubject = new BehaviorSubject<boolean>(false);
   public showSoundboard$ = this.showSoundboardSubject.asObservable();
@@ -43,6 +66,23 @@ export class AudioService {
     this.sfxGainNode.connect(this.audioContext.destination);
 
     this.initVolumes();
+  }
+
+  private startProgressLoop(): void {
+    this.stopProgressLoop();
+
+    this.ngZone.runOutsideAngular(() => {
+      this.progressTimer = setInterval(() => {
+        this._progress.set(this.getMusicProgress());
+      }, 100);
+    });
+  }
+
+  private stopProgressLoop(): void {
+    if (this.progressTimer !== null) {
+      clearInterval(this.progressTimer);
+      this.progressTimer = null;
+    }
   }
 
   public toggleSoundboard(): void {
@@ -89,18 +129,25 @@ export class AudioService {
       await this.preloadSound(music.musicName, music.musicURL);
     }
   }
-  private unloadCurrentPlaylist(): void {
-    this.stopSound();
 
-    this.playlist = undefined as any;
-    this.currentIndex = 0;
+  public unloadCurrentPlaylist(): void {
+    this.stopSound();
 
     if (this.playlist) {
       for (const music of this.playlist) {
         delete this.sounds[music.musicName];
       }
     }
+
+    this.playlist = undefined as any;
+    this.currentIndex = 0;
   }
+
+  public unloadOneSound(music: Musics): void {
+    this.stopSound();
+    delete this.sounds[music.musicName];
+  }
+
   public playFromIndex(index: number): void {
     if (!this.playlist || index < 0 || index >= this.playlist.length) return;
 
@@ -123,14 +170,16 @@ export class AudioService {
     source.start(0, offset);
 
     this.currentMusicSource = source;
-    this.currentMusicName = track.musicName;
-    this.currentMusicComposer = track.musicComposer;
     this.musicDuration = buffer.duration;
     this.musicStartTime = this.audioContext.currentTime - offset;
-    this.isPaused = false;
+
+    this._currentMusic.set(track);
+    this._isCurrentTrackFromPlaylist.set(true);
+    this._isPaused.set(false);
+    this.startProgressLoop();
 
     source.onended = () => {
-      if (!this.isPaused && this.currentMusicSource === source) {
+      if (!this._isPaused() && this.currentMusicSource === source) {
         this.nextMusic();
       }
     };
@@ -139,17 +188,21 @@ export class AudioService {
   public pauseMusic() {
     if (this.currentMusicSource) {
       this.pauseTime = this.audioContext.currentTime - this.musicStartTime;
+      this._isPaused.set(true);
       this.currentMusicSource.stop();
-      this.isPaused = true;
+      this.stopProgressLoop();
+      this._progress.set(this.getMusicProgress());
     }
   }
 
   public resumeMusic() {
-    if (this.isPaused) {
+    if (this._isPaused() && this._isCurrentTrackFromPlaylist()) {
       this.playCurrentTrack(true);
     }
   }
+
   public stopMusic() {
+    this.stopProgressLoop();
     if (this.currentMusicSource) {
       this.currentMusicSource.onended = null;
       this.currentMusicSource.stop();
@@ -160,11 +213,13 @@ export class AudioService {
 
   public stopSound() {
     this.stopMusic();
-    this.currentMusicName = null;
-    this.currentMusicComposer = undefined;
     this.musicDuration = 0;
     this.pauseTime = 0;
-    this.isPaused = false;
+
+    this._currentMusic.set(null);
+    this._isPaused.set(false);
+    this._isCurrentTrackFromPlaylist.set(false);
+    this._progress.set(0);
   }
 
   public nextMusic() {
@@ -202,21 +257,23 @@ export class AudioService {
     audioName: string,
     type: 'music' | 'sfx' = 'sfx',
     composer?: string | undefined,
-  ): void {
+  ): AudioBufferSourceNode | null {
     const audioBuffer = this.sounds[audioName];
+    if (!audioBuffer) return null;
 
-    if (audioBuffer) {
-      const source = this.audioContext.createBufferSource();
-      source.buffer = audioBuffer;
+    const source = this.audioContext.createBufferSource();
+    source.buffer = audioBuffer;
 
-      const destination =
-        type === 'music' ? this.musicGainNode : this.sfxGainNode;
-      source.connect(destination);
-      source.start(0);
-    }
+    const destination =
+      type === 'music' ? this.musicGainNode : this.sfxGainNode;
+    source.connect(destination);
+    source.start(0);
+
+    // Retorna o som para quem precisar interrompê-lo antes do fim
+    return source;
   }
 
-  public playSingleTrack(music: Musics): void {
+  public playSingleTrack(music: Musics, loop: boolean = false): void {
     this.stopMusic();
 
     const buffer = this.sounds[music.musicName];
@@ -224,19 +281,30 @@ export class AudioService {
 
     const source = this.audioContext.createBufferSource();
     source.buffer = buffer;
+    source.loop = loop;
+
     source.connect(this.musicGainNode);
     source.start(0);
 
     this.currentMusicSource = source;
-    this.currentMusicName = music.musicName;
-    this.currentMusicComposer = music.musicComposer;
     this.musicDuration = buffer.duration;
     this.musicStartTime = this.audioContext.currentTime;
-    this.isPaused = false;
+
+    this._currentMusic.set(music);
+    this._isCurrentTrackFromPlaylist.set(false);
+    this._isPaused.set(false);
+    this.startProgressLoop();
 
     source.onended = () => {
-      if (!this.isPaused && this.currentMusicSource === source) {
+      if (
+        !this._isPaused() &&
+        this.currentMusicSource === source &&
+        !source.loop
+      ) {
         this.currentMusicSource = null;
+        this.stopProgressLoop();
+        this._currentMusic.set(null);
+        this._progress.set(0);
       }
     };
   }
@@ -252,26 +320,29 @@ export class AudioService {
   public getMusicProgress(): number {
     if (!this.currentMusicSource || this.musicDuration === 0) return 0;
 
-    const elapsed = this.isPaused
+    const elapsed = this._isPaused()
       ? this.pauseTime
       : this.audioContext.currentTime - this.musicStartTime;
+
+    if (this.currentMusicSource.loop) {
+      return (elapsed % this.musicDuration) / this.musicDuration;
+    }
 
     return Math.min(elapsed / this.musicDuration, 1);
   }
 
+  // ---------- old API (compatibility) ----------
   public hasCurrentTrack(): boolean {
-    return this.currentMusicName !== null;
+    return this._currentMusic() !== null;
   }
   public getCurrentMusic(): Musics | null {
-    if (!this.playlist || !this.currentMusicName) return null;
-    return this.playlist[this.currentIndex] ?? null;
+    return this._currentMusic();
   }
   public getCurrentMusicName(): string | null {
-    return this.currentMusicName;
+    return this.currentMusicName();
   }
-
   public getCurrentMusicComposer(): string | undefined {
-    return this.currentMusicComposer;
+    return this.currentMusicComposer();
   }
 
   public getMusicDuration(): number {
@@ -279,12 +350,8 @@ export class AudioService {
   }
 
   public getElapsedTime(): number {
-    return this.isPaused
+    return this._isPaused()
       ? this.pauseTime
       : this.audioContext.currentTime - this.musicStartTime;
-  }
-
-  public isPlaying(): boolean {
-    return !this.isPaused && this.currentMusicSource !== null;
   }
 }
