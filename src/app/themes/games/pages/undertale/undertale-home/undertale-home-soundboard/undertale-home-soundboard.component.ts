@@ -40,6 +40,7 @@ export class UndertaleHomeSoundboardComponent implements OnInit, OnDestroy {
   private audioService: AudioService;
   private currentMusicIndex = signal(0);
   private soundboardMusic: Musics = undertaleSoundboardMenuOnly;
+  private isDestroyed = false;
 
   public allUndertaleMusics: Musics[] = undertaleMusics;
   public exit = output<void>();
@@ -65,9 +66,12 @@ export class UndertaleHomeSoundboardComponent implements OnInit, OnDestroy {
       this.soundboardMusic.musicURL,
     );
 
+    if (this.isDestroyed || this.isPlayingSomeMusicFromThePlaylist) return;
+
     this.audioService.playSingleTrack(this.soundboardMusic, true);
   }
   ngOnDestroy(): void {
+    this.isDestroyed = true;
     this.audioService.unloadOneSound(this.soundboardMusic);
 
     this.audioService.unloadCurrentPlaylist();

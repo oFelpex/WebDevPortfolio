@@ -33,6 +33,7 @@ export class UndertaleHomeNavigationComponent implements OnInit, OnDestroy {
   private undertaleBirdTheme: Musics = undertaleNavigationBirdTheme;
   private router: Router;
   private timeOutForTheBirdMusic: any;
+  private isDestroyed = false;
   private LOCATIONS: readonly UndertaleLocations[] = [
     'Snowdin',
     'Waterfall',
@@ -65,12 +66,18 @@ export class UndertaleHomeNavigationComponent implements OnInit, OnDestroy {
       this.undertaleBirdTheme.musicURL,
     );
 
+    if (this.isDestroyed || this.isFlying()) return;
+
     this.playLocationMusic();
   }
   ngOnDestroy(): void {
+    this.isDestroyed = true;
+    clearTimeout(this.timeOutForTheBirdMusic);
+
     this.undertaleNavigationMusics.map((music) => {
       this.audioService.unloadOneSound(music);
     });
+    this.audioService.unloadOneSound(this.undertaleBirdTheme);
   }
 
   public playClickSound(): void {

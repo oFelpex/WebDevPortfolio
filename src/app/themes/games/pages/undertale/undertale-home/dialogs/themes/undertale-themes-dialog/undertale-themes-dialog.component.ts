@@ -1,4 +1,11 @@
-import { Component, inject, signal, Type } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+  signal,
+  Type,
+} from '@angular/core';
 import { ThemeService } from '../../../../../../../../services/theme-service/theme.service';
 import { Subscription } from 'rxjs';
 import { Themes } from '../../../../../../../../models/themes';
@@ -17,7 +24,7 @@ type themesSelectionMenu =
   templateUrl: './undertale-themes-dialog.component.html',
   styleUrl: './undertale-themes-dialog.component.scss',
 })
-export class UndertaleThemesDialogComponent {
+export class UndertaleThemesDialogComponent implements OnInit, OnDestroy {
   private themeServiceSubscribe!: Subscription;
   private themeService: ThemeService;
   private audioService: AudioService;

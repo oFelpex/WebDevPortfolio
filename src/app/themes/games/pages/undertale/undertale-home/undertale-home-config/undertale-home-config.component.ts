@@ -34,6 +34,7 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
   private audioService: AudioService;
   private musicsForConfigMenu = undertaleMusicsConfigMenuOnly;
   private timeoutIdToPlayConfigMusics: number | undefined;
+  private isDestroyed = false;
   private dialog: MatDialog;
   public languageService: LanguageService;
   public currentSeason: number = 1;
@@ -60,6 +61,8 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
       ),
     );
 
+    if (this.isDestroyed) return;
+
     this.timeoutIdToPlayConfigMusics = setTimeout(() => {
       const season = this.currentSeason;
       const musicIndexMap: Record<number, number> = {
@@ -78,6 +81,7 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.isDestroyed = true;
     this.musicsForConfigMenu.forEach((music) =>
       this.audioService.unloadOneSound(music),
     );
@@ -173,7 +177,7 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
           break;
 
         case 1: // FALL - 3 sprites
-          const leafIndex = i % 3; // 0, 1 or 2
+          const leafIndex: number = i % 3; // 0, 1 or 2
           spriteSrc = `${baseParticleOrDogPath}undertale-leaf-${leafIndex}.webp`;
           animClass =
             Math.random() > 0.5 ? 'anim-fall-right' : 'anim-fall-left';
@@ -202,7 +206,6 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
             size: size,
             animClass: animClass,
           });
-          //PRECISA SER REVISTO URGENTE
           break;
       }
 
