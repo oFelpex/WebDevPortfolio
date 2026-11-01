@@ -12,6 +12,7 @@
   height: auto;
   transform: translateX(-50%);
   aspect-ratio: 712 / 768;
+  pointer-events: none;
   image-rendering: pixelated;
 }
 
@@ -27,12 +28,14 @@
     width: 14%;
     height: auto;
     aspect-ratio: 457 / 768;
+    pointer-events: none;
     image-rendering: pixelated;
   }
   #undertale-sans {
     width: 14%;
     height: auto;
     aspect-ratio: 589 / 768;
+    pointer-events: none;
     image-rendering: pixelated;
   }
 

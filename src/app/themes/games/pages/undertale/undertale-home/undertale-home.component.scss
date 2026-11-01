@@ -153,6 +153,7 @@
       width: 100%;
       height: auto;
       aspect-ratio: 1080 / 237;
+      pointer-events: none;
       image-rendering: pixelated;
     }
 
@@ -166,6 +167,7 @@
       font-size: 1rem;
       color: #808080;
       margin-top: 3vh;
+      pointer-events: none;
     }
   }
 }

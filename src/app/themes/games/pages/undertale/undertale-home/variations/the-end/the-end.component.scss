@@ -20,6 +20,7 @@
     margin-right: 8px;
     transform: translate(0%, -10%);
     aspect-ratio: 396 / 768;
+    pointer-events: none;
     image-rendering: pixelated;
 
     @media (max-width: 1020px) {
@@ -32,6 +33,7 @@
     width: 26%;
     height: fit-content;
     aspect-ratio: 576 / 768;
+    pointer-events: none;
     image-rendering: pixelated;
     z-index: 7;
 
@@ -47,6 +49,7 @@
     transform: translate(0%, -3%);
     height: fit-content;
     aspect-ratio: 471 / 768;
+    pointer-events: none;
     image-rendering: pixelated;
     z-index: 9;
 
@@ -60,6 +63,7 @@
     height: fit-content;
     transform: translate(0%, -3%);
     aspect-ratio: 356 / 768;
+    pointer-events: none;
     image-rendering: pixelated;
   }
   #undertale-papyrus {
@@ -69,6 +73,7 @@
     height: fit-content;
     transform: translate(0%, -4%);
     aspect-ratio: 457 / 768;
+    pointer-events: none;
     image-rendering: pixelated;
     z-index: 8;
   }
@@ -77,6 +82,7 @@
     width: 17%;
     height: fit-content;
     aspect-ratio: 369 / 768;
+    pointer-events: none;
     image-rendering: pixelated;
     z-index: 8;
   }
@@ -85,6 +91,7 @@
     width: 16%;
     height: fit-content;
     aspect-ratio: 589 / 768;
+    pointer-events: none;
     image-rendering: pixelated;
     z-index: 8;
   }
@@ -93,6 +100,7 @@
     width: 37%;
     height: fit-content;
     aspect-ratio: 692 / 768;
+    pointer-events: none;
     image-rendering: pixelated;
     z-index: 6;
 
@@ -107,6 +115,7 @@
     margin-left: 30px;
     transform: translate(0%, -8%);
     aspect-ratio: 597 / 768;
+    pointer-events: none;
     image-rendering: pixelated;
     z-index: 8;
 

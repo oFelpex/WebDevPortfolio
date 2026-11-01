@@ -12,6 +12,7 @@
   height: auto;
   transform: translateX(-50%);
   aspect-ratio: 712 / 768;
+  pointer-events: none;
   image-rendering: pixelated;
 }
 
@@ -22,6 +23,7 @@
   width: 14%;
   height: auto;
   aspect-ratio: 589 / 768;
+  pointer-events: none;
   image-rendering: pixelated;
 
   @media (max-width: 580px) {
@@ -35,6 +37,7 @@
   left: 50%;
   transform: translateX(105%);
   bottom: 60%;
+  pointer-events: none;
   width: fit-content;
   height: auto;
 
