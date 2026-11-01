@@ -252,12 +252,16 @@
 
 @media (max-width: 495px) {
   #undertale-settings {
+    #undertale-config-title {
+      font-size: 3rem;
+    }
     #undertale-config-options-container {
       align-self: center;
       transform: translateX(0px);
     }
 
     #annoying-dog-and-his-message {
+      width: 100px;
       left: 50%;
       transform: translateX(-25%);
     }

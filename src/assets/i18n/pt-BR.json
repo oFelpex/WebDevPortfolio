@@ -186,7 +186,19 @@
               }
             }
           },
-          "CONFIG-MENU": {},
+          "CONFIG-MENU": {
+            "SETTINGS": "CONFIGURAÇÕES",
+            "EXIT": "SAIR",
+            "LANGUAGE": "IDIOMA",
+            "CHANGE-THEME": "MUDAR TEMA",
+
+            "PHRASES": {
+              "WINTER": "pule a fogueira, deixe as preocupações queimarem",
+              "FALL": "as folhas caem, mas você continua de pé",
+              "SPRING": "reta final do ano, aguente firme!",
+              "SUMMER": "tente resistir aos raios de sol que dão vida"
+            }
+          },
           "NAVIGATION-MENU": {},
           "SOUNDBOARD-MENU": {}
         }

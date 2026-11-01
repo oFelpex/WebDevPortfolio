@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { LanguageService } from '../../../../../../services/language-service/language.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UndertaleDialogsComponent } from '../dialogs/undertale-dialogs.component';
+import { TranslateModule } from '@ngx-translate/core';
 interface Particle {
   id: number;
   src: string;
@@ -24,14 +25,14 @@ interface annoyingDog {
 }
 @Component({
   selector: 'app-undertale-home-config',
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './undertale-home-config.component.html',
   styleUrl: './undertale-home-config.component.scss',
   animations: [undertaleOpenFromCenter],
 })
 export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
   private audioService: AudioService;
-  private musics = undertaleMusicsConfigMenuOnly;
+  private musicsForConfigMenu = undertaleMusicsConfigMenuOnly;
   private timeoutIdToPlayConfigMusics: number | undefined;
   private dialog: MatDialog;
   public languageService: LanguageService;
@@ -54,7 +55,7 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
     this.setupSeasonParticlesAndDog(90);
 
     await Promise.all(
-      this.musics.map((music) =>
+      this.musicsForConfigMenu.map((music) =>
         this.audioService.preloadSound(music.musicName, music.musicURL),
       ),
     );
@@ -69,12 +70,17 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
       };
       const musicIndex = musicIndexMap[season] ?? 1;
 
-      this.audioService.playSingleTrack(this.musics[musicIndex], true);
+      this.audioService.playSingleTrack(
+        this.musicsForConfigMenu[musicIndex],
+        true,
+      );
     }, 900);
   }
 
   ngOnDestroy(): void {
-    this.musics.forEach((music) => this.audioService.unloadOneSound(music));
+    this.musicsForConfigMenu.forEach((music) =>
+      this.audioService.unloadOneSound(music),
+    );
     clearTimeout(this.timeoutIdToPlayConfigMusics);
   }
 
@@ -219,7 +225,8 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
           id: 'winter',
           src: `${baseParticleOrDogPath}undertale-dog-winter.webp`,
           size: 128,
-          phrasesFromTheDog: 'cold outside but stay warm inside of you',
+          phrasesFromTheDog:
+            'THEMES.GAMES.UNDERTALE.HOME.CONFIG-MENU.PHRASES.WINTER',
         };
         break;
       case 1:
@@ -227,7 +234,8 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
           id: 'fall',
           src: `${baseParticleOrDogPath}undertale-dog-fall.webp`,
           size: 128,
-          phrasesFromTheDog: 'sweep a leaf, sweep away a troubles',
+          phrasesFromTheDog:
+            'THEMES.GAMES.UNDERTALE.HOME.CONFIG-MENU.PHRASES.FALL',
         };
         break;
       case 2:
@@ -235,7 +243,8 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
           id: 'spring',
           src: `${baseParticleOrDogPath}undertale-dog-spring.gif`,
           size: 128,
-          phrasesFromTheDog: 'spring time back to school',
+          phrasesFromTheDog:
+            'THEMES.GAMES.UNDERTALE.HOME.CONFIG-MENU.PHRASES.SPRING',
         };
         break;
       case 3:
@@ -243,7 +252,8 @@ export class UndertaleHomeConfigComponent implements OnInit, OnDestroy {
           id: 'summer',
           src: `${baseParticleOrDogPath}undertale-dog-summer.gif`,
           size: 128,
-          phrasesFromTheDog: `try to withstand the sun's life-giving rays`,
+          phrasesFromTheDog:
+            'THEMES.GAMES.UNDERTALE.HOME.CONFIG-MENU.PHRASES.SUMMER',
           animClass: 'anim-dog-summer',
         };
         break;

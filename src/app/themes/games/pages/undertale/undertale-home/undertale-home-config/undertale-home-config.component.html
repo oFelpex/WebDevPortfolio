@@ -12,14 +12,18 @@
       />
     }
   </div>
-  <h1 id="undertale-config-title">SETTINGS</h1>
+  <h1 id="undertale-config-title">
+    {{ "THEMES.GAMES.UNDERTALE.HOME.CONFIG-MENU.SETTINGS" | translate }}
+  </h1>
   <div id="undertale-config-options-container">
     <button
       class="btn"
       (mouseenter)="mouseEnterOrLeaveSFX()"
       (click)="onExit()"
     >
-      <span>EXIT</span>
+      <span>{{
+        "THEMES.GAMES.UNDERTALE.HOME.CONFIG-MENU.EXIT" | translate
+      }}</span>
     </button>
     <button
       class="btn"
@@ -29,19 +33,25 @@
         changeLanguage(actualLang === 'en-US' ? 'pt-BR' : 'en-US')
       "
     >
-      <span>LANGUAGE {{ actualLang }}</span>
+      <span>{{
+        ("THEMES.GAMES.UNDERTALE.HOME.CONFIG-MENU.LANGUAGE" | translate) +
+          " " +
+          actualLang
+      }}</span>
     </button>
     <button
       class="btn"
       (mouseenter)="mouseEnterOrLeaveSFX()"
       (click)="playClickSound(); openThemeDialog()"
     >
-      <span>CHANGE THEME</span>
+      <span>{{
+        "THEMES.GAMES.UNDERTALE.HOME.CONFIG-MENU.CHANGE-THEME" | translate
+      }}</span>
     </button>
   </div>
   <div id="annoying-dog-and-his-message">
     <div id="dog-message-container">
-      <span>{{ annoyingDog.phrasesFromTheDog }}</span>
+      <span>{{ annoyingDog.phrasesFromTheDog | translate }}</span>
     </div>
     <img
       [src]="annoyingDog.src"

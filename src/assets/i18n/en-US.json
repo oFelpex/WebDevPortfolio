@@ -186,7 +186,19 @@
               }
             }
           },
-          "CONFIG-MENU": {},
+          "CONFIG-MENU": {
+            "SETTINGS": "SETTINGS",
+            "EXIT": "EXIT",
+            "LANGUAGE": "LANGUAGE",
+            "CHANGE-THEME": "CHANGE THEME",
+
+            "PHRASES": {
+              "WINTER": "jump the bonfire, let your worries burn",
+              "FALL": "leaves fall, but you keep standing",
+              "SPRING": "final stretch of the year, hang in there!",
+              "SUMMER": "try to withstand the sun's life-giving rays"
+            }
+          },
           "NAVIGATION-MENU": {},
           "SOUNDBOARD-MENU": {}
         }
