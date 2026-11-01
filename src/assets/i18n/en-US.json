@@ -199,7 +199,23 @@
               "SUMMER": "try to withstand the sun's life-giving rays"
             }
           },
-          "NAVIGATION-MENU": {},
+          "NAVIGATION-MENU": {
+            "FLY": "Fly to",
+            "GO": "Go!",
+
+            "ALT": {
+              "FRISK": "A Frisk sprite looking to the right",
+              "BIRD-IDLE": "A sprite of the bird that carries you over a disproportionately small gap in idle animation",
+              "BIRD-FLYING": "A sprite of the bird that carries you over a disproportionately small gap in flight animation",
+
+              "BACKGROUNDS": {
+                "HOME": "Snowdin area background",
+                "PROJECTS": "Waterfall area background",
+                "ABOUT-ME": "Hotland area background",
+                "CONTACT-ME": "Core area background"
+              }
+            }
+          },
           "SOUNDBOARD-MENU": {}
         }
       },

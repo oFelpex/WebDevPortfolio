@@ -17,11 +17,12 @@ import {
 import { fadeIn_fadeOut_longer } from '../../../../../../shared/animations/fade-animations';
 import { Router } from '@angular/router';
 import { NavigationPages } from '../../../../../../models/navigationPages';
+import { TranslateModule } from '@ngx-translate/core';
 
 type UndertaleLocations = 'Snowdin' | 'Waterfall' | 'The Core' | 'Hotland';
 @Component({
   selector: 'app-undertale-home-navigation',
-  imports: [MatButtonModule, MatIconModule],
+  imports: [MatButtonModule, MatIconModule, TranslateModule],
   templateUrl: './undertale-home-navigation.component.html',
   styleUrl: './undertale-home-navigation.component.scss',
   animations: [fadeIn_fadeOut_longer],

@@ -199,7 +199,23 @@
               "SUMMER": "tente resistir aos raios de sol que dão vida"
             }
           },
-          "NAVIGATION-MENU": {},
+          "NAVIGATION-MENU": {
+            "FLY": "Voar para",
+            "GO": "Ir!",
+
+            "ALT": {
+              "FRISK": "Um sprite de Frisk olhando para a direita",
+              "BIRD-IDLE": "Um sprite do pássaro que te transporta por uma lacuna desproporcionalmente pequena, em sua animação de parado",
+              "BIRD-FLYING": "Um sprite do pássaro que te transporta por uma lacuna desproporcionalmente pequena, com uma animação de voo",
+
+              "BACKGROUNDS": {
+                "HOME": "Plano de fundo da área de Snowdin",
+                "PROJECTS": "Plano de fundo da área de Waterfall",
+                "ABOUT-ME": "Plano de fundo da área de Hotland",
+                "CONTACT-ME": "Plano de fundo da área do Core"
+              }
+            }
+          },
           "SOUNDBOARD-MENU": {}
         }
       },
