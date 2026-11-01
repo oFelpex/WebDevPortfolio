@@ -216,7 +216,25 @@
               }
             }
           },
-          "SOUNDBOARD-MENU": {}
+          "SOUNDBOARD-MENU": {
+            "CHOOSE-MUSIC": "Choose a music",
+            "SELECT-MUSIC": "Select a music",
+            "BACK": "Back",
+
+            "TOOLTIPS": {
+              "PREV-MENU-BTN": "Scroll up menu",
+              "NEXT-MENU-BTN": "Scroll down menu",
+              "SKIP-PREV-BTN": "Skip to previous music",
+              "SKIP-NEXT-BTN": "Skip to next music",
+              "PAUSE-PLAY-BTN": "Pause or play music"
+            },
+            "ALT": {
+              "DELTARUNE-MUSIC-SHOP": "Deltarune music shop background",
+              "DELTARUNE-CAPN": "Deltarune character Cap'n in his idle animation",
+              "DELTARUNE-SWEET": "Deltarune character Sweet in his idle animation",
+              "DELTARUNE-K_K": "Deltarune character K_K in his idle animation"
+            }
+          }
         }
       },
 

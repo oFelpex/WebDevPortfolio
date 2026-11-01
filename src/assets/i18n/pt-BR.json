@@ -216,7 +216,25 @@
               }
             }
           },
-          "SOUNDBOARD-MENU": {}
+          "SOUNDBOARD-MENU": {
+            "CHOOSE-MUSIC": "Escolha uma música",
+            "SELECT-MUSIC": "Selecione uma música",
+            "BACK": "Voltar",
+
+            "TOOLTIPS": {
+              "PREV-MENU-BTN": "Subir menu",
+              "NEXT-MENU-BTN": "Descer menu",
+              "SKIP-PREV-BTN": "Ir para a música anterior",
+              "SKIP-NEXT-BTN": "Pular para a próxima música",
+              "PAUSE-PLAY-BTN": "Pausar ou reproduzir música"
+            },
+            "ALT": {
+              "DELTARUNE-MUSIC-SHOP": "Fundo da loja de música de Deltarune",
+              "DELTARUNE-CAPN": "Personagem Cap'n de Deltarune, em sua animação de parado",
+              "DELTARUNE-SWEET": "Personagem Sweet de Deltarune, em sua animação de parado",
+              "DELTARUNE-K_K": " Personagem K_K de Deltarune, em sua animação de parado"
+            }
+          }
         }
       },
 

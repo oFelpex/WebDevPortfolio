@@ -2,28 +2,44 @@
   <img
     id="undertale-soundboard-bg"
     src="../../../../../../../assets/themes/games/undertale/sprites/others/soundboard/undertale-soundboard-bg.gif"
-    alt="Deltarune music background"
+    [alt]="
+      'THEMES.GAMES.UNDERTALE.HOME.SOUNDBOARD-MENU.ALT.DELTARUNE-MUSIC-SHOP'
+        | translate
+    "
   />
   <div id="undertale-soundboard-npcs-container">
     <img
       class="undertale-soundboard-npc-img"
       src="../../../../../../../assets/themes/games/undertale/sprites/others/soundboard/undertale-capn.gif"
-      alt="Deltarune Cap'n gif"
+      [alt]="
+        'THEMES.GAMES.UNDERTALE.HOME.SOUNDBOARD-MENU.ALT.DELTARUNE-CAPN'
+          | translate
+      "
     />
     <img
       class="undertale-soundboard-npc-img"
       src="../../../../../../../assets/themes/games/undertale/sprites/others/soundboard/undertale-sweet.gif"
-      alt="Deltarune Sweet gif"
+      [alt]="
+        'THEMES.GAMES.UNDERTALE.HOME.SOUNDBOARD-MENU.ALT.DELTARUNE-SWEET'
+          | translate
+      "
     />
     <img
       class="undertale-soundboard-npc-img"
       src="../../../../../../../assets/themes/games/undertale/sprites/others/soundboard/undertale-k_k.gif"
-      alt="Deltarune K_K gif"
+      [alt]="
+        'THEMES.GAMES.UNDERTALE.HOME.SOUNDBOARD-MENU.ALT.DELTARUNE-K_K'
+          | translate
+      "
     />
   </div>
   <div id="undertale-soundboard-menu-container">
     <div id="undertale-soundboard-menu-selecting-music">
-      <h1 class="undertale-soundboard-title">Choose a music</h1>
+      <h1 class="undertale-soundboard-title">
+        {{
+          "THEMES.GAMES.UNDERTALE.HOME.SOUNDBOARD-MENU.CHOOSE-MUSIC" | translate
+        }}
+      </h1>
 
       <div id="undertale-soundboard-menu-music-list-and-btns">
         <ul id="undertale-soundboard-music-list-container">
@@ -47,6 +63,10 @@
           <button
             mat-button
             class="undertale-soundboard-next-prev-btn"
+            [matTooltip]="
+              'THEMES.GAMES.UNDERTALE.HOME.SOUNDBOARD-MENU.TOOLTIPS.PREV-MENU-BTN'
+                | translate
+            "
             (mouseenter)="mouseEnterOrLeaveSFX()"
             (click)="prevMusicOnTheList(); playClickSound()"
           >
@@ -57,6 +77,10 @@
           <button
             mat-button
             class="undertale-soundboard-next-prev-btn"
+            [matTooltip]="
+              'THEMES.GAMES.UNDERTALE.HOME.SOUNDBOARD-MENU.TOOLTIPS.NEXT-MENU-BTN'
+                | translate
+            "
             (mouseenter)="mouseEnterOrLeaveSFX()"
             (click)="playClickSound(); nextMusicOnTheList()"
           >
@@ -72,7 +96,7 @@
         (mouseenter)="mouseEnterOrLeaveSFX()"
         (click)="onExit(); playClickSound()"
       >
-        Back
+        {{ "THEMES.GAMES.UNDERTALE.HOME.SOUNDBOARD-MENU.BACK" | translate }}
       </button>
     </div>
     <div id="undertale-soundboard-menu-playing">
@@ -93,13 +117,22 @@
             </div>
           </div>
         } @else {
-          <h2 class="undertale-soundboard-title">Select a music</h2>
+          <h2 class="undertale-soundboard-title">
+            {{
+              "THEMES.GAMES.UNDERTALE.HOME.SOUNDBOARD-MENU.SELECT-MUSIC"
+                | translate
+            }}
+          </h2>
         }
         <div id="undertale-soundboard-menu-playing-btns-container">
           <button
             class="undertale-soundboard-menu-playing-btns"
-            [disabled]="!isPlayingSomeMusicFromThePlaylist"
             mat-icon-button
+            [matTooltip]="
+              'THEMES.GAMES.UNDERTALE.HOME.SOUNDBOARD-MENU.TOOLTIPS.SKIP-PREV-BTN'
+                | translate
+            "
+            [disabled]="!isPlayingSomeMusicFromThePlaylist"
             (mouseenter)="mouseEnterOrLeaveSFX()"
             (click)="playClickSound(); playPreviousMusic()"
           >
@@ -107,8 +140,12 @@
           </button>
           <button
             class="undertale-soundboard-menu-playing-btns"
-            [disabled]="!isPlayingSomeMusicFromThePlaylist"
             mat-icon-button
+            [matTooltip]="
+              'THEMES.GAMES.UNDERTALE.HOME.SOUNDBOARD-MENU.TOOLTIPS.PAUSE-PLAY-BTN'
+                | translate
+            "
+            [disabled]="!isPlayingSomeMusicFromThePlaylist"
             (mouseenter)="mouseEnterOrLeaveSFX()"
             (click)="playClickSound(); pauseOrPlayMusic()"
           >
@@ -118,8 +155,12 @@
           </button>
           <button
             class="undertale-soundboard-menu-playing-btns"
-            [disabled]="!isPlayingSomeMusicFromThePlaylist"
             mat-icon-button
+            [matTooltip]="
+              'THEMES.GAMES.UNDERTALE.HOME.SOUNDBOARD-MENU.TOOLTIPS.SKIP-NEXT-BTN'
+                | translate
+            "
+            [disabled]="!isPlayingSomeMusicFromThePlaylist"
             (mouseenter)="mouseEnterOrLeaveSFX()"
             (click)="playClickSound(); playNextMusic()"
           >

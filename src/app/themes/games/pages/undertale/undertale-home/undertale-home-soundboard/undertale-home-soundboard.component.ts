@@ -19,6 +19,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { fadeIn_fadeOut_longer } from '../../../../../../shared/animations/fade-animations';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-undertale-home-soundboard',
@@ -27,6 +29,8 @@ import { MatSliderModule } from '@angular/material/slider';
     MatButtonModule,
     MatProgressBarModule,
     MatSliderModule,
+    MatTooltipModule,
+    TranslateModule,
   ],
   templateUrl: './undertale-home-soundboard.component.html',
   styleUrl: './undertale-home-soundboard.component.scss',
