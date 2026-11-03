@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 
-import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
@@ -102,7 +102,7 @@ export class ContactMeFormComponent implements OnInit, OnDestroy {
             message: this.sendEmailForm.value.message,
             reply_to: 'felipe95176@gmail.com',
           },
-          'gDug2nvSSF1AzFyDS',
+          { publicKey: 'gDug2nvSSF1AzFyDS' },
         )
         .then(
           (result: EmailJSResponseStatus) => {
@@ -123,13 +123,14 @@ export class ContactMeFormComponent implements OnInit, OnDestroy {
           (error) => {
             this.snackBar.openFromComponent(CustomSnackbarComponent, {
               data: {
-                message: 'SNACK-BAR.CONTACT-PAGE.ERROR-SENT-EMAIL',
+                message: 'SNACK-BAR.CONTACT-PAGE.ERROR-EMAIL',
                 theme: this.actualTheme.name,
               },
               duration: 4000,
             });
 
             this.isSending = false;
+            this.sendEmailForm.enable();
           },
         );
     } else {

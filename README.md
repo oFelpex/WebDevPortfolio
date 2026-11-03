@@ -440,13 +440,13 @@ npm test
 - [x] Layout responsivo com menus mobile
 - [x] Tema **The Witcher 3** completo (home com three.js, mapa Leaflet, cartas de Gwent, header e Igni)
 - [x] Tema **Undertale** completo (home com 6 variações, navegação por voo, settings sazonal, soundboard, diálogo de temas, header com botões ativos, easter egg das almas e traduções)
+- [x] Migrar `emailjs-com` (descontinuado) para `@emailjs/browser`
 
 ### 🔜 Próximos passos
 
 - [ ] Novos temas de jogos (RDR2, Zelda, Persona, Elden Ring, Hollow Knight)
 - [ ] Escrever testes reais (os `.spec.ts` atuais são apenas os gerados pelo CLI e alguns imports precisam ser corrigidos)
 - [ ] Mover chaves/IDs do EmailJS para variáveis de ambiente
-- [ ] Migrar `emailjs-com` (descontinuado) para `@emailjs/browser`
 - [ ] Lazy loading das rotas e dos temas pesados (three.js, Leaflet, tsParticles) para reduzir o bundle inicial (as variações do Undertale já usam `import()` dinâmico)
 - [ ] Otimizar imagens e áudios (carregar sob demanda)
 - [ ] Acessibilidade: navegação por teclado nos menus customizados e contraste dos temas
