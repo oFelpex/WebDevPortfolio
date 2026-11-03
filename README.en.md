@@ -8,7 +8,7 @@ Personal portfolio of **Felipe Costa (Felpex)**, built with **Angular 19 + TypeS
   <img src="./docs/screenshots/hero.png" alt="Felpex portfolio Home in a game theme" width="900">
 </p>
 
-**Current version:** `1.6.1`
+**Current version:** `1.6.2`
 
 🇧🇷 [Leia em português](./README.md)
 

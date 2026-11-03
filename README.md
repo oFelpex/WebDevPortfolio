@@ -8,7 +8,7 @@ Portfólio pessoal de **Felipe Costa (Felpex)**, desenvolvido com **Angular 19 +
   <img src="./docs/screenshots/hero.png" alt="Home do portfólio Felpex em um tema de jogo" width="900">
 </p>
 
-**Versão atual:** `1.6.1`
+**Versão atual:** `1.6.2`
 
 🇺🇸 [Read in English](./README.en.md)
 
