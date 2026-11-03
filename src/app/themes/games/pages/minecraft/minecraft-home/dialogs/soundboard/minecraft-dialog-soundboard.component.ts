@@ -1,14 +1,11 @@
 import { Component, inject, OnInit, Signal } from '@angular/core';
-import { Subscription, interval } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSliderModule } from '@angular/material/slider';
 
-import { Themes } from '../../../../../../../models/themes';
 import { AudioService } from '../../../../../../../services/audio-service/audio.service';
-import { ThemeService } from '../../../../../../../services/theme-service/theme.service';
 @Component({
   selector: 'app-minecraft-dialog-soundboard',
   imports: [

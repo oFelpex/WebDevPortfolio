@@ -124,10 +124,6 @@ export class Tw3NavigateMapComponent implements AfterViewInit, OnDestroy {
 
     this.addMarkers();
 
-    this.map.on('click', (e: L.LeafletMouseEvent) => {
-      console.log(e.latlng.lat.toFixed(1), e.latlng.lng.toFixed(1));
-    });
-
     const mapEl = document.getElementById('map')!;
     this.resizeObserver = new ResizeObserver(() => {
       this.map.invalidateSize();

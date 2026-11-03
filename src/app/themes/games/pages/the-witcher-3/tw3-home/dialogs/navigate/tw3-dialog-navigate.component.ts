@@ -1,11 +1,5 @@
 import { Component, inject } from '@angular/core';
-import {
-  MatDialog,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogTitle,
-} from '@angular/material/dialog';
+import { MatDialogClose, MatDialogContent } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { AudioService } from '../../../../../../../services/audio-service/audio.service';
 import { Tw3NavigateMapComponent } from './tw3-navigate-map/tw3-navigate-map.component';

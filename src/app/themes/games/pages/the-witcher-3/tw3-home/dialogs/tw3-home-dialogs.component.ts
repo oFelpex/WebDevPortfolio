@@ -1,13 +1,11 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { AudioService } from '../../../../../../services/audio-service/audio.service';
-import { Tw3NavigateMapComponent } from './navigate/tw3-navigate-map/tw3-navigate-map.component';
+
 import {
   MAT_DIALOG_DATA,
   MatDialog,
   MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
 } from '@angular/material/dialog';
 import { Tw3DialogNavigateComponent } from './navigate/tw3-dialog-navigate.component';
 import { Tw3DialogSoundboardComponent } from './soundboard/tw3-dialog-soundboard.component';

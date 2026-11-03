@@ -79,7 +79,6 @@ export class LogoEffectsComponent implements OnInit, OnDestroy {
         this.minecraftEffect.summonTnt();
         break;
       default:
-        console.log('Error with playEffect()');
         return;
     }
   }

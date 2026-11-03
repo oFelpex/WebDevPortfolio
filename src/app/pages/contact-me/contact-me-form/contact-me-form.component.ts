@@ -78,7 +78,7 @@ export class ContactMeFormComponent implements OnInit, OnDestroy {
     this.themeSubscription = this.themeService.actualTheme$.subscribe(
       (theme) => {
         this.actualTheme = theme;
-      }
+      },
     );
   }
   ngOnDestroy(): void {
@@ -102,11 +102,10 @@ export class ContactMeFormComponent implements OnInit, OnDestroy {
             message: this.sendEmailForm.value.message,
             reply_to: 'felipe95176@gmail.com',
           },
-          'gDug2nvSSF1AzFyDS'
+          'gDug2nvSSF1AzFyDS',
         )
         .then(
           (result: EmailJSResponseStatus) => {
-            console.log('SUCCESS!', result.status, result.text);
             this.sendEmailForm.reset();
             formDirective.resetForm();
 
@@ -122,8 +121,6 @@ export class ContactMeFormComponent implements OnInit, OnDestroy {
             });
           },
           (error) => {
-            console.log('FAILED...', error);
-
             this.snackBar.openFromComponent(CustomSnackbarComponent, {
               data: {
                 message: 'SNACK-BAR.CONTACT-PAGE.ERROR-SENT-EMAIL',
@@ -133,7 +130,7 @@ export class ContactMeFormComponent implements OnInit, OnDestroy {
             });
 
             this.isSending = false;
-          }
+          },
         );
     } else {
       this.snackBar.openFromComponent(CustomSnackbarComponent, {

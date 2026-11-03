@@ -1,11 +1,4 @@
-import {
-  Component,
-  inject,
-  OnDestroy,
-  OnInit,
-  signal,
-  Type,
-} from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { ThemeService } from '../../../../../../../../services/theme-service/theme.service';
 import { Subscription } from 'rxjs';
 import { Themes } from '../../../../../../../../models/themes';

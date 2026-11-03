@@ -2,7 +2,6 @@
 @use "./angular-colors-and-fonts/theme-minecraft-colors" as
   theme-minecraft-colors;
 
-// Theme: minecraft-theme
 body.minecraft-theme {
   --background-color: #241e0e;
   background-image: url("../../../../assets/themes/games/minecraft/backgrounds/minecraft-bg.webp");

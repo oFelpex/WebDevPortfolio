@@ -82,8 +82,6 @@ export class ThemeService {
         },
         duration: 4000,
       });
-      console.log('Actual Theme:', this._actualTheme$.getValue().name);
-      console.log('Type:', this._actualTheme$.getValue().type);
       return;
     } else {
       this._actualTheme$.next(theme);
@@ -101,10 +99,6 @@ export class ThemeService {
       },
       duration: 4000,
     });
-
-    //debug
-    console.log('Actual Theme:', this._actualTheme$.getValue().name);
-    console.log('Type:', this._actualTheme$.getValue().type);
   }
 
   private resetHomeUrl(): void {

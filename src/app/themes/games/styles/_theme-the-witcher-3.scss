@@ -321,34 +321,34 @@ body.the-witcher-3-theme {
   );
   @include mat.slider-overrides(
     (
-      //shape da bola de segurar
+      //the ball's grip shape
       handle-shape: 3px,
-      //altura da bola
+      //the ball's height
       handle-height: 16px,
-      //largura da bola
+      //the ball's width
       handle-width: 45px,
-      //cor da bola
+      //the ball's color
       handle-color: #a6a4a2,
-      //cor da bola ao segurar com o mouse
+      //the ball's color when hovered with the mouse
       hover-handle-color: #b8b5b3,
       focus-handle-color: #d3cfcd,
-      //cor da barra ativa
+      //the active track color
       active-track-color: transparent,
-      //cor da barra inativa
+      //the inactive track color
       inactive-track-color: transparent,
-      //cor ao segurar
+      //the color when hovering
       hover-state-layer-color: transparent,
-      //altura da barra ativa
+      //the height of the active track
       active-track-height: 20px,
-      //shape da barra ativa
+      //bar's shape active
       active-track-shape: border-radius 0%,
-      //altura da barra inativa
+      //the height of the inactive track
       inactive-track-height: 20px,
-      //shape da barra inaativa
+      //the shape of the inactive track
       inactive-track-shape: border-radius 0%,
-      //linha interna ativa
+      //the opacity of the active tick marks
       with-tick-marks-active-container-opacity: 0,
-      //linha interna inativa
+      //the opacity of the inactive tick marks
       with-tick-marks-inactive-container-opacity: 0
     )
   );

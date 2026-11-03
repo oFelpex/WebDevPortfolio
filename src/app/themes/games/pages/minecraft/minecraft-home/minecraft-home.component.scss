@@ -32,15 +32,11 @@ main {
     transform: translate(-50%, -50%);
     width: 80vw;
     height: 80vh;
-    // background-color: red;
 
     #logo-and-span {
       padding: 0px 40px;
-      // background-color: blue;
-      // width: 100%;
       #span-phrases {
         position: absolute;
-        // background-color: aqua;
         transform: translate(75%, -80%) rotate(-18deg);
         width: 320px;
         height: 100px;
@@ -78,7 +74,6 @@ main {
       max-height: 250px;
       min-height: 100px;
       height: 100%;
-      // background-color: #f7f83b;
       grid-template-columns: 1fr 4fr 4fr 1fr;
       grid-template-rows: repeat(1fr, 3), 2fr;
       grid-auto-flow: row;
@@ -95,7 +90,6 @@ main {
         color: #eeeeee;
         grid-row: 4;
         grid-column: 1;
-        // align-self: flex-end;
         justify-self: flex-end;
 
         &:nth-last-child(1) {
@@ -133,7 +127,6 @@ main {
         span {
           font-size: larger;
         }
-        // align-self: flex-end;
 
         &:nth-last-of-type(3) {
           grid-column: 3;

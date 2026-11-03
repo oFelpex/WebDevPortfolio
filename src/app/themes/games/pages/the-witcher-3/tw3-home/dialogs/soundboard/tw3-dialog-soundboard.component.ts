@@ -120,7 +120,6 @@ export class Tw3DialogSoundboardComponent {
       clone.remove();
       this.isAnimating.set(false);
       this.audioService.playFromIndex(index);
-      // selectedTrack + placeCardInTarget ficam a cargo do effect
     });
   }
   private animateFlip(

@@ -1,4 +1,4 @@
-import { Component, inject, model, signal } from '@angular/core';
+import { Component, inject, model } from '@angular/core';
 import {
   MatDialog,
   MatDialogClose,

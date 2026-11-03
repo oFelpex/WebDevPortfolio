@@ -16,7 +16,6 @@ import {
 } from '../../../../../../models/musics';
 import { fadeIn_fadeOut_longer } from '../../../../../../shared/animations/fade-animations';
 import { Router } from '@angular/router';
-import { NavigationPages } from '../../../../../../models/navigationPages';
 import { TranslateModule } from '@ngx-translate/core';
 
 type UndertaleLocations = 'Snowdin' | 'Waterfall' | 'The Core' | 'Hotland';

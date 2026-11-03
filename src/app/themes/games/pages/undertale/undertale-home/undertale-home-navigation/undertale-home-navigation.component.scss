@@ -1,17 +1,17 @@
 @use "sass:math";
 
-$total: 26.4; // duração total, em segundos
-$speed: 1; // 2 = o dobro da velocidade
+$total: 26.4; // duraction
+$speed: 1;
 
 @function t($seconds) {
   @return math.div($seconds, $total) * 100%;
 }
 
-// tamanho dos sprites (% da largura do container)
+// widths
 $frisk-w: 8.35%;
 $bird-w: 6.85%;
 
-// posição inicial (a que você já tinha) e final (espelhada)
+// initial position, and final (mirrored) position
 $frisk-x0: 1%;
 $frisk-x1: 100% - $frisk-x0 - $frisk-w;
 $frisk-ground: 44.7%;
@@ -20,13 +20,13 @@ $bird-x0: 15%;
 $bird-x1: 100% - $bird-x0 - $bird-w;
 $bird-ground: 50.3%;
 
-// pássaro em cima da cabeça do Frisk (relativo ao Frisk)
+// bird carrying Frisk, offset from Frisk's position
 $carry-dx: 0.75%;
 $carry-dy: -3.2%;
 
-// voo
-$rise: 20%; // quanto sobem antes de atravessar
-$sag: 2.5%; // quanto vão descendo durante a travessia
+// fly
+$rise: 20%;
+$sag: 2.5%; // how much descend while crossing
 $fly-top: $frisk-ground - $rise;
 $fly-top-end: $fly-top + $sag;
 
@@ -114,10 +114,9 @@ $fly-top-end: $fly-top + $sag;
       pointer-events: none;
       image-rendering: pixelated;
 
-      // sem animation-delay e sem o bloco prefers-reduced-motion
       animation-duration: #{math.div($total, $speed)}s;
       animation-timing-function: linear;
-      animation-fill-mode: forwards; // fica na posição final
+      animation-fill-mode: forwards;
     }
 
     #navigation-frisk-img {
@@ -133,7 +132,6 @@ $fly-top-end: $fly-top + $sag;
       z-index: 1;
     }
 
-    // a animação só começa com a classe
     &.flying {
       #navigation-frisk-img {
         animation-name: frisk-journey;
@@ -174,14 +172,14 @@ $fly-top-end: $fly-top + $sag;
     transform: scaleX(1);
   }
   #{t(1.5)} {
-    // chegou na cabeça
+    // reach the head of Frisk
     left: $frisk-x0 + $carry-dx;
     top: $frisk-ground + $carry-dy;
     transform: scaleX(1);
   }
   #{t(1.55)},
   #{t(2.4)} {
-    // vira e espera
+    // flip and wait
     left: $frisk-x0 + $carry-dx;
     top: $frisk-ground + $carry-dy;
     transform: scaleX(-1);
@@ -202,7 +200,7 @@ $fly-top-end: $fly-top + $sag;
     transform: scaleX(-1);
   }
   #{t(24.3)} {
-    // solta e desliza para trás
+    // releases and slides backward
     left: $frisk-x1 + $carry-dx;
     top: $frisk-ground - 1.6%;
     transform: scaleX(-1);
@@ -214,7 +212,7 @@ $fly-top-end: $fly-top + $sag;
   }
   #{t(25.5)},
   100% {
-    // pousa
+    // lands
     left: $bird-x1;
     top: $bird-ground;
     transform: scaleX(-1);
