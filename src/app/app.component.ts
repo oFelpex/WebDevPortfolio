@@ -17,18 +17,12 @@ import { LoadingService } from './services/loading-service/loading.service';
 import { ThemeService } from './services/theme-service/theme.service';
 import { ResponsiveService } from './services/responsive-service/responsive.service';
 import { LoadingComponent } from './shared/components/loading/loading.component';
-import { ShowSoundboardButtonComponent } from './shared/components/soundboard/show-soundboard-button/show-soundboard-button.component';
 import { Themes } from './models/themes';
 import { Subscription } from 'rxjs';
 import { LanguageService } from './services/language-service/language.service';
 @Component({
   selector: 'app-root',
-  imports: [
-    RouterOutlet,
-    LoadingComponent,
-    ShowSoundboardButtonComponent,
-    NgComponentOutlet,
-  ],
+  imports: [RouterOutlet, LoadingComponent, NgComponentOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -49,11 +43,6 @@ export class AppComponent implements OnInit, OnDestroy {
   public isMobile: boolean = false;
   public isLoading: boolean = false;
   public selectedNavbarComponent!: Type<any>;
-  private readonly themesWithoutSoundboard = [
-    'Minecraft',
-    'The Witcher 3',
-    'Undertale',
-  ] as const;
 
   constructor() {
     this.router = inject(Router);
@@ -150,14 +139,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.themeSubscription.unsubscribe();
     this.responsiveSubscription.unsubscribe();
     this.loadingSubscription.unsubscribe();
-  }
-
-  public get showSoundboardButton(): boolean {
-    return (
-      this.actualTheme.type === 'Games' &&
-      !this.themesWithoutSoundboard.includes(this.actualTheme.name as any) &&
-      !this.isMobile
-    );
   }
 
   private getTitleByRoute(route: string): string {

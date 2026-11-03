@@ -31,7 +31,7 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
   public phrase!: string;
   public isMobile!: boolean;
   public actualLang!: string;
-  
+
   private translateService: TranslateService;
   private responsiveService: ResponsiveService;
   private dialog: MatDialog;
@@ -65,18 +65,18 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.headerSetPosition();
-    
+
     this.actualLang = this.translateService.currentLang;
-    this.translateService.onLangChange.subscribe((lang: { lang: string; }) => {
+    this.translateService.onLangChange.subscribe((lang: { lang: string }) => {
       this.actualLang = lang.lang;
     });
-    
+
     this.phrase = this.listOfPhrases[this.phraseNumber()];
 
     this.initScene();
     this.animate();
     this.responsiveService.isMobile$.subscribe((isMobile) => {
-        this.isMobile = isMobile;
+      this.isMobile = isMobile;
     });
   }
 
@@ -86,7 +86,7 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
 
   private headerSetPosition() {
     const header = document.getElementById(
-      'minecraft-header'
+      'minecraft-header',
     ) as HTMLHeadingElement;
     if (header) {
       header.style.display = 'none';
@@ -97,7 +97,7 @@ export class MinecraftHomeComponent implements OnInit, OnDestroy {
   }
   private headerRestaurePosition() {
     const header = document.getElementById(
-      'minecraft-header'
+      'minecraft-header',
     ) as HTMLHeadingElement;
 
     if (header) {

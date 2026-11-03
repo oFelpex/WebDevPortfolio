@@ -151,7 +151,6 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
       if (event instanceof NavigationStart) {
         this.particlesContainer?.destroy();
         this.cancelTntTimeout();
-        this.audioService.stopSound();
         this.tntsContainer.remove();
       }
     });
@@ -181,11 +180,11 @@ export class MinecraftEffectComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.routerSubscription.unsubscribe;
+    this.routerSubscription.unsubscribe();
     this.particlesContainer?.destroy();
     this.cancelTntTimeout();
 
-    this.audioService.unloadCurrentPlaylist();
+    this.audioService.releasePlaylist(this.minecraftMusics);
   }
 
   private startTntTimeout(): void {

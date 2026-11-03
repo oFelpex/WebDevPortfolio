@@ -1,119 +1,134 @@
 <header id="minecraft-header">
   <nav id="minecraft-nav">
-    @if(isMobile) {
-    <button mat-mini-fab (click)="playClickSound(); toggleMobileNavMenu()">
-      <mat-icon style="font-family: Material Icons">menu</mat-icon>
-    </button>
+    @if (isMobile) {
+      <button mat-mini-fab (click)="playClickSound(); toggleMobileNavMenu()">
+        <mat-icon
+          style="font-family: Material Icons"
+          fontIcon="menu"
+        ></mat-icon>
+      </button>
     } @else {
-    <button
-      mat-flat-button
-      (click)="playClickSound()"
-      [matMenuTriggerFor]="routes"
-    >
-      <span>{{ "THEMES.GAMES.MINECRAFT.HEADER.EXPLORE" | translate }}</span>
-    </button>
-    <mat-menu #routes="matMenu">
-      @for(route of allRoutes; track $index) {
-      <a [routerLink]="[route]">
-        <button mat-menu-item (click)="playClickSound()" style="width: 150px">
-          <span
-            [matBadge]="route === currentRoute ? 'ON' : ''"
-            matBadgeOverlap="false"
-            matBadgeSize="large"
-            >{{ "ROUTER." + route.slice(1).toUpperCase() | translate }}</span
-          >
-        </button>
-      </a>
-      }
-    </mat-menu>
+      <button
+        mat-flat-button
+        (click)="playClickSound()"
+        [matMenuTriggerFor]="routes"
+      >
+        <span>{{ "THEMES.GAMES.MINECRAFT.HEADER.EXPLORE" | translate }}</span>
+      </button>
+      <mat-menu #routes="matMenu">
+        @for (route of allRoutes; track $index) {
+          <a [routerLink]="[route]">
+            <button
+              mat-menu-item
+              (click)="playClickSound()"
+              style="width: 150px"
+            >
+              <span
+                [matBadge]="route === currentRoute ? 'ON' : ''"
+                matBadgeOverlap="false"
+                matBadgeSize="large"
+                >{{
+                  "ROUTER." + route.slice(1).toUpperCase() | translate
+                }}</span
+              >
+            </button>
+          </a>
+        }
+      </mat-menu>
     }
 
     <app-logo-effects style="height: 80%"></app-logo-effects>
-    @if(isMobile) {
-    <button
-      mat-mini-fab
-      (click)="playClickSound(); toggleMobileSoundboardMenu()"
-    >
-      <mat-icon style="font-family: Material Icons">headphones</mat-icon>
-    </button>
+    @if (isMobile) {
+      <button
+        mat-mini-fab
+        (click)="playClickSound(); toggleMobileSoundboardMenu()"
+      >
+        <mat-icon
+          style="font-family: Material Icons"
+          fontIcon="headphones"
+        ></mat-icon>
+      </button>
     } @else {
-    <button
-      mat-flat-button
-      (click)="playClickSound()"
-      [matMenuTriggerFor]="settings"
-    >
-      <span>{{ "THEMES.GAMES.MINECRAFT.HEADER.SETTINGS" | translate }}</span>
-    </button>
-    <mat-menu #settings="matMenu" xPosition="before">
       <button
-        mat-menu-item
+        mat-flat-button
         (click)="playClickSound()"
-        [matMenuTriggerFor]="themes"
+        [matMenuTriggerFor]="settings"
       >
-        <span>{{ "THEMES.THEMES" | translate }}</span>
+        <span>{{ "THEMES.GAMES.MINECRAFT.HEADER.SETTINGS" | translate }}</span>
       </button>
-      <button
-        mat-menu-item
-        (click)="playClickSound()"
-        [matMenuTriggerFor]="langs"
-      >
-        <span>{{ "LANGS.LANGS" | translate }}</span>
-      </button>
-      <button mat-menu-item (click)="playClickSound(); openSoundboardDialog()">
-        <span>Soundboard</span>
-      </button>
-    </mat-menu>
-    <mat-menu #themes="matMenu" xPosition="before">
-      <button
-        mat-menu-item
-        (click)="playClickSound()"
-        [matMenuTriggerFor]="games"
-      >
-        <span>{{ "THEMES.GAMES.VIDEO-GAMES" | translate }}</span>
-      </button>
-      <button
-        mat-menu-item
-        (click)="playClickSound()"
-        [matMenuTriggerFor]="colors"
-      >
-        <span>{{ "THEMES.Colors.COLORS" | translate }}</span>
-      </button>
-    </mat-menu>
-    <mat-menu #games="matMenu" xPosition="before">
-      @for(game of allGamesThemes; track $index) {
-      <button mat-menu-item (click)="playClickSound(); changeTheme(game)">
-        <span
-          [matBadge]="game.name === actualTheme.name ? 'ON' : ''"
-          matBadgeOverlap="false"
-          matBadgeSize="large"
-          >{{ game.name }}</span
+      <mat-menu #settings="matMenu" xPosition="before">
+        <button
+          mat-menu-item
+          (click)="playClickSound()"
+          [matMenuTriggerFor]="themes"
         >
-      </button>
-      }
-    </mat-menu>
-    <mat-menu #colors="matMenu" xPosition="before">
-      @for(color of allColorThemes; track $index) {
-      <button mat-menu-item (click)="playClickSound(); changeTheme(color)">
-        <span>{{ "THEMES.Colors." + color.name | translate }}</span>
-      </button>
-      }
-    </mat-menu>
-    <mat-menu #langs="matMenu" xPosition="before">
-      @for(lang of allLangs; track $index) {
-      <button mat-menu-item (click)="playClickSound(); changeLang(lang)">
-        <span
-          [matBadge]="lang === actualLang ? 'ON' : ''"
-          matBadgeOverlap="false"
-          matBadgeSize="large"
-          >{{ lang }}</span
+          <span>{{ "THEMES.THEMES" | translate }}</span>
+        </button>
+        <button
+          mat-menu-item
+          (click)="playClickSound()"
+          [matMenuTriggerFor]="langs"
         >
-      </button>
-      }
-    </mat-menu>
+          <span>{{ "LANGS.LANGS" | translate }}</span>
+        </button>
+        <button
+          mat-menu-item
+          (click)="playClickSound(); openSoundboardDialog()"
+        >
+          <span>Soundboard</span>
+        </button>
+      </mat-menu>
+      <mat-menu #themes="matMenu" xPosition="before">
+        <button
+          mat-menu-item
+          (click)="playClickSound()"
+          [matMenuTriggerFor]="games"
+        >
+          <span>{{ "THEMES.GAMES.VIDEO-GAMES" | translate }}</span>
+        </button>
+        <button
+          mat-menu-item
+          (click)="playClickSound()"
+          [matMenuTriggerFor]="colors"
+        >
+          <span>{{ "THEMES.Colors.COLORS" | translate }}</span>
+        </button>
+      </mat-menu>
+      <mat-menu #games="matMenu" xPosition="before">
+        @for (game of allGamesThemes; track $index) {
+          <button mat-menu-item (click)="playClickSound(); changeTheme(game)">
+            <span
+              [matBadge]="game.name === actualTheme.name ? 'ON' : ''"
+              matBadgeOverlap="false"
+              matBadgeSize="large"
+              >{{ game.name }}</span
+            >
+          </button>
+        }
+      </mat-menu>
+      <mat-menu #colors="matMenu" xPosition="before">
+        @for (color of allColorThemes; track $index) {
+          <button mat-menu-item (click)="playClickSound(); changeTheme(color)">
+            <span>{{ "THEMES.Colors." + color.name | translate }}</span>
+          </button>
+        }
+      </mat-menu>
+      <mat-menu #langs="matMenu" xPosition="before">
+        @for (lang of allLangs; track $index) {
+          <button mat-menu-item (click)="playClickSound(); changeLang(lang)">
+            <span
+              [matBadge]="lang === actualLang ? 'ON' : ''"
+              matBadgeOverlap="false"
+              matBadgeSize="large"
+              >{{ lang }}</span
+            >
+          </button>
+        }
+      </mat-menu>
     }
   </nav>
-  @if(isMobile) {
-  <app-mobile-menu></app-mobile-menu>
-  <app-mobile-soundboard></app-mobile-soundboard>
+  @if (isMobile) {
+    <app-mobile-menu></app-mobile-menu>
+    <app-mobile-soundboard></app-mobile-soundboard>
   }
 </header>

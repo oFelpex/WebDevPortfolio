@@ -4,6 +4,7 @@ import {
   inject,
   OnDestroy,
   OnInit,
+  Signal,
   ViewChild,
 } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
@@ -18,7 +19,7 @@ import { Themes } from '../../../../models/themes';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { interval, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
@@ -43,7 +44,6 @@ export class MobileSoundboardComponent
   private mobileSoundboardMenuService: MobileSoundboardMenuService;
   private audioService: AudioService;
   private themeService: ThemeService;
-  private sub!: Subscription;
   private savedSfxVolume: number = 50;
   private savedMusicVolume: number = 50;
   private themeSubscription!: Subscription;
@@ -51,9 +51,11 @@ export class MobileSoundboardComponent
   public actualTheme!: Themes;
   public sfxVolume: number = 50;
   public musicVolume: number = 50;
-  public progress: number = 0;
-  public currentMusic: string | null = null;
-  public currentComposer: string | undefined;
+
+  public progress!: Signal<number>;
+  public currentMusic!: Signal<string | null>;
+  public currentComposer!: Signal<string | undefined>;
+  public isPlaying!: Signal<boolean>;
 
   constructor() {
     this.mobileSoundboardMenuService = inject(MobileSoundboardMenuService);
@@ -65,11 +67,10 @@ export class MobileSoundboardComponent
   }
 
   ngOnInit(): void {
-    this.sub = interval(200).subscribe(() => {
-      this.progress = this.audioService.getMusicProgress();
-      this.currentMusic = this.audioService.getCurrentMusicName();
-      this.currentComposer = this.audioService.getCurrentMusicComposer();
-    });
+    this.progress = this.audioService.progress;
+    this.currentMusic = this.audioService.currentMusicName;
+    this.currentComposer = this.audioService.currentMusicComposer;
+    this.isPlaying = this.audioService.isPlaying;
 
     this.themeSubscription = this.themeService.actualTheme$.subscribe(
       (theme) => {
@@ -89,7 +90,6 @@ export class MobileSoundboardComponent
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
     this.themeSubscription.unsubscribe();
   }
 
@@ -146,13 +146,17 @@ export class MobileSoundboardComponent
     this.audioService.nextMusic();
   }
 
-  public isPlaying(): boolean {
-    return this.audioService.isPlaying();
-  }
   public playOrStopMusic() {
-    this.audioService.isPlaying()
-      ? this.audioService.pauseMusic()
-      : this.audioService.resumeMusic();
+    if (this.isPlaying()) {
+      this.audioService.pauseMusic();
+      return;
+    }
+
+    if (this.audioService.hasCurrentTrack()) {
+      this.audioService.resumeMusic();
+    } else {
+      this.audioService.playFromIndex(0);
+    }
   }
 
   public setSfxVolume(sliderValue: string) {

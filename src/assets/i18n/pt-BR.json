@@ -63,7 +63,15 @@
           "WEIGHT-ICON-ALT": "Icone estético de peso, apenas para fazer referência ao do jogo the witcher 3",
           "MONEY-ICON-ALT": "Icone estético de moedas, apenas para fazer referência ao do jogo the witcher 3",
 
-          "CARDS-IN-THE-DECK": "Cartas no baralho"
+          "CARDS-IN-THE-DECK": "Cartas no baralho",
+
+          "ALT": {
+            "Kaer Morhen": "Carta que mostra o bruxo Vesemir",
+            "Silver For Monsters...": "Carta que mostra Eredin, o Rei da Caçada Selvagem",
+            "... Steel For Humans": "Carta que mostra Sigismund Dijkstra",
+            "The Fields of Ard Skellig": "Carta que mostra Cerys an Craite, de Skellige",
+            "Drink Up, There's More!": "Carta que mostra Draig Bon-Dhu, um bardo de Skellige"
+          }
         },
         "NAVIGATE-MAP": {
           "HUD": {
@@ -197,6 +205,11 @@
               "FALL": "as folhas caem, mas você continua de pé",
               "SPRING": "reta final do ano, aguente firme!",
               "SUMMER": "tente resistir aos raios de sol que dão vida"
+            },
+
+            "ALT": {
+              "SEASONAL-PARTICLE": "Partícula sazonal",
+              "SEASONAL-ANNOYING-DOG": "Cachorro irritante sazonal"
             }
           },
           "NAVIGATION-MENU": {
@@ -235,6 +248,22 @@
               "DELTARUNE-K_K": " Personagem K_K de Deltarune, em sua animação de parado"
             }
           }
+        },
+
+        "ALT": {
+          "RED-SOUL": "Sprite da alma vermelha do jogo Undertale",
+          "DARK-BLUE-SOUL": "Sprite da alma azul escura do jogo Undertale",
+          "DARK-BLUE-ATTACK": "Sprite do ataque da alma azul escura do jogo Undertale",
+          "GREEN-SOUL": "Sprite da alma verde do jogo Undertale",
+          "GREEN-ATTACK": "Sprite do ataque da alma verde do jogo Undertale",
+          "LIGHT-BLUE-SOUL": "Sprite da alma azul-clara do jogo Undertale",
+          "LIGHT-BLUE-ATTACK": "Sprite do ataque da alma azul-clara do jogo Undertale",
+          "ORANGE-SOUL": "Sprite da alma laranja do jogo Undertale",
+          "ORANGE-ATTACK": "Sprite do ataque da alma laranja do jogo Undertale",
+          "PURPLE-SOUL": "Sprite da alma roxa do jogo Undertale",
+          "PURPLE-ATTACK": "Sprite do ataque da alma roxa do jogo Undertale",
+          "YELLOW-SOUL": "Sprite da alma amarela do jogo Undertale",
+          "YELLOW-ATTACK": "Sprite do ataque da alma amarela do jogo Undertale"
         }
       },
 

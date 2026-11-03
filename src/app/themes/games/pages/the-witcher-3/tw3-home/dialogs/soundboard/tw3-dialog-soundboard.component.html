@@ -3,16 +3,17 @@
     <div id="side-music-player-title-container">
       <h2 id="side-music-player-title">
         {{
-          currentMusicProgress > 0
+          currentMusicProgress() > 0
             ? ("SOUNDBOARD.MUSIC-TITLE"
-              | translate: { musicTitle: currentMusicName })
+              | translate: { musicTitle: currentMusic() })
             : ("SOUNDBOARD.SELECT-MUSIC" | translate)
         }}
       </h2>
       <h3 id="side-music-player-subtitle">
         {{
-          currentMusicProgress > 0
-            ? ("SOUNDBOARD.BY" | translate: { composer: currentMusicComposer })
+          currentMusicProgress() > 0
+            ? ("SOUNDBOARD.BY"
+              | translate: { composer: currentMusicComposer() })
             : ""
         }}
       </h3>
@@ -22,11 +23,11 @@
       #cardTarget
       [class.has-track]="selectedTrack()"
     >
-      @if (currentMusicProgress > 0) {
+      @if (currentMusicProgress() > 0) {
         <mat-progress-bar
           id="side-music-player-progress-bar"
           mode="determinate"
-          [value]="currentMusicProgress * 100"
+          [value]="currentMusicProgress() * 100"
         ></mat-progress-bar>
       }
     </div>
@@ -103,7 +104,10 @@
           <img
             class="card-img"
             [src]="getCardFileName(tw3Music.musicName)"
-            [alt]=""
+            [alt]="
+              'THEMES.GAMES.THE WITCHER 3.DIALOG-HOME.ALT.' + tw3Music.musicName
+                | translate
+            "
           />
         </div>
       }

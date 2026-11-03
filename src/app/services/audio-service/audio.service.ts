@@ -22,6 +22,7 @@ export class AudioService {
 
   private playlist!: Musics[];
   private currentIndex: number = 0;
+  private playlistConsumers: number = 0;
 
   public musicVolume: number = 0.5;
   public sfxVolume: number = 0.5;
@@ -114,20 +115,36 @@ export class AudioService {
     this.playFromIndex(0);
   }
 
-  public async loadPlaylist(playlist: Musics[]): Promise<void> {
-    const isSamePlaylist =
-      this.playlist && this.playlist[0]?.gameName === playlist[0]?.gameName;
+  private isCurrentPlaylist(playlist: Musics[]): boolean {
+    return (
+      !!this.playlist && this.playlist[0]?.gameName === playlist[0]?.gameName
+    );
+  }
 
-    if (isSamePlaylist) return;
+  public async loadPlaylist(playlist: Musics[]): Promise<void> {
+    if (this.isCurrentPlaylist(playlist)) {
+      this.playlistConsumers++;
+      return;
+    }
 
     this.unloadCurrentPlaylist();
 
     this.playlist = playlist;
     this.currentIndex = 0;
+    this.playlistConsumers = 1;
 
     for (const music of playlist) {
       await this.preloadSound(music.musicName, music.musicURL);
     }
+  }
+
+  public releasePlaylist(playlist: Musics[]): void {
+    // Ignora se outra playlist já substituiu esta (ex.: troca de tema)
+    if (!this.isCurrentPlaylist(playlist)) return;
+
+    this.playlistConsumers = Math.max(0, this.playlistConsumers - 1);
+
+    if (this.playlistConsumers === 0) this.unloadCurrentPlaylist();
   }
 
   public unloadCurrentPlaylist(): void {
@@ -141,6 +158,7 @@ export class AudioService {
 
     this.playlist = undefined as any;
     this.currentIndex = 0;
+    this.playlistConsumers = 0;
   }
 
   public unloadOneSound(music: Musics): void {

@@ -1,8 +1,10 @@
 import {
   Component,
+  effect,
   ElementRef,
   inject,
   NgZone,
+  Signal,
   signal,
   ViewChild,
 } from '@angular/core';
@@ -15,7 +17,6 @@ import {
 import { AudioService } from '../../../../../../../services/audio-service/audio.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBar } from '@angular/material/progress-bar';
-import { interval, Subscription } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -35,48 +36,35 @@ export class Tw3DialogSoundboardComponent {
   @ViewChild('cardTarget', { static: true })
   cardTarget!: ElementRef<HTMLElement>;
 
-  private ngZone = inject(NgZone);
+  private ngZone: NgZone;
   private audioService: AudioService;
   private currentCardClone: HTMLElement | null = null;
-  private musicProgressSubscription!: Subscription;
 
   public tw3Musics: Musics[] = TW3Musics;
-  public currentMusicProgress: number = 0;
-  public currentMusicComposer: string | undefined;
-  public selectedTrack = signal<Musics | null>(null);
+  public currentMusicProgress: Signal<number>;
+  public currentMusic: Signal<string | null>;
+  public currentMusicComposer: Signal<string | undefined>;
+  public selectedTrack: Signal<Musics | null> = signal(null);
 
   public isAnimating = signal(false);
 
   constructor() {
     this.audioService = inject(AudioService);
-  }
+    this.ngZone = inject(NgZone);
 
-  ngOnInit(): void {
-    this.syncWithCurrentlyPlayingTrack();
+    this.currentMusicProgress = this.audioService.progress;
+    this.currentMusic = this.audioService.currentMusicName;
+    this.currentMusicComposer = this.audioService.currentMusicComposer;
+    this.selectedTrack = this.audioService.currentMusic;
 
-    this.musicProgressSubscription = interval(200).subscribe(() => {
-      this.currentMusicProgress = this.audioService.getMusicProgress();
-      this.currentMusicComposer = this.audioService.getCurrentMusicComposer();
-
-      const currentMusic = this.audioService.getCurrentMusic();
-
-      if (currentMusic && currentMusic !== this.selectedTrack()) {
-        this.selectedTrack.set(currentMusic);
-        this.placeCardInTarget(currentMusic);
-      } else if (!currentMusic) {
-        this.selectedTrack.set(null);
-      }
+    effect(() => {
+      const music = this.selectedTrack();
+      if (music) this.placeCardInTarget(music);
     });
-  }
-  ngOnDestroy(): void {
-    this.musicProgressSubscription.unsubscribe();
   }
 
   public get isPlayingMusic(): boolean {
     return this.audioService.isPlaying();
-  }
-  public get currentMusicName(): string {
-    return this.selectedTrack()?.musicName || '';
   }
 
   public pauseOrResumeMusic(): void {
@@ -96,20 +84,6 @@ export class Tw3DialogSoundboardComponent {
   }
   public previousMusic(): void {
     this.audioService.previousMusic();
-  }
-
-  private syncWithCurrentlyPlayingTrack(): void {
-    if (!this.audioService.isPlaying()) return;
-
-    const currentName = this.audioService.getCurrentMusicName();
-    const currentMusic = this.tw3Musics.find(
-      (music) => music.musicName === currentName,
-    );
-
-    if (!currentMusic) return;
-
-    this.selectedTrack.set(currentMusic);
-    this.placeCardInTarget(currentMusic);
   }
 
   private placeCardInTarget(music: Musics): void {
@@ -146,7 +120,7 @@ export class Tw3DialogSoundboardComponent {
       clone.remove();
       this.isAnimating.set(false);
       this.audioService.playFromIndex(index);
-      // selectedTrack + placeCardInTarget agora ficam a cargo do polling
+      // selectedTrack + placeCardInTarget ficam a cargo do effect
     });
   }
   private animateFlip(

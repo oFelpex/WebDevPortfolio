@@ -36,14 +36,16 @@
             mat-icon-button
             (click)="muteSfxVolume(); playClickSound(actualTheme.name)"
           >
-            <mat-icon style="font-family: Material Icons">
-              {{
+            <mat-icon
+              style="font-family: Material Icons"
+              [fontIcon]="
                 sfxVolume === 0
-                  ? "volume_off"
+                  ? 'volume_off'
                   : sfxVolume < 50
-                  ? "volume_down"
-                  : "volume_up"
-              }}
+                    ? 'volume_down'
+                    : 'volume_up'
+              "
+            >
             </mat-icon>
           </button>
         </div>
@@ -75,23 +77,27 @@
             mat-icon-button
             (click)="muteMusicVolume(); playClickSound(actualTheme.name)"
           >
-            <mat-icon style="font-family: Material Icons">
-              {{
+            <mat-icon
+              style="font-family: Material Icons"
+              [fontIcon]="
                 musicVolume === 0
-                  ? "volume_off"
+                  ? 'volume_off'
                   : musicVolume < 50
-                  ? "volume_down"
-                  : "volume_up"
-              }}
+                    ? 'volume_down'
+                    : 'volume_up'
+              "
+            >
             </mat-icon>
           </button>
         </div>
 
         <div id="music-progress-container">
-          <h5 id="music-title">{{ currentMusic }} • {{ currentComposer }}</h5>
+          <h5 id="music-title">
+            {{ currentMusic() }} • {{ currentComposer() }}
+          </h5>
           <mat-progress-bar
             mode="determinate"
-            [value]="progress * 100"
+            [value]="progress() * 100"
           ></mat-progress-bar>
 
           <div id="music-actions">
@@ -100,8 +106,10 @@
               mat-icon-button
               (click)="previousMusic(); playClickSound(actualTheme.name)"
             >
-              <mat-icon style="font-family: Material Icons">
-                skip_previous
+              <mat-icon
+                style="font-family: Material Icons"
+                fontIcon="skip_previous"
+              >
               </mat-icon>
             </button>
             <button
@@ -109,8 +117,10 @@
               mat-icon-button
               (click)="playOrStopMusic(); playClickSound(actualTheme.name)"
             >
-              <mat-icon style="font-family: Material Icons">
-                {{ isPlaying() ? "pause" : "play_arrow" }}
+              <mat-icon
+                style="font-family: Material Icons"
+                [fontIcon]="isPlaying() ? 'pause' : 'play_arrow'"
+              >
               </mat-icon>
             </button>
             <button
@@ -118,8 +128,10 @@
               mat-icon-button
               (click)="nextMusic(); playClickSound(actualTheme.name)"
             >
-              <mat-icon style="font-family: Material Icons">
-                skip_next
+              <mat-icon
+                style="font-family: Material Icons"
+                fontIcon="skip_next"
+              >
               </mat-icon>
             </button>
           </div>

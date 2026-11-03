@@ -8,7 +8,10 @@
         [style.animation-duration.s]="p.duration"
         [style.animation-delay.s]="p.delay"
         [style.width.px]="p.size"
-        alt="Seasonal particle"
+        [alt]="
+          'THEMES.GAMES.UNDERTALE.HOME.CONFIG-MENU.ALT.SEASONAL-PARTICLE'
+            | translate
+        "
       />
     }
   </div>
@@ -57,7 +60,10 @@
       [src]="annoyingDog.src"
       [class]="'annoyingDog ' + annoyingDog.animClass"
       [style.width.px]="annoyingDog.size"
-      alt="Seasonal annoying dog"
+      [alt]="
+        'THEMES.GAMES.UNDERTALE.HOME.CONFIG-MENU.ALT.SEASONAL-ANNOYING-DOG'
+          | translate
+      "
     />
   </div>
 </section>

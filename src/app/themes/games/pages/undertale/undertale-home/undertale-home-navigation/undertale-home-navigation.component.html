@@ -12,7 +12,7 @@
           (mouseenter)="mouseEnterOrLeaveSFX()"
           (click)="playClickSound(); changeToNextLocation('previous')"
         >
-          <mat-icon>keyboard_arrow_left</mat-icon>
+          <mat-icon fontIcon="keyboard_arrow_left"></mat-icon>
         </button>
         <span id="navigation-menu-location-span">{{
           "ROUTER." + locationPages[currentLocation()].toUpperCase() | translate
@@ -24,7 +24,7 @@
           (mouseenter)="mouseEnterOrLeaveSFX()"
           (click)="playClickSound(); changeToNextLocation('next')"
         >
-          <mat-icon>keyboard_arrow_right</mat-icon>
+          <mat-icon fontIcon="keyboard_arrow_right"></mat-icon>
         </button>
       </div>
       <button

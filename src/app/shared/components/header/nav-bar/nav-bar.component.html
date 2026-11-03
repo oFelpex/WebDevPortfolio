@@ -7,27 +7,27 @@
           aria-label="Button to show the menu"
           (click)="toggleMobileNavMenu(); playClickSound(actualTheme.name)"
         >
-          <mat-icon class="menuButton-icon">menu</mat-icon>
+          <mat-icon class="menuButton-icon" fontIcon="menu"></mat-icon>
         </button>
       </div>
 
       <!-- change the "Felpex" logo when change theme -->
-      @if(actualTheme.type === "Games") {
-      <app-logo-effects></app-logo-effects>
-      <div class="navBar-buttons-container">
-        <button
-          mat-mini-fab
-          aria-label="Button to show the soundboard"
-          (click)="
-            toggleMobileSoundboardMenu(); playClickSound(actualTheme.name)
-          "
-        >
-          <mat-icon class="menuButton-icon">headphones</mat-icon>
-        </button>
-      </div>
+      @if (actualTheme.type === "Games") {
+        <app-logo-effects></app-logo-effects>
+        <div class="navBar-buttons-container">
+          <button
+            mat-mini-fab
+            aria-label="Button to show the soundboard"
+            (click)="
+              toggleMobileSoundboardMenu(); playClickSound(actualTheme.name)
+            "
+          >
+            <mat-icon class="menuButton-icon" fontIcon="headphones"></mat-icon>
+          </button>
+        </div>
       } @else {
-      <h1 id="navBar-logo">Felpex</h1>
-      <div id="blank-space"></div>
+        <h1 id="navBar-logo">Felpex</h1>
+        <div id="blank-space"></div>
       }
     </div>
 
@@ -80,7 +80,9 @@
           aria-label="Button that open a menu to change the theme of the page"
         >
           {{ "NAV-BAR-LIST.THEME" | translate }}:
-          {{ actualThemeKey | translate }}
+          {{
+            "THEMES." + actualTheme.type + "." + actualTheme.name | translate
+          }}
         </button>
       </mat-list-item>
       <mat-menu #theme="matMenu">
@@ -113,38 +115,40 @@
 
       <mat-menu #games="matMenu">
         @for (gamesOptions of gamesOptions; track $index) {
-        <button
-          class="expandMatMenu"
-          mat-menu-item
-          (click)="changeTheme(gamesOptions); playClickSound(actualTheme.name)"
-          [class]="{
-            expandMatMenu: actualTheme.name === gamesOptions.name
-          }"
-        >
-          <span
-            [matBadge]="actualTheme.name === gamesOptions.name ? 'ON' : ''"
-            matBadgeOverlap="false"
-            >{{ gamesOptions.name }}</span
+          <button
+            class="expandMatMenu"
+            mat-menu-item
+            (click)="
+              changeTheme(gamesOptions); playClickSound(actualTheme.name)
+            "
+            [class]="{
+              expandMatMenu: actualTheme.name === gamesOptions.name,
+            }"
           >
-        </button>
+            <span
+              [matBadge]="actualTheme.name === gamesOptions.name ? 'ON' : ''"
+              matBadgeOverlap="false"
+              >{{ gamesOptions.name }}</span
+            >
+          </button>
         }
       </mat-menu>
       <mat-menu #color="matMenu">
         @for (colorOption of colorsOptions; track $index) {
-        <button
-          class="expandMatMenu"
-          mat-menu-item
-          (click)="changeTheme(colorOption); playClickSound(actualTheme.name)"
-          [class]="{
-            expandMatMenu: actualTheme.name === colorOption.name
-          }"
-        >
-          <span
-            [matBadge]="actualTheme.name === colorOption.name ? 'ON' : ''"
-            matBadgeOverlap="false"
-            >{{ "THEMES.Colors." + colorOption.name | translate }}</span
+          <button
+            class="expandMatMenu"
+            mat-menu-item
+            (click)="changeTheme(colorOption); playClickSound(actualTheme.name)"
+            [class]="{
+              expandMatMenu: actualTheme.name === colorOption.name,
+            }"
           >
-        </button>
+            <span
+              [matBadge]="actualTheme.name === colorOption.name ? 'ON' : ''"
+              matBadgeOverlap="false"
+              >{{ "THEMES.Colors." + colorOption.name | translate }}</span
+            >
+          </button>
         }
       </mat-menu>
 
@@ -159,17 +163,17 @@
         </button></mat-list-item
       >
       <mat-menu #langs="matMenu">
-        @for(lang of AllLangs; track $index) {
-        <button
-          (click)="changeLanguage(lang); playClickSound(actualTheme.name)"
-          mat-menu-item
-        >
-          <span
-            [matBadge]="currentLang === lang ? 'ON' : ''"
-            matBadgeOverlap="false"
-            >{{ lang }}</span
+        @for (lang of AllLangs; track $index) {
+          <button
+            (click)="changeLanguage(lang); playClickSound(actualTheme.name)"
+            mat-menu-item
           >
-        </button>
+            <span
+              [matBadge]="currentLang === lang ? 'ON' : ''"
+              matBadgeOverlap="false"
+              >{{ lang }}</span
+            >
+          </button>
         }
       </mat-menu>
 

@@ -70,9 +70,10 @@
             (mouseenter)="mouseEnterOrLeaveSFX()"
             (click)="prevMusicOnTheList(); playClickSound()"
           >
-            <mat-icon class="undertale-soundboard-next-prev-btn-icon"
-              >arrow_drop_up</mat-icon
-            >
+            <mat-icon
+              class="undertale-soundboard-next-prev-btn-icon"
+              fonticon="arrow_drop_up"
+            ></mat-icon>
           </button>
           <button
             mat-button
@@ -84,9 +85,10 @@
             (mouseenter)="mouseEnterOrLeaveSFX()"
             (click)="playClickSound(); nextMusicOnTheList()"
           >
-            <mat-icon class="undertale-soundboard-next-prev-btn-icon"
-              >arrow_drop_down</mat-icon
-            >
+            <mat-icon
+              class="undertale-soundboard-next-prev-btn-icon"
+              fonticon="arrow_drop_down"
+            ></mat-icon>
           </button>
         </div>
       </div>
@@ -136,7 +138,7 @@
             (mouseenter)="mouseEnterOrLeaveSFX()"
             (click)="playClickSound(); playPreviousMusic()"
           >
-            <mat-icon>skip_previous</mat-icon>
+            <mat-icon fontIcon="skip_previous"></mat-icon>
           </button>
           <button
             class="undertale-soundboard-menu-playing-btns"
@@ -149,9 +151,9 @@
             (mouseenter)="mouseEnterOrLeaveSFX()"
             (click)="playClickSound(); pauseOrPlayMusic()"
           >
-            <mat-icon>{{
-              isPlaying() ? "pause_circle" : "play_circle"
-            }}</mat-icon>
+            <mat-icon
+              [fontIcon]="isPlaying() ? 'pause_circle' : 'play_circle'"
+            ></mat-icon>
           </button>
           <button
             class="undertale-soundboard-menu-playing-btns"
@@ -164,7 +166,7 @@
             (mouseenter)="mouseEnterOrLeaveSFX()"
             (click)="playClickSound(); playNextMusic()"
           >
-            <mat-icon>skip_next</mat-icon>
+            <mat-icon fontIcon="skip_next"></mat-icon>
           </button>
         </div>
         <div id="undertale-soundboard-menu-playing-volume-btn-container">
@@ -174,7 +176,7 @@
               mat-icon-button
               aria-label="Music volume"
             >
-              <mat-icon>music_note</mat-icon>
+              <mat-icon fontIcon="music_note"></mat-icon>
             </button>
             <div class="volume-slider-wrapper">
               <mat-slider min="0" max="100" step="1" class="volume-slider">
@@ -190,7 +192,7 @@
 
           <div class="volume-control">
             <button class="volume-btn" mat-icon-button aria-label="SFX volume">
-              <mat-icon>headphones</mat-icon>
+              <mat-icon fontIcon="headphones"></mat-icon>
             </button>
             <div class="volume-slider-wrapper">
               <mat-slider min="0" max="100" step="1" class="volume-slider">

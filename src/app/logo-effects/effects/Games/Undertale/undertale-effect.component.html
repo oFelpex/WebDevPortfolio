@@ -9,14 +9,21 @@
                 class="attack-sprite"
                 [style.animation-delay]="attack.spinDelay"
                 [src]="spritesPath + soul.name + '-soul-attack.webp'"
-                [alt]="soul.name + ' soul attack sprite'"
+                [alt]="
+                  'THEMES.GAMES.UNDERTALE.ALT.' +
+                    soul.name.toUpperCase() +
+                    '-ATTACK' | translate
+                "
               />
             </div>
           }
           <img
             class="soul"
             [src]="spritesPath + soul.name + '-soul.webp'"
-            [alt]="soul.name + ' soul sprite'"
+            [alt]="
+              'THEMES.GAMES.UNDERTALE.ALT.' + soul.name.toUpperCase() + '-SOUL'
+                | translate
+            "
           />
         </div>
       }
@@ -24,7 +31,7 @@
     <img
       class="soul red-soul"
       [src]="spritesPath + 'red-soul.webp'"
-      alt="Red soul sprite"
+      [alt]="'THEMES.GAMES.UNDERTALE.ALT.RED-SOUL' | translate"
     />
   </div>
 }

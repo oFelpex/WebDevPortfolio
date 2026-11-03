@@ -8,17 +8,25 @@
         (mouseenter)="mouseEnterOrLeaveSFX()"
         (click)="goToHomeMenu('soundboard')"
       >
-        <mat-icon>music_note</mat-icon>
+        <mat-icon fontIcon="music_note"></mat-icon>
       </button>
       <div id="undertale-middle-action-container">
         <a [routerLink]="['/home']" (mouseenter)="mouseEnterOrLeaveSFX()"
-          ><button class="middle-action-btn" mat-button>
+          ><button
+            class="middle-action-btn"
+            mat-button
+            (click)="playClickSound()"
+          >
             {{ "ROUTER.HOME" | translate }}
           </button></a
         >
 
         <a [routerLink]="['/about-me']" (mouseenter)="mouseEnterOrLeaveSFX()"
-          ><button class="middle-action-btn" mat-button>
+          ><button
+            class="middle-action-btn"
+            mat-button
+            (click)="playClickSound()"
+          >
             {{ "ROUTER.ABOUT-ME" | translate }}
           </button></a
         >
@@ -26,13 +34,21 @@
         <app-logo-effects logoName="logo-undertale"></app-logo-effects>
 
         <a [routerLink]="['/projects']" (mouseenter)="mouseEnterOrLeaveSFX()"
-          ><button class="middle-action-btn" mat-button>
+          ><button
+            class="middle-action-btn"
+            mat-button
+            (click)="playClickSound()"
+          >
             {{ "ROUTER.PROJECTS" | translate }}
           </button></a
         >
 
         <a [routerLink]="['/contact-me']" (mouseenter)="mouseEnterOrLeaveSFX()"
-          ><button class="middle-action-btn" mat-button>
+          ><button
+            class="middle-action-btn"
+            mat-button
+            (click)="playClickSound()"
+          >
             {{ "ROUTER.CONTACT-ME" | translate }}
           </button></a
         >
@@ -44,7 +60,7 @@
         (mouseenter)="mouseEnterOrLeaveSFX()"
         (click)="goToHomeMenu('configMenu')"
       >
-        <mat-icon>settings</mat-icon>
+        <mat-icon fontIcon="settings"></mat-icon>
       </button>
     } @else {
       <button
@@ -57,7 +73,7 @@
         (mouseenter)="mouseEnterOrLeaveSFX()"
         (click)="playClickSound()"
       >
-        <mat-icon>menu</mat-icon>
+        <mat-icon fontIcon="menu"></mat-icon>
       </button>
       <mat-menu #routesMenu="matMenu">
         <a [routerLink]="['/home']">
@@ -94,15 +110,15 @@
         (mouseenter)="mouseEnterOrLeaveSFX()"
         (click)="playClickSound()"
       >
-        <mat-icon>more_vert</mat-icon>
+        <mat-icon fontIcon="more_vert"></mat-icon>
       </button>
       <mat-menu #optionsMenu="matMenu" xPosition="before">
         <button mat-menu-item (click)="goToHomeMenu('soundboard')">
-          <mat-icon>music_note</mat-icon>
+          <mat-icon fontIcon="music_note"></mat-icon>
           <span>Soundboard</span>
         </button>
         <button mat-menu-item (click)="goToHomeMenu('configMenu')">
-          <mat-icon>settings</mat-icon>
+          <mat-icon fontIcon="settings"></mat-icon>
           <span>Config</span>
         </button>
       </mat-menu>

@@ -63,7 +63,15 @@
           "WEIGHT-ICON-ALT": "Aesthetic weight icon, intended solely as a reference to the witcher 3",
           "MONEY-ICON-ALT": "Aesthetic coin icon, intended solely as a reference to the witcher 3",
 
-          "CARDS-IN-THE-DECK": "Cards in the deck"
+          "CARDS-IN-THE-DECK": "Cards in the deck",
+
+          "ALT": {
+            "Kaer Morhen": "Card that shows the witcher Vesemir",
+            "Silver For Monsters...": "Card that shows Eredin, the King of the Wild Hunt",
+            "... Steel For Humans": "Card that shows Sigismund Dijkstra",
+            "The Fields of Ard Skellig": "Card that shows Cerys an Craite, from Skellig",
+            "Drink Up, There's More!": "Card that shows Draig Bon-Dhu, a skald from Skellige"
+          }
         },
         "NAVIGATE-MAP": {
           "HUD": {
@@ -197,6 +205,11 @@
               "FALL": "leaves fall, but you keep standing",
               "SPRING": "final stretch of the year, hang in there!",
               "SUMMER": "try to withstand the sun's life-giving rays"
+            },
+
+            "ALT": {
+              "SEASONAL-PARTICLE": "Seasonal particle",
+              "SEASONAL-ANNOYING-DOG": "Seasonal Annoying dog"
             }
           },
           "NAVIGATION-MENU": {
@@ -235,6 +248,22 @@
               "DELTARUNE-K_K": "Deltarune character K_K in his idle animation"
             }
           }
+        },
+
+        "ALT": {
+          "RED-SOUL": "Red soul sprite from the game undertale",
+          "DARK-BLUE-SOUL": "Dark blue soul sprite from the game undertale",
+          "DARK-BLUE-ATTACK": "Dark blue soul attack sprite from the game undertale",
+          "GREEN-SOUL": "Green soul sprite from the game undertale",
+          "GREEN-ATTACK": "Green soul attack sprite from the game undertale",
+          "LIGHT-BLUE-SOUL": "Light blue soul sprite from the game undertale",
+          "LIGHT-BLUE-ATTACK": "Light blue soul attack sprite from the game undertale",
+          "ORANGE-SOUL": "Orange soul sprite from the game undertale",
+          "ORANGE-ATTACK": "Orange soul attack sprite from the game undertale",
+          "PURPLE-SOUL": "Purple soul sprite from the game undertale",
+          "PURPLE-ATTACK": "Purple soul attack sprite from the game undertale",
+          "YELLOW-SOUL": "Yellow soul sprite from the game undertale",
+          "YELLOW-ATTACK": "Yellow soul attack sprite from the game undertale"
         }
       },
 

@@ -74,7 +74,7 @@ export class UndertaleHomeSoundboardComponent implements OnInit, OnDestroy {
     this.isDestroyed = true;
     this.audioService.unloadOneSound(this.soundboardMusic);
 
-    this.audioService.unloadCurrentPlaylist();
+    this.audioService.releasePlaylist(this.allUndertaleMusics);
   }
 
   public get isPlayingSomeMusicFromThePlaylist(): boolean {

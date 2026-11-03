@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, Signal } from '@angular/core';
 import { Subscription, interval } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -20,48 +20,30 @@ import { ThemeService } from '../../../../../../../services/theme-service/theme.
   templateUrl: './minecraft-dialog-soundboard.component.html',
   styleUrl: './minecraft-dialog-soundboard.component.scss',
 })
-export class MinecraftDialogSoundboardComponent {
+export class MinecraftDialogSoundboardComponent implements OnInit {
   private audioService: AudioService;
-  private themeService: ThemeService;
   private savedSfxVolume: number = 50;
   private savedMusicVolume: number = 50;
-  private sub!: Subscription;
-  private themeSubscription!: Subscription;
 
-  public actualTheme!: Themes;
   public sfxVolume: number = 50;
   public musicVolume: number = 50;
-  public progress: number = 0;
-  public currentMusic: string | null = null;
-  public currentComposer: string | undefined;
+  public progress!: Signal<number>;
+  public currentMusic!: Signal<string | null>;
+  public currentComposer!: Signal<string | undefined>;
 
   constructor() {
     this.audioService = inject(AudioService);
-    this.themeService = inject(ThemeService);
 
     this.sfxVolume = this.audioService.getSfxVolume() * 100;
     this.musicVolume = this.audioService.getMusicVolume() * 100;
   }
 
   ngOnInit(): void {
-    this.sub = interval(200).subscribe(() => {
-      this.progress = this.audioService.getMusicProgress();
-      this.currentMusic = this.audioService.getCurrentMusicName();
-      this.currentComposer = this.audioService.getCurrentMusicComposer();
-    });
-
-    this.themeSubscription = this.themeService.actualTheme$.subscribe(
-      (theme) => {
-        this.actualTheme = theme;
-      },
-    );
+    this.progress = this.audioService.progress;
+    this.currentMusic = this.audioService.currentMusicName;
+    this.currentComposer = this.audioService.currentMusicComposer;
 
     this.addStylesToSliders();
-  }
-
-  ngOnDestroy(): void {
-    this.themeSubscription.unsubscribe();
-    this.sub.unsubscribe();
   }
 
   private addStylesToSliders(): void {
@@ -96,8 +78,8 @@ export class MinecraftDialogSoundboardComponent {
     }
   }
 
-  public playClickSound(themeName: string): void {
-    this.audioService.playClickSound(themeName);
+  public playClickSound(): void {
+    this.audioService.playClickSound('Minecraft');
   }
   public get isPlayingMusic(): boolean {
     return this.audioService.isPlaying();

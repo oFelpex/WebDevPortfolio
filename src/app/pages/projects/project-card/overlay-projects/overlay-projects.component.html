@@ -1,15 +1,15 @@
-@if(isOverlayVisible) {
-<div id="project-card-img-overlay" (click)="goToProject()" @showOverlay>
-  <button
-    (click)="playClickSound(actualTheme.name)"
-    mat-icon-button
-    aria-label="Get you to the site."
-  >
-    <mat-icon
-      aria-label="Example home icon"
-      style="color: aliceblue; font-family: 'Material Icons'"
-      >trending_flat</mat-icon
+@if (isOverlayVisible) {
+  <div id="project-card-img-overlay" (click)="goToProject()" @showOverlay>
+    <button
+      (click)="playClickSound(actualTheme.name)"
+      mat-icon-button
+      aria-label="Get you to the site."
     >
-  </button>
-</div>
+      <mat-icon
+        aria-label="Example home icon"
+        style="color: aliceblue; font-family: &quot;Material Icons&quot;"
+        fontIcon="trending_flat"
+      ></mat-icon>
+    </button>
+  </div>
 }

@@ -180,6 +180,49 @@ body.the-witcher-3-theme {
       background-color: #1a1a1a;
       border-top: 4px solid #574a41;
 
+      .mat-drawer-inner-container {
+        #mobileSoundboard {
+          #music-slider-container {
+            .mat-mdc-slider.mdc-slider.sb-slider.mat-primary.mdc-slider--discrete.mdc-slider--tick-marks {
+              position: relative;
+              margin: 0 25px;
+
+              // Border drawn outside the slider so it doesn't affect the
+              // width mat-slider uses to position the handle
+              &::before {
+                content: "";
+                position: absolute;
+                inset: 50% -25px auto;
+                height: 29px;
+                transform: translateY(-50%);
+                border: 4px double #45372e;
+                box-sizing: border-box;
+                pointer-events: none;
+              }
+            }
+          }
+          #sfx-slider-container {
+            .mat-mdc-slider.mdc-slider.sb-slider.mat-primary.mdc-slider--discrete.mdc-slider--tick-marks {
+              position: relative;
+              margin: 0 25px;
+
+              // Border drawn outside the slider so it doesn't affect the
+              // width mat-slider uses to position the handle
+              &::before {
+                content: "";
+                position: absolute;
+                inset: 50% -25px auto;
+                height: 29px;
+                transform: translateY(-50%);
+                border: 4px double #45372e;
+                box-sizing: border-box;
+                pointer-events: none;
+              }
+            }
+          }
+        }
+      }
+
       &::before,
       &::after {
         content: "";
@@ -288,7 +331,7 @@ body.the-witcher-3-theme {
       handle-color: #a6a4a2,
       //cor da bola ao segurar com o mouse
       hover-handle-color: #b8b5b3,
-      focus-handle-color: #b8b5b3,
+      focus-handle-color: #d3cfcd,
       //cor da barra ativa
       active-track-color: transparent,
       //cor da barra inativa

@@ -5,6 +5,7 @@ import { filter } from 'rxjs';
 
 import { AudioService } from '../../../../services/audio-service/audio.service';
 import { SFXs, undertaleFinaleSFX } from '../../../../models/sfxs';
+import { TranslateModule } from '@ngx-translate/core';
 
 interface Soul {
   name: string;
@@ -19,7 +20,7 @@ interface Attack {
 
 @Component({
   selector: 'app-undertale',
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './undertale-effect.component.html',
   styleUrl: './undertale-effect.component.scss',
 })
